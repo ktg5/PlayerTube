@@ -30,6 +30,9 @@ This is basically the continuation of my userscript, [YT-HTML5-Player](https://g
 It was also getting to a point where I couldn't fix certain issues, or some issues could be fixed but it would also break something else. So I said, "Screw it!", and made the script into a browser extension!
 
 ## Somethings that this extensions does...
+### Many different years & styles!
+Well, didn't you see the screenshots above?
+
 ### User customization!
 If you wanted to edit the look of the player:
 1. Open up the menu at the top right of your YouTube page.
@@ -38,7 +41,6 @@ If you wanted to edit the look of the player:
 4. Click on the "Apply settings" button, and reload the page!
 
 Some examples:
-
 <div align="center">
   <img src="docs/custom-scripts/screenshot3.png">
   <div font-size="8px">Luigi theme v1.1 | <a href="https://github.com/ktg5/YT-HTML5-Player/blob/main/docs/custom-scripts/luigi-player.json">View the code</a></div>

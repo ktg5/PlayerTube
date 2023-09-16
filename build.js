@@ -71,9 +71,6 @@ copyDir('./', chromeDir).then(async () => {
         console.log(`WHAT THE FRICK! ${e}`);
     }
     console.log(`Zipped Chrome version into ../PlayerTube-Chrome.zip`);
-    // Delete folder cuz idk GitHub don't likey
-    console.log("Deleting Chrome folder...");
-    fs.rmSync('../PlayerTube-Chrome', { recursive: true });
     console.log(`-------------`);
 });
 
@@ -85,16 +82,25 @@ copyDir('./', firefoxDir).then(async () => {
     // manifest standards like WHY.
     var firefoxManifest = JSON.parse(fs.readFileSync('../PlayerTube-Firefox/manifest.json', 'utf8'));
     firefoxManifest.manifest_version = 2;
-    firefoxManifest.background.scripts = ['scripts/background.js']; // Add this so Firefox extension can work
+    firefoxManifest.background = {
+        "scripts": [
+        "background.js"
+        ],
+        "persistent": false,
+        "type": "module"
+    }; // Add this so Firefox extension can work
     firefoxManifest.browser_specific_settings = {
         "gecko": {  
-            "id": "addon@example.com"
+            "id": "{925b0516-774d-469d-bb0e-2b94f199b29a}"
         }
     };
     firefoxManifest.browser_action = {
         "default_popup": "html/popup.html",
         "default_icon": "img/playertube/icon.png"
-    };
+    }; // Popups
+    firefoxManifest.web_accessible_resources = [
+        "css/*"
+    ],
     delete firefoxManifest.action; // Manifest v2 moment
     delete firefoxManifest.background.service_worker; // This is for Chrome, Firefox will freak out if this isn't delete lol.
     // Write the manifest file for Firefox
