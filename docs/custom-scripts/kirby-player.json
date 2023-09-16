@@ -1,0 +1,14 @@
+{
+    "customTheme": true,
+    "controlsBack": null,
+    "progressBarColor": "#f38cea",
+    "volumeSliderBack": "#f38cea",
+    "scrubberIcon": "https://i.imgur.com/KNcGM0f.png",
+    "scrubberIconHover": "https://i.imgur.com/KNcGM0f.png",
+    "scrubberPosition": null,
+    "scrubberSize": "16",
+    "scrubberHeight": null,
+    "scrubberWidth": null,
+    "scrubberTop": null,
+    "scrubberLeft": null
+}

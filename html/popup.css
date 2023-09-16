@@ -1,0 +1,205 @@
+/* menu stylin' */
+@font-face {
+    src: url(fonts/Chalet-NewYorkNineteenSixty.ttf);
+    font-family: "lol";
+}
+
+a {
+    color: #ffa7a7;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-family: 'lol';
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+}
+
+
+#yt-html5-menu-button {
+    margin-right: 8px;
+    margin-top: 4px;
+}
+
+#yt-html5-menu-button button {
+    background: transparent;
+    cursor: pointer;
+    border: 0;
+    rotate: 0deg;
+    transition: all .25s;
+}
+
+#yt-html5-menu-button button img {
+    height: 26px;
+}
+
+
+.menu-message {
+    width: 22em;
+    height: auto;
+    border: solid 0.5em rgba(0, 0, 0, 0.15);
+    border-radius: 1em;
+    padding: 1em;
+    background: white;
+    top: 0;
+    position: absolute;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    animation: fadeIn ease .15s;
+    overflow: auto;
+    z-index: 10;
+}
+
+.menu-message button {
+    position: absolute;
+    right: 17px;
+    cursor: pointer;
+}
+
+.menu-message img {
+    width: 14px;
+}
+
+
+#yt-html5-menu {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 22em;
+    height: 28em;
+    border: solid 0.5em rgba(0, 0, 0, 0.15);
+    border-radius: 1em;
+    padding: 1em;
+    background: white;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    animation: fadeIn ease .15s;
+    overflow: auto;
+}
+
+#yt-html5-menu h2 {
+    display: contents;
+}
+
+#yt-html5-menu .version {
+    display: inline;
+    position: relative;
+    padding-left: 5px;
+    bottom: 19px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#yt-html5-menu .menu-option {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: .5em 0;
+}
+
+#yt-html5-menu .menu-option:where(:first-child) {
+    margin-top: 0;
+}
+
+#yt-html5-menu .menu-option:where(:last-child) {
+    margin-bottom: 0;
+}
+
+#yt-html5-menu .menu-option .menu-name {
+    max-width: 14em;
+}
+
+
+#yt-html5-menu .menu-option select {
+    position: relative;
+    width: 8em;
+    left: calc(100% - 8em);
+}
+
+
+#yt-html5-menu .menu-opinion-note {
+    position: relative;
+    bottom: 6px;
+    font-size: 12px;
+}
+
+#yt-html5-menu .menu-toggle {
+    background: #1d1d1d;
+    border: 5px solid rgb(150 150 150 / 10%);
+    border-radius: 1em;
+    transition: all .25s;
+    position: relative;
+    cursor: pointer;
+    height: 8px;
+    width: 2em;
+    left: calc(100% - 2.75em);
+    box-sizing: unset;
+    padding-block: 0;
+    padding-inline: 0;
+    margin: auto 0;
+}
+
+#yt-html5-menu .menu-toggle .light {
+    content: '';
+    display: block;
+    background: #8f8f8f;
+    border-radius: 1em;
+    width: auto;
+    height: 8px;
+    transition: all .25s;
+}
+
+#yt-html5-menu .menu-toggle .light.true {
+    background: #04ff00;
+}
+
+#yt-html5-menu .menu-toggle .light.false {
+    background: #ff0000;
+}
+
+#yt-html5-menu .menu-option input[type="color"] {
+    width: 3em;
+    height: 18px;
+}
+
+#yt-html5-menu .menu-option input[type="text"] {
+    width: 8em;
+    height: 1em;
+}
+
+
+#yt-html5-menu .nuke-all {
+    background: rgb(200, 0, 0);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#yt-html5-menu .warning {
+    position: fixed;
+    width: 20em;
+    border: solid 0.5em red;
+    border-radius: 0.5em 0.5em 0 0;
+    background: red;
+    color: white;
+    text-align: center;
+    top: 375px;
+    left: 18px;
+    z-index: 1;
+}
+
+.warning h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+#yt-html5-menu .blank {
+    height: 70px;
+}
+
+/* keyframes */
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

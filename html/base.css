@@ -1,0 +1,68 @@
+/* Base */
+@font-face {
+    src: url(fonts/Chalet-NewYorkNineteenSixty.ttf);
+    font-family: "lol";
+}
+
+a {
+    color: #ffa7a7;
+}
+
+h1, h2, h3 {
+    font-family: 'lol';
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #5a5a5a;
+    color: white !important;
+    margin: 0;
+}
+
+/* Content */
+#content {
+    background: #202020;
+    margin: auto;
+    padding: 1em;
+    max-width: 50em;
+    min-height: 100vh;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+#logo .showVersion {
+    font-family: 'lol';
+    display: inline;
+    position: relative;
+    font-size: 40px;
+    padding-left: 8px;
+    bottom: 37px;
+}
+
+.text {
+    max-width: 40em;
+    margin: auto;
+}
+
+#logo {
+    width: fit-content;
+    margin: auto;
+    padding-bottom: 1em;
+}
+
+/* Credits */
+#credits {
+    width: fit-content;
+    padding-top: 4em;
+    margin: auto;
+}
+
+#credits .text {
+    font-family: 'lol';
+    display: inline;
+    position: relative;
+    font-size: 22px;
+    bottom: 24px;
+    padding-right: 10px;
+}

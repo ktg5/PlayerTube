@@ -1,0 +1,31 @@
+{
+  "name": "playertube",
+  "version": "1.0.0",
+  "description": "The secret ingredient for a older (and better) looking YouTube.",
+  "main": "build.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktg5/PlayerTube.git"
+  },
+  "keywords": [
+    "extension",
+    "youtube"
+  ],
+  "author": "ktg5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ktg5/PlayerTube/issues"
+  },
+  "homepage": "https://github.com/ktg5/PlayerTube#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "fs-extra": "^11.1.1"
+  }
+}

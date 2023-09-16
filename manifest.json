@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "PlayerTube",
+    "description": "Try to recreate all the old YouTube player looks.",
+    "version": "1.0",
+    "homepage_url": "https://github.com/ktg5/PlayerTube",
+
+    "background": {
+        "service_worker": "background.js"
+    },
+
+    "action": {
+        "default_popup": "html/popup.html",
+        "default_icon": "img/playertube/icon.png"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*.youtube.com/*"],
+            "js": ["setup.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://*.youtube.com/*"],
+            "js": ["main.js"]
+        }
+    ],
+
+    "web_accessible_resources": [{
+        "matches": ["*://*.youtube.com/*"],
+        "resources": ["css/*"]
+    }],
+
+    "permissions": [
+        "activeTab",
+        "storage"
+    ]
+}

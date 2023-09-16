@@ -1,0 +1,39 @@
+/* This style script is used for making sure
+some 3rd-party scripts work with this script
+correctly.
+
+If you have any plugins/scripts you'd like to
+be fixed for this script, please send a issue
+on the GitHUb repo! Much thanks! */
+
+/* Sponosor Block */
+#previewbar {
+    top: 0px;
+}
+/* Need to find a way to get this to change but there's a line break after "Click" */
+.ytp-button.ytp-settings-button svg[fill="white"] {
+    background: #1b1b1b !important;
+    display: block !important;
+    height: 30px;
+    fill: gray;
+}
+
+#sponsorBlockDurationAfterSkips {
+    color: #969696 !important;
+    text-shadow: none;
+}
+
+/* CustomTube */
+/*
+This extension for some reason likes to
+resize the player when not in theater mode,
+the following lines of code should fix this.
+*/
+ytd-app[static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+    width: 100% !important;
+}
+
+/* Truffle */
+body[data-mogul-theater-mode] .html5-video-player .ytp-chrome-bottom {
+    width: 100%;
+}
