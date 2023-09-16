@@ -37,13 +37,13 @@ function progressBarChanger() {
     setInterval(() => {
         // Check progress bar
         if (progressbar) {
-            if (progressbar.ariaValueMax == progressbar.ariaValueNow) {
+            if (progressbar.getAttribute('aria-valuemax') == progressbar.getAttribute('aria-valuenow')) {
                 progressbar.classList.add('finished');
-                console.log('YT-HTML5-Player', `video finished, progress bar should be all main color.`);
+                console.log('PlayerTube', `video finished, progress bar should be all main color.`);
             } else {
                 if (progressbar.classList.contains('finished')) {
                     progressbar.classList.remove('finished');
-                    console.log(`YT-HTML5-Player`, `video started, reerting back.`);
+                    console.log(`PlayerTube`, `video started, reerting back.`);
                 }
             }
         }

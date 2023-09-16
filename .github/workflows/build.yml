@@ -32,15 +32,24 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.8.1
 
-      # Install the NPM modules that are included with this .
+      # Install the NPM modules that are included with this repo.
       - name: Install NPM packages
         run: npm install
 
-      # Run the "build.js" script through our newly aquired Node.js enviroment.
+      # Get the ability to unzip.
+      - name: Install action-zip
+        uses: montudor/action-zip@v1.0.0
+
+      # Run the "build.js" script through our newly acquired Node.js environment.
       - name: Run the build node script
         run: node build.js
 
-      # Upload the files to the "Artifacts" tab on this action's page.
+      # Unzip stuffs.
+      - name: Unzip extension
+        run: unzip -qq ../PlayerTube-Chrome -d PlayerTube-Chrome; unzip -qq ../PlayerTube-Firefox.zip -d PlayerTube-Firefox
+        working-directory: ${{ github.workspace }}
+
+      # Upload the ZIP files to the "Artifacts" tab on this action's page.
       ## Firefox
       - name: Upload the Firefox build to the "Artifacts" tab
         uses: actions/upload-artifact@v3.1.3

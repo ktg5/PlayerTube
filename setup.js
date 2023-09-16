@@ -37,6 +37,7 @@ function start() {
 			storage.set({PTConfig: def_pt_config});
 			userConfig = storage.get(['PTConfig']);
             console.log(`PLAYERTUBE USER DATA (reset to default):`, userConfig);
+            window.location.reload();
 		} else {
 			userConfig = result.PTConfig;
             console.log(`PLAYERTUBE USER DATA:`, userConfig);

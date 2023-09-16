@@ -52,6 +52,29 @@ async function copyDir(sourceDir, newDir) {
 // So first, let's copy this folder for Chrome.
 copyDir('./', chromeDir).then(async () => {
     console.log(`(Re)made the Chrome folder`);
+
+    // If the zip already exists...
+    if (fs.existsSync('../PlayerTube-Chrome.zip')) {
+        console.log("Deleting old Chrome zip");
+        fs.unlinkSync('../PlayerTube-Chrome.zip');
+        console.log("Deleted old Chrome zip");
+    }
+
+    console.log("Zipping Chrome version...");
+    // Try to zip up the extension
+    try {
+        const zip = new Zip();
+        const outputDir = "../PlayerTube-Chrome.zip";
+        zip.addLocalFolder("../PlayerTube-Chrome");
+        zip.writeZip(outputDir);
+    } catch (e) {
+        console.log(`WHAT THE FRICK! ${e}`);
+    }
+    console.log(`Zipped Chrome version into ../PlayerTube-Chrome.zip`);
+    // Delete folder cuz idk GitHub don't likey
+    console.log("Deleting Chrome folder...");
+    fs.rmSync('../PlayerTube-Chrome', { recursive: true });
+    console.log(`-------------`);
 });
 
 // Then we copy the same folder for Firefox.
@@ -61,16 +84,42 @@ copyDir('./', firefoxDir).then(async () => {
     // browser developer can come up with extension
     // manifest standards like WHY.
     var firefoxManifest = JSON.parse(fs.readFileSync('../PlayerTube-Firefox/manifest.json', 'utf8'));
+    firefoxManifest.manifest_version = 2;
     firefoxManifest.background.scripts = ['scripts/background.js']; // Add this so Firefox extension can work
-    firefoxManifest.browser_specific_settings = { // Manifest v3 moment
+    firefoxManifest.browser_specific_settings = {
         "gecko": {  
             "id": "addon@example.com"
         }
     };
+    firefoxManifest.browser_action = {
+        "default_popup": "html/popup.html",
+        "default_icon": "img/playertube/icon.png"
+    };
+    delete firefoxManifest.action; // Manifest v2 moment
     delete firefoxManifest.background.service_worker; // This is for Chrome, Firefox will freak out if this isn't delete lol.
     // Write the manifest file for Firefox
     fs.writeFileSync('../PlayerTube-Firefox/manifest.json', JSON.stringify(firefoxManifest, null, 2));
 
-    // And then we should be done lol
-    console.log(`This is good! Really good!`);
+    // If the zip already exists...
+    if (fs.existsSync('../PlayerTube-Firefox.zip')) {
+        console.log("Deleting old Firefox zip");
+        fs.unlinkSync('../PlayerTube-Firefox.zip');
+        console.log("Deleted old Firefox zip");
+    }
+
+    console.log("Zipping Firefox version...");
+    // Try to zip up the extension
+    try {
+        const zip = new Zip();
+        const outputDir = '../PlayerTube-Firefox.zip';
+        zip.addLocalFolder("../PlayerTube-Firefox");
+        zip.writeZip(outputDir);
+    } catch (e) {
+        console.log(`WHAT THE FRICK! ${e}`);
+    }
+    console.log(`Zipped Firefox version into ../PlayerTube-Firefox.zip`);
+    // Delete folder cuz idk GitHub don't likey
+    console.log("Deleting Firefox folder...");
+    fs.rmSync('../PlayerTube-Firefox', { recursive: true });
+    console.log(`-------------`);
 });
