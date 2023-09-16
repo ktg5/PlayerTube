@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="img/playertube/logo.png">
+  <img src="img/playertube/logo.png" width="400">
 </div>
 <div font-size="24px" align="center">The secret ingredient for a older (and better) looking YouTube.</div>
 
