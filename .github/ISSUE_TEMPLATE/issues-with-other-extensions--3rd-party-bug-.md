@@ -2,7 +2,7 @@
 name: Issues with other Extensions (3rd-Party Bug)
 about: If this issue only occurs when using another userscript / extension for YouTube
 title: "[ 3rd-Party Bug ] "
-labels: 3rd-party-extensions, bug
+labels: 3rd-party, bug
 assignees: ''
 
 ---

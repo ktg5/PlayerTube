@@ -4,7 +4,7 @@ var storage = browser.storage.sync;
 var extension = browser.extension;
 var runtime = browser.runtime;
 
-// Default user config.
+// Default config
 var def_pt_config = {
     // First-time ppl & release note checking.
     releaseNote: 0,
@@ -32,10 +32,10 @@ var def_pt_config = {
 
 start();
 function start() {
-	storage.get(['PTConfig'], function(result) {
+	storage.get(['PTConfig'], async function(result) {
 		if (result == undefined || Object.keys(result).length == 0) {
-			storage.set({PTConfig: def_pt_config});
-			userConfig = storage.get(['PTConfig']);
+			await storage.set({PTConfig: def_pt_config});
+			userConfig = await storage.get(['PTConfig']);
             console.log(`PLAYERTUBE USER DATA (reset to default):`, userConfig);
             window.location.reload();
 		} else {

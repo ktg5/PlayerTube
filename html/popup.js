@@ -7,6 +7,32 @@ var storage = browser.storage.sync;
 var extension = browser.extension;
 var runtime = browser.runtime;
 
+// Default config
+var def_pt_config = {
+    // First-time ppl & release note checking.
+    releaseNote: 0,
+
+    // Basic settings.
+    year: '2015',
+    autoplayButton: false,
+    endScreenToggle: true,
+    embedOtherVideos: true,
+    customTheme: false,
+
+    // Only for custom themes.
+    controlsBack: null,
+    progressBarColor: null,
+    volumeSliderBack: null,
+    scrubberIcon: null,
+    scrubberIconHover: null,
+    scrubberPosition: null,
+    scrubberSize: null,
+    scrubberHeight: null,
+    scrubberWidth: null,
+    scrubberTop: null,
+    scrubberLeft: null,
+};
+
 // Get config
 storage.get(['PTConfig'], function(result) {
 	if (result) {
@@ -18,39 +44,40 @@ storage.get(['PTConfig'], function(result) {
 /// Version
 var version = runtime.getManifest().version;
 
-function start(userConfig) {
+async function start(userConfig) {
     console.log(userConfig);
 
     /// Update User DB
-    function changeUserDB(option, newValue, lightElement) {
+    async function changeUserDB(option, newValue, lightElement) {
+        if (newValue == "") newValue = null;
         if (lightElement) {
             if (lightElement.children[0].classList.contains('true')) {
                 lightElement.children[0].classList.remove('true');
                 lightElement.children[0].classList.add('false');
                 userConfig[option] = false;
-                storage.set(userConfig);
+                await storage.set({PTConfig: userConfig});
             } else if (lightElement.children[0].classList.contains('false')) {
                 lightElement.children[0].classList.remove('false');
                 lightElement.children[0].classList.add('true');
                 userConfig[option] = true;
-                storage.set(userConfig);
+                await storage.set({PTConfig: userConfig});
             } else {
                 lightElement.children[0].classList.add('true');
                 userConfig[option] = true;
-                storage.set(userConfig);
+                await storage.set({PTConfig: userConfig});
             }
         } else {
             userConfig[option] = newValue;
-            storage.set(userConfig);
+            await storage.set({PTConfig: userConfig});
         }
-        console.log(`YT-HTML5 USER DATA CHANGED:`, GM_getValue(`yt-html5`));
+        console.log(`PLAYERTUBE USER DATA CHANGED:`, await storage.get(['PTConfig']));
     }
 
     /// Reset settings cuz I've been having to manually do it so many times YOU DON'T KNOW BRO IT GETS TO ME MAN!!!!!!!!!
     function resetConfig() {
-        GM_setValue(`yt-html5`, def_yt_html5);
-        console.log(`YT-HTML5 USER DATA RESET:`, GM_getValue(`yt-html5`));
-        alert(`Your YT-HTML5-Player config has been reset, please refresh the page!!!`);
+        storage.set({PTConfig: def_pt_config});
+        console.log(`PLAYERTUBE USER DATA RESET:`, storage.get(['PTConfig']));
+        alert(`Your PlayerTube config has been reset, please refresh the page!!!`);
     }
 
     /// Make opinions in menu
@@ -60,7 +87,7 @@ function start(userConfig) {
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <select onchange="changeUserDB('${opinion}', this.value)">
+                    <select class="menu-select menu-action" name="${opinion}">
                         ${values}
                     </select>
                 </div>
@@ -69,7 +96,7 @@ function start(userConfig) {
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <button class="menu-toggle" onclick="changeUserDB('${opinion}', '', this)">
+                    <button class="menu-toggle menu-action" name="${opinion}">
                         <div class="light ${userConfig[opinion]}"></div>
                     </button>
                 </div>
@@ -79,9 +106,9 @@ function start(userConfig) {
                     return `
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
-                        <div style="position: absolute; right: 14px;">
-                            <input type="color" class="menu-input" onchange="changeUserDB('${opinion}', this.value); this.style.background = this.value;" style="background: ${userConfig[opinion] ?? '#ffffff'};" value="${userConfig[opinion] ?? '#ffffff'}">
-                            <button class='menu-input-reset' style="width: 2em;" onclick="changeUserDB('${opinion}', null); this.parentElement.children[0].value = '#ffffff'; this.parentElement.children[0].style.background = '#ffffff'; alert('The ${opinion} setting has been reset.')">
+                        <div style="position: relative; left: 12px;">
+                            <input type="color" class="menu-input menu-action" name="${opinion}" style="background: ${userConfig[opinion] ?? '#ffffff'};" value="${userConfig[opinion] ?? '#ffffff'}">
+                            <button class='menu-input-reset menu-action'>
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
@@ -92,8 +119,8 @@ function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div>
-                            <input type="text" class="menu-input" onchange="changeUserDB('${opinion}', this.value)" value="${userConfig[opinion] ??  ''}">
-                            <button class='menu-input-reset' style="width: 2em;" onclick="changeUserDB('${opinion}', null); this.parentElement.children[0].value = ''; alert('The ${opinion} setting has been reset.')">
+                            <input type="text" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">
+                            <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
@@ -103,9 +130,9 @@ function start(userConfig) {
                     return `
                     <div class="menu-option">
                         <div class="menu-name" style="max-width: 12em;">${desc}</div>
-                        <div style="position: absolute; right: 14px;">
-                            <input type="text" style="width: 4em;" class="menu-input" onchange="changeUserDB('${opinion}', this.value)" value="${userConfig[opinion] ??  ''}">px
-                            <button class='menu-input-reset' style="width: 2em;" onclick="changeUserDB('${opinion}', null); this.parentElement.children[0].value = ''; alert('The ${opinion} setting has been reset.')">
+                        <div style="position: relative; left: 12px;">
+                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">px
+                            <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
@@ -116,14 +143,8 @@ function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc} (Must be an <kbd>https</kbd> link!)</div>
                         <div>
-                            <input type="text" class="menu-input" value="${userConfig[opinion] ??  ''}" onchange="
-                            if (this.value.startsWith('https://')) {
-                                changeUserDB('${opinion}', this.value)
-                            } else {
-                                alert(\`That link didn't start in 'https://'!\`)
-                            }
-                            ">
-                            <button class='menu-input-reset' style="width: 2em;" onclick="changeUserDB('${opinion}', null); this.parentElement.children[0].value = ''; alert('The ${opinion} setting has been reset.')">
+                            <input type="text" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">
+                            <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
@@ -188,14 +209,14 @@ function start(userConfig) {
         
         // Check 
         for (let element in jsonInput) {
-            if (def_yt_html5[element] === undefined) {
+            if (def_pt_config[element] === undefined) {
                 unknownCount++;
             } else {
                 userConfig[element] = jsonInput[element];
                 completedCount++;
             }
         }
-        GM_setValue(`yt-html5`, userConfig);
+        storage.set({PTConfig: userConfig});
 
         // Finish
         alert(`User config completed. ${completedCount} settings were written, ${unknownCount} settings were not written`);
@@ -277,8 +298,10 @@ function start(userConfig) {
             <div class='menu-opinion-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
 
             ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the Scrubber', 'pxs')}
+            <div class='menu-opinion-note'>If you want to use the same width value on here, don't change this value.</div>
 
             ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the Scrubber', 'pxs')}
+            <div class='menu-opinion-note'>If you want to use the same height value on here, don't change this value.</div>
 
             ${makeMenuOption('input', 'scrubberTop', 'Move the Scrubber down (Make value negative to move up)', 'pxs')}
 
@@ -301,17 +324,83 @@ function start(userConfig) {
         `afterend`,
         
         `
-        <button onclick='overWriteUserConfig(document.getElementById(\`menu-config-selection\`).value)'>
+        <button class="menu-apply-overwrite-button">
             Apply settings
         </button>
 
         <br>
         <br>
 
-        <button class="nuke-all" onclick="resetConfig()">
+        <button class="menu-nuke-all">
             THE BIG NUKE BUTTON. (aka reset all settings) NO TURNING BACK WHEN THIS IS PRESSED.
         </button>
 
         <div class="blank"></div>
     `)
+
+    // Event listener to make the BUTTONS ACTUALLY WORK LIKE WHY
+    var buttons = document.getElementsByClassName('menu-action');
+    console.log(buttons)
+    for (let element of buttons) {
+        console.log(element)
+        switch (element.classList[0]) {
+            case 'menu-select':
+                element.addEventListener('click', async () => {
+                    changeUserDB(element.name, element.value);
+                });
+            break;
+
+            case 'menu-toggle':
+                element.addEventListener('click', async () => {
+                    changeUserDB(element.name, '', element);
+                });
+            break;
+
+            case 'menu-input':
+                switch (element.value) {
+                    case 'color':
+                        element.addEventListener('change', async () => {
+                            changeUserDB(element.name, element.value);
+                        });
+                    break;
+                
+                    default:
+                        element.addEventListener('change', async () => {
+                            changeUserDB(element.name, element.value);
+                        });
+                    break;
+                }
+                if (element.value == 'color' || element.value == 'text' || element.value == 'pxs' || element.value == 'url') {
+                    
+                }
+            break;
+
+            case 'menu-input-reset':
+                element.addEventListener('click', async () => {
+                    changeUserDB(element.parentElement.children[0].name, null);
+                    if (element.parentElement.children[0].value.startsWith('#')) {
+                        element.parentElement.children[0].value = '#ffffff';
+                        element.parentElement.children[0].style.background = '#ffffff';
+                    } else {
+                        element.parentElement.children[0].value = '';
+                    }
+                    alert(`The ${element.parentElement.children[0].name} setting has been reset.`);
+                });
+            break;
+
+            default:
+                alert(`One of the buttons for the settings can't find itself, please report this! "${element.classList}"`)
+            break;
+        }
+    }
+    // Event listeners for reset & overwrite config.
+    document.getElementsByClassName('menu-apply-overwrite-button')[0]
+    .addEventListener('click', async () => {
+        overWriteUserConfig(document.getElementById(`menu-config-selection`).value)
+    });
+
+    document.getElementsByClassName('menu-nuke-all')[0]
+    .addEventListener('click', async () => {
+        resetConfig()
+    });
 }

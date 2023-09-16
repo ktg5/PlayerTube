@@ -77,31 +77,31 @@ function enableCustomTheme() {
         `
     } if (userConfig.volumeSliderBack !== null) {
         outputCssCustomTheme += `
-        .ytp-volume-slider-handle::before {
+        #container .ytp-volume-slider-handle::before {
             background: ${userConfig.volumeSliderBack} !important;
         }
         `
     } if (userConfig.scrubberIcon !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button {
+        #container .ytp-scrubber-button {
             background: url(${userConfig.scrubberIcon}) no-repeat center !important;
         }
         `
     } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button:hover {
+        #container .ytp-scrubber-button:hover {
             background: url(${userConfig.scrubberIcon}) no-repeat center !important;
         }
         `
     } if (userConfig.scrubberIconHover !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button:hover {
+        #container .ytp-scrubber-button:hover {
             background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
         }
         `
     } if (userConfig.scrubberPosition !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button {
+        #container .ytp-scrubber-button {
             background-position: ${userConfig.scrubberPosition} !important;
         }
         .ytp-scrubber-button:hover {
@@ -110,48 +110,71 @@ function enableCustomTheme() {
         `
     } if (userConfig.scrubberSize !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button {
+        #container .ytp-scrubber-button {
             background-size: ${userConfig.scrubberSize}px !important;
         }
-        .ytp-scrubber-button:hover {
+        #container .ytp-scrubber-button:hover {
             background-size: ${userConfig.scrubberSize}px !important;
         }
         `
     } if (userConfig.scrubberHeight !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button {
+        /* default */
+        #container .ytp-scrubber-button {
             height: ${userConfig.scrubberHeight}px !important;
         }
-        .ytp-scrubber-button:hover {
+        #container .ytp-scrubber-button:hover {
             height: ${userConfig.scrubberHeight}px !important;
         }
         `
     } if (userConfig.scrubberWidth !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-button {
+        /* default */
+        #container .ytp-scrubber-button {
             width: ${userConfig.scrubberWidth}px !important;
         }
-        .ytp-scrubber-button:hover {
+        #container .ytp-scrubber-button:hover {
             width: ${userConfig.scrubberWidth}px !important;
+        }
+        `
+    } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
+        outputCssCustomTheme += `
+        /* default */
+        #container .ytp-scrubber-button {
+            width: ${userConfig.scrubberHeight}px !important;
+        }
+        #container .ytp-scrubber-button:hover {
+            width: ${userConfig.scrubberHeight}px !important;
+        }
+        `
+    } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
+        outputCssCustomTheme += `
+        /* default */
+        #container .ytp-scrubber-button {
+            height: ${userConfig.scrubberWidth}px !important;
+        }
+        #container .ytp-scrubber-button:hover {
+            height: ${userConfig.scrubberWidth}px !important;
         }
         `
     } if (userConfig.scrubberTop !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-container {
+        #container .ytp-scrubber-container {
             top: ${userConfig.scrubberTop}px !important;
         }
         `
     } if (userConfig.scrubberLeft !== null) {
         outputCssCustomTheme += `
-        .ytp-scrubber-container {
+        #container .ytp-scrubber-container {
             left: ${userConfig.scrubberLeft}px !important;
         }
         `
     }
     // output css
-    $(`<style type="text/css">${outputCssCustomTheme}</style>`).appendTo("head");
+    document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${outputCssCustomTheme}</style>`);
 }
 
+var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
 function extraStyles() {
     // toggles
     var outputCssToggles = `/* hi this is the custom theme you set lolz */`;
@@ -178,7 +201,6 @@ function extraStyles() {
     document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${outputCssToggles}</style>`);
 
     // Import 3rd-party CSS
-    var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
     document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
 }
 
@@ -221,7 +243,7 @@ function startPlayer() {
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    $(`<link rel="stylesheet" type="text/css" href="${link}" >`).appendTo("head");
+                    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
                 }
 
@@ -246,7 +268,7 @@ function startPlayer() {
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    $(`<link rel="stylesheet" type="text/css" href="${link}" >`).appendTo("head");
+                    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
                 }
 
@@ -254,14 +276,14 @@ function startPlayer() {
                 if (customTheme === true) {
                     enableCustomTheme();
 
-                    GM_addStyle(`
+                    var CustomThemeCss2010 = `
                     /* someother custom theme stuff for 2010 */
 
-                    .ytp-chrome-controls {
+                    #container .ytp-chrome-controls {
                         border-top: solid 2px #d1d1d180 !important;
                     }
 
-                    .ytp-chrome-bottom .ytp-chrome-controls:before {
+                    #container .ytp-chrome-bottom .ytp-chrome-controls:before {
                         position: absolute;
                         content:"";
                         height:100%;
@@ -271,11 +293,23 @@ function startPlayer() {
                         background: linear-gradient(rgb(0 0 0 / 35%), rgb(255 255 255 / 35%));
                     }
 
-                    .ytp-chrome-bottom .ytp-button {
+                    #container .ytp-chrome-bottom .ytp-button {
                         border: solid 1px rgb(255 255 255 / 35%);
                         background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
                     }
-                    `)
+
+                    /* igrone background & border for the following: */
+                    #container .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+                    #container .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+                    #container .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+                    #container .ytp-chrome-bottom .ytp-chapter-title.ytp-button
+                    {
+                        background: none !important;
+                        border: none !important;
+                    }
+                    `
+                    // output css
+                    document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${CustomThemeCss2010}</style>`);
                 }
             break;
 
