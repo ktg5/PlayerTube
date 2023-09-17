@@ -8,7 +8,9 @@ var customTheme = userConfig.customTheme;
 // MOVING ELEMENTS
 function moveElement(element, targetDiv, pasteDiv) {
     console.log(`moveElement function: ${targetDiv.contains(element)}`)
-    if (targetDiv.contains(element)) {
+    if (pasteDiv.contains(element)) {
+        return;
+    } else if (targetDiv.contains(element)) {
         pasteDiv.parentNode.insertBefore(targetDiv.removeChild(element), pasteDiv.parentNode.firstElementChild);
         moveElement(element, targetDiv, pasteDiv);
     } else {
