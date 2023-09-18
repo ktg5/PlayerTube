@@ -54,9 +54,7 @@ Some examples:
 
 ## How to work.
 ### Stable / Web-store builds.
-At the moment, I haven't uploaded the extension to any web-stores, since there are still some issues I need to get my hands on.
-
-Please use the Beta / Dev instructions below.
+<a href=""><img src="img/chrome-install-button.png" width="100">version soon...</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/playertube/"><img src="img/firefox-install-button.png" width="100"></a>
 
 ### Beta / Dev builds.
 For those who want the features right now, here's what you gotta do:
