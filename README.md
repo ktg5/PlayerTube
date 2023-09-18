@@ -54,7 +54,7 @@ Some examples:
 
 ## How to work.
 ### Stable / Web-store builds.
-<a href=""><img src="img/chrome-install-button.png" width="100">version soon...</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/playertube/"><img src="img/firefox-install-button.png" width="100"></a>
+<a target="_blank" href=""><img src="img/chrome-install-button.png" width="100">version soon...</a> <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/playertube/"><img src="img/firefox-install-button.png" width="100"></a>
 
 ### Beta / Dev builds.
 For those who want the features right now, here's what you gotta do:

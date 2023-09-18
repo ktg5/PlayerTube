@@ -35,17 +35,22 @@ var def_pt_config = {
 
 // Get config
 storage.get(['PTConfig'], function(result) {
-	if (result) {
-		var userConfig = result.PTConfig;
+    if (result.PTConfig == undefined) {
+        storage.set({PTConfig: def_pt_config}, async function(newResult) {
+            var newConfig = await storage.get(['PTConfig']);
+            var userConfig = newConfig.PTConfig;
+            start(userConfig);
+        });
+    } else {
+        var userConfig = result.PTConfig;
         start(userConfig);
-	}
+    }
 });
 
 /// Version
 var version = runtime.getManifest().version;
 
 async function start(userConfig) {
-    console.log(userConfig);
 
     /// Update User DB
     async function changeUserDB(option, newValue, lightElement) {

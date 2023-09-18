@@ -12,7 +12,7 @@ function moveElement(element, targetDiv, pasteDiv) {
         return;
     } else if (targetDiv.contains(element)) {
         pasteDiv.parentNode.insertBefore(targetDiv.removeChild(element), pasteDiv.parentNode.firstElementChild);
-        moveElement(element, targetDiv, pasteDiv);
+        return;
     } else {
         return;
     }

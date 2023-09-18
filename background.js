@@ -1,6 +1,10 @@
 if (navigator.userAgent.includes("Chrome")) browser = chrome;
+var storage = browser.storage.sync;
+var extension = browser.extension;
+var runtime = browser.runtime;
+
 function handleInstalled(reason) {
-	browser.storage.sync.get(['PTConfig'], function(result) {
+	storage.get(['PTConfig'], function(result) {
 		if (Object.keys(result).length > 0 && !result.PTConfig.releaseNote) {
 			return;
 		} else if (reason == "update") {
@@ -15,6 +19,6 @@ function handleInstalled(reason) {
 	});
 }
 
-browser.runtime.onInstalled.addListener(reason => {
+runtime.onInstalled.addListener(reason => {
 	handleInstalled(reason.reason);
 });
