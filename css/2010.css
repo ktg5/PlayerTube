@@ -4,6 +4,8 @@
 	--background: linear-gradient(rgb(173 173 173), rgb(254 254 254));
 	--main-colour: #a32c2e;
     --progress-bar-bg: rgb(34 34 34);
+    --progress-text: #3a3a3a;
+	--alt-progress-text: #3a3a3a;
 }
 
 .ytp-chrome-controls {
@@ -62,11 +64,6 @@
 .ytp-progress-list {
 	background: var(--progress-bar-bg) !important;
     transform: scale(1) !important;
-}
-
-.ytp-heat-map-container {
-    display: block;
-    opacity: 1;
 }
 
 .ytp-timed-markers-container {
@@ -262,7 +259,7 @@
     border: none !important;
 }
 
-.ytp-button svg path {
+.ytp-button svg path, .ytp-button .ytp-svg-shadow {
 	display: none;
 }
 
@@ -356,12 +353,12 @@
 }
 
 .ytp-time-current {
-	color: #3a3a3a !important;
+	color: var(--progress-text) !important;
     text-shadow: none;
 }
 
 .ytp-time-separator, .ytp-time-duration {
-	color: #3a3a3a !important;
+	color: var(--alt-progress-text) !important;
     text-shadow: none;
 }
 

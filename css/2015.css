@@ -4,6 +4,8 @@
 	--background: rgb(28, 28, 28);
 	--main-colour: #b91f1f;
 	--progress-bar-bg: rgb(66, 66, 66);
+	--progress-text: #fff;
+	--alt-progress-text: #969696;
 }
 
 .ytp-chrome-controls {
@@ -332,11 +334,13 @@
 }
 
 .ytp-time-current {
-	color: #fff !important;
+	color: var(--progress-text) !important;
+	text-shadow: none;
 }
 
 .ytp-time-separator, .ytp-time-duration {
-	color: #969696 !important;
+	color: var(--alt-progress-text) !important;
+	text-shadow: none;
 }
 
 /* CHAPTER TITLE */
@@ -445,8 +449,8 @@
 	filter: brightness(1.5);
 }
 
-.ytp-settings-button.ytp-hd-quality-badge:after {
-	background-color: #b91f1f !important;
+.ytp-settings-button:after {
+	background-color: var(--main-colour) !important;
 	top: 8px !important;
 }
 

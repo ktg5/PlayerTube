@@ -3,7 +3,10 @@
 :root {
 	--background: linear-gradient(rgb(38 38 38), rgb(12 12 12));
 	--main-colour: linear-gradient(180deg, #b22427, #751819);
+	--main-colour-solid: #b22427;
 	--progress-bar-bg: rgb(34 34 34);
+	--progress-text: #fff;
+	--alt-progress-text: #969696;
 }
 
 .ytp-chrome-controls {
@@ -340,12 +343,12 @@
 }
 
 .ytp-time-current {
-	color: #fff !important;
+	color: var(--progress-text) !important;
 	text-shadow: none;
 }
 
 .ytp-time-separator, .ytp-time-duration {
-	color: #969696 !important;
+	color: var(--alt-progress-text) !important;
 	text-shadow: none;
 }
 
@@ -471,8 +474,8 @@
     filter: brightness(1.5);
 }
 
-.ytp-settings-button.ytp-hd-quality-badge:after {
-	background-color: #b91f1f !important;
+.ytp-settings-button:after {
+	background-color: var(--main-colour-solid) !important;
 	top: 4px !important;
 }
 

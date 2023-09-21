@@ -42,7 +42,7 @@ jobs:
 
       # Run the "build.js" script through our newly acquired Node.js environment.
       - name: Run the build node script
-        run: node build.js
+        run: node build
 
       # Unzip stuffs.
       - name: Unzip extension

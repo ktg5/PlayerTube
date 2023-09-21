@@ -173,13 +173,13 @@ function enableCustomTheme() {
         `
     }
     // output css
-    document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${outputCssCustomTheme}</style>`);
+    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
 }
 
-var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
+
 function extraStyles() {
     // toggles
-    var outputCssToggles = `/* hi this is the custom theme you set lolz */`;
+    var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
     if (userConfig.endScreenToggle == false) {
         outputCssToggles += `
         .ytp-ce-element.ytp-ce-element-show {
@@ -198,12 +198,19 @@ function extraStyles() {
             display: none !important;
         }
         `
+    } if (userConfig.heatMapToggle == false) {
+        outputCssToggles += `
+        .ytp-progress-bar-container .ytp-heat-map-container {
+            display: none !important;
+        }
+        `
     }
     // output css
-    document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${outputCssToggles}</style>`);
+    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
 
     // Import 3rd-party CSS
-    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
+    var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
+    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-3rd-party" rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
 }
 
 function startPlayer() {    
@@ -215,8 +222,10 @@ function startPlayer() {
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${link}">`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
+                    // IMPORT THE OTHER CSS
+                    extraStyles();
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -226,9 +235,6 @@ function startPlayer() {
                     //     background-color: transparent !important;
                     // }
                 }
-                
-                // IMPORT THE REST
-                extraStyles();
 
                 // #################################    
                 /// WATCH LATER BUTTON
@@ -245,8 +251,10 @@ function startPlayer() {
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${link}">`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
+                    // IMPORT THE OTHER CSS
+                    extraStyles();
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -270,8 +278,10 @@ function startPlayer() {
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link rel="stylesheet" type="text/css" href="${link}">`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
+                    // IMPORT THE OTHER CSS
+                    extraStyles();
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -311,7 +321,7 @@ function startPlayer() {
                     }
                     `
                     // output css
-                    document.body.insertAdjacentHTML('afterbegin', `<style type="text/css">${CustomThemeCss2010}</style>`);
+                    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme-for-2010" type="text/css">${CustomThemeCss2010}</style>`);
                 }
             break;
 

@@ -15,6 +15,7 @@ var def_pt_config = {
     // Basic settings.
     year: '2015',
     autoplayButton: false,
+    heatMapToggle: true,
     endScreenToggle: true,
     embedOtherVideos: true,
     customTheme: false,
@@ -33,8 +34,17 @@ var def_pt_config = {
     scrubberLeft: null,
 };
 
+// Init document
+document.head.insertAdjacentHTML(
+    'afterend',
+
+    `
+    <div id="content"></div>
+    `
+)
+
 // Get config
-storage.get(['PTConfig'], function(result) {
+storage.get(['PTConfig'], async function(result) {
     if (result.PTConfig == undefined) {
         storage.set({PTConfig: def_pt_config}, async function(newResult) {
             var newConfig = await storage.get(['PTConfig']);
@@ -112,7 +122,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="color" class="menu-input menu-action" name="${opinion}" style="background: ${userConfig[opinion] ?? '#ffffff'};" value="${userConfig[opinion] ?? '#ffffff'}">
+                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${opinion}" value="${userConfig[opinion] ?? '#ffffff'}">
                             <button class='menu-input-reset menu-action'>
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -182,20 +192,20 @@ async function start(userConfig) {
             counted++
             if (counted == count) {
                 if (typeof userConfig[element] !== 'string') {
-                    output += ` "${element}": ${userConfig[element]}`
+                    output += `\n "${element}": ${userConfig[element]}`
                 } else if (userConfig[element]) {
-                    output += ` "${element}": "${userConfig[element]}"`
+                    output += `\n "${element}": "${userConfig[element]}"`
                 }
             } else {
                 if (typeof userConfig[element] !== 'string') {
-                    output += ` "${element}": ${userConfig[element]},`
+                    output += `\n "${element}": ${userConfig[element]},`
                 } else if (userConfig[element]) {
-                    output += ` "${element}": "${userConfig[element]}",`
+                    output += `\n "${element}": "${userConfig[element]}",`
                 }
             }
         }
-        output += '}'
-        console.log(`getUserConfigText`, output)
+        output += '\n}'
+        console.log(`getUserConfigText`, `${output}`)
         return output;
     };
 
@@ -251,6 +261,8 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the Autoplay toggle on the right-side of the player`)}
 
+            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar`)}
+
             ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle end screen (The buttons that display at the end of a video)')}
 
             ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the "Show other videos" box in embeds')}
@@ -270,12 +282,16 @@ async function start(userConfig) {
             <textarea
             id="menu-config-selection"
             style="width: 21.2em; height: 8em; resize: vertical;"
-            >
-                ${collectedUserConfig}
+            >${collectedUserConfig}
             </textarea>
         </div>
         `
     )
+
+    // Move everything to the body element
+    setTimeout(() => {
+        document.body.appendChild(document.getElementById('yt-html5-menu'));
+    }, 1);
 
     if (userConfig.customTheme === true) {
         document.getElementById(`menu-custom-opinions`).insertAdjacentHTML(
@@ -347,7 +363,7 @@ async function start(userConfig) {
     var buttons = document.getElementsByClassName('menu-action');
     console.log(buttons)
     for (let element of buttons) {
-        console.log(element)
+        console.log(element);
         switch (element.classList[0]) {
             case 'menu-select':
                 element.addEventListener('click', async () => {
@@ -362,34 +378,30 @@ async function start(userConfig) {
             break;
 
             case 'menu-input':
-                switch (element.value) {
-                    case 'color':
-                        element.addEventListener('change', async () => {
-                            changeUserDB(element.name, element.value);
-                        });
-                    break;
-                
-                    default:
-                        element.addEventListener('change', async () => {
-                            changeUserDB(element.name, element.value);
-                        });
-                    break;
-                }
-                if (element.value == 'color' || element.value == 'text' || element.value == 'pxs' || element.value == 'url') {
-                    
-                }
+                element.addEventListener('change', async () => {
+                    changeUserDB(element.name, element.value);
+                });
+            break;
+
+            case 'menu-color-picker':
+                element.addEventListener('change', async () => {
+                    changeUserDB(element.name, element.value);
+                });
             break;
 
             case 'menu-input-reset':
                 element.addEventListener('click', async () => {
-                    changeUserDB(element.parentElement.children[0].name, null);
-                    if (element.parentElement.children[0].value.startsWith('#')) {
-                        element.parentElement.children[0].value = '#ffffff';
-                        element.parentElement.children[0].style.background = '#ffffff';
+                    if (element.parentElement.children[0].classList.contains('clr-field')) {
+                        var clr_field = element.parentElement.children[0];
+                        changeUserDB(clr_field.children[1].name, null);
+                        clr_field.children[1].value = '#ffffff';
+                        clr_field.style.color = '#ffffff';
+                        alert(`The "${clr_field.children[1].name}" setting has been reset.`);
                     } else {
+                        changeUserDB(element.parentElement.children[0].name, null);
                         element.parentElement.children[0].value = '';
+                        alert(`The "${element.parentElement.children[0].name}" setting has been reset.`);
                     }
-                    alert(`The ${element.parentElement.children[0].name} setting has been reset.`);
                 });
             break;
 
@@ -408,4 +420,5 @@ async function start(userConfig) {
     .addEventListener('click', async () => {
         resetConfig()
     });
+
 }

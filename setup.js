@@ -12,6 +12,7 @@ var def_pt_config = {
     // Basic settings.
     year: '2015',
     autoplayButton: false,
+    heatMapToggle: true,
     endScreenToggle: true,
     embedOtherVideos: true,
     customTheme: false,

@@ -18,8 +18,8 @@ on the GitHUb repo! Much thanks! */
     fill: gray;
 }
 
-#sponsorBlockDurationAfterSkips {
-    color: #969696 !important;
+.ytp-time-display #sponsorBlockDurationAfterSkips {
+    color: var(--alt-progress-text) !important;
     text-shadow: none;
 }
 
@@ -35,5 +35,5 @@ ytd-app[static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bot
 
 /* Truffle */
 body[data-mogul-theater-mode] .html5-video-player .ytp-chrome-bottom {
-    width: 100%;
+    width: 100% !important;
 }

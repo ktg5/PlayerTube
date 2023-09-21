@@ -4,6 +4,10 @@
     font-family: "lol";
 }
 
+html {
+    height: 29em;
+}
+
 a {
     color: #ffa7a7;
 }
@@ -66,9 +70,8 @@ body {
 #yt-html5-menu {
     font-family: Arial, Helvetica, sans-serif;
     width: 22em;
-    height: 28em;
+    height: 30em;
     border: solid 0.5em rgba(0, 0, 0, 0.15);
-    border-radius: 1em;
     padding: 1em;
     background: white;
     color: rgb(0, 0, 0);
@@ -156,18 +159,28 @@ body {
     background: #ff0000;
 }
 
-#yt-html5-menu .menu-option input[type="color"] {
-    width: 3em;
-    height: 18px;
+.clr-field button {
+    border: solid 1px black !important;
+    width: 4em !important;
 }
 
-#yt-html5-menu .menu-option input[type="text"] {
+.clr-field input {
+    width: 4em;
+    cursor: pointer;
+}
+
+#yt-html5-menu .menu-input[type="text"] {
     width: 8em;
-    height: 1em;
+    height: 1.5em;
+}
+
+.menu-input-reset.menu-action {
+    position: relative;
+    top: 2px;
 }
 
 
-#yt-html5-menu .nuke-all {
+#yt-html5-menu .menu-nuke-all {
     background: rgb(200, 0, 0);
     color: white;
     font-weight: bold;
@@ -183,7 +196,7 @@ body {
     background: red;
     color: white;
     text-align: center;
-    top: 375px;
+    top: 28.75em;
     left: 18px;
     z-index: 1;
 }
