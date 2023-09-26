@@ -77,7 +77,7 @@
 }
 
 .ytp-timed-markers-container {
-    transform: scale(1);
+    transform: scaleY(1);
     top: 0;
 }
 

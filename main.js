@@ -325,6 +325,22 @@ function startPlayer() {
                 }
             break;
 
+            case '2006':
+                // IMPORT CSS (if it wasn't already loaded)
+                if (loadedPlayerStyle == false) {
+                    var link = runtime.getURL(`css/${userConfig.year}.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    loadedPlayerStyle = true;
+                    // IMPORT THE OTHER CSS
+                    extraStyles();
+                }
+
+                // IMPORT USER CUSTOMIZATION
+                if (customTheme === true) {
+                    enableCustomTheme();
+                }
+            break;
+
             default:
                 console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
             break;

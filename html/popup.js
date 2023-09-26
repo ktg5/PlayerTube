@@ -95,14 +95,14 @@ async function start(userConfig) {
         alert(`Your PlayerTube config has been reset, please refresh the page!!!`);
     }
 
-    /// Make opinions in menu
-    function makeMenuOption(type, opinion, desc, values) {
+    /// Make options in menu
+    function makeMenuOption(type, option, desc, values) {
         switch (type) {
             case 'selection':
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <select class="menu-select menu-action" name="${opinion}">
+                    <select class="menu-select menu-action" name="${option}">
                         ${values}
                     </select>
                 </div>
@@ -111,8 +111,8 @@ async function start(userConfig) {
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <button class="menu-toggle menu-action" name="${opinion}">
-                        <div class="light ${userConfig[opinion]}"></div>
+                    <button class="menu-toggle menu-action" name="${option}">
+                        <div class="light ${userConfig[option]}"></div>
                     </button>
                 </div>
                 `
@@ -122,7 +122,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${opinion}" value="${userConfig[opinion] ?? '#ffffff'}">
+                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}">
                             <button class='menu-input-reset menu-action'>
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -134,7 +134,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">
+                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -146,7 +146,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name" style="max-width: 12em;">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">px
+                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -158,7 +158,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc} (Must be an <kbd>https</kbd> link!)</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${opinion}" value="${userConfig[opinion] ??  ''}">
+                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -273,7 +273,7 @@ async function start(userConfig) {
 
             ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme')}
 
-            <div id='menu-custom-opinions'></div>
+            <div id='menu-custom-options'></div>
 
             <br>
 
@@ -294,10 +294,15 @@ async function start(userConfig) {
     }, 1);
 
     if (userConfig.customTheme === true) {
-        document.getElementById(`menu-custom-opinions`).insertAdjacentHTML(
+        document.getElementById(`menu-custom-options`).insertAdjacentHTML(
             `afterbegin`,
 
             `
+            <p>
+                If you'd like to see some examples of some custom themes,
+                <a href='https://github.com/ktg5/PlayerTube#user-customization' target="_blank">
+                please check out this page on our ReadMe!</a>
+            </p>
             <b>
                 Note: You're editing raw CSS values. If something like
                 the Scrubber doesn't seem to appear, try changing the
@@ -308,28 +313,28 @@ async function start(userConfig) {
             ${makeMenuOption('input', 'progressBarColor', 'Change the color of the Progress Bar', 'color')}
 
             ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the Volume Silder', 'color')}
-            <div class='menu-opinion-note'>If you want to use the exact same color as the Progress Bar for the Volume Silder, you don't need to change this value.</div>
+            <div class='menu-option-note'>If you want to use the exact same color as the Progress Bar for the Volume Silder, you don't need to change this value.</div>
 
             ${makeMenuOption('input', 'scrubberIcon', 'Change the image of the Scrubber', 'url')}
 
             ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the Scrubber <b>when hovering</b>', 'url')}
-            <div class='menu-opinion-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
+            <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
 
             ${makeMenuOption('input', 'scrubberSize', 'Change the size of the Scrubber', 'pxs')}
-            <div class='menu-opinion-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
+            <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
 
             ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the Scrubber', 'pxs')}
-            <div class='menu-opinion-note'>If you want to use the same width value on here, don't change this value.</div>
+            <div class='menu-option-note'>If you want to use the same width value on here, don't change this value.</div>
 
             ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the Scrubber', 'pxs')}
-            <div class='menu-opinion-note'>If you want to use the same height value on here, don't change this value.</div>
+            <div class='menu-option-note'>If you want to use the same height value on here, don't change this value.</div>
 
             ${makeMenuOption('input', 'scrubberTop', 'Move the Scrubber down (Make value negative to move up)', 'pxs')}
 
             ${makeMenuOption('input', 'scrubberLeft', 'Move the Scrubber right (Make value negative to move left)', 'pxs')}
 
             ${makeMenuOption('input', 'scrubberPosition', 'If needed, change the Scrubber image position.', 'text')}
-            <div class='menu-opinion-note'>
+            <div class='menu-option-note'>
                 Example: <kbd>10px (for x) 5px (for y)</kbd>
                 <br>
                 Note this <b>does not</b> change where the
@@ -346,7 +351,7 @@ async function start(userConfig) {
         
         `
         <button class="menu-apply-overwrite-button">
-            Apply settings
+            Apply Settings
         </button>
 
         <br>

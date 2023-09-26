@@ -3,7 +3,6 @@
 :root {
 	--background: linear-gradient(#e2e2e2, #a9a9a9);
 	--main-colour: linear-gradient(#ffdbdb, #ff0202);
-    --main-colour-border: #990000;
 }
 
 .ytp-chrome-controls {
@@ -23,7 +22,6 @@
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 31px !important;
-    scale: 103% 1;
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -49,10 +47,6 @@
     transform: scale(1) !important;
 }
 
-.ytp-chapters-container {
-    left: 12px;
-}
-
 .ytp-heat-map-container {
     display: block;
     opacity: 1;
@@ -73,8 +67,8 @@
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
 	background: var(--main-colour);
-    border-top: solid 1px var(--main-colour-border);
-    border-bottom: solid 1px var(--main-colour-border);
+    border-top: solid 1px #00000045;
+    border-bottom: solid 1px #00000045;
     height: calc(100% - 2px);
 }
 
