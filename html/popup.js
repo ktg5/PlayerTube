@@ -14,15 +14,18 @@ var def_pt_config = {
 
     // Basic settings.
     year: '2015',
+    darkMode: false,
     autoplayButton: false,
     heatMapToggle: true,
     endScreenToggle: true,
     embedOtherVideos: true,
+    toggleWatermark: true,
     customTheme: false,
 
     // Only for custom themes.
     controlsBack: null,
     progressBarColor: null,
+    progressBarBgColor: null,
     volumeSliderBack: null,
     scrubberIcon: null,
     scrubberIconHover: null,
@@ -259,6 +262,8 @@ async function start(userConfig) {
 
             ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
 
+            <div id="menu-if-dark-mode-yes"></div>
+
             ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the Autoplay toggle on the right-side of the player`)}
 
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar`)}
@@ -266,6 +271,8 @@ async function start(userConfig) {
             ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle end screen (The buttons that display at the end of a video)')}
 
             ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the "Show other videos" box in embeds')}
+
+            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a YouTube channel\'s watermark that displays at the bottom right of YouTube videos')}
 
             <br>
 
@@ -293,7 +300,18 @@ async function start(userConfig) {
         document.body.appendChild(document.getElementById('yt-html5-menu'));
     }, 1);
 
-    if (userConfig.customTheme === true) {
+    if (userConfig.year == "2010" && userConfig.customTheme !== true) {
+        document.getElementById('menu-if-dark-mode-yes').insertAdjacentHTML(
+            `afterbegin`,
+            
+            `
+            ${makeMenuOption(`toggle`, `darkMode`, `Toggle Dark Mode for your current theme`)}
+            <div class='menu-option-note'>Some themes may have dark themes, this one does! <b>Dark Mode will be disabled when custom themes are enabled.</b></div>
+            `
+        )
+    }
+
+    if (userConfig.customTheme == true) {
         document.getElementById(`menu-custom-options`).insertAdjacentHTML(
             `afterbegin`,
 
@@ -311,6 +329,8 @@ async function start(userConfig) {
             ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
 
             ${makeMenuOption('input', 'progressBarColor', 'Change the color of the Progress Bar', 'color')}
+
+            ${makeMenuOption('input', 'progressBarBgColor', 'Change the background color of the Progress Bar', 'color')}
 
             ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the Volume Silder', 'color')}
             <div class='menu-option-note'>If you want to use the exact same color as the Progress Bar for the Volume Silder, you don't need to change this value.</div>

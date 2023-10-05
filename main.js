@@ -69,12 +69,20 @@ function enableCustomTheme() {
         outputCssCustomTheme += `
         :root {
             --background: ${userConfig.controlsBack} !important;
+            --background-top: ${userConfig.controlsBack} !important;
         }
         `
     } if (userConfig.progressBarColor !== null) {
         outputCssCustomTheme += `
         :root {
             --main-colour: ${userConfig.progressBarColor} !important;
+            --volume-slider: ${userConfig.progressBarColor} !important;
+        }
+        `
+    } if (userConfig.progressBarBgColor !== null) {
+        outputCssCustomTheme += `
+        :root {
+            --progress-bar-bg: ${userConfig.progressBarBgColor} !important;
         }
         `
     } if (userConfig.volumeSliderBack !== null) {
@@ -204,6 +212,12 @@ function extraStyles() {
             display: none !important;
         }
         `
+    } if (userConfig.toggleWatermark == false) {
+        outputCssToggles += `
+        .annotation.annotation-type-custom.iv-branding {
+            display: none;
+        }
+        `
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
@@ -211,6 +225,19 @@ function extraStyles() {
     // Import 3rd-party CSS
     var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-3rd-party" rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
+    // Import 3rd-party CSS for 2010
+    document.body.insertAdjacentHTML('afterbegin', 
+    `
+    <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
+    /* This is 3rd-party CSS for those using the 2010 theme */
+
+    /* SponsorBlock */
+    .playerButton {
+        background: none;
+    }
+    </style>
+    `
+    )
 }
 
 function startPlayer() {    
@@ -277,7 +304,12 @@ function startPlayer() {
             case '2010':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
-                    var link = runtime.getURL(`css/${userConfig.year}.css`);
+                    var link;
+                    if (userConfig.darkMode == false  || userConfig.customTheme == true) {
+                        link = runtime.getURL(`css/${userConfig.year}.css`);
+                    } else if (userConfig.customTheme !== true) {
+                        link = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                    }
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
@@ -295,14 +327,21 @@ function startPlayer() {
                         border-top: solid 2px #d1d1d180 !important;
                     }
 
-                    #container .ytp-chrome-bottom .ytp-chrome-controls:before {
+                    #container .ytp-chrome-bottom .ytp-left-controls:before {
                         position: absolute;
-                        content:"";
-                        height:100%;
-                        width:100%;
-                        top:0;
-                        left:0;
-                        background: linear-gradient(rgb(0 0 0 / 35%), rgb(255 255 255 / 35%));
+                        content: "";
+                        height: 100%;
+                        width: 100%;
+                        left: 80px;
+                        background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
+                    }
+
+                    #container .ytp-chrome-bottom .ytp-right-controls:before {
+                        position: absolute;
+                        content: "";
+                        height: 100%;
+                        width: 60%;
+                        background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
                     }
 
                     #container .ytp-chrome-bottom .ytp-button {

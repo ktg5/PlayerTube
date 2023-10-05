@@ -77,10 +77,6 @@
     top: 0;
 }
 
-.ytp-progress-list:hover {
-  bottom: 1px !important;
-}
-
 .ytp-big-mode .ytp-progress-bar {
 	height: 5px !important;
 }
@@ -214,6 +210,14 @@
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-scrubber-button.ytp-scrubber-button-hover {
 	transform: scale(1) !important;
+}
+
+/* ################################# */
+
+/* HEAT MAP */
+
+.ytp-progress-bar-container .ytp-heat-map-container {
+    top: -45px;
 }
 
 /* ################################# */

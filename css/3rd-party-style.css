@@ -6,7 +6,7 @@ If you have any plugins/scripts you'd like to
 be fixed for this script, please send a issue
 on the GitHUb repo! Much thanks! */
 
-/* Sponosor Block */
+/* SponsorBlock */
 #previewbar {
     top: 0px;
 }
@@ -23,6 +23,14 @@ on the GitHUb repo! Much thanks! */
     text-shadow: none;
 }
 
+.playerButton svg path {
+    display: block !important;
+}
+
+#chapterVote {
+    margin-left: 10px;
+}
+
 /* CustomTube */
 /*
 This extension for some reason likes to
@@ -34,6 +42,9 @@ ytd-app[static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bot
 }
 /* For the same extension; why CustomTube. */
 html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+    width: 100% !important;
+}
+html[pseudo-static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 

@@ -1,14 +1,14 @@
 /* PLAYER BASE */
 
 :root {
-	--background: linear-gradient(rgb(200, 200, 200), rgb(255, 255, 255));
-    --background-top: #f7f7f7;
-    --main-colour: rgba(255, 0, 0, 0.4);
-    --alt-colour: rgb(255 0 0 / 25%);
-    --volume-slider: #c03335;
-    --progress-bar-bg: rgb(255 255 255 / 50%);
-    --progress-text: #3a3a3a;
-	--alt-progress-text: #3a3a3a;
+	--background: linear-gradient(#373c3e, #181a1b);
+    --background-top: #323639;
+    --main-colour: rgb(155, 0, 0.8);
+    --alt-colour: rgba(155, 0, 0, 0.5);
+    --volume-slider: rgb(155, 0, 0);
+    --progress-bar-bg: rgba(24, 26, 27, 0.75);
+    --progress-text: #c2c2c2;
+	--alt-progress-text: #c2c2c2;
 }
 
 .ytp-chrome-controls {
@@ -40,10 +40,6 @@
 
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
-}
-
-.ytp-autohide .ytp-chapter-hover-container {
-    width: calc(100% - 24px) !important;
 }
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-exp-chapter-hover-effect {
@@ -264,14 +260,14 @@
     height: 33px !important;
     width: 40px !important;
     bottom: 9px;
-    border: solid 1px lightgray;
-    background: linear-gradient(rgb(255, 255, 255), rgb(192 192 192)) !important;
+    border: solid 1px rgb(60, 65, 68);
+    background: linear-gradient(rgb(24, 26, 27), rgb(60, 65, 67)) !important;
 }
 /* igrone background & border for the following: */
 .ytp-chrome-bottom .ytp-button.ytp-settings-button,
 .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
 .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-.ytp-chrome-bottom .ytp-chapter-title.ytp-button,
+.ytp-chrome-bottom .ytp-button.ytp-chapter-title,
 .ytp-chrome-bottom .ytp-button.ytp-live-badge
 {
     background: none !important;
@@ -634,7 +630,7 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: rgb(255, 255, 255) !important;
+	background: rgb(35, 35, 35) !important;
 }
 
 .ytp-popup.ytp-settings-menu {
@@ -643,7 +639,7 @@
 }
 
 .ytp-menuitem .ytp-menuitem-label, .ytp-menuitem .ytp-menuitem-content, .ytp-panel .ytp-panel-footer, .ytp-panel .ytp-panel-header {
-	color: black;
+	color: rgb(255, 255, 255);
     text-shadow: none;
 }
 
