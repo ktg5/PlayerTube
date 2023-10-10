@@ -72,6 +72,12 @@ function enableCustomTheme() {
             --background-top: ${userConfig.controlsBack} !important;
         }
         `
+    } if (userConfig.settingsBgColor !== null) {
+        outputCssCustomTheme += `
+        :root {
+            --settings-bg: ${userConfig.settingsBgColor} !important;
+        }
+        `
     } if (userConfig.progressBarColor !== null) {
         outputCssCustomTheme += `
         :root {
@@ -200,13 +206,13 @@ function extraStyles() {
             display: none !important;
         }
         `
-    } if (userConfig.autoplayButton == false) {
+    } if (userConfig.autoplayButton !== true) {
         outputCssToggles += `
         .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"] {
             display: none !important;
         }
         `
-    } if (userConfig.heatMapToggle == false) {
+    } if (userConfig.heatMapToggle !== true) {
         outputCssToggles += `
         .ytp-progress-bar-container .ytp-heat-map-container {
             display: none !important;
@@ -218,6 +224,18 @@ function extraStyles() {
             display: none;
         }
         `
+    } if (userConfig.toggleRoundedCorners !== true) {
+        outputCssToggles += `
+        #ytd-player.ytd-watch-flexy {
+            border-radius: 0 !important;
+        }
+        `
+    } else if (userConfig.toggleRoundedCorners == true) {
+        outputCssToggles += `
+        #ytd-player.ytd-watch-flexy {
+            border-radius: 12px !important;
+        }
+        `
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
@@ -226,18 +244,42 @@ function extraStyles() {
     var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-3rd-party" rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
     // Import 3rd-party CSS for 2010
-    document.body.insertAdjacentHTML('afterbegin', 
-    `
-    <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
-    /* This is 3rd-party CSS for those using the 2010 theme */
+    if (userConfig.year == "2010") {
+        var thirdPartyCSS2010 = 
+        `
+        /* This is 3rd-party CSS for those using the 2010 theme */
 
-    /* SponsorBlock */
-    .playerButton {
-        background: none;
+        /* SponsorBlock */
+        #previewbar {
+            transform: scale(1) !important;
+        }
+        
+        .ytp-chrome-bottom .playerButton.ytp-button {
+            background: none !important;
+            border: none !important;
+        }
+
+        #sbSkipIconControlBarImage {
+            background: none !important;
+            border: none !important;
+        }
+        `
+        if (userConfig.darkMode == false) thirdPartyCSS2010 += 
+        `
+        
+        .skipButtonControlBarContainer div {
+            color: black;
+        }
+        `
+
+        document.body.insertAdjacentHTML('afterbegin', 
+        `
+        <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
+        ${thirdPartyCSS2010}
+        </style>
+        `
+        )
     }
-    </style>
-    `
-    )
 }
 
 function startPlayer() {    
@@ -304,13 +346,16 @@ function startPlayer() {
             case '2010':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
-                    var link;
-                    if (userConfig.darkMode == false  || userConfig.customTheme == true) {
-                        link = runtime.getURL(`css/${userConfig.year}.css`);
-                    } else if (userConfig.customTheme !== true) {
-                        link = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                    var baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                    // Dark mode stuff
+                    if (userConfig.customTheme !== true && userConfig.darkMode == true) {
+                        var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-darkmode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    } else {
+                        var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-darkmode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     }
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
                     extraStyles();

@@ -1,16 +1,5 @@
 /* PLAYER BASE */
 
-:root {
-	--background: linear-gradient(rgb(200, 200, 200), rgb(255, 255, 255));
-    --background-top: #f7f7f7;
-    --main-colour: rgba(255, 0, 0, 0.4);
-    --alt-colour: rgb(255 0 0 / 25%);
-    --volume-slider: #c03335;
-    --progress-bar-bg: rgb(255 255 255 / 50%);
-    --progress-text: #3a3a3a;
-	--alt-progress-text: #3a3a3a;
-}
-
 .ytp-chrome-controls {
     background: var(--background);
     border-top: solid 2px var(--background-top);
@@ -25,13 +14,14 @@
 	height: 35px !important;
 	width: 100% !important;
     left: 0 !important;
+    transition: opacity .5s cubic-bezier(0,0,.2,1) !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
 	height: 11px;
-	border-top: 1px solid #5a5a5a63;
-	border-bottom: 1px solid #5a5a5a63;
+	border-top: 1px solid var(--progress-bar-outline);
+	border-bottom: 1px solid var(--progress-bar-outline);
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -75,6 +65,10 @@
     background: var(--main-colour);
 }
 
+.ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
+	background: var(--main-colour);
+}
+
 .ytp-progress-list {
 	background: var(--progress-bar-bg) !important;
     transform: scale(1) !important;
@@ -93,10 +87,6 @@
 	background: var(--main-colour);
 }
 
-.ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
-    background: #fc0 !important;
-}
-
 .iv-branding .branding-context-container-inner {
 	display: none !important;
 }
@@ -112,67 +102,10 @@
 
 /* ################################# */
 
-/* AUTO-HIDE PLAYER */
-
-.ytp-chrome-bottom {
-    bottom: 0;
-    transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1) !important;
-}
-
-.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
-    opacity: 1 !important;
-    bottom: -42px;
-}
-
-.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
-    opacity: 1 !important;
-    bottom: -45px;
-}
-
-.ytp-progress-bar-container {
-    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
-}
-
-.ytp-autohide .ytp-progress-bar {
-    height: 5px;
-}
-
-.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 20px );
-    margin-left: -12px;
-}
-
-.ytp-big-mode.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 48px );
-    margin-left: -24px;
-}
-
-.ytp-autohide .ytp-player-content:not(.html5-endscreen) {
-    transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1), top .5s cubic-bezier(0.0,0.0,0.2,1);
-}
-
-.ytp-autohide:not(.ytp-ad-overlay-open) .ytp-subtitles-player-content:not(.html5-endscreen):not(.ytp-iv-player-content) {
-    bottom: 1em !important;
-}
-
-/* ################################# */
-
 /* "BEZEL" ICONS */
 
 .ytp-bezel-icon {
     display: none;
-}
-
-.ytp-bezel[aria-label="Pause"] {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel[aria-label="Play"] {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
 }
 
 /* ################################# */
@@ -181,29 +114,7 @@
 
 .ytp-scrubber-container {
 	top: 1px !important;
-    left: 0px !important;
 	margin-top: -5px;
-}
-
-.ytp-scrubber-button {
-    background: url(https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010-scrubber.png) no-repeat !important;
-    background-position: 0px 0px !important;
-    background-size: 18px !important;
-    height: 18px !important;
-    width: 18px !important;
-    top: -2px;
-    transition: .5s !important;
-    position: relative;
-    transform: scale(1) !important;
-}
-
-.ytp-scrubber-button:hover {
-	background: url(https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010-scrubber-hover.png) !important;
-	background-position: 0px 0px !important;
-    background-size: 16px !important;
-    height: 16px !important;
-    width: 16px !important;
-    top: 0;
 }
 
 .ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-button {
@@ -234,6 +145,10 @@
     top: -40px;
 }
 
+.ytp-heat-map-chapter.ytp-heatmap-hover {
+    bottom: 0px !important;
+}
+
 /* ################################# */
 
 /* BUTTONS BASE */
@@ -259,14 +174,6 @@
 	height: 35px;
 }
 
-.ytp-chrome-bottom .ytp-button {
-    position: sticky !important;
-    height: 33px !important;
-    width: 40px !important;
-    bottom: 9px;
-    border: solid 1px lightgray;
-    background: linear-gradient(rgb(255, 255, 255), rgb(192 192 192)) !important;
-}
 /* igrone background & border for the following: */
 .ytp-chrome-bottom .ytp-button.ytp-settings-button,
 .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
@@ -302,60 +209,11 @@
 	display: none !important;
 }
 
-/* PLAY BUTTON */
-
-.ytp-button.ytp-play-button svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/pause.png') no-repeat center;
-    background-size: 15px;
-}
-
-.ytp-button.ytp-play-button:hover svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/play-hover.png') no-repeat center;
-    background-size: 15px;
-}
-
-.ytp-button.ytp-play-button[data-title-no-tooltip="Play"] svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/play.png') no-repeat center;
-	background-size: 15px;
-}
-
-.ytp-button.ytp-play-button[data-title-no-tooltip="Play"]:hover svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/pause-hover.png') no-repeat center;
-	background-size: 15px;
-}
-
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
     display: none !important;
-}	
-
-/* VOLUME BUTTON */
-
-.ytp-button.ytp-mute-button svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/volume.png') no-repeat center;
-    background-size: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
-
-.ytp-button.ytp-mute-button:hover svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/volume-mute-hover.png') no-repeat center;
-    background-size: 30px;
-}
-
-.ytp-button.ytp-mute-button[title="Unmute (m)"] svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/volume-mute.png') no-repeat center;
-    background-size: 30px;
-}
-
-.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/volume-hover.png') no-repeat center;
-    background-size: 30px;
-}
-
-/* semi muted icon -- background-position: -111px -406px; */
 
 /* TIME DISPLAY */
 
@@ -414,11 +272,20 @@
 	transition: .5s !important;
     position: relative;
     padding-left: 6px;
+    top: 2px;
+}
+
+.ytp-big-mode .ytp-volume-panel {
+	top: -1px;
 }
 
 .ytp-volume-slider {
     left: 1px;
     bottom: 34px;
+}
+
+.ytp-big-mode .ytp-volume-panel .ytp-volume-slider {
+	min-height: 50px !important;
 }
 
 .ytp-volume-panel:before {
@@ -437,18 +304,33 @@
 }
 
 .ytp-volume-slider-active .ytp-volume-panel:after {
-    content: '';
-    display: block;
-    position: relative;
-    bottom: 83px;
-    left: 54px;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(90deg, #0b0b0b45, #00000000);
+	content: '';
+	display: block;
+	position: relative;
+	bottom: 70px;
+	left: 54px;
+	width: 4px;
+	height: 110%;
+	background: linear-gradient(90deg, #0b0b0b45, #00000000);
+}
+
+.ytp-big-mode .ytp-volume-slider-active .ytp-volume-panel:after {
+	content: '';
+	display: block;
+	position: relative;
+	bottom: 88px;
+	left: 74px;
+	width: 4px;
+	height: 120%;
+	background: linear-gradient(90deg, #0b0b0b45, #00000000);
 }
 
 .ytp-volume-slider-active .ytp-volume-panel {
     width: 48px !important;
+}
+
+.ytp-big-mode .ytp-volume-slider-active .ytp-volume-panel {
+    width: 68px !important;
 }
 
 .ytp-volume-panel .ytp-volume-slider-handle {
@@ -469,21 +351,22 @@
 
 .ytp-volume-slider-handle::after {
     height: 5px;
-    background: black;
+    background: black !important;
 }
 
 .ytp-big-mode .ytp-volume-panel .ytp-volume-slider-handle {
-	border-radius: 0px !important;
-    margin-top: -9px !important;
+	position: absolute;
+    top: 20%;
+    margin-top: 0px !important;
     height: 14px !important;
     width: 5px !important;
-    position: absolute;
-    background: #ddd;
-    top: 50%;
+    background: rgb(221, 221, 221);
+    border-radius: 0px !important;
 }
 
 .ytp-big-mode .ytp-volume-slider-handle:before {
     width: 64px;
+	height: 4px !important;
 }
 
 .ytp-volume-panel .ytp-volume-slider-handle::before {
@@ -501,21 +384,6 @@
 
 /* SUBTITLES BUTTON */
 
-.ytp-subtitles-button.ytp-button svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/captions-off.png') no-repeat center;
-    background-size: 24px;
-}
-
-.ytp-subtitles-button.ytp-button:hover svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/captions-on.png') no-repeat center;
-    background-size: 24px;
-}
-
-.ytp-subtitles-button.ytp-button[aria-pressed=true] svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/captions-on.png') no-repeat center;
-    background-size: 24px;
-}
-
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
 	display: none;
 }
@@ -526,49 +394,10 @@
 
 /* SETTINGS BUTTON */
 
-.ytp-button.ytp-settings-button svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2012-icons.png') no-repeat;
-    background-position: -164px -132px;
-    background-size: 200px;
-    bottom: 5px;
-    transform: rotate(0) !important;
-}
-
-.ytp-button.ytp-settings-button:hover svg, .ytp-button.ytp-settings-button[aria-expanded="true"] svg {
-    filter: brightness(1.5);
-}
-
-.ytp-settings-button.ytp-hd-quality-badge:after {
-	background-color: #b91f1f !important;
-	top: 4px !important;
-}
-
 .ytp-big-mode .ytp-button.ytp-settings-button::after {
 	font-size: 8px !important;
 	right: 2px !important;
 	top: 5px !important;
-}
-
-/* THEATER BUTTON */
-
-.ytp-button.ytp-size-button svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/theater-mode.png') no-repeat center;
-	background-size: 20px;
-}
-
-.ytp-button.ytp-size-button:hover svg {
-    background: Url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/un-theater-mode-hover.png') no-repeat center;
-	background-size: 20px;
-}
-
-.ytp-button.ytp-size-button[title="Default view (t)"] svg {
-    background: Url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/un-theater-mode.png') no-repeat center;
-	background-size: 20px;
-}
-
-.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/theater-mode-hover.png') no-repeat center;
-	background-size: 20px;
 }
 
 /* WATCH ON YOUTUBE BUTTON (only introduced in 2015) */
@@ -577,31 +406,13 @@
 	display: none;
 }
 
-/* FULLSCREEN BUTTON */
-
-.ytp-button.ytp-fullscreen-button svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/fullscreen.png') no-repeat center;
-    background-size: 24px;
-}
-
-.ytp-button.ytp-fullscreen-button:hover svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/fullscreen-hover.png') no-repeat center;
-    background-size: 24px;
-}
-
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] svg {
-	background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/un-fullscreen.png') no-repeat center;
-    background-size: 24px;
-}
-
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"]:hover svg {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/un-fullscreen-hover.png') no-repeat center;
-    background-size: 24px;
-}
-
 /* DISPLAY NONE OF THESE */
 
-.ytp-fullerscreen-edu-button, .ytp-multicam-button, .ytp-multicam-button, .ytp-miniplayer-button, .ytp-remote-button {
+.ytp-fullerscreen-edu-button,
+.ytp-multicam-button,
+.ytp-multicam-button,
+.ytp-miniplayer-button,
+.ytp-remote-button {
 	display: none !important;
 }
 
@@ -634,22 +445,12 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: rgb(255, 255, 255) !important;
+	background: var(--settings-bg) !important;
 }
 
 .ytp-popup.ytp-settings-menu {
 	bottom: 45px !important;
     border-radius: 0 !important;
-}
-
-.ytp-menuitem .ytp-menuitem-label, .ytp-menuitem .ytp-menuitem-content, .ytp-panel .ytp-panel-footer, .ytp-panel .ytp-panel-header {
-	color: black;
-    text-shadow: none;
-}
-
-.ytp-settings-menu .ytp-panel-back-button {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/x-1.png') no-repeat center;
-    background-size: 20px;
 }
 
 .ytp-settings-menu .ytp-panel {
@@ -662,12 +463,6 @@
 
 .ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
 	display: none !important;
-}
-
-.ytp-menuitem[role=menuitemradio][aria-checked=true] .ytp-menuitem-label {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010%20icons/dot-1.png') no-repeat center;
-    background-size: 12px !important;
-    background-position: left 10px center;
 }
 
 .ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
@@ -770,8 +565,3 @@
 }
 
 /* ################################# */
-
-/* For 3rd-party */
-#previewbar {
-    transform: scale(1) !important;
-}

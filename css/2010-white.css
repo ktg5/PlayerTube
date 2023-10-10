@@ -1,17 +1,17 @@
 /* PLAYER BASE */
 
 :root {
-	--background: linear-gradient(#373c3e, #181a1b);
-    --background-top: #323639;
-    --main-colour: rgb(155, 0, 0.8);
-    --alt-colour: rgba(155, 0, 0, 0.5);
-    --volume-slider: rgb(155, 0, 0);
-    --progress-bar-bg: rgba(24, 26, 27, 0.75);
+	--background: linear-gradient(rgb(200, 200, 200), rgb(255, 255, 255));
+    --background-top: #f7f7f7;
+    --main-colour: rgba(255, 0, 0, 0.4);
+    --alt-colour: rgb(255 0 0 / 25%);
+    --volume-slider: #c03335;
+    --progress-bar-bg: rgb(255 255 255 / 50%);
     --progress-bar-outline: #5a5a5a63;
-    --progress-text: #c2c2c2;
-	--alt-progress-text: #c2c2c2;
-    --button-gradient: linear-gradient(rgb(24, 26, 27), rgb(60, 65, 67));
-    --settings-bg: rgb(35, 35, 35);
+    --progress-text: #3a3a3a;
+	--alt-progress-text: #3a3a3a;
+    --button-gradient: linear-gradient(rgb(255, 255, 255), rgb(192 192 192));
+    --settings-bg: rgb(255, 255, 255);
 }
 
 /* ################################# */
@@ -64,7 +64,7 @@
     height: 33px !important;
     width: 40px !important;
     bottom: 9px;
-    border: solid 1px rgb(60, 65, 68);
+    border: solid 1px lightgray;
     background: var(--button-gradient) !important;
 }
 
@@ -200,6 +200,16 @@
     background-size: 24px;
 }
 
+/* DISPLAY NONE OF THESE */
+
+.ytp-fullerscreen-edu-button,
+.ytp-multicam-button,
+.ytp-multicam-button,
+.ytp-miniplayer-button,
+.ytp-remote-button {
+	display: none !important;
+}
+
 /* ################################# */
 
 /* SETTINGS MENU */
@@ -208,7 +218,7 @@
 .ytp-menuitem .ytp-menuitem-content,
 .ytp-panel .ytp-panel-footer,
 .ytp-panel .ytp-panel-header {
-	color: rgb(255, 255, 255);
+	color: rgb(10, 10, 10);
     text-shadow: none;
 }
 

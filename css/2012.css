@@ -3,18 +3,18 @@
 :root {
 	--background: linear-gradient(rgb(38 38 38), rgb(12 12 12));
 	--main-colour: linear-gradient(180deg, #b22427, #751819);
-	--main-colour-solid: #b22427;
+	--volume-slider: linear-gradient(180deg, #b22427, #751819);
+	--main-colour-solid: #901b1d;
 	--progress-bar-bg: rgb(34 34 34);
 	--progress-text: #fff;
 	--alt-progress-text: #969696;
-}
-
-.ytp-chrome-controls {
-	border-top: 2px solid #181818;
+	--settings-bg: rgb(35, 35, 35);
 }
 
 .ytp-chrome-controls {
 	background: var(--background);
+	border-top: 2px solid #181818;
+	height: inherit;
 }
 
 .ytp-gradient-bottom {
@@ -224,6 +224,10 @@
     top: -45px;
 }
 
+.ytp-heat-map-chapter.ytp-heatmap-hover {
+    bottom: 0px !important;
+}
+
 /* ################################# */
 
 /* BUTTONS BASE */
@@ -389,18 +393,26 @@
 	width: 46px !important;
 }
 
+.ytp-big-mode .ytp-volume-slider-active .ytp-volume-panel {
+	width: 68px !important;
+}
+
+.ytp-big-mode .ytp-volume-panel .ytp-volume-slider {
+	min-height: 50px !important;
+}
+
 .ytp-volume-panel .ytp-volume-slider-handle {
 	position: absolute;
 	border-radius: 2px;
-	margin-top: -5.9px;
+	margin-top: 0;
 	background: #ddd;
 	height: 14px;
 	width: 5px;
-	top: 37.5%;
+	top: 25%;
 }
 
 .ytp-volume-slider-handle::before {
-	background: var(--main-colour);
+	background: var(--volume-slider);
     height: 5px;
 }
 
@@ -411,16 +423,17 @@
 
 .ytp-big-mode .ytp-volume-panel .ytp-volume-slider-handle {
 	border-radius: 0px !important;
-    margin-top: -9px !important;
-    height: 14px !important;
-    width: 5px !important;
-    position: absolute;
-    background: #ddd;
-    top: 50%;
+	margin-top: 0 !important;
+	height: 14px !important;
+	width: 5px !important;
+	position: absolute;
+	background: #ddd;
+	top: 20%;
 }
 
 .ytp-big-mode .ytp-volume-slider-handle:before {
     width: 64px;
+    height: 4px !important;
 }
 
 .ytp-volume-panel .ytp-volume-slider-handle::before {
@@ -637,7 +650,7 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: rgb(28, 28, 28) !important;
+	background: var(--settings-bg) !important;
 }
 
 .ytp-popup.ytp-settings-menu {

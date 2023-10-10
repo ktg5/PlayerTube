@@ -6,16 +6,35 @@ If you have any plugins/scripts you'd like to
 be fixed for this script, please send a issue
 on the GitHUb repo! Much thanks! */
 
+/* YouTube Redux */
+/* yes, this extension messes with this, and some other stuff too that I'll find out about */
+.ytp-volume-area svg {
+    transform: scale(1) !important;
+}
+
 /* SponsorBlock */
 #previewbar {
     top: 0px;
+    width: 98%;
 }
-/* Need to find a way to get this to change but there's a line break after "Click" */
+
+.skipButtonControlBarContainer div {
+    text-shadow: none;
+    margin: auto;
+    height: 18px;
+    line-height: 1.3;
+    font-size: 12px;
+}
+
 .ytp-button.ytp-settings-button svg[fill="white"] {
     background: #1b1b1b !important;
     display: block !important;
     height: 30px;
     fill: gray;
+}
+
+.ytp-chrome-bottom #sbSkipIconControlBarImage.ytp-button {
+    height: 80% !important;
 }
 
 .ytp-time-display #sponsorBlockDurationAfterSkips {

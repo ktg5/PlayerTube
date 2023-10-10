@@ -3,17 +3,17 @@
 :root {
 	--background: rgb(28, 28, 28);
 	--main-colour: #b91f1f;
+	--volume-slider: #b91f1f;
 	--progress-bar-bg: rgb(66, 66, 66);
 	--progress-text: #fff;
 	--alt-progress-text: #969696;
-}
-
-.ytp-chrome-controls {
-	border-top: 2px solid #181818;
+	--settings-bg: rgb(35, 35, 35);
 }
 
 .ytp-chrome-controls {
 	background: var(--background);
+	border-top: 2px solid #181818;
+	height: inherit;
 }
 
 .ytp-gradient-bottom {
@@ -220,6 +220,10 @@
     top: -45px;
 }
 
+.ytp-heat-map-chapter.ytp-heatmap-hover {
+    bottom: 0px !important;
+}
+
 /* ################################# */
 
 /* BUTTONS BASE */
@@ -372,38 +376,55 @@
 .ytp-volume-panel {
 	transition: .5s !important;
 	position: relative;
+	padding-left: 8px;
+    bottom: 1px
 }
 
 .ytp-volume-slider-active .ytp-volume-panel {
 	width: 46px !important;
 }
 
+.ytp-big-mode .ytp-volume-slider-active .ytp-volume-panel {
+	width: 68px !important;
+}
+
+.ytp-big-mode .ytp-volume-panel .ytp-volume-slider {
+	min-height: 50px !important;
+}
+
 .ytp-volume-panel .ytp-volume-slider-handle {
 	position: absolute;
-	border-radius: 0px;
-	margin-top: -5.9px;
+	border-radius: 2px;
+	margin-top: 0;
 	background: #ddd;
 	height: 14px;
 	width: 5px;
-	top: 37.5%;
+	top: 30%;
 }
 
 .ytp-volume-slider-handle::before {
 	background: var(--main-colour);
+    height: 4px;
+}
+
+.ytp-volume-slider-handle::after {
+    height: 5px;
+    background: black;
 }
 
 .ytp-big-mode .ytp-volume-panel .ytp-volume-slider-handle {
 	border-radius: 0px !important;
-    margin-top: -9px !important;
-    height: 14px !important;
-    width: 5px !important;
-    position: absolute;
-    background: #ddd;
-    top: 50%;
+	margin-top: 0 !important;
+	height: 14px !important;
+	width: 5px !important;
+	position: absolute;
+	background: #ddd;
+	top: 20%;
 }
 
 .ytp-big-mode .ytp-volume-slider-handle:before {
     width: 64px;
+	height: 4px !important;
 }
 
 .ytp-volume-panel .ytp-volume-slider-handle::before {
@@ -612,7 +633,7 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: rgb(28, 28, 28) !important;
+	background: var(--settings-bg) !important;
 }
 
 .ytp-popup.ytp-settings-menu {

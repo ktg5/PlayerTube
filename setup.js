@@ -13,14 +13,16 @@ var def_pt_config = {
     year: '2015',
     darkMode: false,
     autoplayButton: false,
-    heatMapToggle: true,
+    heatMapToggle: false,
     endScreenToggle: true,
     embedOtherVideos: true,
     toggleWatermark: true,
+    toggleRoundedCorners: false,
     customTheme: false,
 
     // Only for custom themes.
     controlsBack: null,
+    settingsBgColor: null,
     progressBarColor: null,
     progressBarBgColor: null,
     volumeSliderBack: null,

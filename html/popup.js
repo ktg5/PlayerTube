@@ -16,14 +16,16 @@ var def_pt_config = {
     year: '2015',
     darkMode: false,
     autoplayButton: false,
-    heatMapToggle: true,
+    heatMapToggle: false,
     endScreenToggle: true,
     embedOtherVideos: true,
     toggleWatermark: true,
+    toggleRoundedCorners: false,
     customTheme: false,
 
     // Only for custom themes.
     controlsBack: null,
+    settingsBgColor: null,
     progressBarColor: null,
     progressBarBgColor: null,
     volumeSliderBack: null,
@@ -258,15 +260,26 @@ async function start(userConfig) {
             <img src="../img/playertube/logo-dark.png" style="width: 200px;">
             <div class="version"> v${version}</div>
 
+            <br>
+
+            <div class="links">
+                <a href="release-note.html" target="_blank">Release Notes</a>
+                <a href="https://ktg5.online" target="_blank">ktg5.online</a>
+            </div>
+
+            <br>
+
             <h3>General Settings</h3>
 
             ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
 
             <div id="menu-if-dark-mode-yes"></div>
 
+            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle the rounded corners around a YouTube video')}
+
             ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the Autoplay toggle on the right-side of the player`)}
 
-            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar`)}
+            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
             ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle end screen (The buttons that display at the end of a video)')}
 
@@ -298,7 +311,7 @@ async function start(userConfig) {
     // Move everything to the body element
     setTimeout(() => {
         document.body.appendChild(document.getElementById('yt-html5-menu'));
-    }, 1);
+    }, 5);
 
     if (userConfig.year == "2010" && userConfig.customTheme !== true) {
         document.getElementById('menu-if-dark-mode-yes').insertAdjacentHTML(
@@ -326,7 +339,14 @@ async function start(userConfig) {
                 the Scrubber doesn't seem to appear, try changing the
                 Scrubber size. Else, open up your browser's Developer Tools.
             </b>
+
+            <br>
+            <br>
+
+            <b>Base Color Settings</b>
             ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
+
+            ${makeMenuOption('input', 'settingsBgColor', 'Change the color of the player\'s settings background', 'color')}
 
             ${makeMenuOption('input', 'progressBarColor', 'Change the color of the Progress Bar', 'color')}
 
@@ -335,11 +355,15 @@ async function start(userConfig) {
             ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the Volume Silder', 'color')}
             <div class='menu-option-note'>If you want to use the exact same color as the Progress Bar for the Volume Silder, you don't need to change this value.</div>
 
+            <br>
+            <b>Scrubber Base Settings</b>
             ${makeMenuOption('input', 'scrubberIcon', 'Change the image of the Scrubber', 'url')}
 
             ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the Scrubber <b>when hovering</b>', 'url')}
             <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
 
+            <br>
+            <b>Scrubber Size</b>
             ${makeMenuOption('input', 'scrubberSize', 'Change the size of the Scrubber', 'pxs')}
             <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
 
@@ -349,6 +373,8 @@ async function start(userConfig) {
             ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the Scrubber', 'pxs')}
             <div class='menu-option-note'>If you want to use the same height value on here, don't change this value.</div>
 
+            <br>
+            <b>Scrubber Position</b>
             ${makeMenuOption('input', 'scrubberTop', 'Move the Scrubber down (Make value negative to move up)', 'pxs')}
 
             ${makeMenuOption('input', 'scrubberLeft', 'Move the Scrubber right (Make value negative to move left)', 'pxs')}
@@ -399,6 +425,7 @@ async function start(userConfig) {
             case 'menu-toggle':
                 element.addEventListener('click', async () => {
                     changeUserDB(element.name, '', element);
+                    if (element.childNodes[1].classList.contains("undefined")) element.childNodes[1].classList.remove('undefined')
                 });
             break;
 
