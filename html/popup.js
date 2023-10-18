@@ -15,12 +15,16 @@ var def_pt_config = {
     // Basic settings.
     year: '2015',
     darkMode: false,
+    fullyExtendBar: false,
+    toggleFadeOut: false,
     autoplayButton: false,
     heatMapToggle: false,
     endScreenToggle: true,
     embedOtherVideos: true,
     toggleWatermark: true,
     toggleRoundedCorners: false,
+    togglePaidContent: false,
+    toggleInfoCards: true,
     customTheme: false,
 
     // Only for custom themes.
@@ -101,33 +105,45 @@ async function start(userConfig) {
     }
 
     /// Make options in menu
-    function makeMenuOption(type, option, desc, values) {
+    function makeMenuOption(type, option, desc, values, disableOpinions) {
         switch (type) {
             case 'selection':
+                var disabledOutput = ``;
+                if (disableOpinions) {
+                    disabledOutput = `aria-disabled='${disableOpinions}'`
+                }
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <select class="menu-select menu-action" name="${option}">
+                    <select class="menu-select menu-action" name="${option}" ${disabledOutput}>
                         ${values}
                     </select>
                 </div>
                 `
             case 'toggle':
+                var disabledOutput = ``;
+                if (disableOpinions) {
+                    disabledOutput = `aria-disabled='${disableOpinions}'`
+                }
                 return `
                 <div class="menu-option">
                     <div class="menu-name">${desc}</div>
-                    <button class="menu-toggle menu-action" name="${option}">
+                    <button class="menu-toggle menu-action" name="${option}" ${disabledOutput}>
                         <div class="light ${userConfig[option]}"></div>
                     </button>
                 </div>
                 `
             case 'input':
+                var disabledOutput = ``;
+                if (disableOpinions) {
+                    disabledOutput = `aria-disabled='${disableOpinions}'`
+                }
                 if (values == 'color') {
                     return `
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}">
+                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action'>
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -139,7 +155,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">
+                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -151,7 +167,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name" style="max-width: 12em;">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">px
+                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -163,7 +179,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc} (Must be an <kbd>https</kbd> link!)</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}">
+                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -281,17 +297,26 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
+            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar at all times`, null, ['toggleFadeOut'])}
+
+            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
+            <div class='menu-option-note'>Can't be changed when "Fully extend the Progress Bar" is enabled.</div>
+
+            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a YouTube channel\'s watermark that displays at the bottom right of YouTube videos')}
+
+            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the Paid Content popups on videos that are sponsored')}
+
+            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open up the Info Cards on a video')}
+
             ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle end screen (The buttons that display at the end of a video)')}
 
             ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the "Show other videos" box in embeds')}
-
-            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a YouTube channel\'s watermark that displays at the bottom right of YouTube videos')}
 
             <br>
 
             <h3>Custom Theme Settings</h3>
 
-            ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme')}
+            ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme', null, ['darkMode'])}
 
             <div id='menu-custom-options'></div>
 
@@ -412,13 +437,32 @@ async function start(userConfig) {
 
     // Event listener to make the BUTTONS ACTUALLY WORK LIKE WHY
     var buttons = document.getElementsByClassName('menu-action');
-    console.log(buttons)
+    console.log(`buttons:`, buttons)
     for (let element of buttons) {
         console.log(element);
+
+        // For disabling opinions that conflict with others
+        function disableAria(element) {
+            if (element.ariaDisabled !== null) {
+                var disableThese = element.ariaDisabled.split(',');
+                disableThese.forEach(target => {
+                    var targetElement = document.getElementsByName(`${target}`)[0];
+                    if (targetElement) {
+                        if (element.childNodes[1].classList.contains('true')) {
+                            targetElement.style.display = 'none';
+                        } else if (element.childNodes[1].classList.contains('false')) {
+                            targetElement.style.display = '';
+                        }
+                    }
+                });
+            };
+        }
+
         switch (element.classList[0]) {
             case 'menu-select':
                 element.addEventListener('click', async () => {
                     changeUserDB(element.name, element.value);
+                    disableAria(element);
                 });
             break;
 
@@ -426,18 +470,21 @@ async function start(userConfig) {
                 element.addEventListener('click', async () => {
                     changeUserDB(element.name, '', element);
                     if (element.childNodes[1].classList.contains("undefined")) element.childNodes[1].classList.remove('undefined')
+                    disableAria(element);
                 });
             break;
 
             case 'menu-input':
                 element.addEventListener('change', async () => {
                     changeUserDB(element.name, element.value);
+                    disableAria(element);
                 });
             break;
 
             case 'menu-color-picker':
                 element.addEventListener('change', async () => {
                     changeUserDB(element.name, element.value);
+                    disableAria(element);
                 });
             break;
 
@@ -454,6 +501,7 @@ async function start(userConfig) {
                         element.parentElement.children[0].value = '';
                         alert(`The "${element.parentElement.children[0].name}" setting has been reset.`);
                     }
+                    disableAria(element);
                 });
             break;
 

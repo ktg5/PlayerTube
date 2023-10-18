@@ -14,10 +14,14 @@ var def_pt_config = {
     darkMode: false,
     autoplayButton: false,
     heatMapToggle: false,
+    fullyExtendBar: false,
+    toggleFadeOut: false,
     endScreenToggle: true,
     embedOtherVideos: true,
     toggleWatermark: true,
     toggleRoundedCorners: false,
+    togglePaidContent: false,
+    toggleInfoCards: true,
     customTheme: false,
 
     // Only for custom themes.

@@ -236,6 +236,53 @@ function extraStyles() {
             border-radius: 12px !important;
         }
         `
+    } if (userConfig.togglePaidContent !== true) {
+        outputCssToggles += `
+        .ytp-suggested-action-badge[aria-label="View products"], .ytp-paid-content-overlay-link {
+            display: none !important;
+        }
+        `
+    } if (userConfig.toggleInfoCards == false) {
+        outputCssToggles += `
+        .ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
+            display: none !important;
+        }
+        `
+    } if (userConfig.fullyExtendBar == true) {
+        outputCssToggles += `
+        .ytp-progress-bar {
+            height: 10px !important;
+            margin-bottom: 1px !important;
+        }
+        
+        .ytp-progress-list {
+            transform: scaleY(1) !important;
+        }
+        
+        .ytp-scrubber-container .ytp-scrubber-button {
+            transform: scale(1) !important;
+        }
+
+        .ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
+            transform: scale(0) !important;
+        }
+        
+        .ytp-chrome-bottom .ytp-progress-bar:after {
+            transform: scale(1) !important;
+        }
+
+        #movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+            opacity: 0 !important;
+            bottom: 0 !important;
+        }
+        `
+    } if (userConfig.toggleFadeOut == true) {
+        outputCssToggles += `
+        #movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+            opacity: 0 !important;
+            bottom: 0 !important;
+        }
+        `
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);

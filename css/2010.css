@@ -32,10 +32,6 @@
     transform: scale(1) !important;
 }
 
-.ytp-autohide .ytp-chapter-hover-container {
-    width: calc(100% - 24px) !important;
-}
-
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-exp-chapter-hover-effect {
 	transform: scaleY(1) !important;
 }
@@ -55,6 +51,10 @@
     background: var(--progress-bar-bg);
     margin-top: -10px;
     right: 0;
+}
+
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
+	width: 48px
 }
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
@@ -424,8 +424,33 @@
 	display: none;
 }
 
-.ytp-chrome-top {
-	display: none !important;
+/* Disable all of these for 2010 */
+.ytp-playlist-menu-button.ytp-button,
+.ytp-title-channel,
+.ytp-title,
+.ytp-watch-later-button.ytp-button,
+.ytp-button.ytp-copylink-button,
+.ytp-button.ytp-overflow-button
+{
+    display: none !important;
+}
+
+.ytp-button.ytp-share-button {
+    background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2015-icons.png) no-repeat;
+    background-position: 2px -524px;
+    background-size: 220px;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.ytp-button.ytp-cards-button {
+	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2015-icons.png) no-repeat;
+	background-position: 5px -512px;
+	transition: .5s !important;
+	background-size: 200px;
+	width: 40px !important;
+	height: 40px !important;
+	bottom: 0px;
 }
 
 /* ################################# */
