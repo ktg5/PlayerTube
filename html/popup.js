@@ -9,11 +9,9 @@ var runtime = browser.runtime;
 
 // Default config
 var def_pt_config = {
-    // First-time ppl & release note checking.
-    releaseNote: 0,
-
     // Basic settings.
     year: '2015',
+    showReleaseNotes: true,
     darkMode: false,
     fullyExtendBar: false,
     toggleFadeOut: false,
@@ -288,6 +286,8 @@ async function start(userConfig) {
             <h3>General Settings</h3>
 
             ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
+
+            ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes when reloading or updating PlayerTube')}
 
             <div id="menu-if-dark-mode"></div>
 

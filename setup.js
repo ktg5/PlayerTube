@@ -6,11 +6,9 @@ var runtime = browser.runtime;
 
 // Default config
 var def_pt_config = {
-    // First-time ppl & release note checking.
-    releaseNote: 0,
-
     // Basic settings.
     year: '2015',
+    showReleaseNotes: true,
     darkMode: false,
     autoplayButton: false,
     heatMapToggle: false,

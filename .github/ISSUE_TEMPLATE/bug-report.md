@@ -9,6 +9,7 @@ assignees: ''
 
 **Describe the bug**
 A clear and concise description of what the bug is.
+Make sure that you've also tested the same issue with disabling any extra extensions that may effect YouTube.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.

@@ -3,22 +3,19 @@ var storage = browser.storage.sync;
 var extension = browser.extension;
 var runtime = browser.runtime;
 
-function handleInstalled(reason) {
+// On extension update
+runtime.onInstalled.addListener(reason => {
 	storage.get(['PTConfig'], function(result) {
-		if (Object.keys(result).length > 0 && !result.PTConfig.releaseNote) {
-			return;
-		} else if (reason == "update") {
-			browser.tabs.create({
-				url: `./html/release-note.html`
-			});
-		} else {
-			browser.tabs.create({
-				url: `./html/${reason}.html`
-			});
+		var userConfig = result.PTConfig;
+		// Check to see if user would like to get release notes
+		if (userConfig.showReleaseNotes !== false) {
+			// Check if previous version is not equal to current version
+			if (reason.previousVersion !== runtime.getManifest().version) {
+				// Create tab lol
+				browser.tabs.create({
+					url: `./html/${reason.reason}.html`
+				});
+			}
 		}
 	});
-}
-
-runtime.onInstalled.addListener(reason => {
-	handleInstalled(reason.reason);
 });
