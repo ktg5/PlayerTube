@@ -727,10 +727,6 @@
 	display: none;
 }
 
-.ytp-embed .ytp-title-text {
-	margin-top: 9px;
-}
-
 .ytp-embed .ytp-chrome-bottom {
 	transition: .5s !important;
 	width: inherit !important;

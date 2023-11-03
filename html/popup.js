@@ -262,7 +262,7 @@ async function start(userConfig) {
 
     // Start menu
     var collectedUserConfig = getUserConfigText();
-
+    // Base content
     document.getElementById(`content`).insertAdjacentHTML(
         `beforebegin`,
 
@@ -289,26 +289,25 @@ async function start(userConfig) {
 
             ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
 
-            <div id="menu-if-dark-mode-yes"></div>
+            <div id="menu-if-dark-mode"></div>
 
-            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle the rounded corners around a YouTube video')}
+            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners around a YouTube video')}
 
-            ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the Autoplay toggle on the right-side of the player`)}
+            ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">Autoplay toggle</a> on the right-side of the player`)}
 
-            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the Heat Map on the top of the Progress Bar (Shows you the most played parts of a video)`)}
+            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
-            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar at all times`, null, ['toggleFadeOut'])}
+            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`, null, ['toggleFadeOut'])}
 
-            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
-            <div class='menu-option-note'>Can't be changed when "Fully extend the Progress Bar" is enabled.</div>
+            <div id="menu-toggle-fadeout"></div>
 
-            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a YouTube channel\'s watermark that displays at the bottom right of YouTube videos')}
+            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a> that displays at the bottom right of YouTube videos')}
 
-            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the Paid Content popups on videos that are sponsored')}
+            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank">Paid Products / Sponsorships</a> popups on videos that are sponsored')}
 
-            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open up the Info Cards on a video')}
+            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open the <a href="https://support.google.com/youtube/answer/6140493" target="_blank">Info Cards tab</a>')}
 
-            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle end screen (The buttons that display at the end of a video)')}
+            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">End Screen</a> at the end of videos')}
 
             ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the "Show other videos" box in embeds')}
 
@@ -336,19 +335,36 @@ async function start(userConfig) {
     // Move everything to the body element
     setTimeout(() => {
         document.body.appendChild(document.getElementById('yt-html5-menu'));
-    }, 5);
+    }, 10);
 
-    if (userConfig.year == "2010" && userConfig.customTheme !== true) {
-        document.getElementById('menu-if-dark-mode-yes').insertAdjacentHTML(
+    // Checks
+    if (userConfig.year == "2010") {
+        if (userConfig.customTheme !== true) {
+            // If Custom Themes aren't enabled, allow dark theme
+            document.getElementById('menu-if-dark-mode').insertAdjacentHTML(
+                `afterbegin`,
+                
+                `
+                ${makeMenuOption(`toggle`, `darkMode`, `Toggle Dark Mode for your current theme`)}
+                <div class='menu-option-note'>Some themes may have dark themes, this one does! <b>Dark Mode will be disabled when custom themes are enabled.</b></div>
+                `
+            )
+        }
+        // Remove these when the 2010 theme is enabled
+        document.getElementById(`menu-toggle-fadeout`).remove();
+    }
+    if (userConfig.fullyExtendBar == false && document.getElementById(`menu-toggle-fadeout`)) {
+        document.getElementById(`menu-toggle-fadeout`).insertAdjacentHTML(
             `afterbegin`,
-            
+
             `
-            ${makeMenuOption(`toggle`, `darkMode`, `Toggle Dark Mode for your current theme`)}
-            <div class='menu-option-note'>Some themes may have dark themes, this one does! <b>Dark Mode will be disabled when custom themes are enabled.</b></div>
+            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
+            <div class='menu-option-note'>Can't be changed when "Fully extend the Progress Bar" is enabled.</div>
             `
         )
     }
 
+    // Custom Themes Buttons
     if (userConfig.customTheme == true) {
         document.getElementById(`menu-custom-options`).insertAdjacentHTML(
             `afterbegin`,
@@ -417,6 +433,7 @@ async function start(userConfig) {
         )
     }
 
+    // Ending stuffs
     document.getElementById(`menu-config-selection`).insertAdjacentHTML(
         `afterend`,
         

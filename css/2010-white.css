@@ -43,16 +43,15 @@
     top: -2px;
     transition: .5s !important;
     position: relative;
-    transform: scale(1) !important;
 }
 
 .ytp-scrubber-button:hover {
 	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2010-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
-    background-size: 16px !important;
-    height: 16px !important;
-    width: 16px !important;
-    top: 0;
+    background-size: 18px !important;
+    height: 18px !important;
+    width: 18px !important;
+    top: -2px;
 }
 
 /* ################################# */

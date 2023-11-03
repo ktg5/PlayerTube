@@ -28,18 +28,14 @@
     bottom: 33px !important;
 }
 
-.ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
-    transform: scale(1) !important;
-}
-
-.ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-exp-chapter-hover-effect {
-	transform: scaleY(1) !important;
-}
-
 .ytp-chrome-bottom .ytp-progress-bar {
 	transition: .5s;
-    margin-bottom: 1px !important;
+	margin-bottom: -0.5px !important;
 	height: 10px !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:hover {
+	margin-bottom: 1px !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:after {
@@ -51,6 +47,15 @@
     background: var(--progress-bar-bg);
     margin-top: -10px;
     right: 0;
+    transform: scaleY(.6);
+}
+
+.ytp-chrome-bottom .ytp-progress-bar.finished:after {
+    background: var(--main-colour);
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:hover:after {
+	transform: scaleY(1);
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
@@ -61,21 +66,15 @@
     background: var(--alt-colour)
 }
 
-.ytp-chrome-bottom .ytp-progress-bar.finished:after {
-    background: var(--main-colour);
-}
-
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
 	background: var(--main-colour);
 }
 
 .ytp-progress-list {
 	background: var(--progress-bar-bg) !important;
-    transform: scale(1) !important;
 }
 
 .ytp-timed-markers-container {
-    transform: scaleY(1);
     top: 0;
 }
 

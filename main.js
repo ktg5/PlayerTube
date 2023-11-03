@@ -196,70 +196,80 @@ function extraStyles() {
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
     if (userConfig.endScreenToggle == false) {
         outputCssToggles += `
+        /* TOGGLE END SCREEN (disabled) */
         .ytp-ce-element.ytp-ce-element-show {
             display: none !important;
         }
         `
     } if (userConfig.embedOtherVideos == false) {
         outputCssToggles += `
+        /* EMBED SHOW "Other Videos" (disabled) */
         .ytp-expand-pause-overlay .ytp-pause-overlay {
             display: none !important;
         }
         `
     } if (userConfig.autoplayButton !== true) {
         outputCssToggles += `
+        /* AUTO PLAY BUTTON (disabled / not set) */
         .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"] {
             display: none !important;
         }
         `
     } if (userConfig.heatMapToggle !== true) {
         outputCssToggles += `
+        /* PROGRESS BAR HEAT MAP (disabled) */
         .ytp-progress-bar-container .ytp-heat-map-container {
             display: none !important;
         }
         `
     } if (userConfig.toggleWatermark == false) {
         outputCssToggles += `
+        /* CHANNEL WATERMARK (disabled) */
         .annotation.annotation-type-custom.iv-branding {
             display: none;
         }
         `
     } if (userConfig.toggleRoundedCorners !== true) {
         outputCssToggles += `
+        /* ROUNDED CORNERS (disabled / not set) */
         #ytd-player.ytd-watch-flexy {
             border-radius: 0 !important;
         }
         `
     } else if (userConfig.toggleRoundedCorners == true) {
         outputCssToggles += `
+        /* ROUNDED CORNERS (enabled) */
         #ytd-player.ytd-watch-flexy {
             border-radius: 12px !important;
         }
         `
     } if (userConfig.togglePaidContent !== true) {
         outputCssToggles += `
+        /* PAID CONTENT (disabled / not set) */
         .ytp-suggested-action-badge[aria-label="View products"], .ytp-paid-content-overlay-link {
             display: none !important;
         }
         `
     } if (userConfig.toggleInfoCards == false) {
         outputCssToggles += `
+        /* INFO CARDS (disabled) */
         .ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
             display: none !important;
         }
         `
     } if (userConfig.fullyExtendBar == true) {
         outputCssToggles += `
-        .ytp-progress-bar {
+        /* FULLY EXTEND PROGRESS BAR (enabled) */
+        .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
             height: 10px !important;
             margin-bottom: 1px !important;
         }
         
-        .ytp-progress-list {
+        .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
             transform: scaleY(1) !important;
         }
         
-        .ytp-scrubber-container .ytp-scrubber-button {
+        .ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
             transform: scale(1) !important;
         }
 
@@ -275,9 +285,20 @@ function extraStyles() {
             opacity: 0 !important;
             bottom: 0 !important;
         }
+
+        /* 3rd-party stuff for setting */
         `
+
+        if (userConfig.year == '2010') {
+            outputCssToggles += `
+            #previewbar {
+                transform: scale(1) !important;
+            }
+            `
+        }
     } if (userConfig.toggleFadeOut == true) {
         outputCssToggles += `
+        /* TOGGLE FADE OUT (enabled) */
         #movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
             opacity: 0 !important;
             bottom: 0 !important;
@@ -296,9 +317,8 @@ function extraStyles() {
         `
         /* This is 3rd-party CSS for those using the 2010 theme */
 
-        /* SponsorBlock */
         #previewbar {
-            transform: scale(1) !important;
+            top: 0.5px !important;
         }
         
         .ytp-chrome-bottom .playerButton.ytp-button {
