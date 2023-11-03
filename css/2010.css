@@ -17,6 +17,8 @@
     transition: opacity .5s cubic-bezier(0,0,.2,1) !important;
 }
 
+/* PROGRESS BAR */
+
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
 	height: 11px;
@@ -68,6 +70,10 @@
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
 	background: var(--main-colour);
+}
+
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
+    transform: scale(1) !important;
 }
 
 .ytp-progress-list {

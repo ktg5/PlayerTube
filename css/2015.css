@@ -26,6 +26,8 @@
     left: 0 !important;
 }
 
+/* PROGRESS BAR */
+
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
 }
