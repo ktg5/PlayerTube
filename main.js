@@ -1,13 +1,14 @@
-// Custom theme enabled
+// hi this is playertube...
+// Vars
+var currentPath = window.location.href;
+var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
-// If you'd like to take a look at some examples,
-// https://github.com/ktg5/PlayerTube#user-customization
 
 // #################################
 
 // MOVING ELEMENTS
 function moveElement(element, targetDiv, pasteDiv) {
-    console.log(`moveElement function: ${targetDiv.contains(element)}`)
+    console.log(`%cPlayerTube moveElement function: ${targetDiv.contains(element)}`, styles2)
     if (pasteDiv.contains(element)) {
         return;
     } else if (targetDiv.contains(element)) {
@@ -18,12 +19,9 @@ function moveElement(element, targetDiv, pasteDiv) {
     }
 };
 
-
-// Make sure script reruns on page update.
-// And make check progress bar value in case to change it.
-var currentPath = window.location.href;
-var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
-
+// Heartbeats
+/// Make sure script reruns on page update.
+/// And make check progress bar value in case to change it.
 setInterval(() => {
     // Check window href
     if (window.location.href == currentPath) {
@@ -34,25 +32,52 @@ setInterval(() => {
         currentPath = window.location.href;
     }
 }, 1000);
+/// Fake bar heartbeat
+if (userConfig.toggleFadeOut !== true) {
+    setInterval(() => {
+        if (document.getElementsByClassName('video-stream html5-main-video')[0].paused == true) {
+            return;
+        } else {
+            // Video to pull info off of
+            var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
+            // Vars from ytVideo
+            var ytVideoCurrent = ytVideo.currentTime;
+            var ytVideoFull = ytVideo.duration;
+            // Debug
+            console.log(`%cPlayerTube current video element:`, styles2, ytVideo);
+            console.log(`%cPlayerTube current time: ${ytVideoCurrent}`, styles2);
+            console.log(`%cPlayerTube end time: ${ytVideoFull}`, styles2);
+            console.log(`%cPlayerTube video percentage: ${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`, styles2);
+            // Actual script
+            document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-current', `${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`)
+            document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-loaded', `${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`)
+        }
+    }, 1000);
+}
 
+// This is used to make the progress look like
+// it goes all the way.
 function progressBarChanger() {
     setInterval(() => {
         // Check progress bar
         if (progressbar) {
+            // If finished
             if (progressbar.getAttribute('aria-valuemax') == progressbar.getAttribute('aria-valuenow')) {
                 progressbar.classList.add('finished');
-                console.log('PlayerTube', `video finished, progress bar should be all main color.`);
+                console.log(`%cPlayerTube video finished, progress bar should be all main color.`, styles2);
+            // If restarted or keep going.
             } else {
                 if (progressbar.classList.contains('finished')) {
                     progressbar.classList.remove('finished');
-                    console.log(`PlayerTube`, `video started, reerting back.`);
+                    console.log(`%cPlayerTube video started, reerting back.`, styles2);
                 }
             }
         }
     }, 1000);
 }
 
-// Start
+// Inital startup.
+// When the page is (re)loaded.
 startPlayer();
 progressBarChanger();
 
@@ -60,7 +85,6 @@ progressBarChanger();
 // You'd only understand if you were dealing
 // CSS.
 var loadedPlayerStyle = false;
-var loadedMenuStyle = false;
 
 // Custom theme stuff
 function enableCustomTheme() {
@@ -68,27 +92,27 @@ function enableCustomTheme() {
     if (userConfig.controlsBack !== null) {
         outputCssCustomTheme += `
         :root {
-            --background: ${userConfig.controlsBack} !important;
-            --background-top: ${userConfig.controlsBack} !important;
+            --pt-background: ${userConfig.controlsBack} !important;
+            --pt-background-top: ${userConfig.controlsBack} !important;
         }
         `
     } if (userConfig.settingsBgColor !== null) {
         outputCssCustomTheme += `
         :root {
-            --settings-bg: ${userConfig.settingsBgColor} !important;
+            --pt-settings-bg: ${userConfig.settingsBgColor} !important;
         }
         `
     } if (userConfig.progressBarColor !== null) {
         outputCssCustomTheme += `
         :root {
-            --main-colour: ${userConfig.progressBarColor} !important;
-            --volume-slider: ${userConfig.progressBarColor} !important;
+            --pt-main-colour: ${userConfig.progressBarColor} !important;
+            --pt-volume-slider: ${userConfig.progressBarColor} !important;
         }
         `
     } if (userConfig.progressBarBgColor !== null) {
         outputCssCustomTheme += `
         :root {
-            --progress-bar-bg: ${userConfig.progressBarBgColor} !important;
+            --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
         }
         `
     } if (userConfig.volumeSliderBack !== null) {
@@ -190,7 +214,7 @@ function enableCustomTheme() {
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
 }
 
-
+// User settings toggles
 function extraStyles() {
     // toggles
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
@@ -264,6 +288,10 @@ function extraStyles() {
             height: 10px !important;
             margin-bottom: 1px !important;
         }
+
+        .ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+            height: 4px !important;
+        }
         
         .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
             transform: scaleY(1) !important;
@@ -279,11 +307,6 @@ function extraStyles() {
         
         .ytp-chrome-bottom .ytp-progress-bar:after {
             transform: scale(1) !important;
-        }
-
-        #movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
-            opacity: 0 !important;
-            bottom: 0 !important;
         }
 
         /* 3rd-party stuff for setting */
@@ -349,8 +372,10 @@ function extraStyles() {
     }
 }
 
-function startPlayer() {    
-    // Make sure player part of the script is loaded on "watch" pages.
+// Load everything else.
+// Includes year theme & fake bar.
+// This function will keep going until it's happy.
+function startPlayer() {
     // Keep going until we hit it.
     const starter = setInterval(function () {
         switch (userConfig.year) {
@@ -471,6 +496,13 @@ function startPlayer() {
                         border: none !important;
                     }
                     `
+                    if (userConfig.progressBarColor) {
+                        CustomThemeCss2010 += `
+                        :root {
+                            --pt-alt-colour: ${userConfig.progressBarColor}45;
+                        }
+                        `
+                    }
                     // output css
                     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme-for-2010" type="text/css">${CustomThemeCss2010}</style>`);
                 }
@@ -497,7 +529,27 @@ function startPlayer() {
             break;
         };
 
-        // End Start Checker
+        // Make fake bar
+        if (userConfig.toggleFadeOut !== true) {
+            if (document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
+                return;
+            } else {
+                /// Load fake bar CSS
+                var link = runtime.getURL(`css/fakebar.css`);
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
+                /// Load fake bar HTML
+                document.getElementsByClassName('ytp-chrome-bottom')[0].insertAdjacentHTML('afterend', 
+                    `
+                    <div id="playertube-fake-bar">
+                        <div class="current"></div>
+                        <div class="loaded"></div>
+                    </div>
+                    `
+                )
+            }
+        }
+
+        // We're done! End Start Checker.
         clearInterval(starter);
     }, 1000);
 }

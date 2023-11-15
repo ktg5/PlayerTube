@@ -1,17 +1,17 @@
 /* PLAYER BASE */
 
 :root {
-	--background: linear-gradient(rgb(200, 200, 200), rgb(255, 255, 255));
-    --background-top: #f7f7f7;
-    --main-colour: rgba(255, 0, 0, 0.4);
-    --alt-colour: rgb(255 0 0 / 25%);
-    --volume-slider: #c03335;
-    --progress-bar-bg: rgb(255 255 255 / 50%);
-    --progress-bar-outline: #5a5a5a63;
-    --progress-text: #3a3a3a;
-	--alt-progress-text: #3a3a3a;
-    --button-gradient: linear-gradient(rgb(255, 255, 255), rgb(192 192 192));
-    --settings-bg: rgb(255, 255, 255);
+	--pt-background: linear-gradient(rgb(200, 200, 200), rgb(255, 255, 255));
+    --pt-background-top: #f7f7f7;
+    --pt-main-colour: rgba(255, 0, 0, 0.4);
+    --pt-alt-colour: rgb(255 0 0 / 25%);
+    --pt-volume-slider: #c03335;
+    --pt-progress-bar-bg: rgb(255 255 255 / 50%);
+    --pt-progress-bar-outline: #5a5a5a63;
+    --pt-progress-text: #3a3a3a;
+	--pt-alt-progress-text: #3a3a3a;
+    --pt-button-gradient: linear-gradient(rgb(255, 255, 255), rgb(192 192 192));
+    --pt-settings-bg: rgb(255, 255, 255);
 }
 
 /* ################################# */
@@ -64,7 +64,7 @@
     width: 40px !important;
     bottom: 9px;
     border: solid 1px lightgray;
-    background: var(--button-gradient) !important;
+    background: var(--pt-button-gradient) !important;
 }
 
 /* ################################# */

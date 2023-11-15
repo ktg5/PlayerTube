@@ -297,9 +297,9 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
-            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`, null, ['toggleFadeOut'])}
+            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
 
-            <div id="menu-toggle-fadeout"></div>
+            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
 
             ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a> that displays at the bottom right of YouTube videos')}
 
@@ -350,18 +350,6 @@ async function start(userConfig) {
                 `
             )
         }
-        // Remove these when the 2010 theme is enabled
-        document.getElementById(`menu-toggle-fadeout`).remove();
-    }
-    if (userConfig.fullyExtendBar == false && document.getElementById(`menu-toggle-fadeout`)) {
-        document.getElementById(`menu-toggle-fadeout`).insertAdjacentHTML(
-            `afterbegin`,
-
-            `
-            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
-            <div class='menu-option-note'>Can't be changed when "Fully extend the Progress Bar" is enabled.</div>
-            `
-        )
     }
 
     // Custom Themes Buttons

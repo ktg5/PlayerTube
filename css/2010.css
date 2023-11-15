@@ -1,8 +1,8 @@
 /* PLAYER BASE */
 
 .ytp-chrome-controls {
-    background: var(--background);
-    border-top: solid 2px var(--background-top);
+    background: var(--pt-background);
+    border-top: solid 2px var(--pt-background-top);
     height: 33px !important;
 }
 
@@ -14,7 +14,6 @@
 	height: 35px !important;
 	width: 100% !important;
     left: 0 !important;
-    transition: opacity .5s cubic-bezier(0,0,.2,1) !important;
 }
 
 /* PROGRESS BAR */
@@ -22,8 +21,8 @@
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
 	height: 11px;
-	border-top: 1px solid var(--progress-bar-outline);
-	border-bottom: 1px solid var(--progress-bar-outline);
+	border-top: 1px solid var(--pt-progress-bar-outline);
+	border-bottom: 1px solid var(--pt-progress-bar-outline);
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -46,14 +45,14 @@
     position: absolute;
     width: 24px;
     height: 10px;
-    background: var(--progress-bar-bg);
+    background: var(--pt-progress-bar-bg);
     margin-top: -10px;
     right: 0;
     transform: scaleY(.6);
 }
 
 .ytp-chrome-bottom .ytp-progress-bar.finished:after {
-    background: var(--main-colour);
+    background: var(--pt-main-colour);
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:hover:after {
@@ -65,19 +64,23 @@
 }
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
-    background: var(--alt-colour)
+    background: var(--pt-alt-colour)
 }
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
-	background: var(--main-colour);
+	background: var(--pt-main-colour);
 }
 
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
-    transform: scale(1) !important;
+    transform: scaleY(1) !important;
+}
+
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-effect:hover {
+    transform: scaleY(1) !important;
 }
 
 .ytp-progress-list {
-	background: var(--progress-bar-bg) !important;
+	background: var(--pt-progress-bar-bg) !important;
 }
 
 .ytp-timed-markers-container {
@@ -89,7 +92,7 @@
 }
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
-	background: var(--main-colour);
+	background: var(--pt-main-colour);
 }
 
 .iv-branding .branding-context-container-inner {
@@ -103,6 +106,55 @@
 /* This shit is IN THE FUCKING WAY LIKE GET OUT OF HERE!!!!! */
 #contentContainer.tp-yt-app-drawer[swipe-open].tp-yt-app-drawer::after {
     display: none;
+}
+
+/* ################################# */
+
+/* AUTO-HIDE PLAYER */
+
+.ytp-chrome-bottom {
+    bottom: 0;
+    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
+}
+
+.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+    opacity: 1 !important;
+    bottom: -45px;
+}
+
+.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
+    opacity: 1 !important;
+    bottom: -41px;
+}
+
+.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container {
+    border-top: 0 none !important;
+}
+
+.ytp-progress-bar-container {
+    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
+}
+
+.ytp-autohide .ytp-progress-bar {
+    height: 5px;
+}
+
+.ytp-autohide .ytp-progress-bar-container {
+    width: calc( 100% + 20px );
+    margin-left: -12px;
+}
+
+.ytp-big-mode.ytp-autohide .ytp-progress-bar-container {
+    width: calc( 100% + 48px );
+    margin-left: -24px;
+}
+
+.ytp-autohide .ytp-player-content:not(.html5-endscreen) {
+    transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1), top .5s cubic-bezier(0.0,0.0,0.2,1);
+}
+
+.ytp-autohide:not(.ytp-ad-overlay-open) .ytp-subtitles-player-content:not(.html5-endscreen):not(.ytp-iv-player-content) {
+    bottom: 1em !important;
 }
 
 /* ################################# */
@@ -235,19 +287,19 @@
 }
 
 .ytp-time-current {
-	color: var(--progress-text) !important;
+	color: var(--pt-progress-text) !important;
     text-shadow: none;
 }
 
 .ytp-time-separator, .ytp-time-duration {
-	color: var(--alt-progress-text) !important;
+	color: var(--pt-alt-progress-text) !important;
     text-shadow: none;
 }
 
 /* CHAPTER TITLE */
 
 .ytp-chrome-bottom .ytp-chapter-title.ytp-button {
-    color: var(--progress-text) !important;
+    color: var(--pt-progress-text) !important;
     font-size: 14px !important;
     width: auto !important;
 }
@@ -350,7 +402,7 @@
 }
 
 .ytp-volume-slider-handle::before {
-	background: var(--volume-slider);
+	background: var(--pt-volume-slider);
     height: 5px;
 }
 
@@ -475,7 +527,7 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: var(--settings-bg) !important;
+	background: var(--pt-settings-bg) !important;
 }
 
 .ytp-popup.ytp-settings-menu {

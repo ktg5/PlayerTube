@@ -1,17 +1,18 @@
 /* PLAYER BASE */
 
 :root {
-	--background: rgb(28, 28, 28);
-	--main-colour: #b91f1f;
-	--volume-slider: #b91f1f;
-	--progress-bar-bg: rgb(66, 66, 66);
-	--progress-text: #fff;
-	--alt-progress-text: #969696;
-	--settings-bg: rgb(35, 35, 35);
+	--pt-background: rgb(28, 28, 28);
+	--pt-main-colour: #b91f1f;
+	--pt-alt-colour: rgba(255,255,255,.4);
+	--pt-volume-slider: #b91f1f;
+	--pt-progress-bar-bg: rgb(66, 66, 66);
+	--pt-progress-text: #fff;
+	--pt-alt-progress-text: #969696;
+	--pt-settings-bg: rgb(35, 35, 35);
 }
 
 .ytp-chrome-controls {
-	background: var(--background);
+	background: var(--pt-background);
 	border-top: 2px solid #181818;
 	height: inherit;
 }
@@ -46,7 +47,7 @@
     position: absolute;
     width: 7em;
     height: 100%;
-    background: var(--progress-bar-bg);
+    background: var(--pt-progress-bar-bg);
     margin-top: -10px;
     right: 0;
 	bottom: 0px;
@@ -54,7 +55,11 @@
 }
 
 .ytp-chrome-bottom .ytp-progress-bar.finished:after {
-    background: var(--main-colour);
+    background: var(--pt-main-colour);
+}
+
+.ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
+    background: var(--pt-alt-colour)
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:hover:after {
@@ -71,7 +76,7 @@
 }
 
 .ytp-progress-list {
-	background: var(--progress-bar-bg) !important;
+	background: var(--pt-progress-bar-bg) !important;
 }
 
 .ytp-timed-markers-container {
@@ -88,7 +93,7 @@
 }
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light, .ytp-hover-progress-light {
-	background: var(--main-colour);
+	background: var(--pt-main-colour);
 }
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
@@ -119,7 +124,7 @@
 
 .ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
-    bottom: -35px;
+    bottom: -40px;
 }
 
 .ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
@@ -344,12 +349,12 @@
 }
 
 .ytp-time-current {
-	color: var(--progress-text) !important;
+	color: var(--pt-progress-text) !important;
 	text-shadow: none;
 }
 
 .ytp-time-separator, .ytp-time-duration {
-	color: var(--alt-progress-text) !important;
+	color: var(--pt-alt-progress-text) !important;
 	text-shadow: none;
 }
 
@@ -405,7 +410,7 @@
 }
 
 .ytp-volume-slider-handle::before {
-	background: var(--main-colour);
+	background: var(--pt-main-colour);
     height: 4px;
 }
 
@@ -477,7 +482,7 @@
 }
 
 .ytp-settings-button:after {
-	background-color: var(--main-colour) !important;
+	background-color: var(--pt-main-colour) !important;
 	top: 8px !important;
 }
 
@@ -635,7 +640,7 @@
 /* SETTINGS MENU */
 
 .ytp-popup {
-	background: var(--settings-bg) !important;
+	background: var(--pt-settings-bg) !important;
 }
 
 .ytp-popup.ytp-settings-menu {

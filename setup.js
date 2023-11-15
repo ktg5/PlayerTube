@@ -1,3 +1,35 @@
+// cool-ass ascii art i guess lmao
+var styles1 = [
+    'background: linear-gradient(#D33106, #571402)'
+    , 'color: white'
+    , 'display: block'
+    , 'font-size: 18px'
+    , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+    , 'box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
+    , 'line-height: 25px'
+    , 'font-weight: bold'
+].join(';');
+var styles2 = [
+    'background: linear-gradient(#0629d3, #022c57)'
+    , 'border: 5px solid rgb(255 255 255 / 10%)'
+    , 'color: white'
+    , 'display: block'
+    , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+    , 'box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
+].join(';');
+var styles3 = [
+    'background: linear-gradient(#06d316, #075702)'
+    , 'border: 5px solid rgb(255 255 255 / 10%)'
+    , 'color: white'
+    , 'display: block'
+    , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+    , 'box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
+].join(';');
+console.log(`%c░█▀▀█ █── █▀▀█ █──█ █▀▀ █▀▀█ ▀▀█▀▀ █──█ █▀▀▄ █▀▀ `, styles1)
+console.log(`%c░█▄▄█ █── █▄▄█ █▄▄█ █▀▀ █▄▄▀ ─░█── █──█ █▀▀▄ █▀▀ `, styles1)
+console.log(`%c░█─── ▀▀▀ ▀──▀ ▄▄▄█ ▀▀▀ ▀─▀▀ ─░█── ─▀▀▀ ▀▀▀─ ▀▀▀ ... is up and running!`, styles1)
+console.log(`%cIf you enabled some of the debug stuff, search for "PlayerTube" or "main.js" (other extensions could show up with that) in the console!`, styles2)
+
 // Shortcuts
 if (navigator.userAgent.includes("Chrome")) browser = chrome;
 var storage = browser.storage.sync;
@@ -44,11 +76,11 @@ function start() {
 		if (result == undefined || Object.keys(result).length == 0) {
 			await storage.set({PTConfig: def_pt_config});
 			userConfig = await storage.get(['PTConfig']);
-            console.log(`PLAYERTUBE USER DATA (reset to default):`, userConfig);
+            console.log(`%cPLAYERTUBE USER DATA (reset to default):`, styles3, userConfig);
             window.location.reload();
 		} else {
 			userConfig = result.PTConfig;
-            console.log(`PLAYERTUBE USER DATA:`, userConfig);
+            console.log(`%cPLAYERTUBE USER DATA:`, styles3, userConfig);
 		}
 	});
 }
