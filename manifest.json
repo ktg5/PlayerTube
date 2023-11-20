@@ -34,6 +34,6 @@
     }],
 
     "permissions": [
-        "storage", "scripting"
+        "storage"
     ]
 }
