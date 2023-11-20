@@ -45,6 +45,7 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
+    fakeBarToggle: true,
     toggleFadeOut: false,
     endScreenToggle: true,
     embedOtherVideos: true,

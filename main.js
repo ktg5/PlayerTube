@@ -33,24 +33,25 @@ setInterval(() => {
     }
 }, 1000);
 /// Fake bar heartbeat
-if (userConfig.toggleFadeOut !== true) {
+if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
     setInterval(() => {
-        if (document.getElementsByClassName('video-stream html5-main-video')[0].paused == true) {
+        if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true) {
             return;
         } else {
             // Video to pull info off of
             var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
             // Vars from ytVideo
             var ytVideoCurrent = ytVideo.currentTime;
+            var ytBuffered = ytVideo.buffered.end(0);
             var ytVideoFull = ytVideo.duration;
             // Debug
-            console.log(`%cPlayerTube current video element:`, styles2, ytVideo);
-            console.log(`%cPlayerTube current time: ${ytVideoCurrent}`, styles2);
-            console.log(`%cPlayerTube end time: ${ytVideoFull}`, styles2);
-            console.log(`%cPlayerTube video percentage: ${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`, styles2);
+            // console.log(`%cPlayerTube current video element:`, styles2, ytVideo);
+            // console.log(`%cPlayerTube current time: ${ytVideoCurrent}`, styles2);
+            // console.log(`%cPlayerTube end time: ${ytVideoFull}`, styles2);
+            // console.log(`%cPlayerTube video percentage: ${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`, styles2);
             // Actual script
             document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-current', `${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`)
-            document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-loaded', `${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`)
+            document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-loaded', `${(ytBuffered / ytVideoFull * 100).toFixed(2)}%`)
         }
     }, 1000);
 }
@@ -530,8 +531,8 @@ function startPlayer() {
         };
 
         // Make fake bar
-        if (userConfig.toggleFadeOut !== true) {
-            if (document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
+        if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
+            if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
                 return;
             } else {
                 /// Load fake bar CSS

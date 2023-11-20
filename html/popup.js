@@ -13,10 +13,11 @@ var def_pt_config = {
     year: '2015',
     showReleaseNotes: true,
     darkMode: false,
-    fullyExtendBar: false,
-    toggleFadeOut: false,
     autoplayButton: false,
     heatMapToggle: false,
+    fullyExtendBar: false,
+    fakeBarToggle: true,
+    toggleFadeOut: false,
     endScreenToggle: true,
     embedOtherVideos: true,
     toggleWatermark: true,
@@ -277,7 +278,7 @@ async function start(userConfig) {
             <br>
 
             <div class="links">
-                <a href="release-note.html" target="_blank">Release Notes</a>
+                <a href="update.html" target="_blank">Release Notes</a>
                 <a href="https://ktg5.online" target="_blank">ktg5.online</a>
             </div>
 
@@ -298,6 +299,8 @@ async function start(userConfig) {
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
+
+            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when not active`)}
 
             ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
 
