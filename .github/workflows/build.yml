@@ -40,9 +40,9 @@ jobs:
       - name: Install action-zip
         uses: montudor/action-zip@v1.0.0
 
-      # Run the "build.js" script through our newly acquired Node.js environment.
+      # Run the "src/build.js" script through our newly acquired Node.js environment.
       - name: Run the build node script
-        run: node build
+        run: node src/build
 
       # Unzip stuffs.
       - name: Unzip extension

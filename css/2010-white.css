@@ -16,22 +16,6 @@
 
 /* ################################# */
 
-/* "BEZEL" ICONS */
-
-.ytp-bezel[aria-label="Pause"] {
-    background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel[aria-label="Play"] {
-    background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-/* ################################# */
-
 /* SCRUBBER */
 
 .ytp-scrubber-button {

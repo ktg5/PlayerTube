@@ -11,10 +11,20 @@ runtime.onInstalled.addListener(reason => {
 		if (userConfig.showReleaseNotes !== false) {
 			// Check if previous version is not equal to current version
 			if (reason.previousVersion !== runtime.getManifest().version) {
-				// Create tab lol
-				browser.tabs.create({
-					url: `./html/${reason.reason}.html`
-				});
+				// Make sure that only these specific reasons can create tabs
+				switch (reason.reason) {
+					case 'install':
+						browser.tabs.create({
+							url: `./html/${reason.reason}.html`
+						});
+					break;
+
+					case 'update':
+						browser.tabs.create({
+							url: `./html/${reason.reason}.html`
+						});
+					break;
+				}
 			}
 		}
 	});
