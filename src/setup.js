@@ -71,6 +71,7 @@ var def_pt_config = {
     scrubberLeft: null,
 };
 
+// Start (config stuff)
 start();
 function start() {
 	storage.get(['PTConfig'], async function(result) {

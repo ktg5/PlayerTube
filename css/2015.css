@@ -27,16 +27,6 @@
     left: 0 !important;
 }
 
-/* LOADING / SPINNER / BUFFER thingy whatever */
-
-.html5-video-player .ytp-spinner {
-    background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif');
-}
-
-.html5-video-player .ytp-spinner .ytp-spinner-container {
-    display: none;
-}
-
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -741,7 +731,8 @@
 /* EMBEDDED VIDEO */
 
 .ytp-embed .ytp-large-play-button {
-	background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/embed-play.png')
+	background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/embed-play.png') center no-repeat;
+	background-size: contain;
 }
 
 .ytp-embed .ytp-title-channel {

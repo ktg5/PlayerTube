@@ -6,6 +6,13 @@ var customTheme = userConfig.customTheme;
 
 // #################################
 
+// LOADING / SPINNER / BUFFER thingy whatever
+document.getElementsByClassName('ytp-spinner-container')[0].style.display = 'none';
+var spinner = document.getElementsByClassName('ytp-spinner')[0];
+spinner.style.background = `url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif')`;
+spinner.style.backgroundSize = 'contain';
+spinner.style.height = '64px';
+
 // MOVING ELEMENTS
 function moveElement(element, targetDiv, pasteDiv) {
     console.log(`%cPlayerTube moveElement function: ${targetDiv.contains(element)}`, styles2)
