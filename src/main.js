@@ -7,11 +7,19 @@ var customTheme = userConfig.customTheme;
 // #################################
 
 // LOADING / SPINNER / BUFFER thingy whatever
-document.getElementsByClassName('ytp-spinner-container')[0].style.display = 'none';
-var spinner = document.getElementsByClassName('ytp-spinner')[0];
-spinner.style.background = `url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif')`;
-spinner.style.backgroundSize = 'contain';
-spinner.style.height = '64px';
+var tempinterval = setInterval(() => {
+    if (document.getElementsByClassName('ytp-spinner-container')[0] && document.getElementsByClassName('ytp-spinner')[0]) {
+        var spinner_container = document.getElementsByClassName('ytp-spinner-container')[0];
+        var spinner = document.getElementsByClassName('ytp-spinner')[0];
+
+        spinner_container.style.display = 'none';
+        spinner.style.background = `url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif')`;
+        spinner.style.backgroundSize = 'contain';
+        spinner.style.height = '64px';
+
+        clearInterval(tempinterval);
+    }
+}, 1000);
 
 // MOVING ELEMENTS
 function moveElement(element, targetDiv, pasteDiv) {
