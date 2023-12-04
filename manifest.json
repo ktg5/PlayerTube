@@ -14,6 +14,13 @@
         "default_icon": "img/playertube/icon.png"
     },
 
+    "icons": {
+        "16": "img/playertube/resize/16.png",
+        "32": "img/playertube/resize/32.png",
+        "48": "img/playertube/resize/48.png",
+        "128": "img/playertube/resize/128.png"
+    },
+
     "content_scripts": [
         {
             "matches": ["*://*.youtube.com/*", "*://*.youtube.com/embed/*"],
