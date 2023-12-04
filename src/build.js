@@ -84,7 +84,7 @@ copyDir('./', firefoxDir).then(async () => {
     firefoxManifest.manifest_version = 2;
     firefoxManifest.background = {
         "scripts": [
-        "background.js"
+        "src/background.js"
         ],
         "persistent": false,
         "type": "module"
