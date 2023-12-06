@@ -13,8 +13,7 @@ var tempinterval = setInterval(() => {
         var spinner = document.getElementsByClassName('ytp-spinner')[0];
 
         spinner_container.style.display = 'none';
-        spinner.style.background = `url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif')`;
-        spinner.style.backgroundSize = 'contain';
+        spinner.style.background = `url("https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif") center center / contain no-repeat`;
         spinner.style.height = '64px';
 
         clearInterval(tempinterval);
