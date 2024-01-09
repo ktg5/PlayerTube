@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "PlayerTube",
     "description": "The secret ingredient for a older (and better) looking YouTube.",
-    "version": "1.5.2.2",
+    "version": "1.6",
     "homepage_url": "https://github.com/ktg5/PlayerTube",
 
     "background": {
@@ -23,13 +23,23 @@
 
     "content_scripts": [
         {
-            "matches": ["*://*.youtube.com/*", "*://*.youtube.com/embed/*"],
+            "matches": ["*://*.youtube.com/*"],
+            "js": ["src/setup.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://*.youtube.com/*"],
+            "js": ["src/main.js"]
+        },
+
+        {
+            "matches": ["*://*.youtube.com/embed/*"],
             "js": ["src/setup.js"],
             "run_at": "document_start",
             "all_frames": true
         },
         {
-            "matches": ["*://*.youtube.com/*", "*://*.youtube.com/embed/*"],
+            "matches": ["*://*.youtube.com/embed/*"],
             "js": ["src/main.js"],
             "all_frames": true
         }
@@ -37,7 +47,7 @@
 
     "web_accessible_resources": [{
         "matches": ["*://*.youtube.com/*"],
-        "resources": ["css/*"]
+        "resources": ["css/*", "src/*"]
     }],
 
     "permissions": [

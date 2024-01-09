@@ -20,6 +20,8 @@
     left: 0 !important;
 }
 
+/* PROGRESS BAR */
+
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 31px !important;
 }
@@ -28,12 +30,21 @@
     bottom: 33px !important;
 }
 
+/* Make sure YouTube doesn't fuck with these */
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
 }
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-exp-chapter-hover-effect {
 	transform: scaleY(1) !important;
+}
+
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-effect {
+	transform: scaleY(1) !important;
+}
+
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-effect:hover {
+    transform: scaleY(1) !important;
 }
 
 .ytp-progress-bar {

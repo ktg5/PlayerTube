@@ -38,6 +38,7 @@
     bottom: 33px !important;
 }
 
+/* Make sure YouTube doesn't fuck with these */
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
 }
@@ -46,12 +47,22 @@
 	transform: scaleY(1) !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:after {
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-effect {
+	transform: scaleY(1) !important;
+}
+
+.ytp-chapter-hover-container.ytp-exp-chapter-hover-effect:hover {
+    transform: scaleY(1) !important;
+}
+
+/* this is only used in embeds & fullscreen */
+.ytp-embed .ytp-chrome-bottom .ytp-progress-bar:after,
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
     content: '';
     display: block;
     position: absolute;
-    width: 7em;
-    height: 100%;
+    width: 24px;
+    height: 10px;
     background: var(--pt-progress-bar-bg);
     margin-top: -10px;
     right: 0;
@@ -59,8 +70,12 @@
     transform: scaleY(.6);
 }
 
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
+	width: 48px;
+}
+
 .ytp-chrome-bottom .ytp-progress-bar.finished:after {
-    background: var(--pt-main-colour);
+    background: var(--pt-main-colour) !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {

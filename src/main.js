@@ -4,6 +4,9 @@ var currentPath = window.location.href;
 var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
 
+// Put config in a element for certain scripts
+document.body.insertAdjacentHTML('afterbegin', `<script id="playertube-config">${JSON.stringify(userConfig)}</script>`);
+
 // #################################
 
 // LOADING / SPINNER / BUFFER thingy whatever
@@ -22,7 +25,6 @@ var tempinterval = setInterval(() => {
 
 // MOVING ELEMENTS
 function moveElement(element, targetDiv, pasteDiv) {
-    console.log(`%cPlayerTube moveElement function: ${targetDiv.contains(element)}`, styles2)
     if (pasteDiv.contains(element)) {
         return;
     } else if (targetDiv.contains(element)) {
@@ -34,22 +36,19 @@ function moveElement(element, targetDiv, pasteDiv) {
 };
 
 // Heartbeats
-/// Make sure script reruns on page update.
-/// And make check progress bar value in case to change it.
 setInterval(() => {
-    // Check window href
-    if (window.location.href == currentPath) {
-        return;
-    } else {
+    /// Make sure script reruns on page update.
+    if (window.location.href !== currentPath) {
         startPlayer();
         progressBarChanger();
         currentPath = window.location.href;
     }
-}, 1000);
-/// Fake bar heartbeat
-if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
-    setInterval(() => {
-        if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true) {
+
+    /// Fake bar heartbeat
+    if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
+        if (!document.getElementsByClassName('video-stream html5-main-video')[0] 
+        || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true
+        || !document.getElementById('playertube-fake-bar')) {
             return;
         } else {
             // Video to pull info off of
@@ -67,11 +66,10 @@ if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
             document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-current', `${(ytVideoCurrent / ytVideoFull * 100).toFixed(2)}%`)
             document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-loaded', `${(ytBuffered / ytVideoFull * 100).toFixed(2)}%`)
         }
-    }, 1000);
-}
+    }
+}, 1000);
 
-// This is used to make the progress look like
-// it goes all the way.
+// This is now used in embeds
 function progressBarChanger() {
     setInterval(() => {
         // Check progress bar
@@ -95,6 +93,15 @@ function progressBarChanger() {
 // When the page is (re)loaded.
 startPlayer();
 progressBarChanger();
+
+// Insert resizing progress bar script
+setTimeout(() => {
+    var srcDoc = document.createElement('script');
+    srcDoc.id = 'playertube-js';
+    srcDoc.className = 'playertube-resize-bar';
+    srcDoc.src = runtime.getURL(`src/resize.js`);
+    document.body.append(srcDoc);
+}, 3000);
 
 // You might be asking, "why is this a thing?"
 // You'd only understand if you were dealing

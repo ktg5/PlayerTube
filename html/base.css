@@ -19,6 +19,10 @@ body {
     margin: 0;
 }
 
+.important {
+    color: #ffc76f;
+}
+
 /* Content */
 #content {
     background: #202020;
