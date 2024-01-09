@@ -10,6 +10,7 @@ var checkBar = setInterval(() => {
     // Actual check
     if (videoContainer && ytVideo.src.includes('blob')) {
         var completeWidth = 0;
+        // Detecting chapters if any
         document.querySelectorAll(`.ytp-chapter-hover-container`).forEach(element => {
             completeWidth = completeWidth + element.clientWidth;
         });
@@ -31,7 +32,11 @@ var checkBar = setInterval(() => {
 
 // Easy call to progress bar width
 function getBarWidth() {
-    return videoContainer.clientWidth;
+    if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+        return videoContainer.clientWidth - 1;
+    } else {
+        return videoContainer.clientWidth;
+    }
 }
 
 // Get offset for user's theme
