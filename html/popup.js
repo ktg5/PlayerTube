@@ -10,7 +10,7 @@ var runtime = browser.runtime;
 // Default config
 var def_pt_config = {
     // Basic settings.
-    year: '2015',
+    year: '2012',
     showReleaseNotes: true,
     darkMode: false,
     autoplayButton: false,
@@ -190,7 +190,7 @@ async function start(userConfig) {
     }
 
     /// Get year options for menu
-    var years = [2015, 2012, 2010];
+    var years = [2012, 2011, 2010, 2006];
     var yearOptions = '';
     years.forEach(element => {
         if (element == userConfig['year']) {

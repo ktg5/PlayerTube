@@ -4,6 +4,12 @@ var currentPath = window.location.href;
 var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
 
+// Fix for older configs
+if (userConfig.year == '2015') {
+    userConfig.year = '2012';
+    storage.set({PTConfig: userConfig});
+}
+
 // Put config in a element for certain scripts
 document.body.insertAdjacentHTML('afterbegin', `<script id="playertube-config">${JSON.stringify(userConfig)}</script>`);
 
@@ -401,7 +407,7 @@ function startPlayer() {
     // Keep going until we hit it.
     const starter = setInterval(function () {
         switch (userConfig.year) {
-            case '2015':
+            case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
@@ -430,7 +436,7 @@ function startPlayer() {
                 }
             break;
 
-            case '2012':
+            case '2011':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     var link = runtime.getURL(`css/${userConfig.year}.css`);

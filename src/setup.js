@@ -39,7 +39,7 @@ var runtime = browser.runtime;
 // Default config
 var def_pt_config = {
     // Basic settings.
-    year: '2015',
+    year: '2012',
     showReleaseNotes: true,
     darkMode: false,
     autoplayButton: false,

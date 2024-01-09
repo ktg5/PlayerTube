@@ -3,6 +3,9 @@
 :root {
 	--pt-background: linear-gradient(#e2e2e2, #a9a9a9);
 	--pt-main-colour: linear-gradient(#ffdbdb, #ff0202);
+    --pt-volume-slider: varZ(--pt-main-colour);
+    --pt-settings-bg: rgb(255, 255, 255);
+    --pt-progress-bar-bg: rgb(255 255 255 / 50%);
 }
 
 .ytp-chrome-controls {
@@ -113,6 +116,18 @@
     background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/big-play.png');
     background-size: cover;
     border-radius: 0;
+}
+
+/* ################################# */
+
+/* VOLUME BUTTON */
+
+.ytp-button.ytp-mute-button svg {
+	background: url('') no-repeat center;
+	background-size: 34px;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 /* ################################# */

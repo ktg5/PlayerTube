@@ -486,7 +486,7 @@
 	top: 5px !important;
 }
 
-/* WATCH ON YOUTUBE BUTTON (only introduced in 2015) */
+/* WATCH ON YOUTUBE BUTTON (only introduced in 2012) */
 
 .ytp-button.ytp-youtube-button {
 	display: none;
@@ -522,7 +522,7 @@
 }
 
 .ytp-button.ytp-share-button {
-    background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2015-icons.png) no-repeat;
+    background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
     background-position: 2px -524px;
     background-size: 220px;
     width: 40px !important;
@@ -530,7 +530,7 @@
 }
 
 .ytp-button.ytp-cards-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2015-icons.png) no-repeat;
+	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
 	background-size: 200px;

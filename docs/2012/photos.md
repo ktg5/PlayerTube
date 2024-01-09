@@ -10,10 +10,10 @@
   <br>
 
   <img src="screenshot3.png">
-  <div font-size="8px">Context menu. (same as 2015)</div>
+  <div font-size="8px">Context menu. (same as 2011)</div>
 
   <br>
 
   <img src="screenshot4.png">
-  <div font-size="8px">Settings menu. (same as 2015)</div>
+  <div font-size="8px">Settings menu. (same as 2011)</div>
 </div>

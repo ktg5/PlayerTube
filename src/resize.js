@@ -37,11 +37,14 @@ function getBarWidth() {
 // Get offset for user's theme
 function getOffset() {
     switch (userConfig.year) {
-        case 2015:
         case 2012:
+        case 2011:
         case 2010:
             result = 24
         break;
+
+        case 2006:
+
     
         default:
             result = 24;
