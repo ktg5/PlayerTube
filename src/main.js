@@ -3,6 +3,7 @@
 var currentPath = window.location.href;
 var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
+var extensionLocation = runtime.getURL('');
 
 // Fix for older configs
 if (userConfig.year == '2015') {
@@ -11,30 +12,23 @@ if (userConfig.year == '2015') {
 }
 
 // Put config in a element for certain scripts
-document.body.insertAdjacentHTML('afterbegin', `<script id="playertube-config">${JSON.stringify(userConfig)}</script>`);
+// Also put extension location in another element
+document.body.insertAdjacentHTML('afterbegin', `
+    <script id="playertube-config">${JSON.stringify(userConfig)}</script>
+    <div id="playertube"
+`);
+
 
 // #################################
 
-// LOADING / SPINNER / BUFFER thingy whatever
-var tempinterval = setInterval(() => {
-    if (document.getElementsByClassName('ytp-spinner-container')[0] && document.getElementsByClassName('ytp-spinner')[0]) {
-        var spinner_container = document.getElementsByClassName('ytp-spinner-container')[0];
-        var spinner = document.getElementsByClassName('ytp-spinner')[0];
-
-        spinner_container.style.display = 'none';
-        spinner.style.background = `url("https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/loading.gif") center center / contain no-repeat`;
-        spinner.style.height = '64px';
-
-        clearInterval(tempinterval);
-    }
-}, 1000);
-
 // MOVING ELEMENTS
-function moveElement(element, targetDiv, pasteDiv) {
+function moveElement(element, pasteDiv) {
+    // Will insert element next to pasteDiv and move it from it's parent
+    var parentElement = element.parentElement;
     if (pasteDiv.contains(element)) {
         return;
-    } else if (targetDiv.contains(element)) {
-        pasteDiv.parentNode.insertBefore(targetDiv.removeChild(element), pasteDiv.parentNode.firstElementChild);
+    } else if (parentElement.contains(element)) {
+        pasteDiv.parentNode.insertBefore(parentElement.removeChild(element), pasteDiv.parentNode.firstElementChild);
         return;
     } else {
         return;
@@ -99,6 +93,9 @@ function progressBarChanger() {
 // When the page is (re)loaded.
 startPlayer();
 progressBarChanger();
+// Also add base CSS file
+var baseCSS = runtime.getURL(`css/base.css`);
+document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baseCSS}">`);
 
 // Insert resizing progress bar script
 setTimeout(() => {
@@ -313,7 +310,7 @@ function extraStyles() {
         outputCssToggles += `
         /* FULLY EXTEND PROGRESS BAR (enabled) */
         .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
-            height: 10px !important;
+            height: var(--pt-progress-bar-full-height) !important;
             margin-bottom: 1px !important;
         }
 
@@ -382,7 +379,7 @@ function extraStyles() {
             border: none !important;
         }
         `
-        if (userConfig.darkMode == false) thirdPartyCSS2010 += 
+        if (userConfig.alternateMode == false) thirdPartyCSS2010 += 
         `
         
         .skipButtonControlBarContainer div {
@@ -405,13 +402,19 @@ function extraStyles() {
 // This function will keep going until it's happy.
 function startPlayer() {
     // Keep going until we hit it.
-    const starter = setInterval(function () {
+    const starter = setInterval(async function () {
         switch (userConfig.year) {
             case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
-                    var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    // Alt. theme stuff
+                    if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
+                        var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    } else {
+                        var colorlink = runtime.getURL(`css/${userConfig.year}.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    }
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
                     extraStyles();
@@ -429,10 +432,9 @@ function startPlayer() {
                 /// WATCH LATER BUTTON
                 var WatchLaterButton = document.getElementsByClassName("ytp-watch-later-button")[0];
                 if (WatchLaterButton) {
-                    var targetDiv1 = WatchLaterButton.parentElement;
                     var pastDiv1 = document.getElementsByClassName("ytp-subtitles-button")[0];
     
-                    moveElement(WatchLaterButton, targetDiv1, pastDiv1);
+                    moveElement(WatchLaterButton, pastDiv1);
                 }
             break;
 
@@ -456,10 +458,9 @@ function startPlayer() {
                 /// WATCH LATER BUTTON
                 var WatchLaterButton = document.getElementsByClassName("ytp-watch-later-button")[0];
                 if (WatchLaterButton) {
-                    var targetDiv1 = WatchLaterButton.parentElement;
                     var pastDiv1 = document.getElementsByClassName("ytp-subtitles-button")[0];
     
-                    moveElement(WatchLaterButton, targetDiv1, pastDiv1);
+                    moveElement(WatchLaterButton, pastDiv1);
                 }
             break;
 
@@ -469,12 +470,12 @@ function startPlayer() {
                     var baselink = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
                     // Dark mode stuff
-                    if (userConfig.customTheme !== true && userConfig.darkMode == true) {
+                    if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-darkmode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     } else {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-darkmode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     }
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
@@ -550,7 +551,22 @@ function startPlayer() {
                 if (customTheme === true) {
                     enableCustomTheme();
                 }
-            break;
+
+                // Move stuffs
+                var VolumePanel = document.querySelector("span.ytp-volume-area");
+                if (VolumePanel) {
+                    pastDiv1 = document.querySelector("#submitButton.playerButton");
+    
+                    moveElement(VolumePanel, pastDiv1);
+                }
+
+                var TimePanel = document.querySelector("div.ytp-time-display");
+                if (TimePanel) {
+                    pastDiv1 = document.querySelector("#submitButton.playerButton");
+    
+                    moveElement(TimePanel, pastDiv1);
+                }
+            break; 
 
             default:
                 console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);

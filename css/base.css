@@ -1,0 +1,12 @@
+#contentContainer.tp-yt-app-drawer[swipe-open].tp-yt-app-drawer::after {
+    display: none;
+}
+
+.ytp-spinner-container {
+    display: none;
+}
+
+.ytp-spinner-container .ytp-spinner {
+    background: url("chrome-extension://__MSG_@@extension_id__/img/loading.gif") center center / contain no-repeat;
+    height: 64px;
+}

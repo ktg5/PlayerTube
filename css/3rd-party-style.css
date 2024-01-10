@@ -70,4 +70,4 @@ html[pseudo-static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome
 /* Truffle */
 body[data-mogul-theater-mode] ytd-watch-flexy[theater]:has(ytd-live-chat-frame:not([collapsed])) .ytd-player .ytp-chrome-bottom {
     width: 100% !important;
-} 
+}

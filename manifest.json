@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "PlayerTube",
     "description": "The secret ingredient for a older (and better) looking YouTube.",
-    "version": "1.6",
+    "version": "1.6.1",
     "homepage_url": "https://github.com/ktg5/PlayerTube",
 
     "background": {
@@ -47,7 +47,7 @@
 
     "web_accessible_resources": [{
         "matches": ["*://*.youtube.com/*"],
-        "resources": ["css/*", "src/*"]
+        "resources": ["css/*", "src/*", "img/*"]
     }],
 
     "permissions": [

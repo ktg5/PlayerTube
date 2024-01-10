@@ -1,15 +1,14 @@
 /* PLAYER BASE */
 
 :root {
-	--pt-background: linear-gradient(rgb(38 38 38), rgb(12 12 12));
-	--pt-main-colour: linear-gradient(180deg, #b22427, #751819);
+	--pt-background: rgba(224, 224, 224);
+	--pt-main-colour: #de3f3f;
 	--pt-alt-colour: rgba(255,255,255,.4);
-	--pt-volume-slider: linear-gradient(180deg, #b22427, #751819);
-	--pt-main-colour-solid: #901b1d;
-	--pt-progress-bar-bg: rgb(34 34 34);
+	--pt-volume-slider: #de3f3f;
+	--pt-progress-bar-bg: rgb(66, 66, 66);
 	--pt-progress-bar-full-height: 10px;
-	--pt-progress-text: #fff;
-	--pt-alt-progress-text: #969696;
+	--pt-progress-text: #080808;
+	--pt-alt-progress-text: #434343;
 	--pt-settings-bg: rgb(35, 35, 35);
 }
 
@@ -33,10 +32,6 @@
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
-}
-
-.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
-    bottom: 33px !important;
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -87,10 +82,6 @@
 	transform: scaleY(1);
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:hover:after {
-	bottom: 0;
-}
-
 .ytp-progress-bar {
 	transition: .5s;
 }
@@ -117,7 +108,7 @@
 	height: var(--pt-progress-bar-full-height) !important;
 }
 
-.ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
+.ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light, .ytp-hover-progress-light {
 	background: var(--pt-main-colour);
 }
 
@@ -203,7 +194,7 @@
 /* SCRUBBER */
 
 .ytp-scrubber-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-scrubber.png) !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
 	height: 18px !important;
@@ -213,7 +204,7 @@
 }
 
 .ytp-scrubber-button:hover {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-scrubber-hover.png) !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
 	height: 18px !important;
@@ -254,10 +245,6 @@
 /* ################################# */
 
 /* BUTTONS BASE */
-
-.ytp-chrome-controls .ytp-left-controls {
-	padding-left: 0;
-}
 
 .ytp-larger-tap-buttons .ytp-chrome-bottom {
 	transition: .5s !important;
@@ -312,53 +299,52 @@
 /* PREV BUTTON */
 
 .ytp-button.ytp-prev-button {
-	display: none !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: 4px -1px;
+	background-size: 200px;
 }
 
 /* PLAY BUTTON */
 
 .ytp-button.ytp-play-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png);
-	background-position: -74px 153.5px;
-	background-size: 210px;
-	width: 65px !important;
-}
-
-.ytp-button.ytp-play-button:hover {
-    filter: brightness(1.5);
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -50px -1330px;
+	background-size: 200px;
+	width: 55px !important;
 }
 
 .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
-	background-position: -109px 91.5px;
+	background-position: -122px -446px;
 }
 
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
-    display: none !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: 4px -1216px;
+	background-size: 200px;
+	width: 45px !important;
 }	
 
 /* VOLUME BUTTON */
 
 .ytp-button.ytp-mute-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png);
-	background-position: -175px -296px;
-	background-size: 210px;
-	width: 40px !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -113px -154.5px;
+	background-size: 200px;
+	width: 45px !important;
 }
 
 .ytp-button.ytp-mute-button:hover {
-	background-position: -138px -17px;
-    filter: brightness(1.5);
+	background-position: -155px -1000px;
 }
 
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -138px -17px;
+	background-position: -155px -1000px;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -175px -296px;
-    filter: brightness(1.5);
+	background-position: -113px -154.5px;
 }
 
 /* semi muted icon -- background-position: -111px -406px; */
@@ -367,10 +353,10 @@
 
 .ytp-chrome-bottom .ytp-time-display {
 	line-height: 47px !important;
-	padding: 0px 10px;
-	margin-top: -8px;
-	font-size: 12px;
-	height: 46px;
+    padding: 0px 10px;
+    margin-top: -7px;
+    font-size: 12px;
+    height: 46px;
 }
 
 .ytp-time-current {
@@ -431,12 +417,12 @@
 	background: #ddd;
 	height: 14px;
 	width: 5px;
-	top: 25%;
+	top: 30%;
 }
 
 .ytp-volume-slider-handle::before {
-	background: var(--pt-volume-slider);
-    height: 5px;
+	background: var(--pt-main-colour);
+    height: 4px;
 }
 
 .ytp-volume-slider-handle::after {
@@ -456,7 +442,7 @@
 
 .ytp-big-mode .ytp-volume-slider-handle:before {
     width: 64px;
-    height: 4px !important;
+	height: 4px !important;
 }
 
 .ytp-volume-panel .ytp-volume-slider-handle::before {
@@ -475,22 +461,14 @@
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
-    background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-    background-position: -65px -220px;
-    background-size: 200px;
-    bottom: 5px;
-}
-
-.ytp-subtitles-button.ytp-button:hover {
-    filter: brightness(1.5);
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -113px -998px;
+	background-size: 200px;
+	bottom: 5px;
 }
 
 .ytp-subtitles-button.ytp-button[aria-pressed=true] {
-	background-position: -30px -161px;
-}
-
-.ytp-subtitles-button.ytp-button[aria-pressed=true]:hover {
-	filter: brightness(1);
+	filter: brightness(1.5);
 }
 
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
@@ -504,19 +482,19 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -164px -132px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -155px -522px;
 	background-size: 200px;
 	bottom: 5px;
 }
 
-.ytp-button.ytp-settings-button:hover, .ytp-button.ytp-settings-button[aria-expanded="true"] {
-    filter: brightness(1.5);
+.ytp-button.ytp-settings-button[aria-expanded="true"] {
+	filter: brightness(1.5);
 }
 
 .ytp-settings-button:after {
-	background-color: var(--pt-main-colour-solid) !important;
-	top: 4px !important;
+	background-color: var(--pt-main-colour) !important;
+	top: 8px !important;
 }
 
 .ytp-big-mode .ytp-button.ytp-settings-button::after {
@@ -528,53 +506,53 @@
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -58px -133.5px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -156px -484px;
 	background-size: 200px;
 	bottom: 5px;
 }
 
 .ytp-button.ytp-size-button:hover {
-	background-position: -93.5px -15.5px !important;
-    filter: brightness(1.5);
+	background-position: -40.5px 0px !important;
 }
 
 .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -93.5px -15.5px;
+	background-position: -40.5px 0px;
 }
 
 .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -58px -133.5px !important;
+	background-position: -156px -484px !important;
 }
 
-/* WATCH ON YOUTUBE BUTTON (only introduced in 2012) */
+/* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
 
 .ytp-button.ytp-youtube-button {
-	display: none;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -120px -268px;
+	position: sticky !important;
+	width: 55px !important;
+	background-size: 200px;
+	bottom: 5px;
 }
 
 /* FULLSCREEN BUTTON */
 
 .ytp-button.ytp-fullscreen-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -93px -133.5px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -114px -523px;
 	background-size: 200px;
 	bottom: 5px;
 }
 
-.ytp-button.ytp-fullscreen-button:hover {
-    filter: brightness(1.5)
-}
-
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] {
-	background-position: 3.5px -74px;
+.ytp-button.ytp-fullscreen-button[title="Exit full screen (f)"] {
+	background-position: -114px -1149px;
 }
 
 /* WATCH LATER (moved from chrome-top) */
 
 .ytp-button.ytp-watch-later-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-    background-position: 3px -280px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background-position: -53px -1099px;
 	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
@@ -627,7 +605,7 @@
 }
 
 .ytp-button.ytp-share-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
 	background-position: 2px -524px;
 	transition: .5s !important;
 	background-size: 220px;
@@ -636,7 +614,7 @@
 }
 
 .ytp-button.ytp-cards-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
 	background-size: 200px;

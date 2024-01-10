@@ -12,7 +12,7 @@ var def_pt_config = {
     // Basic settings.
     year: '2012',
     showReleaseNotes: true,
-    darkMode: false,
+    alternateMode: false,
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
@@ -290,7 +290,7 @@ async function start(userConfig) {
 
             ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes when reloading or updating PlayerTube')}
 
-            <div id="menu-if-dark-mode"></div>
+            <div id="menu-if-alt-mode"></div>
 
             ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners around a YouTube video')}
 
@@ -318,7 +318,7 @@ async function start(userConfig) {
 
             <h3>Custom Theme Settings</h3>
 
-            ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme', null, ['darkMode'])}
+            ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme', null, ['alternateMode'])}
 
             <div id='menu-custom-options'></div>
 
@@ -341,15 +341,15 @@ async function start(userConfig) {
     }, 10);
 
     // Checks
-    if (userConfig.year == "2010") {
+    if (userConfig.year == "2010" || userConfig.year == "2012") {
         if (userConfig.customTheme !== true) {
             // If Custom Themes aren't enabled, allow dark theme
-            document.getElementById('menu-if-dark-mode').insertAdjacentHTML(
+            document.getElementById('menu-if-alt-mode').insertAdjacentHTML(
                 `afterbegin`,
                 
                 `
-                ${makeMenuOption(`toggle`, `darkMode`, `Toggle Dark Mode for your current theme`)}
-                <div class='menu-option-note'>Some themes may have dark themes, this one does! <b>Dark Mode will be disabled when custom themes are enabled.</b></div>
+                ${makeMenuOption(`toggle`, `alternateMode`, `Toggle Alternate Theme for your current theme`)}
+                <div class='menu-option-note'>Some themes may have alternate themes, this one does! <b>Alternate Mode will be disabled when custom themes are enabled.</b></div>
                 `
             )
         }

@@ -1,16 +1,20 @@
 /* Player Base */
 
 :root {
-	--pt-background: linear-gradient(#e2e2e2, #a9a9a9);
+	--pt-background: linear-gradient(#d5d5d5, #a9a9a9);
 	--pt-main-colour: linear-gradient(#ffdbdb, #ff0202);
-    --pt-volume-slider: varZ(--pt-main-colour);
+    --pt-progress-bar-bg: rgba(34, 34, 34);
+    --pt-alt-colour: var(--pt-progress-bar-bg);
+    --pt-volume-slider: var(--pt-main-colour);
     --pt-settings-bg: rgb(255, 255, 255);
-    --pt-progress-bar-bg: rgb(255 255 255 / 50%);
+    --pt-progress-bar-full-height: 6px;
+    --pt-settings-bg: rgb(255, 255, 255);
 }
 
 .ytp-chrome-controls {
     background: var(--pt-background);
-    height: 32px !important;
+    border-top: solid 2px var(--pt-background-top);
+    height: 30px !important;
 }
 
 .ytp-gradient-bottom {
@@ -18,19 +22,97 @@
 }
 
 .html5-video-player .ytp-chrome-bottom {
-	height: 32px !important;
+	height: 30px !important;
 	width: 100% !important;
     left: 0 !important;
 }
 
+.ytp-tooltip.ytp-bottom.ytp-rounded-tooltip.ytp-preview {
+    margin-left: 60px;
+}
+
+.ytp-big-mode .ytp-tooltip.ytp-bottom.ytp-rounded-tooltip.ytp-preview {
+    margin-left: 0;
+}
+
+/* ################################# */
+
+/* "BEZEL" ICONS */
+
+.ytp-bezel[aria-label="Pause"] {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
+    background-size: cover;
+    border-radius: 0;
+}
+
+.ytp-bezel[aria-label="Play"] {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
+    background-size: cover;
+    border-radius: 0;
+}
+
+.ytp-bezel-icon {
+    display: none;
+}
+
+/* ################################# */
+
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
-	bottom: 31px !important;
+	bottom: 34px !important;
+	height: 11px;
+    top: 10px;
+    left: 72px;
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
-    bottom: 33px !important;
+    top: -7px;
+    left: 0;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar {
+	transition: .5s;
+	margin-bottom: -0.5px !important;
+	height: var(--pt-progress-bar-full-height) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:hover {
+	margin-bottom: 1px !important;
+}
+
+/* this is only used in embeds & fullscreen */
+.ytp-embed .ytp-chrome-bottom .ytp-progress-bar:after,
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: var(--pt-progress-bar-full-height);
+    background: var(--pt-progress-bar-bg);
+    top: 0;
+    right: 0;
+    transform: scaleY(.6);
+}
+
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
+	width: 48px;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar.finished:after {
+    background: var(--pt-main-colour) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:hover:after {
+	transform: scaleY(1);
+}
+
+.ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
+    background: var(--pt-alt-colour)
+}
+
+.ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
+	background: var(--pt-main-colour);
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -50,29 +132,12 @@
     transform: scaleY(1) !important;
 }
 
-.ytp-progress-bar {
-    transition: .5s;
-    margin-bottom: 1px !important;
-    height: 9px !important;
-}
-
 .ytp-progress-list {
-	background: rgb(34 34 34) !important;
-    transform: scale(1) !important;
-}
-
-.ytp-heat-map-container {
-    display: block;
-    opacity: 1;
+	background: var(--pt-progress-bar-bg) !important;
 }
 
 .ytp-timed-markers-container {
-    transform: scale(1);
     top: 0;
-}
-
-.ytp-progress-list:hover {
-  bottom: 1px !important;
 }
 
 .ytp-big-mode .ytp-progress-bar {
@@ -81,13 +146,6 @@
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
 	background: var(--pt-main-colour);
-    border-top: solid 1px #00000045;
-    border-bottom: solid 1px #00000045;
-    height: calc(100% - 2px);
-}
-
-.ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
-    background: #fc0 !important;
 }
 
 .iv-branding .branding-context-container-inner {
@@ -98,36 +156,351 @@
 	transition: .5s !important;
 }
 
+/* Fully bar plz */
+
+.ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+    height: var(--pt-progress-bar-full-height) !important;
+    margin-bottom: 1px !important;
+}
+
+.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+    height: 4px !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
+    transform: scaleY(1) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
+    transform: scale(1) !important;
+}
+
+.ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
+    transform: scale(0) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:after {
+    transform: scale(1) !important;
+}
+
 /* ################################# */
 
-/* "BEZEL" ICONS */
+/* AUTO-HIDE PLAYER */
 
-.ytp-bezel-icon {
-    display: none;
+.ytp-chrome-bottom {
+    bottom: 0;
+    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-bezel[aria-label="Pause"] {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
+.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+    opacity: 1 !important;
+    bottom: -45px;
 }
 
-.ytp-bezel[aria-label="Play"] {
-    background: url('https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
+.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
+    opacity: 1 !important;
+    bottom: -41px;
+}
+
+.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container {
+    border-top: 0 none !important;
+}
+
+.ytp-progress-bar-container {
+    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
+}
+
+.ytp-autohide .ytp-progress-bar {
+    height: 5px;
+}
+
+.ytp-autohide .ytp-progress-bar-container {
+    width: calc( 100% + 20px );
+    margin-left: -12px;
+}
+
+.ytp-big-mode.ytp-autohide .ytp-progress-bar-container {
+    width: calc( 100% + 48px );
+    margin-left: -24px;
+}
+
+.ytp-autohide .ytp-player-content:not(.html5-endscreen) {
+    transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1), top .5s cubic-bezier(0.0,0.0,0.2,1);
+}
+
+.ytp-autohide:not(.ytp-ad-overlay-open) .ytp-subtitles-player-content:not(.html5-endscreen):not(.ytp-iv-player-content) {
+    bottom: 1em !important;
 }
 
 /* ################################# */
+
+/* BASE BUTTONS */
+
+.ytp-chrome-controls .ytp-button {
+    width: 40px;
+}
+
+.ytp-button svg path, .ytp-button .ytp-svg-shadow {
+	display: none;
+}
+
+/* ################################# */
+
+/* LEFT BUTTONS */
+
+.ytp-chrome-controls .ytp-left-controls {
+    margin-left: 6px;
+}
+
+.ytp-chrome-controls .ytp-left-controls .ytp-button {
+    background-size: contain;
+    margin-top: 3px;
+    width: 30px;
+    height: 25px;
+    padding: 0;
+}
+
+.ytp-chrome-controls .ytp-left-controls .ytp-button svg {
+    position: sticky;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: 14px !important;
+    bottom: 3px;
+}
+
+/* PREV BUTTON */
+
+.ytp-button.ytp-prev-button {
+	display: none !important;
+}
+
+/* PLAY BUTTON */
+
+.ytp-button.ytp-play-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/button-left-bg.png');
+}
+
+.ytp-button.ytp-play-button svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/pause.png');
+}
+
+.ytp-button.ytp-play-button:hover svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/play-hover.png');
+}
+
+.ytp-button.ytp-play-button[data-title-no-tooltip="Play"] svg {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/play.png') no-repeat center;
+	background-size: 15px;
+}
+
+.ytp-button.ytp-play-button[data-title-no-tooltip="Play"]:hover svg {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/pause-hover.png') no-repeat center;
+	background-size: 15px;
+}
+
+/* NEXT BUTTON */
+
+.ytp-button.ytp-next-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/button-right-bg.png');
+}
+
+.ytp-button.ytp-next-button svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/next.png');
+}
+
+.ytp-button.ytp-next-button:hover svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/next-hover.png');
+}
 
 /* VOLUME BUTTON */
 
-.ytp-button.ytp-mute-button svg {
-	background: url('') no-repeat center;
-	background-size: 34px;
-	position: absolute;
-	top: 0;
-	left: 0;
+.ytp-button.ytp-mute-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png');
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: 20px !important;
+}
+
+.ytp-button.ytp-mute-button:hover {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
+}
+
+.ytp-button.ytp-mute-button[title="Unmute (m)"] {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
+}
+
+.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png');
+}
+
+/* ################################# */
+
+/* VOLUME PANEL */
+
+.ytp-chrome-bottom .ytp-volume-area {
+    display: inline-flex;
+    position: sticky;
+    height: 32px;
+    bottom: 2px;
+}
+
+.ytp-volume-area .ytp-volume-panel {
+    width: 46px !important;
+}
+
+.ytp-volume-area .ytp-volume-slider-handle {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-slider.png');
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: 6px !important;
+    height: 18px;
+    width: 6px;
+    top: 13px;
+    z-index: 20;
+}
+
+/* ################################# */
+
+/* RIGHT CONTROLS */
+
+.ytp-chrome-controls .ytp-right-controls .ytp-button {
+    background-size: contain;
+    padding: 0;
+}
+
+.ytp-chrome-bottom .ytp-right-controls {
+    position: relative;
+    bottom: 1px;
+}
+
+.ytp-chrome-controls .ytp-right-controls .ytp-button svg {
+    position: sticky;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    bottom: 3px;
+}
+
+/* SUBTITLES BUTTON */
+
+.ytp-subtitles-button.ytp-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
+    background-position: -57px -199px;
+    background-size: 180px !important;
+}
+
+.ytp-subtitles-button.ytp-button:hover {
+    filter: brightness(1.5);
+}
+
+.ytp-subtitles-button.ytp-button[aria-pressed=true] {
+	background-position: -30px -161px;
+}
+
+.ytp-subtitles-button.ytp-button[aria-pressed=true]:hover {
+	filter: brightness(1);
+}
+
+.ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
+	display: none;
+}
+
+.ytp-subtitles-button.ytp-button::after {
+	display: none !important;
+}
+
+/* SETTINGS BUTTON */
+
+.ytp-button.ytp-settings-button {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
+    background-position: -147px -120px;
+    background-size: 180px !important;
+}
+
+.ytp-button.ytp-settings-button:hover, .ytp-button.ytp-settings-button[aria-expanded="true"] {
+    filter: brightness(1.5);
+}
+
+.ytp-button.ytp-settings-button::after {
+	font-size: 8px !important;
+	right: 2px !important;
+	top: 5px !important;
+}
+
+.ytp-big-mode .ytp-button.ytp-settings-button::after {
+	font-size: 8px !important;
+	right: 2px !important;
+	top: 5px !important;
+}
+
+/* THEATER BUTTON */
+
+.ytp-button.ytp-size-button svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/theater-mode.png') no-repeat center;
+	background-size: 28px !important;
+}
+
+.ytp-button.ytp-size-button:hover svg {
+    background: Url('chrome-extension://__MSG_@@extension_id__/img/2006/theater-mode-hover.gif') no-repeat center;
+}
+
+.ytp-button.ytp-size-button[title="Default view (t)"] svg {
+    background: Url('chrome-extension://__MSG_@@extension_id__/img/2006/un-theater-mode.png') no-repeat center;
+}
+
+.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/un-theater-mode-hover.gif') no-repeat center;
+}
+
+/* FULLSCREEN BUTTON */
+
+.ytp-button.ytp-fullscreen-button svg {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/fullscreen.png') no-repeat center;
+    background-size: 31px !important;
+}
+
+.ytp-button.ytp-fullscreen-button:hover svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/fullscreen-hover.gif') no-repeat center;
+}
+
+.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] svg {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/un-fullscreen.png') no-repeat center;
+}
+
+.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"]:hover svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/un-fullscreen-hover.gif') no-repeat center;
+}
+
+/* DISPLAY NONE OF THESE */
+
+.ytp-fullerscreen-edu-button,
+.ytp-multicam-button,
+.ytp-multicam-button,
+.ytp-miniplayer-button,
+.ytp-remote-button {
+	display: none !important;
+}
+
+/* ################################# */
+
+/* TIME DISPLAY */
+
+.ytp-time-display {
+    position: relative;
+    background: black;
+    padding: 2px 6px;
+    border-radius: 4px;
+    height: 15px;
+    top: 7px;
+}
+
+.ytp-time-display .ytp-time-current, .ytp-time-display .ytp-time-separator, .ytp-time-display .ytp-time-duration {
+    position: sticky;
+    font-size: 10px;
+    bottom: 9px;
+}
+
+.ytp-time-display .ytp-time-duration {
+    color: red;
 }
 
 /* ################################# */
@@ -141,24 +514,24 @@
 }
 
 .ytp-scrubber-button {
-    background: url(https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010-scrubber.png) !important;
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2006-scrubber.png) !important;
     background-position: 0px 0px !important;
     background-size: 16px !important;
     height: 16px !important;
     width: 16px !important;
-    top: 0;
+    top: -1px;
+    left: -1px;
     transition: .5s !important;
     position: relative;
     transform: scale(1) !important;
 }
 
 .ytp-scrubber-button:hover {
-	background: url(https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/2010-scrubber-hover.png) !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2006-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
     background-size: 16px !important;
     height: 16px !important;
     width: 16px !important;
-    top: 0;
 }
 
 .ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-button {
@@ -174,11 +547,63 @@
 }
 
 .ytp-big-mode .ytp-scrubber-button {
-	top: 0px !important;
+    left: -14px;
 }
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-scrubber-button.ytp-scrubber-button-hover {
 	transform: scale(1) !important;
+}
+
+/* ################################# */
+
+/* SETTINGS MENU */
+
+.ytp-popup {
+	background: var(--pt-settings-bg) !important;
+}
+
+.ytp-popup.ytp-settings-menu {
+	bottom: 45px !important;
+    border-radius: 0 !important;
+}
+
+.ytp-settings-menu .ytp-panel {
+    min-width: 225px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-panel-menu {
+	padding: 0px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
+	display: none !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
+	padding-left: 20px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
+	padding-left: 35px !important;
+}
+
+.ytp-menuitem .ytp-menuitem-label,
+.ytp-menuitem .ytp-menuitem-content,
+.ytp-panel .ytp-panel-footer,
+.ytp-panel .ytp-panel-header {
+	color: rgb(10, 10, 10);
+    text-shadow: none;
+}
+
+.ytp-settings-menu .ytp-panel-back-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/x-1.png') no-repeat center;
+    background-size: 20px;
+}
+
+.ytp-menuitem[role=menuitemradio][aria-checked=true] .ytp-menuitem-label {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/dot-1.png') no-repeat center;
+    background-size: 12px !important;
+    background-position: left 10px center;
 }
 
 /* ################################# */

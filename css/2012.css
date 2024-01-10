@@ -6,6 +6,7 @@
 	--pt-alt-colour: rgba(255,255,255,.4);
 	--pt-volume-slider: #b91f1f;
 	--pt-progress-bar-bg: rgb(66, 66, 66);
+	--pt-progress-bar-full-height: 10px;
 	--pt-progress-text: #fff;
 	--pt-alt-progress-text: #969696;
 	--pt-settings-bg: rgb(35, 35, 35);
@@ -57,7 +58,7 @@
     display: block;
     position: absolute;
     width: 24px;
-    height: 10px;
+    height: var(--pt-progress-bar-full-height);
     background: var(--pt-progress-bar-bg);
     margin-top: -10px;
     right: 0;
@@ -87,7 +88,7 @@
 
 .ytp-progress-bar:hover {
 	margin-bottom: 1px;
-	height: 10px;
+	height: var(--pt-progress-bar-full-height);
 }
 
 .ytp-progress-list {
@@ -104,7 +105,7 @@
 }
 
 .ytp-big-mode .ytp-progress-bar:hover {
-	height: 10px !important;
+	height: var(--pt-progress-bar-full-height) !important;
 }
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light, .ytp-hover-progress-light {
@@ -121,11 +122,6 @@
 
 .ytp-player-content.ytp-iv-player-content {
 	transition: .5s !important;
-}
-
-/* This shit is IN THE FUCKING WAY LIKE GET OUT OF HERE!!!!! */
-#contentContainer.tp-yt-app-drawer[swipe-open].tp-yt-app-drawer::after {
-    display: none;
 }
 
 /* ################################# */
@@ -182,13 +178,13 @@
 }
 
 .ytp-bezel[aria-label="Pause"] {
-    background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/big-pause.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
     background-size: cover;
     border-radius: 0;
 }
 
 .ytp-bezel[aria-label="Play"] {
-    background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/big-play.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
     background-size: cover;
     border-radius: 0;
 }
@@ -198,7 +194,7 @@
 /* SCRUBBER */
 
 .ytp-scrubber-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-scrubber.png) !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
 	height: 18px !important;
@@ -208,7 +204,7 @@
 }
 
 .ytp-scrubber-button:hover {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-scrubber-hover.png) !important;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
 	height: 18px !important;
@@ -303,7 +299,7 @@
 /* PREV BUTTON */
 
 .ytp-button.ytp-prev-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1px;
 	background-size: 200px;
 }
@@ -311,7 +307,7 @@
 /* PLAY BUTTON */
 
 .ytp-button.ytp-play-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -50px -1330px;
 	background-size: 200px;
 	width: 55px !important;
@@ -324,7 +320,7 @@
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1216px;
 	background-size: 200px;
 	width: 45px !important;
@@ -333,7 +329,7 @@
 /* VOLUME BUTTON */
 
 .ytp-button.ytp-mute-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -154.5px;
 	background-size: 200px;
 	width: 45px !important;
@@ -465,7 +461,7 @@
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -998px;
 	background-size: 200px;
 	bottom: 5px;
@@ -486,7 +482,7 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -155px -522px;
 	background-size: 200px;
 	bottom: 5px;
@@ -510,7 +506,7 @@
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -156px -484px;
 	background-size: 200px;
 	bottom: 5px;
@@ -531,7 +527,7 @@
 /* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
 
 .ytp-button.ytp-youtube-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -120px -268px;
 	position: sticky !important;
 	width: 55px !important;
@@ -542,7 +538,7 @@
 /* FULLSCREEN BUTTON */
 
 .ytp-button.ytp-fullscreen-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -114px -523px;
 	background-size: 200px;
 	bottom: 5px;
@@ -555,7 +551,7 @@
 /* WATCH LATER (moved from chrome-top) */
 
 .ytp-button.ytp-watch-later-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -53px -1099px;
 	background-size: 200px;
 	display: inline-block;
@@ -609,7 +605,7 @@
 }
 
 .ytp-button.ytp-share-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 2px -524px;
 	transition: .5s !important;
 	background-size: 220px;
@@ -618,7 +614,7 @@
 }
 
 .ytp-button.ytp-cards-button {
-	background: url(https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
 	background-size: 200px;
@@ -746,7 +742,7 @@
 /* EMBEDDED VIDEO */
 
 .ytp-embed .ytp-large-play-button {
-	background: url('https://raw.githubusercontent.com/ktg5/PlayerTube/main/img/embed-play.png') center no-repeat;
+	background: url('chrome-extension://__MSG_@@extension_id__/img/embed-play.png') center no-repeat;
 	background-size: contain;
 }
 

@@ -41,7 +41,7 @@ var def_pt_config = {
     // Basic settings.
     year: '2012',
     showReleaseNotes: true,
-    darkMode: false,
+    alternateMode: false,
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
