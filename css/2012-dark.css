@@ -1,14 +1,14 @@
 /* PLAYER BASE */
 
 :root {
-	--pt-background: rgba(224, 224, 224) !important;
-	--pt-main-colour: #de3f3f !important;
-	--pt-alt-colour: rgba(255,255,255,.4) !important;
-	--pt-volume-slider: #de3f3f !important;
-	--pt-progress-bar-bg: rgb(66, 66, 66) !important;
-	--pt-progress-text: #080808 !important;
-	--pt-alt-progress-text: #434343 !important;
-	--pt-settings-bg: rgb(35, 35, 35) !important;
+	--pt-background: rgb(28, 28, 28);
+	--pt-main-colour: #b91f1f;
+	--pt-alt-colour: rgba(255,255,255,.4);
+	--pt-volume-slider: #b91f1f;
+	--pt-progress-bar-bg: rgb(66, 66, 66);
+	--pt-progress-text: #fff;
+	--pt-alt-progress-text: #969696;
+	--pt-settings-bg: rgb(35, 35, 35);
 }
 
 /* PROGRESS BAR */
@@ -22,7 +22,7 @@
 /* PREV BUTTON */
 
 .ytp-button.ytp-prev-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1px;
 	background-size: 200px;
 }
@@ -30,7 +30,7 @@
 /* PLAY BUTTON */
 
 .ytp-button.ytp-play-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -50px -1330px;
 	background-size: 200px;
 	width: 55px !important;
@@ -43,7 +43,7 @@
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1216px;
 	background-size: 200px;
 	width: 45px !important;
@@ -52,7 +52,7 @@
 /* VOLUME BUTTON */
 
 .ytp-button.ytp-mute-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -154.5px;
 	background-size: 200px;
 	width: 45px !important;
@@ -91,7 +91,7 @@
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -998px;
 	background-size: 200px;
 	bottom: 5px;
@@ -104,7 +104,7 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -155px -522px;
 	background-size: 200px;
 	bottom: 5px;
@@ -123,7 +123,7 @@
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -156px -484px;
 	background-size: 200px;
 	bottom: 5px;
@@ -134,7 +134,7 @@
 }
 
 .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -40.5px 0px !important;
+	background-position: -40.5px 0px;
 }
 
 .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
@@ -144,7 +144,7 @@
 /* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
 
 .ytp-button.ytp-youtube-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -120px -268px;
 	position: sticky !important;
 	width: 55px !important;
@@ -155,7 +155,7 @@
 /* FULLSCREEN BUTTON */
 
 .ytp-button.ytp-fullscreen-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -114px -523px;
 	background-size: 200px;
 	bottom: 5px;
@@ -168,11 +168,17 @@
 /* WATCH LATER (moved from chrome-top) */
 
 .ytp-button.ytp-watch-later-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -53px -1099px;
 	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
+}
+
+/* DISPLAY NONE OF THESE */
+
+.ytp-fullerscreen-edu-button, .ytp-multicam-button, .ytp-multicam-button, .ytp-miniplayer-button, .ytp-remote-button {
+	display: none !important;
 }
 
 /* ################################# */
@@ -180,19 +186,19 @@
 /* TOP BUTTONS */
 
 .ytp-chrome-top {
-	background: #1b1b1bed !important;
+	background: #1b1b1bed;
 }
 
 .ytp-title-text {
-	color: #cacaca !important;
+	color: #cacaca;
 }
 
 .ytp-title-link.yt-uix-sessionlink.ytp-title-fullerscreen-link:hover {
-	color: #cacaca !important;
+	color: #cacaca;
 }
 
 .ytp-button.ytp-share-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 2px -524px;
 	transition: .5s !important;
 	background-size: 220px;
@@ -201,7 +207,7 @@
 }
 
 .ytp-button.ytp-cards-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
 	background-size: 200px;
@@ -214,7 +220,7 @@
 /* TOOLTIPS */
 
 .ytp-tooltip-text-wrapper .ytp-tooltip-text {
-	background-color: rgb(28, 28, 28) !important;
+	background-color: rgb(28, 28, 28);
 }
 
 /* ################################# */
@@ -223,19 +229,19 @@
 
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
 	background: rgb(255, 255, 255) !important;
-	outline: 2px solid #dfdfdf !important;
+	outline: 2px solid #dfdfdf;
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem:hover {
-	background: #4f4f4f !important;
+	background: #4f4f4f;
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label {
-	color: gray !important;
+	color: gray;
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {
-	color: white !important;
+	color: white;
 }
 
 /* ################################# */

@@ -32,11 +32,12 @@
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
+	width: 100% !important;
 	bottom: 34px !important;
 }
 
-.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
-    bottom: 33px !important;
+.ytp-chrome-bottom .ytp-chapters-container {
+    width: fit-content !important;
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -109,6 +110,12 @@
     top: 0;
 }
 
+/* for big mode */
+
+.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
+    bottom: 33px !important;
+}
+
 .ytp-big-mode .ytp-progress-bar {
 	height: 5px !important;
 }
@@ -120,6 +127,8 @@
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
 	background: var(--pt-main-colour);
 }
+
+/* other */
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
     background: #fc0 !important;

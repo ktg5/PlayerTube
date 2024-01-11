@@ -22,16 +22,18 @@ document.body.insertAdjacentHTML('afterbegin', `
 // #################################
 
 // MOVING ELEMENTS
-function moveElement(element, pasteDiv) {
+function moveElement(element, pasteDiv, after) {
     // Will insert element next to pasteDiv and move it from it's parent
     var parentElement = element.parentElement;
-    if (pasteDiv.contains(element)) {
-        return;
-    } else if (parentElement.contains(element)) {
-        pasteDiv.parentNode.insertBefore(parentElement.removeChild(element), pasteDiv.parentNode.firstElementChild);
-        return;
-    } else {
-        return;
+    if (pasteDiv) {
+        if (pasteDiv.contains(element)) {
+            return;
+        } else if (parentElement.contains(element)) {
+            pasteDiv.parentNode.insertBefore(parentElement.removeChild(element), pasteDiv.parentNode.firstElementChild);
+            return;
+        } else {
+            return;
+        }
     }
 };
 
@@ -112,131 +114,136 @@ setTimeout(() => {
 var loadedPlayerStyle = false;
 
 // Custom theme stuff
+var didCustomTheme = false;
 function enableCustomTheme() {
-    var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
-    if (userConfig.controlsBack !== null) {
-        outputCssCustomTheme += `
-        :root {
-            --pt-background: ${userConfig.controlsBack} !important;
-            --pt-background-top: ${userConfig.controlsBack} !important;
+    if (didCustomTheme !== true) {
+        var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
+        if (userConfig.controlsBack !== null) {
+            outputCssCustomTheme += `
+            :root {
+                --pt-background: ${userConfig.controlsBack} !important;
+                --pt-background-top: ${userConfig.controlsBack} !important;
+            }
+            `
+        } if (userConfig.settingsBgColor !== null) {
+            outputCssCustomTheme += `
+            :root {
+                --pt-settings-bg: ${userConfig.settingsBgColor} !important;
+            }
+            `
+        } if (userConfig.progressBarColor !== null) {
+            outputCssCustomTheme += `
+            :root {
+                --pt-main-colour: ${userConfig.progressBarColor} !important;
+                --pt-volume-slider: ${userConfig.progressBarColor} !important;
+            }
+            `
+        } if (userConfig.progressBarBgColor !== null) {
+            outputCssCustomTheme += `
+            :root {
+                --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
+            }
+            `
+        } if (userConfig.volumeSliderBack !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-volume-slider-handle::before {
+                background: ${userConfig.volumeSliderBack} !important;
+            }
+            `
+        } if (userConfig.scrubberIcon !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-button {
+                background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+            }
+            `
+        } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-button:hover {
+                background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+            }
+            `
+        } if (userConfig.scrubberIconHover !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-button:hover {
+                background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
+            }
+            `
+        } if (userConfig.scrubberPosition !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-button {
+                background-position: ${userConfig.scrubberPosition} !important;
+            }
+            .ytp-scrubber-button:hover {
+                background-position: ${userConfig.scrubberPosition} !important;
+            }
+            `
+        } if (userConfig.scrubberSize !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-button {
+                background-size: ${userConfig.scrubberSize}px !important;
+            }
+            #container .ytp-scrubber-button:hover {
+                background-size: ${userConfig.scrubberSize}px !important;
+            }
+            `
+        } if (userConfig.scrubberHeight !== null) {
+            outputCssCustomTheme += `
+            /* default */
+            #container .ytp-scrubber-button {
+                height: ${userConfig.scrubberHeight}px !important;
+            }
+            #container .ytp-scrubber-button:hover {
+                height: ${userConfig.scrubberHeight}px !important;
+            }
+            `
+        } if (userConfig.scrubberWidth !== null) {
+            outputCssCustomTheme += `
+            /* default */
+            #container .ytp-scrubber-button {
+                width: ${userConfig.scrubberWidth}px !important;
+            }
+            #container .ytp-scrubber-button:hover {
+                width: ${userConfig.scrubberWidth}px !important;
+            }
+            `
+        } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
+            outputCssCustomTheme += `
+            /* default */
+            #container .ytp-scrubber-button {
+                width: ${userConfig.scrubberHeight}px !important;
+            }
+            #container .ytp-scrubber-button:hover {
+                width: ${userConfig.scrubberHeight}px !important;
+            }
+            `
+        } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
+            outputCssCustomTheme += `
+            /* default */
+            #container .ytp-scrubber-button {
+                height: ${userConfig.scrubberWidth}px !important;
+            }
+            #container .ytp-scrubber-button:hover {
+                height: ${userConfig.scrubberWidth}px !important;
+            }
+            `
+        } if (userConfig.scrubberTop !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-container {
+                top: ${userConfig.scrubberTop}px !important;
+            }
+            `
+        } if (userConfig.scrubberLeft !== null) {
+            outputCssCustomTheme += `
+            #container .ytp-scrubber-container {
+                left: ${userConfig.scrubberLeft}px !important;
+            }
+            `
         }
-        `
-    } if (userConfig.settingsBgColor !== null) {
-        outputCssCustomTheme += `
-        :root {
-            --pt-settings-bg: ${userConfig.settingsBgColor} !important;
-        }
-        `
-    } if (userConfig.progressBarColor !== null) {
-        outputCssCustomTheme += `
-        :root {
-            --pt-main-colour: ${userConfig.progressBarColor} !important;
-            --pt-volume-slider: ${userConfig.progressBarColor} !important;
-        }
-        `
-    } if (userConfig.progressBarBgColor !== null) {
-        outputCssCustomTheme += `
-        :root {
-            --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
-        }
-        `
-    } if (userConfig.volumeSliderBack !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-volume-slider-handle::before {
-            background: ${userConfig.volumeSliderBack} !important;
-        }
-        `
-    } if (userConfig.scrubberIcon !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-button {
-            background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-        }
-        `
-    } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-button:hover {
-            background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-        }
-        `
-    } if (userConfig.scrubberIconHover !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-button:hover {
-            background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
-        }
-        `
-    } if (userConfig.scrubberPosition !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-button {
-            background-position: ${userConfig.scrubberPosition} !important;
-        }
-        .ytp-scrubber-button:hover {
-            background-position: ${userConfig.scrubberPosition} !important;
-        }
-        `
-    } if (userConfig.scrubberSize !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-button {
-            background-size: ${userConfig.scrubberSize}px !important;
-        }
-        #container .ytp-scrubber-button:hover {
-            background-size: ${userConfig.scrubberSize}px !important;
-        }
-        `
-    } if (userConfig.scrubberHeight !== null) {
-        outputCssCustomTheme += `
-        /* default */
-        #container .ytp-scrubber-button {
-            height: ${userConfig.scrubberHeight}px !important;
-        }
-        #container .ytp-scrubber-button:hover {
-            height: ${userConfig.scrubberHeight}px !important;
-        }
-        `
-    } if (userConfig.scrubberWidth !== null) {
-        outputCssCustomTheme += `
-        /* default */
-        #container .ytp-scrubber-button {
-            width: ${userConfig.scrubberWidth}px !important;
-        }
-        #container .ytp-scrubber-button:hover {
-            width: ${userConfig.scrubberWidth}px !important;
-        }
-        `
-    } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
-        outputCssCustomTheme += `
-        /* default */
-        #container .ytp-scrubber-button {
-            width: ${userConfig.scrubberHeight}px !important;
-        }
-        #container .ytp-scrubber-button:hover {
-            width: ${userConfig.scrubberHeight}px !important;
-        }
-        `
-    } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
-        outputCssCustomTheme += `
-        /* default */
-        #container .ytp-scrubber-button {
-            height: ${userConfig.scrubberWidth}px !important;
-        }
-        #container .ytp-scrubber-button:hover {
-            height: ${userConfig.scrubberWidth}px !important;
-        }
-        `
-    } if (userConfig.scrubberTop !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-container {
-            top: ${userConfig.scrubberTop}px !important;
-        }
-        `
-    } if (userConfig.scrubberLeft !== null) {
-        outputCssCustomTheme += `
-        #container .ytp-scrubber-container {
-            left: ${userConfig.scrubberLeft}px !important;
-        }
-        `
+        // output css
+        document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
+
+        didCustomTheme = true;
     }
-    // output css
-    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
 }
 
 // User settings toggles
@@ -407,12 +414,14 @@ function startPlayer() {
             case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
-                    // Alt. theme stuff
+                    var baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                    // Alt mode stuff
                     if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     } else {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}.css`);
+                        var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     }
                     loadedPlayerStyle = true;
@@ -469,7 +478,7 @@ function startPlayer() {
                 if (loadedPlayerStyle == false) {
                     var baselink = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                    // Dark mode stuff
+                    // Alt mode stuff
                     if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
@@ -565,6 +574,13 @@ function startPlayer() {
                     pastDiv1 = document.querySelector("#submitButton.playerButton");
     
                     moveElement(TimePanel, pastDiv1);
+                }
+
+                var VolumeButton = document.querySelector(".ytp-volume-panel");
+                if (VolumeButton) {
+                    pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
+    
+                    moveElement(VolumeButton, pastDiv1);
                 }
             break; 
 

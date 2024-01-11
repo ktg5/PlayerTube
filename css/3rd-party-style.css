@@ -14,8 +14,8 @@ on the GitHUb repo! Much thanks! */
 
 /* SponsorBlock */
 #previewbar {
+    transform: scaleY(1);
     top: 0px;
-    width: 98%;
 }
 
 .skipButtonControlBarContainer div {

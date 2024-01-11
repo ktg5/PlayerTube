@@ -45,10 +45,15 @@
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
+	width: 100% !important;
 	bottom: 34px !important;
 	height: 11px;
 	border-top: 1px solid var(--pt-progress-bar-outline);
 	border-bottom: 1px solid var(--pt-progress-bar-outline);
+}
+
+.ytp-chrome-bottom .ytp-chapters-container {
+    width: fit-content !important;
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {

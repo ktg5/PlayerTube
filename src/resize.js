@@ -1,29 +1,31 @@
 // Global vars
 var currentPath = window.location.href;
-var videoContainer = document.getElementById('movie_player');
 var userConfig = JSON.parse(document.getElementById('playertube-config').innerHTML);
 var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
 
 // Heartbeat
 var checkBar = setInterval(() => {
     // Actual check
-    if (videoContainer && ytVideo.src.includes('blob')) {
-        var completeWidth = 0;
+    if (document.getElementById('movie_player') && ytVideo.src.includes('blob')) {
+        var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
         // Detecting chapters if any
-        document.querySelectorAll(`.ytp-chapter-hover-container`).forEach(element => {
-            completeWidth = completeWidth + element.clientWidth;
-        });
+        if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+            completeWidth = completeWidth + 1;
+        }
+        // Actual width
+        var actualWidth = parseInt(getBarWidth());
         // Video width + add possible offset (say for 2006 theme)
         var videoWidth;
         switch (userConfig.year) {
             case '2006':
-                videoWidth = videoContainer.clientWidth - 55 - document.querySelector('.ytp-right-controls').clientWidth - 24;
+                videoWidth = getOffset(userConfig.year) - 24;
             break;
         
             default:
-                videoWidth = videoContainer.clientWidth;
+                videoWidth = actualWidth;
             break;
         }
+        console.log('hello', completeWidth, videoWidth);
 
         // Detection...
         if (completeWidth !== videoWidth) {
@@ -38,17 +40,32 @@ var checkBar = setInterval(() => {
             currentPath = window.location.href;
         }, 2000);
     }
-}, 500);
+});
 
 // Easy call to progress bar width
 function getBarWidth() {
     // If chapters
     if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-        return videoContainer.clientWidth - 1;
+        return document.getElementById('movie_player').clientWidth - 1;
     // If none
     } else {
-        return videoContainer.clientWidth;
+        return document.getElementById('movie_player').clientWidth;
     }
+}
+
+function getOffset(year) {
+    var result;
+    switch (year) {
+        case '2006':
+            result = (parseInt(getBarWidth()) - 52 - document.querySelector('.ytp-right-controls').clientWidth);
+        break;
+
+        default:
+            result = 24;
+        break;
+    }
+
+    return result;
 }
 
 // Get fixed width for user's theme
@@ -59,16 +76,16 @@ function getFixedWidth() {
         case '2012':
         case '2011':
         case '2010':
-            result = actualWidth + 24;
+            result = actualWidth + getOffset(userConfig.year);
         break;
 
         case '2006':
             // Since 2006 is in the middle of the player, we gotta do more.
-            result = actualWidth - 55 - document.querySelector('.ytp-right-controls').clientWidth;
+            result = getOffset(userConfig.year);
         break;
 
         default:
-            result = actualWidth + 24;
+            result = actualWidth + getOffset(userConfig.year);
         break;
     }
 
@@ -82,10 +99,10 @@ function fixBar() {
 
     // Set width that needs to be set
     width = playerWidth;
-    height = videoContainer.clientHeight;
+    height = document.getElementById('movie_player').clientHeight;
 
     // Use YouTube function to change width
-    videoContainer.setInternalSize(width, height);
+    document.getElementById('movie_player').setInternalSize(width, height);
     document.querySelector('.ytp-progress-bar-container').style.width = `${width - 24}px`;
     console.log(`%cPlayerTube resize script: Successfully changed player size!`, styles2, {"width": width, "height": height})
 }
