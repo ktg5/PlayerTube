@@ -1,0 +1,26 @@
+---
+name: Custom Theme Related
+description: An question or issue relating to custom themes.
+title: "[ Custom Theme Related ] (Title)"
+labels: custom-themes
+
+body:
+  - id: problem
+    type: textarea
+    attributes:
+      label: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - id: screenshots
+    type: textarea
+    attributes:
+      label: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: true
+  - id: config
+    type: textarea
+    attributes:
+      label: PlayerTube settings. (Can be found under "Import, Copy, or Reset Settings")
+    validations:
+      required: true
+---

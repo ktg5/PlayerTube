@@ -1,0 +1,42 @@
+name: Bug Report
+description: Create a report to help the extension improve.
+title: "[ Bug ] (Title)"
+labels: bug
+
+body:
+  - id: problem
+    type: textarea
+    attributes:
+      label: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - id: screenshots
+    type: textarea
+    attributes:
+      label: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: true
+  - id: expected-behavior
+    type: textarea
+    attributes:
+      label: What should actually happen instead of the issue.
+    validations:
+      required: true
+  - id: reproduce
+    type: textarea
+    attributes:
+      label: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - id: config
+    type: textarea
+    attributes:
+      label: PlayerTube settings. (Can be found under "Import, Copy, or Reset Settings")
+    validations:
+      required: true
+  - id: browser-info
+    type: textarea
+    attributes:
+      label: Browser / Extension information.
+    validations:
+      required: true
