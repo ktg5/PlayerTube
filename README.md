@@ -86,8 +86,8 @@ For those who want the newest of features right now, here's what you gotta do:
 So, you like to build stuff yourself? Well, here's how to do it.
 * ⚠️ IMPORTANTE!!! ⚠️ Make sure you have Node.js & NPM installed, 'cuz the build script uses it!!!!
 1. Download le code `git clone https://github.com/ktg5/PlayerTube.git`
-2. Install the NPM modules `npm install`
-3. Run the build script `node build`
+2. Install the NPM modules `npm i`
+3. Run the build script `npm start`
 4. Once the building script is done and no errors appear, follow the instructions for [loading the extension for your browser](https://github.com/ktg5/PlayerTube#chromium-browsers-chrome-opera-brave) via the "Beta / Dev builds" instructions
 
 
