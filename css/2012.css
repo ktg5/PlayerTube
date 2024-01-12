@@ -395,6 +395,10 @@
 	padding-right: 0px;
 }
 
+.ytp-big-mode .ytp-right-controls .ytp-button {
+    width: 40px !important;
+}
+
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
