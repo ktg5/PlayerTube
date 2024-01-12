@@ -50,6 +50,10 @@ on the GitHUb repo! Much thanks! */
     margin-left: 10px;
 }
 
+.UBO-ads-btn.ytp-button.hidden {
+    display: none !important;
+}
+
 /* CustomTube */
 /*
 This extension for some reason likes to

@@ -22,6 +22,13 @@
   <img src="docs/2010/screenshot1.png">
   <br>
   <a href="docs/2010/photos.md">2010 Screenshots here</a>
+
+  <br>
+  <br>
+
+  <img src="docs/2006/screenshot1.png">
+  <br>
+  <a href="docs/2006/photos.md">2006 Screenshots here</a>
 </div>
 
 ## The Backstory...
@@ -50,13 +57,13 @@ In the future, I'd like to have a page for users to upload their own themes, but
 Here's some examples provided by your's truly:
 <div align="center">
   <img src="docs/custom-scripts/screenshot3.png">
-  <div font-size="8px">Luigi theme v1.1 | <a href="https://github.com/ktg5/YT-HTML5-Player/blob/main/docs/custom-scripts/luigi-player.json">View the code</a></div>
+  <div font-size="8px">Luigi theme v1.2 | <a href="https://github.com/ktg5/PlayerTube/blob/main/docs/custom-scripts/luigi-player.json">View the code</a></div>
 
   <br>
   <br>
   
   <img src="docs/custom-scripts/screenshot4.png">
-  <div font-size="8px">Kirby theme v1.1 | <a href="https://github.com/ktg5/YT-HTML5-Player/blob/main/docs/custom-scripts/kirby-player.json">View the code</a></div>
+  <div font-size="8px">Kirby theme v1.1 | <a href="https://github.com/ktg5/PlayerTube/blob/main/docs/custom-scripts/kirby-player.json">View the code</a></div>
 
   <br>
   

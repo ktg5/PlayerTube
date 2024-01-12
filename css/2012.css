@@ -2,6 +2,7 @@
 
 :root {
 	--pt-progress-bar-full-height: 10px;
+	--pt-setting-after-label: #b91f1f;
 }
 
 .ytp-chrome-controls {
@@ -411,8 +412,8 @@
 
 /* SETTINGS BUTTON */
 
-.ytp-settings-button:after {
-	background-color: var(--pt-main-colour) !important;
+.ytp-button.ytp-settings-button:after {
+    background: var(--pt-setting-after-label);
 	top: 8px !important;
 }
 

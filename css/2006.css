@@ -8,7 +8,7 @@
     --pt-volume-slider: rgb(15, 15, 15);
     --pt-settings-bg: rgb(255, 255, 255);
     --pt-progress-bar-full-height: 6px;
-    --pt-settings-bg: rgb(255, 255, 255);
+    --pt-setting-after-label: #b91f1f;
 }
 
 .ytp-chrome-controls {
@@ -60,7 +60,6 @@
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
-    width: 100% !important;
 	bottom: 34px !important;
 	height: 11px;
     top: 10px;
@@ -465,7 +464,8 @@
     filter: brightness(1.5);
 }
 
-.ytp-button.ytp-settings-button::after {
+.ytp-button.ytp-settings-button:after {
+    background: var(--pt-setting-after-label);
 	font-size: 8px !important;
 	right: 2px !important;
 	top: 5px !important;
@@ -616,7 +616,7 @@
 }
 
 .ytp-popup.ytp-settings-menu {
-	bottom: 45px !important;
+	bottom: 30px !important;
     border-radius: 0 !important;
 }
 
@@ -669,4 +669,66 @@
 
 .ytp-chrome-top {
 	display: none;
+}
+
+/* ################################# */
+
+/* CONTEXT MENU */
+
+.ytp-contextmenu.ytp-popup.ytp-contextmenu {
+	background: rgb(255, 255, 255) !important;
+	outline: 2px solid #dfdfdf;
+	height: 230px !important;
+	width: 267px !important;
+	text-shadow: 0 0 0;
+	transition: none;
+}
+
+.ytp-contextmenu .ytp-panel {
+	height: 100% !important;
+	width: 100% !important;
+}
+
+.ytp-contextmenu .ytp-panel .ytp-panel-menu {
+	height: 230px !important;
+	padding: 0;
+}
+
+.ytp-contextmenu .ytp-panel-menu .ytp-menuitem {
+	height: 30px;
+}
+
+.ytp-contextmenu .ytp-panel-menu .ytp-menuitem:hover {
+	background: #4f4f4f;
+}
+
+.ytp-contextmenu .ytp-panel-menu .ytp-menuitem-icon {
+	display: none;
+}
+
+.ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label {
+	padding-left: 10px !important;
+	font-size: 130%;
+	padding: 0 5px;
+	color: gray;
+}
+
+.ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {
+	color: white;
+}
+
+.ytp-big-mode .ytp-menuitem-label {
+	font-size: 90% !important;
+}
+  
+.ytp-big-mode.ytp-contextmenu.ytp-popup.ytp-contextmenu {
+	height: 240px !important;
+}
+
+.ytp-big-mode.ytp-contextmenu .ytp-panel {
+	height: 240px !important;
+}
+
+.ytp-big-mode.ytp-contextmenu .ytp-panel .ytp-panel-menu {
+	height: 240px !important;
 }

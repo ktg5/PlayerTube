@@ -11,6 +11,7 @@
 	--pt-progress-text: #fff;
 	--pt-alt-progress-text: #969696;
 	--pt-settings-bg: rgb(35, 35, 35);
+	--pt-setting-after-label: #b91f1f;
 }
 
 .ytp-chrome-controls {
@@ -527,8 +528,8 @@
     filter: brightness(1.5);
 }
 
-.ytp-settings-button:after {
-	background-color: var(--pt-main-colour-solid) !important;
+.ytp-button.ytp-settings-button:after {
+    background: var(--pt-setting-after-label);
 	top: 4px !important;
 }
 

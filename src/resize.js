@@ -25,7 +25,7 @@ var checkBar = setInterval(() => {
                 videoWidth = actualWidth;
             break;
         }
-        console.log('hello', completeWidth, videoWidth);
+        // console.log('hello', completeWidth, videoWidth);
 
         // Detection...
         if (completeWidth !== videoWidth) {
@@ -40,7 +40,7 @@ var checkBar = setInterval(() => {
             currentPath = window.location.href;
         }, 2000);
     }
-});
+}, 50);
 
 // Easy call to progress bar width
 function getBarWidth() {

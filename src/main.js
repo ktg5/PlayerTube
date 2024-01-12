@@ -136,6 +136,7 @@ function enableCustomTheme() {
             :root {
                 --pt-main-colour: ${userConfig.progressBarColor} !important;
                 --pt-volume-slider: ${userConfig.progressBarColor} !important;
+                --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
             }
             `
         } if (userConfig.progressBarBgColor !== null) {

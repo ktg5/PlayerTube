@@ -2,6 +2,7 @@
 
 :root {
 	--pt-progress-bar-full-height: 10px;
+	--pt-setting-after-label: #b91f1f;
 }
 
 .ytp-chrome-controls {
@@ -479,6 +480,10 @@
 }
 
 /* SETTINGS BUTTON */
+
+.ytp-button.ytp-settings-button:after {
+    background: var(--pt-setting-after-label);
+}
 
 .ytp-big-mode .ytp-button.ytp-settings-button::after {
 	font-size: 8px !important;
