@@ -4,8 +4,7 @@ const path = require('path');
 const Zip = require('adm-zip');
 
 
-// Before starting, make sure that the other
-// folders don't exist.
+// Before starting, make sure that the other folders don't exist.
 var chromeDir = '../PlayerTube-Chrome';
 var firefoxDir = '../PlayerTube-Firefox';
 if (fs.existsSync(chromeDir)) {
@@ -34,7 +33,8 @@ async function copyDir(sourceDir, newDir) {
             entry.name === 'psds' ||
             entry.name === 'node_modules' ||
             entry.name === 'build.js' ||
-            entry.name === 'package-lock.json'
+            entry.name === 'package-lock.json' ||
+            entry.name === 'package.json'
         ) continue;
 
         // If the files passed the vibe check, we go.
@@ -102,9 +102,21 @@ copyDir('./', firefoxDir).then(async () => {
         "css/*"
     ],
     delete firefoxManifest.action; // Manifest v2 moment
-    delete firefoxManifest.background.service_worker; // This is for Chrome, Firefox will freak out if this isn't delete lol.
+    delete firefoxManifest.background.service_worker; // This is only for Chrome, Firefox will freak out if this isn't deleted lol.
     // Write the manifest file for Firefox
     fs.writeFileSync('../PlayerTube-Firefox/manifest.json', JSON.stringify(firefoxManifest, null, 2));
+
+    // Since v1.6, we also have to replace all the "chrome-extension://" with "moz-extension://"
+    // WHY CAN'T IT JUST BE "extension://" OR SOMETHING??????
+    var cssFiles = fs.readdirSync('../PlayerTube-Firefox/css/');
+    // For each CSS file, do the replacing moment.
+    cssFiles.forEach(cssFileName => {
+        var cssPath = `../PlayerTube-FIrefox/css/${cssFileName}`
+        var cssFile = fs.readFileSync(cssPath, 'utf8')
+        cssFile = cssFile.replaceAll('chrome-extension://', 'moz-extension://');
+        // Then write the CSS file with "cssFile"
+        fs.writeFileSync(cssPath, cssFile);
+    });
 
     // If the zip already exists...
     if (fs.existsSync('../PlayerTube-Firefox.zip')) {
@@ -124,8 +136,6 @@ copyDir('./', firefoxDir).then(async () => {
         console.log(`WHAT THE FRICK! ${e}`);
     }
     console.log(`Zipped Firefox version into ../PlayerTube-Firefox.zip`);
-    // Delete folder cuz idk GitHub don't likey
-    console.log("Deleting Firefox folder...");
-    fs.rmSync('../PlayerTube-Firefox', { recursive: true });
+    // End
     console.log(`-------------`);
 });
