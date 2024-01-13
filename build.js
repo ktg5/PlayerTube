@@ -111,7 +111,7 @@ copyDir('./', firefoxDir).then(async () => {
     var cssFiles = fs.readdirSync('../PlayerTube-Firefox/css/');
     // For each CSS file, do the replacing moment.
     cssFiles.forEach(cssFileName => {
-        var cssPath = `../PlayerTube-FIrefox/css/${cssFileName}`
+        var cssPath = `../PlayerTube-Firefox/css/${cssFileName}`
         var cssFile = fs.readFileSync(cssPath, 'utf8')
         cssFile = cssFile.replaceAll('chrome-extension://', 'moz-extension://');
         // Then write the CSS file with "cssFile"
