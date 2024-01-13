@@ -3,6 +3,24 @@ var currentPath = window.location.href;
 var userConfig = JSON.parse(document.getElementById('playertube-config').innerHTML);
 var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
 
+// Add CSS fixes too
+var CSSPatches = `
+/* hi this is from the resize script to make sure everything runs well :) */
+/* PlayerTube/src/resize.js */
+
+.video-stream.html5-main-video {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+}
+  
+.html5-video-container {
+    height: 100% !important;
+}
+`
+document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-resize-patches" type="text/css">${CSSPatches}</style>`)
+
 // Heartbeat
 var checkBar = setInterval(() => {
     // Actual check

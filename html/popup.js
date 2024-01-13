@@ -279,6 +279,7 @@ async function start(userConfig) {
 
             <div class="links">
                 <a href="update.html" target="_blank">Release Notes</a>
+                <a href="https://github.com/ktg5/PlayerTube/issues" target="_blank">Report a Issue</a>
                 <a href="https://ktg5.online" target="_blank">ktg5.online</a>
             </div>
 
