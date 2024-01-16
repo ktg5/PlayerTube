@@ -190,26 +190,6 @@
 
 /* ################################# */
 
-/* "BEZEL" ICONS */
-
-.ytp-bezel-icon {
-    display: none;
-}
-
-.ytp-bezel[aria-label="Pause"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel[aria-label="Play"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-/* ################################# */
-
 /* SCRUBBER */
 
 .ytp-scrubber-button {
@@ -529,7 +509,7 @@
 }
 
 .ytp-button.ytp-settings-button:after {
-    background: var(--pt-setting-after-label);
+    background-color: var(--pt-setting-after-label);
 	top: 4px !important;
 }
 

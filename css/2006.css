@@ -37,26 +37,6 @@
 
 /* ################################# */
 
-/* "BEZEL" ICONS */
-
-.ytp-bezel[aria-label="Pause"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel[aria-label="Play"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel-icon {
-    display: none;
-}
-
-/* ################################# */
-
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -86,21 +66,26 @@
 }
 
 /* this is only used in embeds & fullscreen */
+.ytp-embed .ytp-chrome-bottom .ytp-chapters-container,
+.ytp-big-mode .ytp-chrome-bottom .ytp-chapters-container {
+    width: max-content !important;
+}
+
 .ytp-embed .ytp-chrome-bottom .ytp-progress-bar:after,
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
     content: '';
     display: block;
     position: absolute;
-    width: 24px;
+    width: 25px;
     height: var(--pt-progress-bar-full-height);
     background: var(--pt-progress-bar-bg);
     top: 0;
-    right: 0;
+    right: -25px;
     transform: scaleY(.6);
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
-	width: 48px;
+	width: 60px;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar.finished:after {
@@ -163,6 +148,7 @@
 /* Fully bar plz */
 
 .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+    width: auto;
     height: var(--pt-progress-bar-full-height) !important;
     margin-bottom: 1px !important;
 }
@@ -455,6 +441,7 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button {
+    display: inline-block !important;
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
     background-position: -147px -120px;
     background-size: 180px !important;
@@ -465,7 +452,7 @@
 }
 
 .ytp-button.ytp-settings-button:after {
-    background: var(--pt-setting-after-label);
+    background-color: var(--pt-setting-after-label);
 	font-size: 8px !important;
 	right: 2px !important;
 	top: 5px !important;
@@ -534,6 +521,7 @@
 /* TIME DISPLAY */
 
 .ytp-time-display {
+    display: inline-block !important;
     position: relative;
     background: black;
     padding: 2px 6px;
@@ -732,3 +720,23 @@
 .ytp-big-mode.ytp-contextmenu .ytp-panel .ytp-panel-menu {
 	height: 240px !important;
 }
+
+/* ################################# */
+
+/* EMBEDDED VIDEO */
+
+.ytp-embed .ytp-large-play-button {
+	background: url('chrome-extension://__MSG_@@extension_id__/img/old-embed-play.png') center no-repeat;
+	background-size: contain;
+}
+
+.ytp-embed .ytp-progress-bar-container {
+    top: -7px !important;
+    left: 0 !important;
+}
+
+.ytp-embed .ytp-impression-link {
+    display: none;
+}
+
+/* ################################# */

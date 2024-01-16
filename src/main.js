@@ -22,18 +22,21 @@ document.body.insertAdjacentHTML('afterbegin', `
 // #################################
 
 // MOVING ELEMENTS
-function moveElement(element, pasteDiv, after) {
+function moveElement(element, pasteDiv) {
     // Will insert element next to pasteDiv and move it from it's parent
-    var parentElement = element.parentElement;
+    console.log('moveElement: checking', element)
     if (pasteDiv) {
+        console.log('moveElement: element is valid')
         if (pasteDiv.contains(element)) {
-            return;
-        } else if (parentElement.contains(element)) {
-            pasteDiv.parentNode.insertBefore(parentElement.removeChild(element), pasteDiv.parentNode.firstElementChild);
-            return;
+            return console.error('moveElement: pasteDiv already has element');
+        } else if (element.parentElement.contains(element)) {
+            pasteDiv.parentNode.insertBefore(element, pasteDiv.parentNode.firstElementChild);
+            return console.log('moveElement: move successful')
         } else {
-            return;
+            return console.log('moveElement: something else failed');
         }
+    } else {
+        return console.error('moveElement: pasteDiv can\'t be found', pasteDiv);
     }
 };
 
@@ -563,26 +566,31 @@ function startPlayer() {
                 }
 
                 // Move stuffs
-                var VolumePanel = document.querySelector("span.ytp-volume-area");
-                if (VolumePanel) {
-                    pastDiv1 = document.querySelector("#submitButton.playerButton");
-    
-                    moveElement(VolumePanel, pastDiv1);
-                }
-
-                var TimePanel = document.querySelector("div.ytp-time-display");
-                if (TimePanel) {
-                    pastDiv1 = document.querySelector("#submitButton.playerButton");
-    
-                    moveElement(TimePanel, pastDiv1);
-                }
-
-                var VolumeButton = document.querySelector(".ytp-volume-panel");
-                if (VolumeButton) {
-                    pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
-    
-                    moveElement(VolumeButton, pastDiv1);
-                }
+                setInterval(() => {
+                    // Move volume area to right side
+                    var VolumePanel = document.querySelector("span.ytp-volume-area");
+                    if (VolumePanel && VolumePanel.parentNode.className !== 'ytp-right-controls') {
+                        if (VolumePanel) {
+                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
+            
+                            moveElement(VolumePanel, pastDiv1);
+                        }
+                        // Do the same for the time display
+                        var TimePanel = document.querySelector("div.ytp-time-display");
+                        if (TimePanel) {
+                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
+            
+                            moveElement(TimePanel, pastDiv1);
+                        }
+                        // Move the panel ahead of the actual volume button
+                        var VolumeButton = document.querySelector(".ytp-volume-panel");
+                        if (VolumeButton) {
+                            pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
+            
+                            moveElement(VolumeButton, pastDiv1);
+                        }
+                    } else {}
+                }, 500);
             break; 
 
             default:

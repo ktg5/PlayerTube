@@ -10,3 +10,21 @@
     background: url("chrome-extension://__MSG_@@extension_id__/img/loading.gif") center center / contain no-repeat;
     height: 64px;
 }
+
+/* BEZEL ICONS */
+
+.ytp-bezel[aria-label="Pause"] {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
+    background-size: cover;
+    border-radius: 0;
+}
+
+.ytp-bezel[aria-label="Play"] {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
+    background-size: cover;
+    border-radius: 0;
+}
+
+.ytp-bezel-icon {
+    display: none;
+}

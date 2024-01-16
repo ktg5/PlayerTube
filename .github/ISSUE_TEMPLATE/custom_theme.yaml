@@ -1,4 +1,3 @@
----
 name: Custom Theme Related
 description: An question or issue relating to custom themes.
 title: "[ Custom Theme Related ] (Title)"
@@ -23,4 +22,3 @@ body:
       label: PlayerTube settings. (Can be found under "Import, Copy, or Reset Settings")
     validations:
       required: true
----

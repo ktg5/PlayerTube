@@ -1,4 +1,3 @@
----
 name: Enhancement / Feature request
 description: Request for a feature to include with the extension.
 title: "[ Feature Request ] (Title)"
@@ -11,4 +10,3 @@ body:
       label: Describe the enhancement & expected behavior.
     validations:
       required: true
----

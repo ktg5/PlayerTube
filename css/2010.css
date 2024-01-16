@@ -23,26 +23,6 @@
 
 /* ################################# */
 
-/* "BEZEL" ICONS */
-
-.ytp-bezel[aria-label="Pause"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel[aria-label="Play"] {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
-    background-size: cover;
-    border-radius: 0;
-}
-
-.ytp-bezel-icon {
-    display: none;
-}
-
-/* ################################# */
-
 /* PROGRESS BAR */
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
@@ -481,8 +461,9 @@
 
 /* SETTINGS BUTTON */
 
-.ytp-button.ytp-settings-button:after {
-    background: var(--pt-setting-after-label);
+.ytp-settings-button.ytp-hd-quality-badge:after {
+	background-color: var(--pt-setting-after-label);
+	top: 4px !important;
 }
 
 .ytp-big-mode .ytp-button.ytp-settings-button::after {

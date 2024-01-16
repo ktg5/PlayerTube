@@ -135,11 +135,6 @@
     filter: brightness(1.5);
 }
 
-.ytp-settings-button.ytp-hd-quality-badge:after {
-	background-color: #b91f1f !important;
-	top: 4px !important;
-}
-
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button svg {
