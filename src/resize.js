@@ -75,7 +75,7 @@ function getOffset(year) {
     var result;
     switch (year) {
         case '2006':
-            result = (parseInt(getBarWidth()) - 52 - document.querySelector('.ytp-right-controls').clientWidth);
+            result = (parseInt(getBarWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
         break;
 
         default:
