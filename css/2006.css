@@ -226,10 +226,6 @@
 
 /* BASE BUTTONS */
 
-.ytp-chrome-controls .ytp-button {
-    width: 40px;
-}
-
 .ytp-button svg path, .ytp-button .ytp-svg-shadow {
 	display: none !important;
 }
@@ -332,7 +328,7 @@
 .ytp-chrome-bottom .ytp-volume-area {
     display: inline-flex !important;
     position: sticky;
-    padding: 0 0px 0 16px;
+    padding: 0 6px 0 16px;
     width: 94px;
     height: 32px;
     bottom: 2px;
@@ -395,6 +391,7 @@
 
 .ytp-chrome-controls .ytp-right-controls .ytp-button {
     background-size: contain;
+    width: 40px !important;
     padding: 0;
 }
 
