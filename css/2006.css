@@ -360,7 +360,6 @@
     content: '';
     display: block;
     position: relative;
-    left: 4px;
     width: 1px;
     height: 100%;
     background: linear-gradient(179deg, #0b0b0b38, #00000000);

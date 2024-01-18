@@ -67,7 +67,10 @@ ytd-app[static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bot
 html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
-html[pseudo-static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html[pseudo-static] #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+    width: 100% !important;
+}
+html[static] #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 
