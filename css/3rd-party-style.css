@@ -60,18 +60,26 @@ This extension for some reason likes to
 resize the player when not in theater mode,
 the following lines of code should fix this.
 */
-ytd-app[static] #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+ytd-app #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 /* For the same extension; why CustomTube. */
-html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
-html[pseudo-static] #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
-html[static] #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+
+/* for my theater mode gang */
+html ytd-watch-flexy #movie_player.html5-video-player[aria-label="YouTube Video Player"] video {
     width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+html ytd-app:not([masthead-hidden]) ytd-page-manager#page-manager {
+    max-width: none !important;
 }
 
 /* Truffle */

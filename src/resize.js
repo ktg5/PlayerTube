@@ -47,6 +47,7 @@ var checkBar = setInterval(() => {
 
         // Detection...
         if (completeWidth !== videoWidth) {
+            console.log(`%cPlayerTube resize script: Detected Progress Bar change! Fixing...`, styles2, `${completeWidth} !== ${videoWidth}`)
             fixBar();
         }
     }
