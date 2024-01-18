@@ -64,7 +64,7 @@ ytd-app #movie_player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 /* For the same extension; why CustomTube. */
-html ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 html #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
