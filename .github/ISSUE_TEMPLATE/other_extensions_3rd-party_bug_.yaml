@@ -43,6 +43,6 @@ body:
   - id: browser-info
     type: textarea
     attributes:
-      label: Browser / Extension information.
+      label: Browser & Extension information (& video if shown).
     validations:
       required: true

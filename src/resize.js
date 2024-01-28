@@ -9,7 +9,8 @@ var CSSPatches = `
 /* PlayerTube/src/resize.js */
 
 .video-stream.html5-main-video {
-    width: 100% !important;
+    position: relative;
+    margin: auto;
     height: 100% !important;
     left: 0 !important;
     top: 0 !important;

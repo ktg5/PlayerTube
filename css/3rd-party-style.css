@@ -73,7 +73,8 @@ html[static] #movie_player.html5-video-player[aria-label="YouTube Video Player"]
 
 /* for my theater mode gang */
 html ytd-watch-flexy #movie_player.html5-video-player[aria-label="YouTube Video Player"] video {
-    width: 100% !important;
+    position: relative;
+    margin: auto;
     height: 100% !important;
     max-width: none !important;
     max-height: none !important;
