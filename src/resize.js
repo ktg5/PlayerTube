@@ -11,6 +11,7 @@ var CSSPatches = `
 .video-stream.html5-main-video {
     position: relative;
     margin: auto;
+    width: 100% !important;
     height: 100% !important;
     left: 0 !important;
     top: 0 !important;
