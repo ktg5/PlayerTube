@@ -14,6 +14,7 @@ var CSSPatches = `
     height: 100% !important;
     left: 0 !important;
     top: 0 !important;
+    object-fit: contain !important;
 }
   
 .html5-video-container {
