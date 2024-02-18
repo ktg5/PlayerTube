@@ -284,6 +284,12 @@
 	background-size: 15px;
 }
 
+.ytp-chrome-bottom.no-right-button .ytp-button.ytp-play-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/button-big-bg.png');
+    background-size: contain;
+    width: 60px;
+}
+
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
@@ -546,6 +552,19 @@
     color: red;
 }
 
+/* CLIPPY ICON :3 */
+
+.ytp-clip .ytp-time-clip-icon {
+    position: relative;
+    bottom: 14px;
+    margin: 0 5px 0 1px;
+}
+
+.ytp-time-clip-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
 /* ################################# */
 
 /* SCRUBBER */
@@ -738,7 +757,11 @@
 }
 
 .ytp-embed .ytp-impression-link {
-    display: none;
+    display: none !important;
+}
+
+.ytp-button.yt-uix-sessionlink {
+    display: none !important;
 }
 
 /* ################################# */

@@ -94,6 +94,7 @@ function progressBarChanger() {
     }, 1000);
 }
 
+
 // Inital startup.
 // When the page is (re)loaded.
 startPlayer();
@@ -102,14 +103,40 @@ progressBarChanger();
 var baseCSS = runtime.getURL(`css/base.css`);
 document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baseCSS}">`);
 
+
 // Insert resizing progress bar script
-setTimeout(() => {
+// First, make sure this isn't a embed
+if (!window.location.href.includes('embed')) {
+    // Now insert
     var srcDoc = document.createElement('script');
     srcDoc.id = 'playertube-js';
     srcDoc.className = 'playertube-resize-bar';
     srcDoc.src = runtime.getURL(`src/resize.js`);
     document.body.append(srcDoc);
+}
+
+
+// No left button & no right button detection
+var buttonDetect = setInterval(() => {
+    if (document.querySelector('.ytp-next-button').getAttribute('style') == "display: none;") {
+        document.querySelector('.ytp-chrome-bottom').classList.add('no-right-button');
+    } else {
+        // Remove if spotted
+        if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-right-button')) {
+            document.querySelector('.ytp-chrome-bottom').classList.remove('no-right-button');
+        }
+    }
+
+    if (document.querySelector('.ytp-prev-button').getAttribute('style') == "display: none;") {
+        document.querySelector('.ytp-chrome-bottom').classList.add('no-left-button');
+    } else {
+        // Remove if spotted
+        if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-left-button')) {
+            document.querySelector('.ytp-chrome-bottom').classList.remove('no-left-button');
+        }
+    }
 }, 3000);
+
 
 // You might be asking, "why is this a thing?"
 // You'd only understand if you were dealing

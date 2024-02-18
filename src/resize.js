@@ -1,7 +1,7 @@
 // Global vars
 var currentPath = window.location.href;
 var userConfig = JSON.parse(document.getElementById('playertube-config').innerHTML);
-var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
+var ytVideo = document.querySelector('.video-stream.html5-main-video');
 
 // Add CSS fixes too
 var CSSPatches = `

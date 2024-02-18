@@ -69,8 +69,8 @@
     background: var(--pt-progress-bar-bg);
     margin-top: -10px;
     right: 0;
-	bottom: 0px;
-    transform: scaleY(.6);
+    bottom: -3px;
+    transform: scaleY(.4);
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
