@@ -1,7 +1,13 @@
 // Global vars
 var currentPath = window.location.href;
 var userConfig = JSON.parse(document.getElementById('playertube-config').innerHTML);
-var ytVideo = document.querySelector('.video-stream.html5-main-video');
+var ytVideo;
+var tempInterval = setInterval(() => {
+    if (document.querySelector('.video-stream.html5-main-video')) {
+        ytVideo = document.querySelector('.video-stream.html5-main-video');
+        clearInterval(tempInterval);
+    }
+}, 1000);
 
 // Add CSS fixes too
 var CSSPatches = `
@@ -30,11 +36,11 @@ var checkBar = setInterval(() => {
     if (document.getElementById('movie_player') && ytVideo.src.includes('blob')) {
         var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
         // Detecting chapters if any
-        if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+        if (document.getElementById('movie_player').querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
             completeWidth = completeWidth + 1;
         }
         // Actual width
-        var actualWidth = parseInt(getBarWidth());
+        var actualWidth = parseInt(getVideoWidth());
         // Video width + add possible offset (say for 2006 theme)
         var videoWidth;
         switch (userConfig.year) {
@@ -65,21 +71,23 @@ var checkBar = setInterval(() => {
 }, 50);
 
 // Easy call to progress bar width
-function getBarWidth() {
+function getVideoWidth() {
     // If chapters
-    if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-        return document.getElementById('movie_player').clientWidth - 1;
+    if (document.getElementById('movie_player').querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+        document.querySelector(`.ytp-chrome-bottom .ytp-chapters-container`).style.width = 'fit-content';
     // If none
     } else {
-        return document.getElementById('movie_player').clientWidth;
+        document.querySelector(`.ytp-chrome-bottom .ytp-chapters-container`).style.width = '';
     }
+
+    return document.getElementById('movie_player').clientWidth;
 }
 
 function getOffset(year) {
     var result;
     switch (year) {
         case '2006':
-            result = (parseInt(getBarWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
+            result = (parseInt(getVideoWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
         break;
 
         default:
@@ -93,7 +101,7 @@ function getOffset(year) {
 // Get fixed width for user's theme
 function getFixedWidth() {
     // Get actual current player width
-    var actualWidth = parseInt(getBarWidth());
+    var actualWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
         case '2012':
         case '2011':

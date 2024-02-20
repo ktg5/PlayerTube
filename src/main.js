@@ -107,32 +107,44 @@ document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class=
 // Insert resizing progress bar script
 // First, make sure this isn't a embed
 if (!window.location.href.includes('embed')) {
-    // Now insert
-    var srcDoc = document.createElement('script');
-    srcDoc.id = 'playertube-js';
-    srcDoc.className = 'playertube-resize-bar';
-    srcDoc.src = runtime.getURL(`src/resize.js`);
-    document.body.append(srcDoc);
+    var tempInterval = setInterval(() => {
+        if (document.querySelector('.video-stream.html5-main-video')) {
+            // Now insert
+            var srcDoc = document.createElement('script');
+            srcDoc.id = 'playertube-js';
+            srcDoc.className = 'playertube-resize-bar';
+            srcDoc.src = runtime.getURL(`src/resize.js`);
+            document.body.append(srcDoc);
+            // Stop
+            clearInterval(tempInterval);
+        }
+    }, 1000);
 }
 
 
 // No left button & no right button detection
 var buttonDetect = setInterval(() => {
-    if (document.querySelector('.ytp-next-button').getAttribute('style') == "display: none;") {
-        document.querySelector('.ytp-chrome-bottom').classList.add('no-right-button');
-    } else {
-        // Remove if spotted
-        if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-right-button')) {
-            document.querySelector('.ytp-chrome-bottom').classList.remove('no-right-button');
+    if (document.querySelector('.ytp-next-button') &&
+    document.querySelector('.ytp-prev-button') &&
+    document.querySelector('.ytp-chrome-bottom')) {
+        // Left
+        if (document.querySelector('.ytp-next-button').getAttribute('style') == "display: none;") {
+            document.querySelector('.ytp-chrome-bottom').classList.add('no-right-button');
+        } else {
+            // Remove if spotted
+            if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-right-button')) {
+                document.querySelector('.ytp-chrome-bottom').classList.remove('no-right-button');
+            }
         }
-    }
-
-    if (document.querySelector('.ytp-prev-button').getAttribute('style') == "display: none;") {
-        document.querySelector('.ytp-chrome-bottom').classList.add('no-left-button');
-    } else {
-        // Remove if spotted
-        if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-left-button')) {
-            document.querySelector('.ytp-chrome-bottom').classList.remove('no-left-button');
+    
+        // Right
+        if (document.querySelector('.ytp-prev-button').getAttribute('style') == "display: none;") {
+            document.querySelector('.ytp-chrome-bottom').classList.add('no-left-button');
+        } else {
+            // Remove if spotted
+            if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-left-button')) {
+                document.querySelector('.ytp-chrome-bottom').classList.remove('no-left-button');
+            }
         }
     }
 }, 3000);

@@ -37,10 +37,6 @@
 	bottom: 34px !important;
 }
 
-.ytp-chrome-bottom .ytp-chapters-container {
-    width: fit-content !important;
-}
-
 /* Make sure YouTube doesn't fuck with these */
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
