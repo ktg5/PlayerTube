@@ -46,6 +46,10 @@
     left: 72px;
 }
 
+.ytp-chrome-bottom .ytp-chapters-container {
+	width: fit-content !important;
+}
+
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
     top: -6px;
     left: 0;

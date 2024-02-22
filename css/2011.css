@@ -37,6 +37,10 @@
 	bottom: 34px !important;
 }
 
+.ytp-chrome-bottom .ytp-chapters-container {
+	width: fit-content !important;
+}
+
 /* Make sure YouTube doesn't fuck with these */
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
@@ -562,7 +566,7 @@
 
 /* WATCH LATER (moved from chrome-top) */
 
-.ytp-button.ytp-watch-later-button {
+.ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
     background-position: 3px -280px;
 	background-size: 200px;
@@ -607,6 +611,7 @@
 
 .ytp-title-link {
     position: relative;
+    width: fit-content;
     font-size: 18px;
     top: 8px;
 }
@@ -632,6 +637,10 @@
 	background-size: 200px;
 	width: 40px !important;
 	bottom: 5px;
+}
+
+.ytp-button.ytp-watch-later-button {
+	display: none !important;
 }
 
 .ytp-share-icon svg {

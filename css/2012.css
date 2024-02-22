@@ -28,6 +28,10 @@
 	bottom: 34px !important;
 }
 
+.ytp-chrome-bottom .ytp-chapters-container {
+	width: fit-content !important;
+}
+
 /* Make sure YouTube doesn't fuck with these */
 .ytp-chapter-hover-container.ytp-exp-chapter-hover-container {
     transform: scale(1) !important;
@@ -436,6 +440,7 @@
 
 .ytp-title-link {
     position: relative;
+    width: fit-content;
     font-size: 18px;
     top: 8px;
 }
@@ -454,6 +459,10 @@
 
 .ytp-share-panel-close svg {
 	margin: 0px 6px
+}
+
+.ytp-button.ytp-watch-later-button {
+	display: none !important;
 }
 
 /* ################################# */

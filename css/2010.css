@@ -33,6 +33,10 @@
 	border-bottom: 1px solid var(--pt-progress-bar-outline);
 }
 
+.ytp-chrome-bottom .ytp-chapters-container {
+	width: fit-content !important;
+}
+
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
     bottom: 33px !important;
 }

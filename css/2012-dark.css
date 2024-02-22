@@ -167,7 +167,7 @@
 
 /* WATCH LATER (moved from chrome-top) */
 
-.ytp-button.ytp-watch-later-button {
+.ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -53px -1099px;
 	background-size: 200px;

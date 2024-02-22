@@ -14,7 +14,7 @@ h1, h2, h3 {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #5a5a5a;
+    background: #282828;
     color: white !important;
     margin: 0;
 }
@@ -25,7 +25,7 @@ body {
 
 /* Content */
 #content {
-    background: #202020;
+    background: #0000007d;
     margin: auto;
     padding: 1em;
     max-width: 50em;

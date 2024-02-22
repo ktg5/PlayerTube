@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="base.css">
+        <script src="base.js"></script>
+        <title>PlayerTube : Extension Support</title>
+        <link rel="shortcut icon" type="image/png" href="../img/playertube/icon.png">
+
+        <div id="page-name" style="display: none;">Extension Support</div>
+    </head>
+
+
+    <body>
+        <div id="content">
+            <div id="logo">
+                <a href="update.html"><img src="../img/playertube/logo.png" height="100"></a>
+                <div class="showVersion"></div>
+            </div>
+
+            <div class="text">
+                <h2>Extension Support</h2>
+                <p>
+                    Some YouTube extensions may mess with PlayerTube, and many more might
+                    if not reported on. If you'd like to help with finding & getting many
+                    more extensions fixed, <a href='https://github.com/ktg5/PlayerTube/issues'>
+                    feel free to report them on the GitHub page</a>.
+                    <br>
+                    Here's the current list of extensions that currently work either with
+                    or without manual configuration.
+                </p>
+                <h3>CustomTube</h3>
+                <p>
+                    CustomTube has been one of the first extensions to need manual
+                    configuration. Below is a screenshot of what settings the user should
+                    set.
+                </p>
+                <img src="../img/customtube-settings.png" style="display: block;margin: auto;">
+                <p>
+                    Go to the "Watch Page" tab in CustomTube's settings, scroll down to
+                    "Video Player Size" and disable "Use Custom Player Size".
+                    Also set "Video Player Style" to "Use current player" to be safe.
+                    <br>
+                    CustomTube also needed many CSS patches too (which does not need to
+                    be done by the user).
+                </p>
+                <h3>YouTube Redux</h3>
+                <p>
+                    Like CustomTube, YouTube Redux has similar settings that mess with
+                    the player's size.
+                </p>
+                <img src="../img/youtube-redux-settings.png" style="display: block;margin: auto;">
+                <p>
+                    Open up YouTube Redux's settings and uncheck the "Use small video
+                    player" opinion.
+                    <br>
+                    And for some reason, YouTube Redux messes with the volume panel,
+                    which is easily fixed with some CSS (which does not need to be
+                    done by the user).
+                </p>
+                <br>
+                <h3>Other extensions that have been patched</h3>
+
+                <li>SponsorBlock - CSS patches mainly adjusting the little things that appear on top of the progress bar</li>
+                <li>Truffle - Mainly stuff when viewing a live stream</li>
+            </div>
+
+            <div id="credits">
+                <div class="text">Built with stupidity by</div>
+                <a href="https://ktg5.online/"><img id="ktg5-logo" src="https://ktg5.online/img/logo-r1.png" alt="No angels." height="60"></a>
+            </div>
+        </div>
+    </body>
+</html>

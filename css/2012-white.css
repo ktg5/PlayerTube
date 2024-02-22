@@ -165,9 +165,9 @@
 	background-position: -114px -1149px;
 }
 
-/* WATCH LATER (moved from chrome-top) */
+/* WATCH LATER (custom made) */
 
-.ytp-button.ytp-watch-later-button {
+.ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
 	background-position: -53px -1099px;
 	background-size: 200px;
@@ -192,7 +192,7 @@
 }
 
 .ytp-button.ytp-share-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 2px -524px;
 	transition: .5s !important;
 	background-size: 220px;
@@ -201,7 +201,7 @@
 }
 
 .ytp-button.ytp-cards-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons-alt.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
 	background-size: 200px;

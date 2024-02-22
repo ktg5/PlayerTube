@@ -33,7 +33,7 @@ document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class
 // Heartbeat
 var checkBar = setInterval(() => {
     // Actual check
-    if (document.getElementById('movie_player') && ytVideo.src.includes('blob')) {
+    if (document.getElementById('movie_player') && ytVideo && ytVideo.src.includes('blob')) {
         var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
         // Detecting chapters if any
         if (document.getElementById('movie_player').querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
@@ -73,14 +73,12 @@ var checkBar = setInterval(() => {
 // Easy call to progress bar width
 function getVideoWidth() {
     // If chapters
-    if (document.getElementById('movie_player').querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-        document.querySelector(`.ytp-chrome-bottom .ytp-chapters-container`).style.width = 'fit-content';
+    if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+        return document.getElementById('movie_player').clientWidth + 1;
     // If none
     } else {
-        document.querySelector(`.ytp-chrome-bottom .ytp-chapters-container`).style.width = '';
+        return document.getElementById('movie_player').clientWidth;
     }
-
-    return document.getElementById('movie_player').clientWidth;
 }
 
 function getOffset(year) {

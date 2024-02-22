@@ -457,8 +457,10 @@ function startPlayer() {
             case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
+                    // Base
                     var baselink = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                    
                     // Alt mode stuff
                     if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
@@ -468,8 +470,21 @@ function startPlayer() {
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     }
                     loadedPlayerStyle = true;
+
                     // IMPORT THE OTHER CSS
                     extraStyles();
+
+                    // Custom watch later button
+                    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
+                    subtitlesButton.insertAdjacentHTML('beforebegin', `
+                    <button
+                        class="ytp-button playertube-watchlater"
+                        data-tooltip-opaque="false" aria-label="Watch later"
+                        title="Watch later"
+                        onclick="document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected').click();"
+                    >
+                    </button>
+                    `);
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -479,40 +494,35 @@ function startPlayer() {
                     //     background-color: transparent !important;
                     // }
                 }
-
-                // #################################    
-                /// WATCH LATER BUTTON
-                var WatchLaterButton = document.getElementsByClassName("ytp-watch-later-button")[0];
-                if (WatchLaterButton) {
-                    var pastDiv1 = document.getElementsByClassName("ytp-subtitles-button")[0];
-    
-                    moveElement(WatchLaterButton, pastDiv1);
-                }
             break;
 
             case '2011':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
+                    // Base
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
+
                     // IMPORT THE OTHER CSS
                     extraStyles();
+
+                    // Custom watch later button
+                    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
+                    subtitlesButton.insertAdjacentHTML('beforebegin', `
+                    <button
+                        class="ytp-button playertube-watchlater"
+                        data-tooltip-opaque="false" aria-label="Watch later"
+                        title="Watch later"
+                        onclick="document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected').click();"
+                    >
+                    </button>
+                    `);
                 }
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
                     enableCustomTheme();
-                }
-
-                // #################################
-
-                /// WATCH LATER BUTTON
-                var WatchLaterButton = document.getElementsByClassName("ytp-watch-later-button")[0];
-                if (WatchLaterButton) {
-                    var pastDiv1 = document.getElementsByClassName("ytp-subtitles-button")[0];
-    
-                    moveElement(WatchLaterButton, pastDiv1);
                 }
             break;
 
