@@ -756,6 +756,10 @@
     left: 0 !important;
 }
 
+.ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
+	width: 100% !important;
+}
+
 .ytp-embed .ytp-impression-link {
     display: none !important;
 }

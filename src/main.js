@@ -447,6 +447,35 @@ function extraStyles() {
     }
 }
 
+// Custom buttons
+// Watch later
+function watchLaterButtonAdd() {
+    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
+    subtitlesButton.insertAdjacentHTML('beforebegin', `
+    <button
+        class="ytp-button playertube-watchlater"
+        data-tooltip-opaque="false" aria-label="Watch later"
+        title="Watch later"
+        
+    >
+    </button>
+    `);
+    document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
+        function PTwatchLaterButton() {
+            // Click more opinions button two times to both create other buttons & close it's menu
+            document.querySelector('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').click();
+            // If the menu button for showing the Watch Later prompt isn't there, we'll rerun
+            setTimeout(() => {
+                let target = document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected');
+                if (target) {
+                    target.click();
+                }
+            }, 100);
+        }
+        PTwatchLaterButton()
+    });
+}
+
 // Load everything else.
 // Includes year theme & fake bar.
 // This function will keep going until it's happy.
@@ -475,16 +504,7 @@ function startPlayer() {
                     extraStyles();
 
                     // Custom watch later button
-                    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
-                    subtitlesButton.insertAdjacentHTML('beforebegin', `
-                    <button
-                        class="ytp-button playertube-watchlater"
-                        data-tooltip-opaque="false" aria-label="Watch later"
-                        title="Watch later"
-                        onclick="document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected').click();"
-                    >
-                    </button>
-                    `);
+                    watchLaterButtonAdd();
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -508,16 +528,7 @@ function startPlayer() {
                     extraStyles();
 
                     // Custom watch later button
-                    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
-                    subtitlesButton.insertAdjacentHTML('beforebegin', `
-                    <button
-                        class="ytp-button playertube-watchlater"
-                        data-tooltip-opaque="false" aria-label="Watch later"
-                        title="Watch later"
-                        onclick="document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected').click();"
-                    >
-                    </button>
-                    `);
+                    watchLaterButtonAdd();
                 }
 
                 // IMPORT USER CUSTOMIZATION

@@ -35,10 +35,6 @@ var checkBar = setInterval(() => {
     // Actual check
     if (document.getElementById('movie_player') && ytVideo && ytVideo.src.includes('blob')) {
         var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
-        // Detecting chapters if any
-        if (document.getElementById('movie_player').querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-            completeWidth = completeWidth + 1;
-        }
         // Actual width
         var actualWidth = parseInt(getVideoWidth());
         // Video width + add possible offset (say for 2006 theme)
@@ -72,13 +68,7 @@ var checkBar = setInterval(() => {
 
 // Easy call to progress bar width
 function getVideoWidth() {
-    // If chapters
-    if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-        return document.getElementById('movie_player').clientWidth + 1;
-    // If none
-    } else {
-        return document.getElementById('movie_player').clientWidth;
-    }
+    return document.getElementById('movie_player').clientWidth;
 }
 
 function getOffset(year) {

@@ -573,6 +573,10 @@
 	left: unset !important;
 }
 
+.ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
+	width: 100% !important;
+}
+
 .ytp-pause-overlay {
 	display: none;
 }
