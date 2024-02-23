@@ -63,7 +63,7 @@
 }
 
 .ytp-button.ytp-mute-button:hover {
-	background-position: -155px -1000px;
+	background-position: -155px -1000px !important;
 }
 
 /* MEDIUM VOLUME */
@@ -78,11 +78,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -155px -1000px !important;
+	background-position: -155px -1000px;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -113px -154.5px !important;
+	background-position: -113px -154.5px;
 }
 
 /* ################################# */

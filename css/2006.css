@@ -317,7 +317,10 @@
 }
 
 .ytp-button.ytp-mute-button:hover {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: 20px !important;
 }
 
 /* MEDIUM VOLUME */
@@ -332,11 +335,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png') !important;
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png') !important;
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png');
 }
 
 /* ################################# */
