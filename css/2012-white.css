@@ -1,14 +1,14 @@
 /* PLAYER BASE */
 
 :root {
-	--pt-background: rgba(224, 224, 224) !important;
-	--pt-main-colour: #de3f3f !important;
-	--pt-alt-colour: rgba(255,255,255,.4) !important;
-	--pt-volume-slider: #de3f3f !important;
-	--pt-progress-bar-bg: rgb(66, 66, 66) !important;
-	--pt-progress-text: #080808 !important;
-	--pt-alt-progress-text: #434343 !important;
-	--pt-settings-bg: rgb(35, 35, 35) !important;
+	--pt-background: rgba(224, 224, 224);
+	--pt-main-colour: #de3f3f;
+	--pt-alt-colour: rgba(255,255,255,.4);
+	--pt-volume-slider: #de3f3f;
+	--pt-progress-bar-bg: rgb(66, 66, 66);
+	--pt-progress-text: #080808;
+	--pt-alt-progress-text: #434343;
+	--pt-settings-bg: rgb(35, 35, 35);
 }
 
 /* PROGRESS BAR */
@@ -38,6 +38,10 @@
 
 .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
 	background-position: -122px -446px;
+}
+
+.ended-mode .ytp-button.ytp-play-button {
+	background-position: -48px -634px;
 }
 
 /* NEXT BUTTON */
@@ -74,11 +78,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -155px -1000px;
+	background-position: -155px -1000px !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -113px -154.5px;
+	background-position: -113px -154.5px !important;
 }
 
 /* ################################# */

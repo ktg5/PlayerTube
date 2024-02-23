@@ -40,6 +40,10 @@
 	background-position: -122px -446px;
 }
 
+.ended-mode .ytp-button.ytp-play-button {
+	background-position: -48px -634px;
+}
+
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
@@ -74,11 +78,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -155px -1000px;
+	background-position: -155px -1000px !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -113px -154.5px;
+	background-position: -113px -154.5px !important;
 }
 
 /* ################################# */

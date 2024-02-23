@@ -656,6 +656,7 @@
 	left: unset !important;
 }
 
+.ad-interrupting .ytp-chrome-bottom .ytp-chapters-container,
 .ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
 	width: 100% !important;
 }

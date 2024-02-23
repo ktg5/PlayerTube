@@ -107,7 +107,7 @@ document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class=
 // Insert resizing progress bar script
 // First, make sure this isn't a embed
 if (!window.location.href.includes('embed')) {
-    var tempInterval = setInterval(() => {
+    let tempInterval = setInterval(() => {
         if (document.querySelector('.video-stream.html5-main-video')) {
             // Now insert
             var srcDoc = document.createElement('script');
@@ -483,35 +483,44 @@ function extraStyles() {
 function watchLaterButtonAdd() {
     // Make button
     var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
-    subtitlesButton.insertAdjacentHTML('beforebegin', `
-    <button
-        class="ytp-button playertube-watchlater"
-        data-tooltip-opaque="false" aria-label="Watch later"
-        title="Watch later"
-    >
-    </button>
-    `);
-    // Click listener
-    document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
-        function PTwatchLaterButton() {
-            // CustomTube
-            if (document.querySelector('[aria-label="Save to playlist"]')) {
-                document.querySelector('[aria-label="Save to playlist"]').click();
-            // Vanilla YouTube
-            } else {
-                // Click more opinions button two times to both create other buttons & close it's menu
-                document.querySelector('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').click();
-                // If the menu button for showing the Watch Later prompt isn't there, we'll rerun
-                setTimeout(() => {
-                    let target = document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected');
-                    if (target) {
-                        target.click();
+    let tempInterval = setInterval(() => {
+        if (subtitlesButton) {
+            subtitlesButton.insertAdjacentHTML('beforebegin', `
+            <button
+                class="ytp-button playertube-watchlater"
+                data-tooltip-opaque="false" aria-label="Watch later"
+                title="Watch later"
+            >
+            </button>
+            `);
+            // Click listener
+            document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
+                function PTwatchLaterButton() {
+                    // CustomTube
+                    if (document.querySelector('[aria-label="Save to playlist"]')) {
+                        document.querySelector('[aria-label="Save to playlist"]').click();
+                    // Vanilla YouTube
+                    } else {
+                        // Click more opinions button two times to both create other buttons & close it's menu
+                        document.querySelector('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').click();
+                        // If the menu button for showing the Watch Later prompt isn't there, we'll rerun
+                        setTimeout(() => {
+                            let target = document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected');
+                            if (target) {
+                                target.click();
+                            }
+                        }, 100);
                     }
-                }, 100);
-            }
+                }
+                PTwatchLaterButton()
+            });
+
+            // end check
+            clearInterval(tempInterval);
+        } else {
+
         }
-        PTwatchLaterButton()
-    });
+    }, 1000);
 }
 
 // Load everything else.
@@ -529,7 +538,7 @@ function startPlayer() {
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
                     
                     // Alt mode stuff
-                    if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
+                    if (userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     } else {
@@ -581,7 +590,7 @@ function startPlayer() {
                     var baselink = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
                     // Alt mode stuff
-                    if (userConfig.customTheme !== true && userConfig.alternateMode == true) {
+                    if (userConfig.alternateMode == true) {
                         var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                     } else {

@@ -246,6 +246,7 @@
 /* BUTTONS BASE */
 
 .ytp-chrome-controls .ytp-left-controls {
+	top: -1px;
 	padding-left: 0;
 }
 
@@ -322,6 +323,10 @@
 	background-position: -109px 91.5px;
 }
 
+.ended-mode .ytp-button.ytp-play-button {
+	background-position: -109px 27px;
+}
+
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
@@ -354,15 +359,13 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -138px -17px;
+	background-position: -138px -17px !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -175px -296px;
+	background-position: -175px -296px !important;
     filter: brightness(1.5);
 }
-
-/* semi muted icon -- background-position: -111px -406px; */
 
 /* TIME DISPLAY */
 
@@ -387,6 +390,8 @@
 /* CHAPTER TITLE */
 
 .ytp-chrome-bottom .ytp-chapter-title.ytp-button {
+	position: relative !important;
+    bottom: 2px;
     width: auto !important;
 }
 
@@ -469,6 +474,7 @@
 /* RIGHT BUTTONS */
 
 .ytp-right-controls {
+	top: -1px;
 	position: relative !important;
 	padding-right: 0px;
 }
@@ -793,6 +799,7 @@
 	left: unset !important;
 }
 
+.ad-interrupting .ytp-chrome-bottom .ytp-chapters-container,
 .ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
 	width: 100% !important;
 }

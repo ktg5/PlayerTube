@@ -332,11 +332,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png') !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png');
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png') !important;
 }
 
 /* ################################# */
@@ -768,6 +768,7 @@
     left: 0 !important;
 }
 
+.ad-interrupting .ytp-chrome-bottom .ytp-chapters-container,
 .ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
 	width: 100% !important;
 }

@@ -342,18 +342,16 @@ async function start(userConfig) {
     }, 10);
 
     // Checks
+    // If theme is 2010 or 2012, show Alternate Theme opinion
     if (userConfig.year == "2010" || userConfig.year == "2012") {
-        if (userConfig.customTheme !== true) {
-            // If Custom Themes aren't enabled, allow dark theme
-            document.getElementById('menu-if-alt-mode').insertAdjacentHTML(
-                `afterbegin`,
-                
-                `
-                ${makeMenuOption(`toggle`, `alternateMode`, `Toggle Alternate Theme for your current theme`)}
-                <div class='menu-option-note'>Some themes may have alternate themes, this one does! <b>Alternate Mode will be disabled when custom themes are enabled.</b></div>
-                `
-            )
-        }
+        document.getElementById('menu-if-alt-mode').insertAdjacentHTML(
+            `afterbegin`,
+            
+            `
+            ${makeMenuOption(`toggle`, `alternateMode`, `Toggle Alternate Theme for your current theme`)}
+            <div class='menu-option-note'>Some themes may have alternate themes, this one does! <b>Alternate Mode will be disabled when custom themes are enabled.</b></div>
+            `
+        )
     }
 
     // Custom Themes Buttons

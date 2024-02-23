@@ -51,8 +51,8 @@ var checkBar = setInterval(() => {
         // console.log('hello', completeWidth, videoWidth);
 
         // Detection...
-        if (completeWidth !== videoWidth) {
-            console.log(`%cPlayerTube resize script: Detected Progress Bar change! Fixing...`, styles2, `${completeWidth} !== ${videoWidth}`)
+        if (completeWidth !== videoWidth && (completeWidth + 1) !== videoWidth && completeWidth !== (videoWidth + 1)) {
+            console.log(`%cPlayerTube resize script: Detected big progress bar change! Fixing...`, styles2, `${completeWidth} !== ${videoWidth}`)
             fixBar();
         }
     }
@@ -114,6 +114,10 @@ function getFixedWidth() {
 function fixBar() {
     // Define stuff
     var playerWidth = getFixedWidth();
+    // If chapters
+    // if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
+    //     playerWidth = playerWidth - 1;
+    // }
 
     // Set width that needs to be set
     width = playerWidth;

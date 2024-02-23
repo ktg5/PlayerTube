@@ -7,7 +7,6 @@
 
 .ytp-chrome-controls {
 	background: var(--pt-background);
-	border-top: 2px solid var(--pt-background);
 	height: inherit;
 }
 
@@ -301,6 +300,10 @@
 	font-size: 14px;
 }
 
+.ytp-chrome-bottom .ytp-chapter-container {
+    color: var(--pt-progress-text) !important;
+}
+
 .ytp-chapter-container .ytp-chapter-title-content {
   margin-bottom: 2px;
 }
@@ -573,6 +576,7 @@
 	left: unset !important;
 }
 
+.ad-interrupting .ytp-chrome-bottom .ytp-chapters-container,
 .ytp-embed .ytp-chrome-bottom .ytp-chapters-container {
 	width: 100% !important;
 }
