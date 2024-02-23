@@ -50,7 +50,7 @@
 }	
 
 /* VOLUME BUTTON */
-
+/* DEFAULT */
 .ytp-button.ytp-mute-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -154.5px;
@@ -62,6 +62,17 @@
 	background-position: -155px -1000px;
 }
 
+/* MEDIUM VOLUME */
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button {
+    background-position: -113px -408.5px;
+}
+
+/* LOW VOLUME */
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button {
+    background-position: -113px -408.5px;
+}
+
+/* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
 	background-position: -155px -1000px;
 }

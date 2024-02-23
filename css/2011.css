@@ -329,7 +329,7 @@
 }	
 
 /* VOLUME BUTTON */
-
+/* DEFAULT */
 .ytp-button.ytp-mute-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png);
 	background-position: -175px -296px;
@@ -342,6 +342,17 @@
     filter: brightness(1.5);
 }
 
+/* MEDIUM VOLUME */
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button {
+    background-position: -138px -296px;
+}
+
+/* LOW VOLUME */
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button {
+    background-position: -138px -296px;
+}
+
+/* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
 	background-position: -138px -17px;
 }
@@ -470,7 +481,7 @@
 
 .ytp-subtitles-button.ytp-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-    background-position: -65px -220px;
+    background-position: -67px -220px;
     background-size: 200px;
     bottom: 5px;
 }
@@ -480,7 +491,7 @@
 }
 
 .ytp-subtitles-button.ytp-button[aria-pressed=true] {
-	background-position: -30px -161px;
+	background-position: -32px -161px;
 }
 
 .ytp-subtitles-button.ytp-button[aria-pressed=true]:hover {
@@ -572,6 +583,10 @@
 	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
+}
+
+.ytp-button.playertube-watchlater:hover {
+	filter: brightness(1.5);
 }
 
 /* DISPLAY NONE OF THESE */

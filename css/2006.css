@@ -305,6 +305,7 @@
 }
 
 /* VOLUME BUTTON */
+/* DEFAULT */
 .ytp-button.ytp-mute-button {
     display: inline-block !important;
     background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button.png');
@@ -319,6 +320,17 @@
     background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
 }
 
+/* MEDIUM VOLUME */
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-med.png');
+}
+
+/* LOW VOLUME */
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-low.png');
+}
+
+/* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
 }

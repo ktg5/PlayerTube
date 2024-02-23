@@ -122,8 +122,10 @@ if (!window.location.href.includes('embed')) {
 }
 
 
-// No left button & no right button detection
-var buttonDetect = setInterval(() => {
+// Button & value checks
+setInterval(() => {
+    // Check buttons & values
+    /// Left & Right
     if (document.querySelector('.ytp-next-button') &&
     document.querySelector('.ytp-prev-button') &&
     document.querySelector('.ytp-chrome-bottom')) {
@@ -147,8 +149,37 @@ var buttonDetect = setInterval(() => {
             }
         }
     }
-}, 3000);
 
+    /// Volume (exact & simple)
+    if (document.querySelector('.ytp-chrome-bottom') &&
+    document.querySelector('.ytp-volume-area') &&
+    document.querySelector('.ytp-volume-panel')) {
+        var volumePanel = document.querySelector('.ytp-volume-panel');
+        var volumeValue = volumePanel.getAttribute('aria-valuenow');
+        // Set exact value
+        document.querySelector('.ytp-volume-area').setAttribute('volumenow', volumeValue);
+        // Set simple value (for CSS)
+        var simpleVol;
+        switch (true) {
+            case parseInt(volumeValue) == 0:
+                simpleVol = 'none';
+            break;
+
+            case parseInt(volumeValue) <= 25:
+                simpleVol = 'low';
+            break;
+
+            case parseInt(volumeValue) <= 75:
+                simpleVol = 'med';
+            break;
+        
+            case parseInt(volumeValue) >= 75:
+                simpleVol = 'high';
+            break;
+        }
+        document.querySelector('.ytp-volume-area').setAttribute('simplevolumenow', simpleVol);
+    }
+}, 500);
 
 // You might be asking, "why is this a thing?"
 // You'd only understand if you were dealing
@@ -450,27 +481,34 @@ function extraStyles() {
 // Custom buttons
 // Watch later
 function watchLaterButtonAdd() {
+    // Make button
     var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
     subtitlesButton.insertAdjacentHTML('beforebegin', `
     <button
         class="ytp-button playertube-watchlater"
         data-tooltip-opaque="false" aria-label="Watch later"
         title="Watch later"
-        
     >
     </button>
     `);
+    // Click listener
     document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
         function PTwatchLaterButton() {
-            // Click more opinions button two times to both create other buttons & close it's menu
-            document.querySelector('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').click();
-            // If the menu button for showing the Watch Later prompt isn't there, we'll rerun
-            setTimeout(() => {
-                let target = document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected');
-                if (target) {
-                    target.click();
-                }
-            }, 100);
+            // CustomTube
+            if (document.querySelector('[aria-label="Save to playlist"]')) {
+                document.querySelector('[aria-label="Save to playlist"]').click();
+            // Vanilla YouTube
+            } else {
+                // Click more opinions button two times to both create other buttons & close it's menu
+                document.querySelector('button.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-button').click();
+                // If the menu button for showing the Watch Later prompt isn't there, we'll rerun
+                setTimeout(() => {
+                    let target = document.querySelector('ytd-menu-service-item-renderer.style-scope.ytd-menu-popup-renderer.iron-selected');
+                    if (target) {
+                        target.click();
+                    }
+                }, 100);
+            }
         }
         PTwatchLaterButton()
     });

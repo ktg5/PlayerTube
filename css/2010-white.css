@@ -76,7 +76,7 @@
 }
 
 /* VOLUME BUTTON */
-
+/* DEFAULT */
 .ytp-button.ytp-mute-button svg {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume.png') no-repeat center;
 	background-size: 34px;
@@ -90,6 +90,19 @@
     background-size: 34px;
 }
 
+/* MEDIUM VOLUME */
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-med.png') no-repeat center;
+	background-size: 34px;
+}
+
+/* LOW VOLUME */
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button svg {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-low.png') no-repeat center;
+	background-size: 34px;
+}
+
+/* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] svg {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-mute.png') no-repeat center;
     background-size: 34px;
