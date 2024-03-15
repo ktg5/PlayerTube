@@ -25,7 +25,7 @@
 }
 
 .html5-video-player .ytp-chrome-bottom {
-	height: 35px !important;
+	height: 32px !important;
 	width: 100% !important;
     left: 0 !important;
 }
@@ -34,7 +34,7 @@
 
 .ytp-chrome-bottom .ytp-progress-bar-container {
 	width: 100% !important;
-	bottom: 34px !important;
+	bottom: 31px !important;
 }
 
 .ytp-chrome-bottom .ytp-chapters-container {

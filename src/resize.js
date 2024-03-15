@@ -129,7 +129,7 @@ function fixBar() {
 
     // Set width that needs to be set
     var width;
-    if (document.querySelectorAll('.ytp-exp-chapter-hover-container').length) {
+    if (document.querySelectorAll('.ytp-chapter-hover-container').length > 1) {
         width = playerWidth - 1;
     } else {
         width = playerWidth;
