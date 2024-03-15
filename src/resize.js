@@ -8,6 +8,7 @@ var tempInterval = setInterval(() => {
         clearInterval(tempInterval);
     }
 }, 1000);
+var pastWidth;
 
 // Add CSS fixes too
 var CSSPatches = `
@@ -34,24 +35,31 @@ document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class
 var checkBar = setInterval(() => {
     // Actual check
     if (document.getElementById('movie_player') && ytVideo && ytVideo.src.includes('blob')) {
+        // Get current progress bar width
         var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
         // Actual width
         var actualWidth = parseInt(getVideoWidth());
-        // Video width + add possible offset (say for 2006 theme)
-        var videoWidth;
-        switch (userConfig.year) {
-            case '2006':
-                videoWidth = getOffset(userConfig.year) - 24;
-            break;
-        
-            default:
-                videoWidth = actualWidth;
-            break;
-        }
-        // console.log('hello', completeWidth, videoWidth);
 
-        // Detection...
-        if (completeWidth !== videoWidth && (completeWidth + 1) !== videoWidth && completeWidth !== (videoWidth + 1)) {
+        // Debug detection
+        // console.log('resize debug detection:', actualWidth, pastWidth);
+        // Detection... v2...
+        if (actualWidth !== pastWidth) {
+            // Set pastWidth
+            pastWidth = parseInt(actualWidth);
+
+            // Video width + add possible offset (say for 2006 theme)
+            var videoWidth;
+            switch (userConfig.year) {
+                case '2006':
+                    videoWidth = getOffset(userConfig.year) - 24;
+                break;
+            
+                default:
+                    videoWidth = actualWidth;
+                break;
+            }
+
+            // Go!
             console.log(`%cPlayerTube resize script: Detected big progress bar change! Fixing...`, styles2, `${completeWidth} !== ${videoWidth}`)
             fixBar();
         }
@@ -68,7 +76,7 @@ var checkBar = setInterval(() => {
 
 // Easy call to progress bar width
 function getVideoWidth() {
-    return document.getElementById('movie_player').clientWidth;
+    return document.querySelector('#movie_player').clientWidth;
 }
 
 function getOffset(year) {
@@ -120,8 +128,13 @@ function fixBar() {
     // }
 
     // Set width that needs to be set
-    width = playerWidth;
-    height = document.getElementById('movie_player').clientHeight;
+    var width;
+    if (document.querySelectorAll('.ytp-exp-chapter-hover-container').length) {
+        width = playerWidth - 1;
+    } else {
+        width = playerWidth;
+    }
+    var height = document.getElementById('movie_player').clientHeight;
 
     // Use YouTube function to change width
     document.getElementById('movie_player').setInternalSize(width, height);
