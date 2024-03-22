@@ -114,7 +114,7 @@
 /* for big mode */
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
-    bottom: 33px !important;
+    bottom: 30px !important;
 }
 
 .ytp-big-mode .ytp-progress-bar {
@@ -270,8 +270,12 @@
 .ytp-chrome-bottom .ytp-button, .ytp-chrome-top .ytp-button {
 	position: sticky !important;
 	height: 35px !important;
-	width: 40px !important;
+	width: 40px;
 	bottom: 9px;
+}
+
+.ytp-chrome-bottom .ytp-right-controls .ytp-button {
+	width: 35px;
 }
 
 .ytp-autohide .ytp-chrome-top {
@@ -359,11 +363,11 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -138px -17px;
+	background-position: -138px -17px !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -175px -296px;
+	background-position: -175px -296px !important;
     filter: brightness(1.5);
 }
 
@@ -487,7 +491,7 @@
 
 .ytp-subtitles-button.ytp-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-    background-position: -67px -220px;
+    background-position: -69.5px -220px;
     background-size: 200px;
     bottom: 5px;
 }
@@ -516,7 +520,7 @@
 
 .ytp-button.ytp-settings-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -164px -132px;
+	background-position: -166px -132px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -540,7 +544,7 @@
 
 .ytp-button.ytp-size-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -58px -133.5px;
+	background-position: -61.5px -133.5px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -551,7 +555,7 @@
 }
 
 .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -93.5px -15.5px;
+	background-position: -96.5px -15.5px;
 }
 
 .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
@@ -568,7 +572,7 @@
 
 .ytp-button.ytp-fullscreen-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -93px -133.5px;
+	background-position: -96px -133.5px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -585,7 +589,7 @@
 
 .ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-    background-position: 3px -280px;
+	background-position: 1px -280px;
 	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
@@ -697,7 +701,7 @@
 }
 
 .ytp-popup.ytp-settings-menu {
-	bottom: 45px !important;
+	bottom: 35px !important;
     border-radius: 0 !important;
 }
 

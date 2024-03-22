@@ -107,7 +107,7 @@
 
 .ytp-subtitles-button.ytp-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -113px -998px;
+	background-position: -116px -998px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -120,7 +120,7 @@
 
 .ytp-button.ytp-settings-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -155px -521px;
+	background-position: -157.5px -521px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -139,21 +139,16 @@
 
 .ytp-button.ytp-size-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -156px -484px;
 	background-size: 200px;
 	bottom: 5px;
 }
 
-.ytp-button.ytp-size-button:hover {
-	background-position: -40.5px 0px !important;
+.ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
+	background-position: -158px -484px !important;
 }
 
-.ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -40.5px 0px;
-}
-
-.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -156px -484px !important;
+.ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
+	background-position: -43px 0px !important;
 }
 
 /* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
@@ -171,7 +166,7 @@
 
 .ytp-button.ytp-fullscreen-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -114px -523px;
+	background-position: -116px -523px;
 	background-size: 200px;
 	bottom: 5px;
 }
@@ -180,20 +175,14 @@
 	background-position: -114px -1149px;
 }
 
-/* WATCH LATER (moved from chrome-top) */
+/* WATCH LATER (custom made) */
 
 .ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -53px -1099px;
+	background-position: -56px -1099px;
 	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
-}
-
-/* DISPLAY NONE OF THESE */
-
-.ytp-fullerscreen-edu-button, .ytp-multicam-button, .ytp-multicam-button, .ytp-miniplayer-button, .ytp-remote-button {
-	display: none !important;
 }
 
 /* ################################# */

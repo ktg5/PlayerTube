@@ -244,6 +244,10 @@
 	bottom: 9px;
 }
 
+.ytp-chrome-bottom .ytp-right-controls .ytp-button {
+	width: 35px;
+}
+
 .ytp-autohide .ytp-chrome-top {
     display: none;
 }
@@ -381,10 +385,6 @@
 	bottom: 1px;
 }
 
-.ytp-big-mode .ytp-right-controls .ytp-button {
-    width: 40px !important;
-}
-
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
@@ -485,7 +485,7 @@
 }
 
 .ytp-popup.ytp-settings-menu {
-	bottom: 45px !important;
+	bottom: 35px !important;
     border-radius: 0 !important;
 }
 

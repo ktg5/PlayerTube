@@ -43,9 +43,9 @@ var checkBar = setInterval(() => {
         // Debug detection
         // console.log('resize debug detection:', actualWidth, pastWidth);
         // Detection... v2...
-        if (actualWidth !== pastWidth) {
+        if (completeWidth !== pastWidth) {
             // Set pastWidth
-            pastWidth = parseInt(actualWidth);
+            pastWidth = parseInt(completeWidth);
 
             // Video width + add possible offset (say for 2006 theme)
             var videoWidth;
@@ -97,7 +97,7 @@ function getOffset(year) {
 // Get fixed width for user's theme
 function getFixedWidth() {
     // Get actual current player width
-    var actualWidth = parseInt(getVideoWidth());
+    let actualWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
         case '2012':
         case '2011':
@@ -121,20 +121,20 @@ function getFixedWidth() {
 // Fix progress bar
 function fixBar() {
     // Define stuff
-    var playerWidth = getFixedWidth();
+    let playerWidth = getFixedWidth();
     // If chapters
     // if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
     //     playerWidth = playerWidth - 1;
     // }
 
     // Set width that needs to be set
-    var width;
+    let width;
     if (document.querySelectorAll('.ytp-chapter-hover-container').length > 1) {
         width = playerWidth - 1;
     } else {
         width = playerWidth;
     }
-    var height = document.getElementById('movie_player').clientHeight;
+    let height = document.getElementById('movie_player').clientHeight;
 
     // Use YouTube function to change width
     document.getElementById('movie_player').setInternalSize(width, height);
