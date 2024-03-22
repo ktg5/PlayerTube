@@ -544,22 +544,17 @@
 
 .ytp-button.ytp-size-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
-	background-position: -61.5px -133.5px;
 	background-size: 200px;
 	bottom: 5px;
 }
 
-.ytp-button.ytp-size-button:hover {
+.ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
+	background-position: -58px -133.5px !important;
+}
+
+.ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
 	background-position: -93.5px -15.5px !important;
     filter: brightness(1.5);
-}
-
-.ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -96.5px -15.5px;
-}
-
-.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -58px -133.5px !important;
 }
 
 /* WATCH ON YOUTUBE BUTTON (only introduced in 2012) */
