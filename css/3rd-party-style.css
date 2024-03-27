@@ -14,8 +14,12 @@ on the GitHUb repo! Much thanks! */
 
 /* SponsorBlock */
 #previewbar {
-    transform: scaleY(1);
     top: 0px;
+}
+
+.ytp-autohide #previewbar {
+    transform: scaleY(0.5);
+    top: -8px;
 }
 
 .skipButtonControlBarContainer div {

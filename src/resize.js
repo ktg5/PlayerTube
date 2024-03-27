@@ -9,6 +9,7 @@ var tempInterval = setInterval(() => {
     }
 }, 1000);
 var pastWidth;
+var pastVideoWidth;
 
 // Add CSS fixes too
 var CSSPatches = `
@@ -38,14 +39,16 @@ var checkBar = setInterval(() => {
         // Get current progress bar width
         var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
         // Actual width
-        var actualWidth = parseInt(getVideoWidth());
+        var tempVideoWidth = parseInt(getVideoWidth());
 
         // Debug detection
-        // console.log('resize debug detection:', actualWidth, pastWidth);
-        // Detection... v2...
-        if (completeWidth !== pastWidth) {
+        // console.log('resize debug detection (player):', completeWidth, pastWidth);
+        // console.log('resize debug detection (video):', tempVideoWidth, pastVideoWidth);
+        // Detection... v2.1...
+        if (completeWidth !== pastWidth || tempVideoWidth !== pastVideoWidth) {
             // Set pastWidth
             pastWidth = parseInt(completeWidth);
+            pastVideoWidth = parseInt(tempVideoWidth);
 
             // Video width + add possible offset (say for 2006 theme)
             var videoWidth;
@@ -55,7 +58,7 @@ var checkBar = setInterval(() => {
                 break;
             
                 default:
-                    videoWidth = actualWidth;
+                    videoWidth = tempVideoWidth;
                 break;
             }
 
@@ -97,12 +100,12 @@ function getOffset(year) {
 // Get fixed width for user's theme
 function getFixedWidth() {
     // Get actual current player width
-    let actualWidth = parseInt(getVideoWidth());
+    let videoWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
         case '2012':
         case '2011':
         case '2010':
-            result = actualWidth + getOffset(userConfig.year);
+            result = videoWidth + getOffset(userConfig.year);
         break;
 
         case '2006':
@@ -111,7 +114,7 @@ function getFixedWidth() {
         break;
 
         default:
-            result = actualWidth + getOffset(userConfig.year);
+            result = videoWidth + getOffset(userConfig.year);
         break;
     }
 

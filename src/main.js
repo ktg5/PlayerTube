@@ -447,7 +447,12 @@ function extraStyles() {
         /* This is 3rd-party CSS for those using the 2010 theme */
 
         #previewbar {
-            top: 0.5px !important;
+            top: 1px !important;
+        }
+
+        .ytp-autohide #previewbar {
+            top: -7px !important;
+            transform: scaleY(0.2);
         }
         
         .ytp-chrome-bottom .playerButton.ytp-button {
@@ -472,6 +477,23 @@ function extraStyles() {
         `
         <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
         ${thirdPartyCSS2010}
+        </style>
+        `
+        )
+    } else if (userConfig.year == "2006") {
+        var thirdPartyCSS2006 = 
+        `
+        /* This is 3rd-party CSS for those using the 2006 theme */
+
+        #previewbar {
+            transform: scaleY(1);
+        }
+        `
+
+        document.body.insertAdjacentHTML('afterbegin', 
+        `
+        <style id="playertube-css" class="playertube-3rd-party-2006" type="text/css">
+        ${thirdPartyCSS2006}
         </style>
         `
         )
