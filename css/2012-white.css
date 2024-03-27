@@ -201,24 +201,6 @@
 	color: #cacaca !important;
 }
 
-.ytp-button.ytp-share-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: 2px -524px;
-	transition: .5s !important;
-	background-size: 220px;
-	width: 40px !important;
-	bottom: 5px;
-}
-
-.ytp-button.ytp-cards-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: 5px -512px;
-	transition: .5s !important;
-	background-size: 200px;
-	width: 40px !important;
-	bottom: 5px;
-}
-
 /* ################################# */
 
 /* TOOLTIPS */

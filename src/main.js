@@ -228,26 +228,26 @@ function enableCustomTheme() {
             outputCssCustomTheme += `
             #container .ytp-scrubber-button {
                 background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+                border-radius: 0 !important;
             }
             `
         } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
             outputCssCustomTheme += `
             #container .ytp-scrubber-button:hover {
                 background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+                border-radius: 0 !important;
             }
             `
         } if (userConfig.scrubberIconHover !== null) {
             outputCssCustomTheme += `
             #container .ytp-scrubber-button:hover {
                 background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
+                border-radius: 0 !important;
             }
             `
         } if (userConfig.scrubberPosition !== null) {
             outputCssCustomTheme += `
             #container .ytp-scrubber-button {
-                background-position: ${userConfig.scrubberPosition} !important;
-            }
-            .ytp-scrubber-button:hover {
                 background-position: ${userConfig.scrubberPosition} !important;
             }
             `

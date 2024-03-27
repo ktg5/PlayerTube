@@ -501,7 +501,7 @@
 }
 
 .ytp-subtitles-button.ytp-button[aria-pressed=true] {
-	background-position: -32px -161px;
+	background-position: -34.5px -161px;
 }
 
 .ytp-subtitles-button.ytp-button[aria-pressed=true]:hover {
@@ -549,12 +549,15 @@
 }
 
 .ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -58px -133.5px !important;
+	background-position: -61px -133.5px !important;
 }
 
 .ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -93.5px -15.5px !important;
-    filter: brightness(1.5);
+	background-position: -96.5px -15.5px !important;
+}
+
+.ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
+	filter: brightness(1.5);
 }
 
 /* WATCH ON YOUTUBE BUTTON (only introduced in 2012) */
@@ -624,6 +627,15 @@
 	padding-top: 0px;
 }
 
+.ytp-chrome-top .ytp-playlist-menu-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+    background-position: -78px -914px;
+    transition: .5s !important;
+    background-size: 220px;
+    width: 40px !important;
+    bottom: 5px;
+}
+
 .ytp-title-text {
 	padding: 0px !important;
 	color: #cacaca;
@@ -641,7 +653,7 @@
 	color: #cacaca;
 }
 
-.ytp-button.ytp-share-button {
+.ytp-chrome-top .ytp-button.ytp-share-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 2px -524px;
 	transition: .5s !important;
@@ -650,7 +662,11 @@
 	bottom: 5px;
 }
 
-.ytp-button.ytp-cards-button {
+.ytp-chrome-top .ytp-button.ytp-share-button svg {
+	display: none;
+}
+
+.ytp-chrome-top .ytp-button.ytp-cards-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 5px -512px;
 	transition: .5s !important;
@@ -661,10 +677,6 @@
 
 .ytp-button.ytp-watch-later-button {
 	display: none !important;
-}
-
-.ytp-share-icon svg {
-	display: none;
 }
 
 .ytp-share-panel-service-button svg {

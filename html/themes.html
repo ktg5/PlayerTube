@@ -1,0 +1,281 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="base.css">
+        <script src="base.js"></script>
+        <title>PlayerTube : Extension Support</title>
+        <link rel="shortcut icon" type="image/png" href="../img/playertube/icon.png">
+
+        <div id="page-name" style="display: none;">Extension Support</div>
+    </head>
+
+
+    <body>
+        <div id="content">
+            <div id="top">
+                <div class="logoandver">
+                    <a href="update.html"><img src="../img/playertube/logo.png" height="100"></a>
+                    <div class="showVersion"></div>
+                </div>
+                
+                <nav>
+                    <a href="install.html">Welcome</a>
+                    <a href="update.html">Release Notes</a>
+                    <a href="extensions.html">Extension Support</a>
+                    <a href="themes.html">Custom Themes</a>
+                    <a href="https://github.com/ktg5/PlayerTube/issues">Report a Issue</a>
+                    <a href="https://ktg5.online">ktg5.online</a>
+                </nav>
+            </div>
+
+            <div class="text">
+                <h1>Custom Themes Guide</h1>
+                <h2>Index</h2>
+                <ul>
+                    <li><a class="page-selection" href="#1">1) Creating a Custom Theme</a></li>
+                    <ul>
+                        <li><a class="page-selection" href="#11">1.1) Enabling Custom Themes</a></li>
+                        <li><a class="page-selection" href="#12">1.2) Creating a Custom Scrubber</a></li>
+                        <li><a class="page-selection" href="#13">1.3) Copying & Sharing your Custom Theme</a></li>
+                    </ul>
+
+                    <li><a class="page-selection" href="#2">2) Custom Theme Options</a></li>
+                    <ul>
+                        <li><a class="page-selection" href="#21">2.1) Color Selector</a></li>
+                        <li><a class="page-selection" href="#22">2.2) Link Option</a></li>
+                        <li><a class="page-selection" href="#23">2.3) Number Option</a></li>
+                    </ul>
+
+                    <li><a class="page-selection" href="#3">3) Adding a Custom Theme</a></li>
+                </ul>
+
+
+                <br>
+                <br>
+                <br>
+
+
+                <h2 id="1">Creating a Custom Theme</h2>
+                <p>
+                    Let's get straight into creating our own custom theme.
+                </p>
+
+                <br>
+
+                <h3 id="11">Enabling Custom Themes</h3>
+                <p>
+                    To enable custom themes, head over to the PlayerTube extension icon at the to
+                    of your browser. A popup should appear with the PlayerTube settings. We'll be
+                    using this a lot throughout the guide, so remember how to access it!
+                    <br>
+                    Inside of the PlayerTube configuration popup, scroll down to
+                    <kbd>Custom Theme Settings</kbd> and click on <kbd>Toggle Custom Theme</kbd>.
+                </p>
+                <img src="../img/docs/custom-theme-option.png" style="display: block;margin: auto;">
+                <p>
+                    Once the toggle option is set to on (aka is green), relaunch the PlayerTube
+                    settings, scroll down to the <kbd>Custom Theme Settings</kbd> again, and you
+                    should notice many more options for customization!
+                </p>
+                <p>
+                    Note that some options in the custom theme selection might not need to be
+                    changed. Make sure to read the option's title <b>and description</b> before
+                    changing it.
+                </p>
+                <p>
+                    You can find what each option does by looking at
+                    <a class="page-selection" href="#2">Custom Theme Options</a>, but most are
+                    easy to understand and we won't go over each one in this section.
+                </p>
+
+                <br>
+
+                <h3 id="12">Creating a Custom Scrubber</h3>
+                <p>
+                    When it comes to setting a custom scrubber, it'll need some patience and hope
+                    to get perfect, but it'll be worth it.
+                </p>
+                <p>
+                    For this, we'll be using this
+                    <a href="https://i.imgur.com/hJbFUyj.gif" target="_blank">GIF of Luigi walkin' with a hammer</a>.
+                    You may use the same image for practicing reasons.
+                </p>
+                <img src="https://i.imgur.com/hJbFUyj.gif" style="display: block;width: 6rem;margin: auto;">
+                <p>
+                    If you haven't already, make sure your image is uploaded to a website with
+                    <kbd>https://</kbd>, like <a href="https://imgur.com/">Imgur</a> or any other
+                    image hosting website that is free to access.
+                </p>
+                <p>
+                    First, we'll apply the GIF to the <a class="page-selection" href="#22">link option</a>
+                    on <kbd>Change the image of the Scrubber</kbd> under
+                    <kbd>Scrubber Base Settings</kbd>.
+                </p>
+                <img src="../img/docs/scrubber-link-input.png" style="display: block;margin: auto;">
+                <p>
+                    If you'll be using a different image when hovering over the scrubber, you may
+                    set that under the
+                    <kbd>Change the image of the Scrubber <b>when hovering</b></kbd> link option
+                    <br>
+                    Make sure that both the static and hover images you'll be using are the same
+                    size dimension-wise.
+                    <br>
+                    No need to change this option if you'll be using the same image for each
+                    condition.
+                </p>
+                <img src="../img/docs/scrubber-link-hover-input.png" style="display: block;margin: auto;">
+                <p>
+                    Next, let's temporarily set the scrubber size to <kbd>12</kbd> by using the
+                    <kbd>Change the image size of the Scrubber</kbd>
+                    <a class="page-selection" href="#23">number option</a> under
+                    <kbd>Scrubber Size</kbd> and load into a YouTube video to test out.
+                </p>
+                <img src="../img/docs/scrubber-first.png" style="display: block;margin: auto;">
+                <p>
+                    If you're able to tell that your image is there, or if it even changed to
+                    what the scrubber was before, you're getting there!
+                </p>
+                <p>
+                    If your scrubber image is too small, like shown in the screenshot above,
+                    I recommend multiplying or adding to it's current value by two. You can do
+                    the opposite if the image is bigger (obviously).
+                    <br>
+                    Make sure to reload the YouTube page you're using for testing everytime you
+                    update PlayerTube's configuration.
+                </p>
+                <p>
+                    When changing the image size, don't worry about if the image seems to be cut
+                    off. You can use the <kbd>Change the height of the Scrubber</kbd> and
+                    <kbd>Change the width of the Scrubber</kbd> number options that is below the
+                    <kbd>Change the image size of the Scrubber</kbd> number option to make the
+                    scrubber image appear and make it's actual size bigger.
+                    <br>
+                    Use the default size mentioned in the options' description for the height
+                    and width, which should be <kbd></kbd>, and change it so that it's perfect
+                    with the scrubber image you set.
+                </p>
+                <p>
+                    If you'd like to move the scrubber itself, you can find all the position
+                    settings under <kbd>Scrubber Position</kbd>.
+                </p>
+                <p>
+                    With this, you should have a complete custom scrubber! Hope this helps with
+                    your custom theme journey.
+                </p>
+
+                <br>
+
+                <h3 id="13">Copying & Sharing your Custom Theme</h3>
+                <p>
+                    To get a shareable version of your custom theme, use the
+                    <kbd>Copy Custom Theme Settings to Clipboard</kbd> button at the top of the
+                    <kbd>Custom Theme Settings</kbd> section of PlayerTube's configuration.
+                </p>
+                <p>
+                    User will then have to follow the steps on
+                    <a href="#3">Adding a Custom Theme</a> on this page to apply your theme using
+                    the settings you get from the
+                    <kbd>Copy Custom Theme Settings to Clipboard</kbd> button.
+                </p>
+
+
+                <br>
+                <br>
+                <br>
+
+
+                <h2 id="2">Custom Theme Options</h2>
+                <p>
+                    Basic documentation about each option found in the custom theme selection.
+                    This also should be obvious, but the turning icon button resets the option next
+                    to it.
+                </p>
+
+                <br>
+
+                <h3 id="21">Color Selector</h3>
+                <p>
+                    A color selector is used to set a custom color for the option it's linked to.
+                    Powered by <a href="https://coloris.js.org/" target="_blank">Coloris</a>.
+                </p>
+                <img src="../img/docs/color-selector-option.png" style="display: block;margin: auto;">
+                <p>
+                    Sometimes the box may appear as a HEX value and may not be usuable. If this
+                    happens, reopen PlayerTube's settings popup, as this is an issue with Coloris
+                    and the settings popup script which I'm too lazy to fix.
+                </p>
+                <p>
+                    You may click on the box next to the option on the right, and a color menu
+                    popup should show.
+                </p>
+                <img src="../img/docs/color-selector-menu.png" style="display: block;margin: auto;">
+                <p>
+                    You can either:
+                    <ul>
+                        <li>
+                            Use the many different sliders in the menu to change the color's hue,
+                            brightness, saturation, and transparency.
+                        </li>
+                    </ul>
+                    or
+                    <ul>
+                        <li>
+                            Use the HEX value at the bottom of the color menu popup. (Which should be
+                            of use if you're using the same color for multiple settings in your theme)
+                        </li>
+                    </ul>
+                </p>
+
+                <br>
+
+                <h3 id="22">Link Option</h3>
+                <p>
+                    Links are mainly used for a custom scrubber in your theme. 
+                    <br>
+                    All link options should be start with <kbd>https://</kbd> and <b>not
+                    <kbd>http://</kbd></b>, as YouTube uses <kbd>https://</kbd>.
+                </p>
+                <img src="../img/docs/link-option.png" style="display: block;margin: auto;">
+                <p>
+                    Pretty straight forward -- paste a link to a image into the box next to the option
+                    and that should do the trick.
+                </p>
+
+                <br>
+
+                <h3 id="23">Number Option</h3>
+                <p>
+                    Number options hold a number or value, mainly used for changing the size or
+                    position of something by pixels (aka <kbd>pxs</kbd>)
+                </p>
+                <img src="../img/docs/number-option.png" style="display: block;margin: auto;">
+                <p>
+                    Simply input a number into the box next to the option's title to set it's value.
+                </p>
+
+
+                <br>
+                <br>
+                <br>
+
+
+                <h2 id="3">Adding a Custom Theme</h2>
+                <b>If you're coming from the last parts of this guide, this part is not needed.</b>
+                <p>
+                    Adding a custom theme is very simple in PlayerTube. All you have to do is get the
+                    code that the custom theme's author has given, and paste it into the
+                    <kbd>Import, Copy, or Reset Settings</kbd> text box on PlayerTube's configuration
+                    popup, then click the <kbd>Apply Settings</kbd>.
+                    <br>
+                    After that, reload your YouTube page, and your custom theme should work without a
+                    issue!
+                </p>
+                <img src="../img/docs/import-settings-option.png" style="display: block;margin: auto;">
+            </div>
+
+            <div id="credits">
+                <div class="text">Built with stupidity by</div>
+                <a href="https://ktg5.online/"><img id="ktg5-logo" src="https://ktg5.online/img/logo-r1.png" alt="No angels." height="60"></a>
+            </div>
+        </div>
+    </body>
+</html>

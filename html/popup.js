@@ -154,7 +154,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
+                            <input type="text" class="menu-input menu-action" placeholder="view desc." name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -166,7 +166,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name" style="max-width: 12em;">${desc}</div>
                         <div style="position: relative; left: 12px;">
-                            <input type="text" style="width: 4em;" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
+                            <input type="number" style="width: 4em;" class="menu-input menu-action" placeholder="0" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -178,7 +178,7 @@ async function start(userConfig) {
                     <div class="menu-option">
                         <div class="menu-name">${desc} (Must be an <kbd>https</kbd> link!)</div>
                         <div>
-                            <input type="text" class="menu-input menu-action" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
+                            <input type="url" class="menu-input menu-action" placeholder="https://" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
                             </button>
@@ -202,7 +202,7 @@ async function start(userConfig) {
 
     /// Get user config to display
     function getUserConfigText() {
-        var output = '{';
+        let output = '{';
         var count = 0;
         for (let element in userConfig) {
             count++;
@@ -228,6 +228,28 @@ async function start(userConfig) {
         console.log(`getUserConfigText`, `${output}`)
         return output;
     };
+
+    /// Get user config but only values under the Custom Theme section
+    async function getCustomThemeCfg() {
+        let output = {
+            controlsBack: userConfig.controlsBack,
+            settingsBgColor: userConfig.settingsBgColor,
+            progressBarColor: userConfig.progressBarColor,
+            progressBarBgColor: userConfig.progressBarBgColor,
+            volumeSliderBack: userConfig.volumeSliderBack,
+            scrubberIcon: userConfig.scrubberIcon,
+            scrubberIconHover: userConfig.scrubberIconHover,
+            scrubberPosition: userConfig.scrubberPosition,
+            scrubberSize: userConfig.scrubberSize,
+            scrubberHeight: userConfig.scrubberHeight,
+            scrubberWidth: userConfig.scrubberWidth,
+            scrubberTop: userConfig.togglePaidContent,
+            scrubberLeft: userConfig.scrubberLeft,
+        }
+
+        await navigator.clipboard.writeText(JSON.stringify(output));
+        return alert('Custom theme config copied to clipboard!');
+    }
 
     /// Set user config from input element at the bottom of the settings menu
     function overWriteUserConfig(input) {
@@ -257,6 +279,7 @@ async function start(userConfig) {
         alert(`User config completed. ${completedCount} settings were written, ${unknownCount} settings were not written`);
         console.log(`overWriteUserConfig input:`, jsonInput);
         console.log(`overWriteUserConfig current config:`, userConfig);
+        return;
     }
 
     // Start menu
@@ -318,6 +341,15 @@ async function start(userConfig) {
             <br>
 
             <h3>Custom Theme Settings</h3>
+            <p>
+                PlayerTube has the ability to change the look of it's multiple themes through
+                this menu. If you'd like to learn about how custom themes work & how to make
+                your own, check out the <a href="themes.html" target="_blank">Theme Guide</a>
+                that is included with this extension.
+                If you'd like to see some examples of some custom themes,
+                <a href='https://github.com/ktg5/PlayerTube#user-customization' target="_blank">
+                please check out this page on our ReadMe!</a>
+            </p>
 
             ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme', null, ['alternateMode'])}
 
@@ -327,10 +359,8 @@ async function start(userConfig) {
 
             <h3>Import, Copy, or Reset Settings</h3>
 
-            <textarea
-            id="menu-config-selection"
-            style="width: 21.2em; height: 8em; resize: vertical;"
-            >${collectedUserConfig}
+            <textarea id="menu-config-selection">
+            ${collectedUserConfig}
             </textarea>
         </div>
         `
@@ -360,11 +390,6 @@ async function start(userConfig) {
             `afterbegin`,
 
             `
-            <p>
-                If you'd like to see some examples of some custom themes,
-                <a href='https://github.com/ktg5/PlayerTube#user-customization' target="_blank">
-                please check out this page on our ReadMe!</a>
-            </p>
             <b>
                 Note: You're editing raw CSS values. If something like
                 the Scrubber doesn't seem to appear, try changing the
@@ -374,6 +399,10 @@ async function start(userConfig) {
             <br>
             <br>
 
+            <button class="menu-copy-theme"><b>Copy Custom Theme Settings to Clipboard</b></button>
+
+            <br>
+            <br>
             <b>Base Color Settings</b>
             ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
 
@@ -395,7 +424,7 @@ async function start(userConfig) {
 
             <br>
             <b>Scrubber Size</b>
-            ${makeMenuOption('input', 'scrubberSize', 'Change the size of the Scrubber', 'pxs')}
+            ${makeMenuOption('input', 'scrubberSize', 'Change the image size of the Scrubber', 'pxs')}
             <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
 
             ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the Scrubber', 'pxs')}
@@ -518,14 +547,19 @@ async function start(userConfig) {
         }
     }
     // Event listeners for reset & overwrite config.
-    document.getElementsByClassName('menu-apply-overwrite-button')[0]
+    document.querySelector('.menu-apply-overwrite-button')
     .addEventListener('click', async () => {
-        overWriteUserConfig(document.getElementById(`menu-config-selection`).value)
+        overWriteUserConfig(document.getElementById(`menu-config-selection`).value);
     });
 
-    document.getElementsByClassName('menu-nuke-all')[0]
+    document.querySelector('.menu-nuke-all')
     .addEventListener('click', async () => {
-        resetConfig()
+        resetConfig();
+    });
+
+    document.querySelector('.menu-copy-theme')
+    .addEventListener('click', async () => {
+        getCustomThemeCfg();
     });
 
 }

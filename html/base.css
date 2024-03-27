@@ -12,6 +12,18 @@ h1, h2, h3 {
     font-family: 'lol';
 }
 
+ul {
+    margin: 0;
+}
+
+ul li {
+    padding: 2px 0;
+}
+
+kbd {
+    color: #d9d9d9;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #282828;
@@ -22,6 +34,12 @@ body {
 .important {
     color: #ffc76f;
 }
+
+.selected {
+    background-color: #ffd900e6;
+    color: black;
+}
+
 
 /* Content */
 #content {
@@ -35,7 +53,19 @@ body {
     z-index: 1;
 }
 
-#logo .showVersion {
+/* top */
+#top {
+    width: fit-content;
+    margin: auto;
+    padding-bottom: 1em;
+}
+
+#top .logoandver {
+    width: fit-content;
+    margin: auto;
+}
+
+#top .logoandver .showVersion {
     font-family: 'lol';
     display: inline;
     position: relative;
@@ -44,15 +74,18 @@ body {
     bottom: 37px;
 }
 
+#top nav {
+    font-weight: bold;
+}
+
+#top nav a {
+    margin: 0 5px;
+}
+
+/* text */
 .text {
     max-width: 40em;
     margin: auto;
-}
-
-#logo {
-    width: fit-content;
-    margin: auto;
-    padding-bottom: 1em;
 }
 
 /* Credits */

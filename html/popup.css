@@ -12,6 +12,10 @@ a {
     color: #fc5454;
 }
 
+button {
+    cursor: pointer;
+}
+
 h1, h2, h3 {
     margin: 0;
     font-family: 'lol';
@@ -30,7 +34,6 @@ body {
 
 #yt-html5-menu-button button {
     background: transparent;
-    cursor: pointer;
     border: 0;
     rotate: 0deg;
     transition: all .25s;
@@ -63,13 +66,12 @@ body {
     z-index: 10;
 }
 
-.menu-message button {
+#yt-html5-menu .menu-message button {
     position: absolute;
     right: 17px;
-    cursor: pointer;
 }
 
-.menu-message img {
+#yt-html5-menu .menu-message img {
     width: 14px;
 }
 
@@ -123,6 +125,7 @@ body {
     position: relative;
     width: 8em;
     left: calc(100% - 8em);
+    overflow: hidden !important;
 }
 
 
@@ -134,7 +137,7 @@ body {
 
 #yt-html5-menu .menu-toggle {
     background: #1d1d1d;
-    border: 5px solid rgb(150 150 150 / 10%);
+    border: 5px solid #000;
     border-radius: 1em;
     transition: all .25s;
     position: relative;
@@ -151,9 +154,11 @@ body {
 #yt-html5-menu .menu-toggle .light {
     content: '';
     display: block;
+    position: relative;
     background: #8f8f8f;
     border-radius: 1em;
     width: auto;
+    left: 0;
     height: 8px;
     transition: all .25s;
 }
@@ -166,7 +171,7 @@ body {
     border-radius: 1em;
     width: 100%;
     height: 8px;
-    top: -5px;
+    top: -4.5px;
     left: -5px;
     transition: all .25s;
     animation: alertButtonBorder 3s linear infinite;
@@ -174,10 +179,13 @@ body {
 
 #yt-html5-menu .menu-toggle .light.true {
     background: #04ff00;
+    left: 8px;
+    width: 18px;
 }
 
 #yt-html5-menu .menu-toggle .light.false {
     background: #ff0000;
+    width: 18px;
 }
 
 .clr-field button {
@@ -190,14 +198,37 @@ body {
     cursor: pointer;
 }
 
-#yt-html5-menu .menu-input[type="text"] {
+#yt-html5-menu .menu-input[type="text"],
+#yt-html5-menu .menu-input[type="url"]
+{
     width: 8em;
     height: 1.5em;
 }
 
-.menu-input-reset.menu-action {
+#yt-html5-menu .menu-input-reset.menu-action {
     position: relative;
     top: 2px;
+}
+
+
+#yt-html5-menu .menu-copy-theme {
+    background: #f48c8c;
+    width: 100%;
+}
+
+
+#yt-html5-menu .menu-apply-overwrite-button {
+    background: #f48c8c;
+    font-weight: bold;
+    width: 100%;
+}
+
+#yt-html5-menu #menu-config-selection {
+    background: #2f2f2f;
+    color: white;
+    width: 100% !important;
+    height: 10em;
+    resize: vertical;
 }
 
 
@@ -205,7 +236,6 @@ body {
     background: rgb(200, 0, 0);
     color: white;
     font-weight: bold;
-    cursor: pointer;
 }
 
 
