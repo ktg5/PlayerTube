@@ -6,7 +6,7 @@
     "homepage_url": "https://github.com/ktg5/PlayerTube",
 
     "background": {
-        "service_worker": "src/background.js"
+        "service_worker": "src/pt-background.js"
     },
 
     "action": {
@@ -24,23 +24,23 @@
     "content_scripts": [
         {
             "matches": ["*://*.youtube.com/*"],
-            "js": ["src/setup.js"],
+            "js": ["src/pt-setup.js"],
             "run_at": "document_start"
         },
         {
             "matches": ["*://*.youtube.com/*"],
-            "js": ["src/main.js"]
+            "js": ["src/pt-main.js"]
         },
 
         {
             "matches": ["*://*.youtube.com/embed/*"],
-            "js": ["src/setup.js"],
+            "js": ["src/pt-setup.js"],
             "run_at": "document_start",
             "all_frames": true
         },
         {
             "matches": ["*://*.youtube.com/embed/*"],
-            "js": ["src/main.js"],
+            "js": ["src/pt-main.js"],
             "all_frames": true
         }
     ],

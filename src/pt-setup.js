@@ -28,7 +28,7 @@ var styles3 = [
 console.log(`%c░█▀▀█ █── █▀▀█ █──█ █▀▀ █▀▀█ ▀▀█▀▀ █──█ █▀▀▄ █▀▀ `, styles1)
 console.log(`%c░█▄▄█ █── █▄▄█ █▄▄█ █▀▀ █▄▄▀ ─░█── █──█ █▀▀▄ █▀▀ `, styles1)
 console.log(`%c░█─── ▀▀▀ ▀──▀ ▄▄▄█ ▀▀▀ ▀─▀▀ ─░█── ─▀▀▀ ▀▀▀─ ▀▀▀ ... is up and running!`, styles1)
-console.log(`%cIf you enabled some of the debug stuff, search for "PlayerTube" or "main.js" (other extensions could show up with that) in the console!`, styles2)
+console.log(`%cIf you enabled some of the debug stuff, or wanna look at what the extension is doing, search for "pt-" in the console to get everything!`, styles2)
 
 // Shortcuts
 if (navigator.userAgent.includes("Chrome")) browser = chrome;

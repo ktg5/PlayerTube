@@ -4,6 +4,7 @@ var currentPath = window.location.href;
 var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
 var extensionLocation = runtime.getURL('');
+var isinTheaterMode = false;
 
 // Fix for older configs
 if (userConfig.year == '2015') {
@@ -51,9 +52,9 @@ setInterval(() => {
 
     /// Fake bar heartbeat
     if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
-        if (!document.getElementsByClassName('video-stream html5-main-video')[0] 
-        || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true
-        || !document.getElementById('playertube-fake-bar')) {
+        if (!document.getElementsByClassName('video-stream html5-main-video')[0] ||
+            document.getElementsByClassName('video-stream html5-main-video')[0].paused == true ||
+            !document.getElementById('playertube-fake-bar')) {
             return;
         } else {
             // Video to pull info off of
@@ -74,7 +75,7 @@ setInterval(() => {
     }
 }, 1000);
 
-// This is now used in embeds
+// Mainly used in fullscreen & embeds
 function progressBarChanger() {
     setInterval(() => {
         // Check progress bar
@@ -113,7 +114,7 @@ if (!window.location.href.includes('embed')) {
             var srcDoc = document.createElement('script');
             srcDoc.id = 'playertube-js';
             srcDoc.className = 'playertube-resize-bar';
-            srcDoc.src = runtime.getURL(`src/resize.js`);
+            srcDoc.src = runtime.getURL(`src/pt-resize.js`);
             document.body.append(srcDoc);
             // Stop
             clearInterval(tempInterval);
@@ -125,41 +126,46 @@ if (!window.location.href.includes('embed')) {
 // Button & value checks
 setInterval(() => {
     // Check buttons & values
+    let nextButton = document.querySelector('.ytp-next-button');
+    let prevButton = document.querySelector('.ytp-prev-button');
+    let buttonBase = document.querySelector('.ytp-chrome-bottom');
     /// Left & Right
-    if (document.querySelector('.ytp-next-button') &&
-    document.querySelector('.ytp-prev-button') &&
-    document.querySelector('.ytp-chrome-bottom')) {
+    if (nextButton &&
+        prevButton &&
+        buttonBase) {
         // Left
-        if (document.querySelector('.ytp-next-button').getAttribute('style') == "display: none;") {
-            document.querySelector('.ytp-chrome-bottom').classList.add('no-right-button');
+        if (nextButton.getAttribute('style') == "display: none;") {
+            buttonBase.classList.add('no-right-button');
         } else {
             // Remove if spotted
-            if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-right-button')) {
-                document.querySelector('.ytp-chrome-bottom').classList.remove('no-right-button');
+            if (buttonBase.classList.contains('no-right-button')) {
+                buttonBase.classList.remove('no-right-button');
             }
         }
     
         // Right
-        if (document.querySelector('.ytp-prev-button').getAttribute('style') == "display: none;") {
-            document.querySelector('.ytp-chrome-bottom').classList.add('no-left-button');
+        if (prevButton.getAttribute('style') == "display: none;") {
+            buttonBase.classList.add('no-left-button');
         } else {
             // Remove if spotted
-            if (document.querySelector('.ytp-chrome-bottom').classList.contains('no-left-button')) {
-                document.querySelector('.ytp-chrome-bottom').classList.remove('no-left-button');
+            if (buttonBase.classList.contains('no-left-button')) {
+                buttonBase.classList.remove('no-left-button');
             }
         }
     }
 
     /// Volume (exact & simple)
-    if (document.querySelector('.ytp-chrome-bottom') &&
-    document.querySelector('.ytp-volume-area') &&
-    document.querySelector('.ytp-volume-panel')) {
-        var volumePanel = document.querySelector('.ytp-volume-panel');
-        var volumeValue = volumePanel.getAttribute('aria-valuenow');
+    let volumePanel = document.querySelector('.ytp-volume-panel');
+    let volumeArea = document.querySelector('.ytp-volume-area');
+    if (buttonBase &&
+        volumeArea &&
+        volumePanel) {
+        // Extra let
+        let volumeValue = volumePanel.getAttribute('aria-valuenow');
         // Set exact value
-        document.querySelector('.ytp-volume-area').setAttribute('volumenow', volumeValue);
+        volumeArea.setAttribute('volumenow', volumeValue);
         // Set simple value (for CSS)
-        var simpleVol;
+        let simpleVol;
         switch (true) {
             case parseInt(volumeValue) == 0:
                 simpleVol = 'none';
@@ -177,13 +183,28 @@ setInterval(() => {
                 simpleVol = 'high';
             break;
         }
-        document.querySelector('.ytp-volume-area').setAttribute('simplevolumenow', simpleVol);
+        volumeArea.setAttribute('simplevolumenow', simpleVol);
+    }
+
+    /// Theater mode (mainly used for (if i even want to) JS stuff, prob not CSS)
+    /// Which, if anyone is wondering, you can use "ytd-watch-flexy[theater]" for
+    /// theater mode detection for CSS, that is if the element you're trying to
+    /// get is inside of the "ytd-watch-flexy" element.
+    let ytpWatchFlex = document.querySelector('ytd-watch-flexy');
+    if (ytpWatchFlex) {
+        // After check
+        let theaterCheck = document.querySelector('ytd-watch-flexy').getAttribute('theater');
+        if (theaterCheck !== null) { // if getAttribute gets nothing, it should be null
+            isinTheaterMode = true;
+        } else { // usually is just a blank string, like: ''.
+            isinTheaterMode = false;
+        }
+        // console.log('theater mode check:', isinTheaterMode);
     }
 }, 500);
 
 // You might be asking, "why is this a thing?"
-// You'd only understand if you were dealing
-// CSS.
+// You'd only understand if you were dealing CSS.
 var loadedPlayerStyle = false;
 
 // Custom theme stuff
@@ -504,7 +525,9 @@ function extraStyles() {
 // Watch later
 function watchLaterButtonAdd() {
     // Make button
-    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`)
+    var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`);
+    // Need to make a interval because the subtitle button appears whenever
+    // the YouTube page is done loading
     let tempInterval = setInterval(() => {
         if (subtitlesButton) {
             subtitlesButton.insertAdjacentHTML('beforebegin', `
@@ -518,7 +541,7 @@ function watchLaterButtonAdd() {
             // Click listener
             document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
                 function PTwatchLaterButton() {
-                    // CustomTube
+                    // CustomTube 
                     if (document.querySelector('[aria-label="Save to playlist"]')) {
                         document.querySelector('[aria-label="Save to playlist"]').click();
                     // Vanilla YouTube
@@ -537,7 +560,7 @@ function watchLaterButtonAdd() {
                 PTwatchLaterButton()
             });
 
-            // end check
+            // Stop interval so that we don't add any extra listeners or something else
             clearInterval(tempInterval);
         } else {
 
@@ -549,7 +572,7 @@ function watchLaterButtonAdd() {
 // Includes year theme & fake bar.
 // This function will keep going until it's happy.
 function startPlayer() {
-    // Keep going until we hit it.
+    // Keep going 'til we get a hit & are able to "inject".
     const starter = setInterval(async function () {
         switch (userConfig.year) {
             case '2012':
@@ -728,6 +751,7 @@ function startPlayer() {
         };
 
         // Make fake bar
+        // No need to load the JS for fake bar here, that's at the top of this script.
         if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
             if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
                 return;
