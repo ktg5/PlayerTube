@@ -341,7 +341,7 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png');
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png') !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
