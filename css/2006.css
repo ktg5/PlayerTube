@@ -85,11 +85,17 @@
 }
 
 .ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
+	right: -60px;
 	width: 60px;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar.finished:after {
     background: var(--pt-main-colour) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
+    background: var(--pt-main-colour);
+    opacity: 0.5;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:hover:after {
@@ -429,7 +435,6 @@
 
 .ytp-big-mode .ytp-right-controls .ytp-button {
     width: 40px !important;
-    bottom: 3px;
 }
 
 /* SUBTITLES BUTTON */
@@ -454,7 +459,7 @@
 }
 
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
-	display: none;
+	display: none !important;
 }
 
 .ytp-subtitles-button.ytp-button::after {

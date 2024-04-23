@@ -1,6 +1,16 @@
+/* player when in theater mode */
+
+ytd-watch-flexy[theater]:not([fullscreen]) ytd-player {
+    height: calc(100% - 10px);
+}
+
+/* side menu */
+
 #contentContainer.tp-yt-app-drawer[swipe-open].tp-yt-app-drawer::after {
     display: none;
 }
+
+/* spinner */
 
 .ytp-spinner {
     background: url("chrome-extension://__MSG_@@extension_id__/img/loading.gif") center center / contain no-repeat;

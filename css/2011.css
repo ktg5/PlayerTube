@@ -509,7 +509,7 @@
 }
 
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
-	display: none;
+	display: none !important;
 }
 
 .ytp-subtitles-button.ytp-button::after {
