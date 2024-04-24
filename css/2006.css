@@ -2,9 +2,9 @@
 
 :root {
 	--pt-background: linear-gradient(#d5d5d5, #a9a9a9);
-	--pt-main-colour: linear-gradient(#ffdbdb, #ff0202);
+	--pt-main-colour: linear-gradient(rgb(255, 225, 225), rgb(255, 0, 0));
     --pt-progress-bar-bg: rgba(34, 34, 34);
-    --pt-alt-colour: var(--pt-progress-bar-bg);
+    --pt-alt-colour: linear-gradient(rgba(255, 225, 225, 0.5), rgba(255, 0, 0, 0.5));
     --pt-volume-slider: rgb(15, 15, 15);
     --pt-settings-bg: rgb(255, 255, 255);
     --pt-progress-bar-full-height: 6px;
@@ -94,16 +94,11 @@
 }
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
-    background: var(--pt-main-colour);
-    opacity: 0.5;
+    background: var(--pt-alt-colour);
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:hover:after {
 	transform: scaleY(1);
-}
-
-.ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
-    background: var(--pt-alt-colour)
 }
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {

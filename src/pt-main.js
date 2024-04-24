@@ -437,6 +437,10 @@ function extraStyles() {
         }
 
         /* 3rd-party stuff for setting */
+        .ytp-autohide #previewbar {
+            transform: scaleY(0.5);
+            top: -8px;
+        }
         `
 
         if (userConfig.year == '2010') {

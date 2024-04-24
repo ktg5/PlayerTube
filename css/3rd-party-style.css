@@ -17,11 +17,6 @@ on the GitHUb repo! Much thanks! */
     top: 0px;
 }
 
-.ytp-autohide #previewbar {
-    transform: scaleY(0.5);
-    top: -8px;
-}
-
 .skipButtonControlBarContainer div {
     text-shadow: none;
     margin: auto;
