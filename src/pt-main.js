@@ -51,7 +51,7 @@ setInterval(() => {
     }
 
     /// Fake bar heartbeat
-    if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
+    if (userConfig.fakeBarToggle !== false) {
         if (!document.getElementsByClassName('video-stream html5-main-video')[0] ||
             document.getElementsByClassName('video-stream html5-main-video')[0].paused == true ||
             !document.getElementById('playertube-fake-bar')) {
@@ -474,11 +474,6 @@ function extraStyles() {
         #previewbar {
             top: 1px !important;
         }
-
-        .ytp-autohide #previewbar {
-            top: -7px !important;
-            transform: scaleY(0.2);
-        }
         
         .ytp-chrome-bottom .playerButton.ytp-button {
             background: none !important;
@@ -756,7 +751,7 @@ function startPlayer() {
 
         // Make fake bar
         // No need to load the JS for fake bar here, that's at the top of this script.
-        if (userConfig.toggleFadeOut !== true || userConfig.fakeBarToggle !== false) {
+        if (userConfig.fakeBarToggle !== false) {
             if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
                 return;
             } else {
