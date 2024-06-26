@@ -22,10 +22,9 @@
 .ytp-scrubber-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber.png) no-repeat !important;
     background-position: 0px 0px !important;
-    background-size: 18px !important;
+    background-size: 16px !important;
     height: 18px !important;
     width: 18px !important;
-    top: -2px;
     transition: .5s !important;
     position: relative;
 }

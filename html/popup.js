@@ -310,9 +310,9 @@ async function start(userConfig) {
 
             <h3>General Settings</h3>
 
-            ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
-
             ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes when reloading or updating PlayerTube')}
+
+            ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
 
             <div id="menu-if-alt-mode"></div>
 

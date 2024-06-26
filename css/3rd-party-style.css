@@ -36,9 +36,16 @@ on the GitHUb repo! Much thanks! */
     height: 80% !important;
 }
 
-.ytp-time-display #sponsorBlockDurationAfterSkips {
-    color: var(--alt-progress-text) !important;
+.ytp-left-controls .ytp-time-display #sponsorBlockDurationAfterSkips,
+.ytp-left-controls #skipButtonControlBarContainer 
+{
+    color: var(--pt-alt-progress-text) !important;
     text-shadow: none;
+}
+
+.ytp-left-controls .sponsorChapterText {
+    position: relative;
+    top: -1px;
 }
 
 .playerButton svg path {

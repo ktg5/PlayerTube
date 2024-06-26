@@ -24,7 +24,6 @@
 .ytp-button.ytp-prev-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1px;
-	background-size: 200px;
 }
 
 /* PLAY BUTTON */
@@ -32,7 +31,6 @@
 .ytp-button.ytp-play-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -50px -1330px;
-	background-size: 200px;
 	width: 55px !important;
 }
 
@@ -49,7 +47,6 @@
 .ytp-button.ytp-next-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: 4px -1216px;
-	background-size: 200px;
 	width: 45px !important;
 }	
 
@@ -58,7 +55,6 @@
 .ytp-button.ytp-mute-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -113px -154.5px;
-	background-size: 200px;
 	width: 45px !important;
 }
 
@@ -78,7 +74,7 @@
 
 /* MUTE */
 .ytp-button.ytp-mute-button[title="Unmute (m)"] {
-	background-position: -155px -1000px;
+	background-position: -155px -1000px !important;
 }
 
 .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
@@ -108,7 +104,6 @@
 .ytp-subtitles-button.ytp-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -116px -998px;
-	background-size: 200px;
 	bottom: 5px;
 }
 
@@ -121,7 +116,6 @@
 .ytp-button.ytp-settings-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -157.5px -521px;
-	background-size: 200px;
 	bottom: 5px;
 }
 
@@ -139,7 +133,6 @@
 
 .ytp-button.ytp-size-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-size: 200px;
 	bottom: 5px;
 }
 
@@ -158,7 +151,6 @@
 	background-position: -120px -268px;
 	position: sticky !important;
 	width: 55px !important;
-	background-size: 200px;
 	bottom: 5px;
 }
 
@@ -167,7 +159,6 @@
 .ytp-button.ytp-fullscreen-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -116px -523px;
-	background-size: 200px;
 	bottom: 5px;
 }
 
@@ -180,7 +171,6 @@
 .ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
 	background-position: -56px -1099px;
-	background-size: 200px;
 	display: inline-block;
 	bottom: 5px;
 }

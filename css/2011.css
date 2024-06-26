@@ -170,16 +170,6 @@
     height: 5px;
 }
 
-.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 20px );
-    margin-left: -12px;
-}
-
-.ytp-big-mode.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 48px );
-    margin-left: -24px;
-}
-
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {
     transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1), top .5s cubic-bezier(0.0,0.0,0.2,1);
 }
@@ -394,13 +384,15 @@
 /* CHAPTER TITLE */
 
 .ytp-chrome-bottom .ytp-chapter-title.ytp-button {
-	position: relative !important;
-    bottom: 2px;
     width: auto !important;
 }
 
 .ytp-big-mode .ytp-chapter-title-content {
 	font-size: 14px;
+}
+
+.ytp-chrome-bottom .ytp-chapter-container {
+    color: var(--pt-progress-text) !important;
 }
 
 .ytp-chapter-container .ytp-chapter-title-content {
@@ -823,6 +815,14 @@
     min-width: 0;
     max-width: 35px;
     background-position: -1px -524px;
+}
+
+/* ################################# */
+
+/* 3rd-party extensions */
+
+.ytp-autohide .ytp-chrome-bottom #previewbar {
+	top: -8px;
 }
 
 /* ################################# */

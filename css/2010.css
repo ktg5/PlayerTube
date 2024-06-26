@@ -157,16 +157,6 @@
     height: 5px;
 }
 
-.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 20px );
-    margin-left: -12px;
-}
-
-.ytp-big-mode.ytp-autohide .ytp-progress-bar-container {
-    width: calc( 100% + 48px );
-    margin-left: -24px;
-}
-
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {
     transition: bottom .5s cubic-bezier(0.0,0.0,0.2,1), top .5s cubic-bezier(0.0,0.0,0.2,1);
 }
@@ -258,6 +248,13 @@
 
 .ytp-button.ytp-sb.ytp-sb-subscribed {
 	width: auto;
+}
+
+.ytp-button.ytp-mute-button svg {
+	background-size: 36px !important;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* ################################# */
@@ -669,6 +666,14 @@
     min-width: 0;
     max-width: 35px;
     background-position: -1px -524px;
+}
+
+/* ################################# */
+
+/* 3rd-party extensions */
+
+.ytp-autohide .ytp-chrome-bottom #previewbar {
+	top: -5px;
 }
 
 /* ################################# */

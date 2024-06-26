@@ -470,10 +470,6 @@ function extraStyles() {
         var thirdPartyCSS2010 = 
         `
         /* This is 3rd-party CSS for those using the 2010 theme */
-
-        #previewbar {
-            top: 1px !important;
-        }
         
         .ytp-chrome-bottom .playerButton.ytp-button {
             background: none !important;
