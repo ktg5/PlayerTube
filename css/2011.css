@@ -825,4 +825,8 @@
 	top: -8px;
 }
 
+.ytp-big-mode.ytp-autohide .ytp-chrome-bottom #previewbar {
+    top: -10px;
+}
+
 /* ################################# */
