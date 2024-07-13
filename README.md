@@ -1,11 +1,12 @@
 <div align="center">
   <img src="img/playertube/logo-outline.png" width="400" alt="PlayerTube">
-  <br>
-  <a href="https://github.com/ktg5/PlayerTube/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/ktg5/playertube/build.yml"></img></a>
-  <a href="https://github.com/ktg5/PlayerTube/releases/latest"><img src="https://img.shields.io/github/v/release/ktg5/playertube?label=stable%20release"></img></a>
-  <a href="https://github.com/ktg5/PlayerTube/actions/workflows/build.yml"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fktg5%2FPlayerTube%2Fmain%2Fmanifest.json&query=version&prefix=v&label=dev%20release&color=darkblue"></a>
 </div>
 <div font-size="24px" align="center">The secret ingredient for a older (and better) looking YouTube.</div>
+<div align="center">
+  <a href="https://github.com/ktg5/PlayerTube/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/ktg5/playertube/build.yml"></a>
+  <a href="https://github.com/ktg5/PlayerTube/releases/latest"><img src="https://img.shields.io/github/v/release/ktg5/playertube?label=stable%20release"></a>
+  <a href="https://github.com/ktg5/PlayerTube/actions/workflows/build.yml"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fktg5%2FPlayerTube%2Fmain%2Fmanifest.json&query=version&prefix=v&label=dev%20release&color=darkblue"></a>
+</div>
 
 ## Screenshots.
 <div align="center">
