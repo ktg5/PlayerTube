@@ -322,6 +322,8 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
 
+            ${makeMenuOption(`toggle`, `toggleSpinner`, `Toggle the loading spinner that appears when loading a video`)}
+
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
 
             ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when not active`)}

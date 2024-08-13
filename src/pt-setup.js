@@ -53,6 +53,7 @@ var def_pt_config = {
     toggleRoundedCorners: false,
     togglePaidContent: false,
     toggleInfoCards: true,
+    toggleSpinner: true,
     customTheme: false,
 
     // Only for custom themes.

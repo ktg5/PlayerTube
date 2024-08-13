@@ -5,11 +5,26 @@ var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
 var extensionLocation = runtime.getURL('');
 var isinTheaterMode = false;
+// Elements
+var elements = {
+    "controlsbase": {
+        "default": "ytp-chrome-bottom",
+        "v3": "html5-video-controls"
+    }
+}
 
 // Fix for older configs
 if (userConfig.year == '2015') {
     userConfig.year = '2012';
     storage.set({PTConfig: userConfig});
+}
+
+// Check for Project V3 (Rehike in a extension)
+// false = isn't installed
+// true = is installed
+var isProjectV3 = false;
+if (document.querySelector('.v3#vor_debugger_container')) {
+    isProjectV3 = true;
 }
 
 // Put config in a element for certain scripts
@@ -42,15 +57,15 @@ function moveElement(element, pasteDiv) {
 };
 
 // Heartbeats
-setInterval(() => {
-    /// Make sure script reruns on page update.
+var mainHeartbeat = setInterval(() => {
+    // Make sure script reruns on page update.
     if (window.location.href !== currentPath) {
         startPlayer();
         progressBarChanger();
         currentPath = window.location.href;
     }
 
-    /// Fake bar heartbeat
+    // Fake bar heartbeat
     if (userConfig.fakeBarToggle !== false) {
         if (!document.getElementsByClassName('video-stream html5-main-video')[0] ||
             document.getElementsByClassName('video-stream html5-main-video')[0].paused == true ||
@@ -73,58 +88,7 @@ setInterval(() => {
             document.getElementById('playertube-fake-bar').style.setProperty('--pt-fakebar-loaded', `${(ytBuffered / ytVideoFull * 100).toFixed(2)}%`)
         }
     }
-}, 1000);
 
-// Mainly used in fullscreen & embeds
-function progressBarChanger() {
-    setInterval(() => {
-        // Check progress bar
-        if (progressbar) {
-            // If finished
-            if (progressbar.getAttribute('aria-valuemax') == progressbar.getAttribute('aria-valuenow')) {
-                progressbar.classList.add('finished');
-                console.log(`%cPlayerTube video finished, progress bar should be all main color.`, styles2);
-            // If restarted or keep going.
-            } else {
-                if (progressbar.classList.contains('finished')) {
-                    progressbar.classList.remove('finished');
-                    console.log(`%cPlayerTube video started, reerting back.`, styles2);
-                }
-            }
-        }
-    }, 1000);
-}
-
-
-// Inital startup.
-// When the page is (re)loaded.
-startPlayer();
-progressBarChanger();
-// Also add base CSS file
-var baseCSS = runtime.getURL(`css/base.css`);
-document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baseCSS}">`);
-
-
-// Insert resizing progress bar script
-// First, make sure this isn't a embed
-if (!window.location.href.includes('embed')) {
-    let tempInterval = setInterval(() => {
-        if (document.querySelector('.video-stream.html5-main-video')) {
-            // Now insert
-            var srcDoc = document.createElement('script');
-            srcDoc.id = 'playertube-js';
-            srcDoc.className = 'playertube-resize-bar';
-            srcDoc.src = runtime.getURL(`src/pt-resize.js`);
-            document.body.append(srcDoc);
-            // Stop
-            clearInterval(tempInterval);
-        }
-    }, 1000);
-}
-
-
-// Button & value checks
-setInterval(() => {
     // Check buttons & values
     let nextButton = document.querySelector('.ytp-next-button');
     let prevButton = document.querySelector('.ytp-prev-button');
@@ -154,7 +118,7 @@ setInterval(() => {
         }
     }
 
-    /// Volume (exact & simple)
+    // Volume (exact & simple)
     let volumePanel = document.querySelector('.ytp-volume-panel');
     let volumeArea = document.querySelector('.ytp-volume-area');
     if (buttonBase &&
@@ -186,10 +150,10 @@ setInterval(() => {
         volumeArea.setAttribute('simplevolumenow', simpleVol);
     }
 
-    /// Theater mode (mainly used for (if i even want to) JS stuff, prob not CSS)
-    /// Which, if anyone is wondering, you can use "ytd-watch-flexy[theater]" for
-    /// theater mode detection for CSS, that is if the element you're trying to
-    /// get is inside of the "ytd-watch-flexy" element.
+    // Theater mode (mainly used for (if i even want to) JS stuff, prob not CSS)
+    // Which, if anyone is wondering, you can use "ytd-watch-flexy[theater]" for
+    // theater mode detection for CSS, that is if the element you're trying to
+    // get is inside of the "ytd-watch-flexy" element.
     let ytpWatchFlex = document.querySelector('ytd-watch-flexy');
     if (ytpWatchFlex) {
         // After check
@@ -201,7 +165,59 @@ setInterval(() => {
         }
         // console.log('theater mode check:', isinTheaterMode);
     }
-}, 500);
+}, 1000);
+
+// Mainly used in fullscreen & embeds
+var progressBarFullDetector;
+function progressBarChanger() {
+    // Project V3 doesn't need this
+    if (isProjectV3 == false) {
+        progressBarFullDetector = setInterval(() => {
+            // Check progress bar
+            if (progressbar) {
+                // If finished
+                if (progressbar.getAttribute('aria-valuemax') == progressbar.getAttribute('aria-valuenow')) {
+                    progressbar.classList.add('finished');
+                    console.log(`%cPlayerTube video finished, progress bar should be all main color.`, styles2);
+                // If restarted or keep going.
+                } else {
+                    if (progressbar.classList.contains('finished')) {
+                        progressbar.classList.remove('finished');
+                        console.log(`%cPlayerTube video started, reerting back.`, styles2);
+                    }
+                }
+            }
+        }, 1000);
+    }
+}
+
+
+// Inital startup.
+// When the page is (re)loaded.
+startPlayer();
+progressBarChanger();
+// Also add base CSS file
+var baseCSS = runtime.getURL(`css/base.css`);
+document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baseCSS}">`);
+
+
+// Insert resizing progress bar script
+// First, make sure this isn't a embed and isn't using Project V3, as they don't have the weird stuff YT does
+if (!window.location.href.includes('embed') && isProjectV3 == false) {
+    let tempInterval = setInterval(() => {
+        if (document.querySelector('.video-stream.html5-main-video')) {
+            // Now insert
+            var srcDoc = document.createElement('script');
+            srcDoc.id = 'playertube-js';
+            srcDoc.className = 'playertube-resize-bar';
+            srcDoc.src = runtime.getURL(`src/pt-resize.js`);
+            document.body.append(srcDoc);
+            // Stop
+            clearInterval(tempInterval);
+        }
+    }, 1000);
+}
+
 
 // You might be asking, "why is this a thing?"
 // You'd only understand if you were dealing CSS.
@@ -458,6 +474,13 @@ function extraStyles() {
             bottom: 0 !important;
         }
         `
+    } if (userConfig.toggleSpinner == false) {
+        outputCssToggles += `
+        .ytp-spinner {
+            background: none !important;
+            height: auto !important;
+        }
+        `
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
@@ -571,8 +594,10 @@ function startPlayer() {
     const starter = setInterval(async function () {
         switch (userConfig.year) {
             case '2012':
-                // IMPORT CSS (if it wasn't already loaded)
-                if (loadedPlayerStyle == false) {
+                // Project V3 uses it's own 2012 theme which can't be disabled, but that's fine by me.
+                // (makes my life easier lmao)
+                // also, IMPORT CSS (if it wasn't already loaded)
+                if (isProjectV3 == false && loadedPlayerStyle == false) {
                     // Base
                     var baselink = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
@@ -615,7 +640,9 @@ function startPlayer() {
                     extraStyles();
 
                     // Custom watch later button
-                    watchLaterButtonAdd();
+                    if (isProjectV3 == false) {
+                        watchLaterButtonAdd();
+                    }
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -755,7 +782,7 @@ function startPlayer() {
                 var link = runtime.getURL(`css/fakebar.css`);
                 document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
                 /// Load fake bar HTML
-                document.getElementsByClassName('ytp-chrome-bottom')[0].insertAdjacentHTML('afterend', 
+                document.getElementsByClassName(elements.controlsbase[isProjectV3 ? 'v3' : 'default'])[0].insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
                     `
                     <div id="playertube-fake-bar">
                         <div class="current"></div>
