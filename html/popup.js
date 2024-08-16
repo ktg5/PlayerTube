@@ -10,7 +10,7 @@ var runtime = browser.runtime;
 // Default config
 var def_pt_config = {
     // Basic settings.
-    year: '2012',
+    year: '2013',
     showReleaseNotes: true,
     alternateMode: false,
     autoplayButton: false,
@@ -24,6 +24,7 @@ var def_pt_config = {
     toggleRoundedCorners: false,
     togglePaidContent: false,
     toggleInfoCards: true,
+    toggleSpinner: true,
     customTheme: false,
 
     // Only for custom themes.
@@ -190,7 +191,7 @@ async function start(userConfig) {
     }
 
     /// Get year options for menu
-    var years = [2012, 2011, 2010, 2006];
+    var years = [2013, 2012, 2010, 2006];
     var yearOptions = '';
     years.forEach(element => {
         if (element == userConfig['year']) {
@@ -374,8 +375,8 @@ async function start(userConfig) {
     }, 10);
 
     // Checks
-    // If theme is 2010 or 2012, show Alternate Theme opinion
-    if (userConfig.year == "2010" || userConfig.year == "2012") {
+    // If theme is 2010 or 2013, show Alternate Theme opinion
+    if (userConfig.year == "2010" || userConfig.year == "2013") {
         document.getElementById('menu-if-alt-mode').insertAdjacentHTML(
             `afterbegin`,
             

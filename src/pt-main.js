@@ -14,7 +14,7 @@ var elements = {
 }
 
 // Fix for older configs
-if (userConfig.year == '2015') {
+if (userConfig.year == '2011') {
     userConfig.year = '2012';
     storage.set({PTConfig: userConfig});
 }
@@ -25,6 +25,10 @@ if (userConfig.year == '2015') {
 var isProjectV3 = false;
 if (document.querySelector('.v3#vor_debugger_container')) {
     isProjectV3 = true;
+    console.log('Project V3 detected');
+    // Add the "forv3.css" file
+    let link = runtime.getURL('css/forv3.css');
+    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-forv3" rel="stylesheet" type="text/css" href="${link}">`);
 }
 
 // Put config in a element for certain scripts
@@ -121,6 +125,11 @@ var mainHeartbeat = setInterval(() => {
     // Volume (exact & simple)
     let volumePanel = document.querySelector('.ytp-volume-panel');
     let volumeArea = document.querySelector('.ytp-volume-area');
+    // Update volume area elmnt to work with v3 if detected
+    if (isProjectV3 == true) {
+        volumeArea = document.querySelector('.ytp-volume-hover-area');
+    }
+    // Set values
     if (buttonBase &&
         volumeArea &&
         volumePanel) {
@@ -129,25 +138,29 @@ var mainHeartbeat = setInterval(() => {
         // Set exact value
         volumeArea.setAttribute('volumenow', volumeValue);
         // Set simple value (for CSS)
+        setSimpleVolume(volumeValue);
+    }
+    function setSimpleVolume(value) {
         let simpleVol;
         switch (true) {
-            case parseInt(volumeValue) == 0:
+            case parseInt(value) == 0:
                 simpleVol = 'none';
             break;
 
-            case parseInt(volumeValue) <= 25:
+            case parseInt(value) <= 25:
                 simpleVol = 'low';
             break;
 
-            case parseInt(volumeValue) <= 75:
+            case parseInt(value) <= 75:
                 simpleVol = 'med';
             break;
         
-            case parseInt(volumeValue) >= 75:
+            case parseInt(value) >= 75:
                 simpleVol = 'high';
             break;
         }
         volumeArea.setAttribute('simplevolumenow', simpleVol);
+        return {attr: volumeArea.getAttribute('simplevolumenow'), simpleVol: simpleVol};
     }
 
     // Theater mode (mainly used for (if i even want to) JS stuff, prob not CSS)
@@ -164,6 +177,18 @@ var mainHeartbeat = setInterval(() => {
             isinTheaterMode = false;
         }
         // console.log('theater mode check:', isinTheaterMode);
+    }
+
+    // Make sure the config year is either in the body or the body containter depending on if project v3 is on
+    if (isProjectV3 == true) {
+        let targetDiv = document.querySelector('.spitfire-body-container.v3');
+        if (!targetDiv.getAttribute('pt-year') && targetDiv.getAttribute('pt-year') !== userConfig.year) {
+            targetDiv.setAttribute('pt-year', userConfig.year);
+        }
+    } else {
+        if (!document.body.getAttribute('pt-year') && document.body.getAttribute('pt-year') !== userConfig.year) {
+            document.body.setAttribute('pt-year', userConfig.year);
+        }
     }
 }, 1000);
 
@@ -593,8 +618,8 @@ function startPlayer() {
     // Keep going 'til we get a hit & are able to "inject".
     const starter = setInterval(async function () {
         switch (userConfig.year) {
-            case '2012':
-                // Project V3 uses it's own 2012 theme which can't be disabled, but that's fine by me.
+            case '2013':
+                // Project V3 uses it's own 2013 theme which can't be disabled, but that's fine by me.
                 // (makes my life easier lmao)
                 // also, IMPORT CSS (if it wasn't already loaded)
                 if (isProjectV3 == false && loadedPlayerStyle == false) {
@@ -617,6 +642,22 @@ function startPlayer() {
 
                     // Custom watch later button
                     watchLaterButtonAdd();
+                } else if (isProjectV3 == true && loadedPlayerStyle == false) {
+                    // Make a basic style script for V3 with root vars and stuff
+                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `
+                        <style id="playertube-css" class="playertube-v3-2013">
+                            :root {
+                                --pt-main-colour: #cc181e;
+                                --pt-alt-colour: rgba(255,255,255,.3);
+                                --pt-volume-slider: #cc181e;
+                                --pt-progress-bar-bg: #444;
+                            }
+                        </style>
+                    `);
+                    if (userConfig.alternateMode == true) {
+                        // todo
+                    }
+                    extraStyles();
                 }
 
                 // IMPORT USER CUSTOMIZATION
@@ -628,12 +669,18 @@ function startPlayer() {
                 }
             break;
 
-            case '2011':
+            case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
                     // Base
-                    var link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    let link;
+                    if (isProjectV3 == true) {
+                        link = runtime.getURL(`css/v3/${userConfig.year}.css`);
+                        document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    } else {
+                        link = runtime.getURL(`css/${userConfig.year}.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    }
                     loadedPlayerStyle = true;
 
                     // IMPORT THE OTHER CSS
@@ -654,15 +701,36 @@ function startPlayer() {
             case '2010':
                 // IMPORT CSS (if it wasn't already loaded)
                 if (loadedPlayerStyle == false) {
-                    var baselink = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                    // Alt mode stuff
-                    if (userConfig.alternateMode == true) {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    let baselink,
+                        colorlink;
+                    if (isProjectV3 == true) {
+
+                        // V3
+                        baselink = runtime.getURL(`css/v3/${userConfig.year}.css`);
+                        document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                        // Alt mode stuff
+                        if (userConfig.alternateMode == true) {
+                            colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                            document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        } else {
+                            colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                            document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        }
+
                     } else {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+
+                        // Vanilla
+                        baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                        // Alt mode stuff
+                        if (userConfig.alternateMode == true) {
+                            colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        } else {
+                            colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        }
+
                     }
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS

@@ -2,10 +2,10 @@
 
 :root {
 	--pt-background: rgb(28, 28, 28);
-	--pt-main-colour: #b91f1f;
-	--pt-alt-colour: rgba(255,255,255,.4);
-	--pt-volume-slider: #b91f1f;
-	--pt-progress-bar-bg: rgb(66, 66, 66);
+	--pt-main-colour: #cc181e;
+	--pt-alt-colour: rgba(255,255,255,.3);
+	--pt-volume-slider: #cc181e;
+	--pt-progress-bar-bg: #444;
 	--pt-progress-text: #fff;
 	--pt-alt-progress-text: #969696;
 	--pt-settings-bg: rgb(35, 35, 35);
@@ -22,14 +22,14 @@
 /* PREV BUTTON */
 
 .ytp-button.ytp-prev-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: 4px -1px;
 }
 
 /* PLAY BUTTON */
 
 .ytp-button.ytp-play-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -50px -1330px;
 	width: 55px !important;
 }
@@ -45,7 +45,7 @@
 /* NEXT BUTTON */
 
 .ytp-button.ytp-next-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: 4px -1216px;
 	width: 45px !important;
 }	
@@ -53,7 +53,7 @@
 /* VOLUME BUTTON */
 /* DEFAULT */
 .ytp-button.ytp-mute-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -113px -154.5px;
 	width: 45px !important;
 }
@@ -102,7 +102,7 @@
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -116px -998px;
 	bottom: 5px;
 }
@@ -114,7 +114,7 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -157.5px -521px;
 	bottom: 5px;
 }
@@ -132,7 +132,7 @@
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	bottom: 5px;
 }
 
@@ -147,7 +147,7 @@
 /* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
 
 .ytp-button.ytp-youtube-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -120px -268px;
 	position: sticky !important;
 	width: 55px !important;
@@ -157,7 +157,7 @@
 /* FULLSCREEN BUTTON */
 
 .ytp-button.ytp-fullscreen-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -116px -523px;
 	bottom: 5px;
 }
@@ -169,7 +169,7 @@
 /* WATCH LATER (custom made) */
 
 .ytp-button.playertube-watchlater {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
 	background-position: -56px -1099px;
 	display: inline-block;
 	bottom: 5px;

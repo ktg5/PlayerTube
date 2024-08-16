@@ -1,7 +1,8 @@
 const fs = require('fs-extra');
-const fsPromises = require('fs/promises');
 const path = require('path');
 const Zip = require('adm-zip');
+const v3Process = require('./v3Maker');
+const process = require('process');
 
 
 // Before starting, make sure that the other folders don't exist.
@@ -18,11 +19,12 @@ if (fs.existsSync(firefoxDir)) {
     console.log(`Deleted past Firefox folder`);
 }
 
+
 // Function to copy all the dirs but not REALLY all of them.
 async function copyDir(sourceDir, newDir) {
     // Get dirs in the project folder.
-    var dirs = await fsPromises.readdir(sourceDir, { withFileTypes: true });
-    await fsPromises.mkdir(newDir);
+    var dirs = fs.readdirSync(sourceDir, { withFileTypes: true });
+    fs.mkdirSync(newDir);
     
     // now we finna do something with all of these dirs
     for (let entry of dirs) {
@@ -33,6 +35,8 @@ async function copyDir(sourceDir, newDir) {
             entry.name === 'psds' ||
             entry.name === 'node_modules' ||
             entry.name === 'build.js' ||
+            entry.name === 'v3Maker.js' ||
+            entry.name === 'v3elmnts.json' ||
             entry.name === 'package-lock.json' ||
             entry.name === 'package.json'
         ) continue;
@@ -43,10 +47,12 @@ async function copyDir(sourceDir, newDir) {
         if (entry.isDirectory()) {
             await copyDir(sourcePath, newPath);
         } else {
-            await fsPromises.copyFile(sourcePath, newPath);
+            fs.copyFileSync(sourcePath, newPath);
         }
     }
 }
+
+console.log(`-------------`);
 
 // Here's we build.
 // So first, let's copy this folder for Chrome.
@@ -80,7 +86,7 @@ copyDir('./', firefoxDir).then(async () => {
     // Then we modify the Firefox extension a bit cuz no
     // browser developer can come up with extension
     // manifest standards like WHY.
-    var firefoxManifest = JSON.parse(fs.readFileSync('../PlayerTube-Firefox/manifest.json', 'utf8'));
+    var firefoxManifest = JSON.parse(fs.readFileSync('../PlayerTube-Firefox/manifest.json', { encoding: 'utf8' }));
     firefoxManifest.manifest_version = 2;
     firefoxManifest.background = {
         "scripts": [
@@ -108,15 +114,31 @@ copyDir('./', firefoxDir).then(async () => {
 
     // Since v1.6, we also have to replace all the "chrome-extension://" with "moz-extension://"
     // WHY CAN'T IT JUST BE "extension://" OR SOMETHING??????
-    var cssFiles = fs.readdirSync('../PlayerTube-Firefox/css/');
-    // For each CSS file, do the replacing moment.
-    cssFiles.forEach(cssFileName => {
-        var cssPath = `../PlayerTube-Firefox/css/${cssFileName}`
-        var cssFile = fs.readFileSync(cssPath, 'utf8')
-        cssFile = cssFile.replaceAll('chrome-extension://', 'moz-extension://');
-        // Then write the CSS file with "cssFile"
-        fs.writeFileSync(cssPath, cssFile);
-    });
+    console.log('Replacing all css files that include "chrome-extension://" with "moz-extension://"');
+    // For each CSS file, do the replacing moment for both vanilla css and v3 css
+    async function replaceChromewithMoz(cssFiles) {
+        let fsCssFiles = fs.readdirSync(cssFiles);
+        fsCssFiles.forEach(cssFileName => {
+            let cssPath = `../PlayerTube-Firefox/css/${cssFileName}`;
+            // Make sure cssPath has an extension
+            if (cssPath.endsWith('.css')) {
+                process.stdout.write(`> ${cssPath}`);
+                // Read the CSS file
+                let cssFile = fs.readFileSync(cssPath, { encoding: 'utf8' });
+                // Replace all chrome-extension:// with moz-extension://
+                cssFile = cssFile.replaceAll('chrome-extension://', 'moz-extension://');
+                // Then write the CSS file with "cssFile"
+                fs.writeFileSync(cssPath, cssFile);
+                process.stdout.clearLine(0);
+                process.stdout.cursorTo(0);
+                process.stdout.write(`✓ ${cssPath}\n`);
+            }
+        });
+    };
+    await replaceChromewithMoz('../PlayerTube-Firefox/css/');
+    await replaceChromewithMoz('../PlayerTube-Firefox/css/v3/');
+
+    console.log(`Replace complete.`);
 
     // If the zip already exists...
     if (fs.existsSync('../PlayerTube-Firefox.zip')) {

@@ -1,3 +1,12 @@
+// Update (14.08.2024): this should fix the issue with "'TrustedHTML' assignment." bs whatever
+if (window.trustedTypes && window.trustedTypes.createPolicy) {  
+    window.trustedTypes.createPolicy('default', {  
+        createHTML: (string, sink) => string  
+    }); 
+} else {
+    console.error('TrustedTypes not supported, resize script will most likely fail.');
+}
+
 // Global vars
 var currentPath = window.location.href;
 var userConfig = JSON.parse(document.getElementById('playertube-config').innerHTML);
@@ -102,8 +111,8 @@ function getFixedWidth() {
     // Get actual current player width
     let videoWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
+        case '2013':
         case '2012':
-        case '2011':
         case '2010':
             result = videoWidth + getOffset(userConfig.year);
         break;

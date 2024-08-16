@@ -127,7 +127,7 @@
 /* SETTINGS BUTTON */
 
 .ytp-button.ytp-settings-button svg {
-	background: url('chrome-extension://__MSG_@@extension_id__/img/2011-icons.png') no-repeat;
+	background: url('chrome-extension://__MSG_@@extension_id__/img/2012-icons.png') no-repeat;
     background-position: -164px -132px;
     background-size: 200px;
     bottom: 5px;

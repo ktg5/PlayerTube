@@ -1,0 +1,19 @@
+{
+    ".ytp-chrome-bottom": ".html5-video-controls",
+    ".ytp-chrome-controls": ".html5-player-chrome",
+
+    ".ytp-play-button": "[tabindex=\"6000\"]",
+    "[tabindex=\"6000\"][data-title-no-tooltip=\"Play\"]": ".ytp-button-play",
+    ".ytp-prev-button": ".ytp-button-prev",
+    ".ytp-next-button": ".ytp-button-next",
+    ".ytp-mute-button": ".ytp-button-volume",
+
+    ".playertube-watchlater": ".ytp-button-watch-later",
+    ".ytp-subtitles-button[aria-pressed=true]": ".ytp-subtitles-button-active",
+    ".ytp-settings-button": "[aria-label=\"Settings\"]",
+    ".ytp-size-button": "[tabindex=\"6800\"]",
+    ".ytp-youtube-button": ".ytp-button-watch-on-youtube",
+    ".ytp-fullscreen-button": "[tabindex=\"6900\"]",
+
+    ".ytp-progress-bar.finished:after": ".ytp-play-progress"
+}

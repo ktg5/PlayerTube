@@ -436,7 +436,7 @@
 
 .ytp-subtitles-button.ytp-button {
     display: inline-block !important;
-    background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
     background-position: -60px -199px;
     background-size: 180px !important;
 }
@@ -465,7 +465,7 @@
 
 .ytp-button.ytp-settings-button {
     display: inline-block !important;
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2011-icons.png) no-repeat;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
     background-position: -147px -120px;
     background-size: 180px !important;
 }

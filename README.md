@@ -10,16 +10,16 @@
 
 ## Screenshots.
 <div align="center">
+  <img src="docs/2013/screenshot1.png">
+  <br>
+  <a href="docs/2013/photos.md">2013 Screenshots here</a>
+
+  <br>
+  <br>
+
   <img src="docs/2012/screenshot1.png">
   <br>
   <a href="docs/2012/photos.md">2012 Screenshots here</a>
-
-  <br>
-  <br>
-
-  <img src="docs/2011/screenshot1.png">
-  <br>
-  <a href="docs/2011/photos.md">2011 Screenshots here</a>
 
   <br>
   <br>

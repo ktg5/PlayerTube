@@ -1,0 +1,53 @@
+/* 
+    This CSS file is mainly used for when the user
+    is using Project V3.
+*/
+
+
+/* ### for all ### */
+/* progress bar */
+.spitfire-body-container.v3 .html5-video-controls .ytp-progress-bar-container {
+    bottom: 0 !important;
+}
+
+.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-play-progress {
+    background: var(--pt-main-colour) !important;
+}
+
+.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-load-progress {
+    background: var(--pt-alt-colour) !important;
+}
+
+.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-unloaded-progress {
+    background: var(--pt-progress-bar-bg) !important;
+}
+
+/* volume slider */
+.spitfire-body-container.v3 .html5-video-controls .ytp-volume-slider .ytp-volume-slider-foreground:before {
+    background: var(--pt-volume-slider) !important;
+}
+
+.spitfire-body-container.v3 .html5-video-controls .ytp-volume-slider .ytp-volume-slider-foreground:after {
+    background: black;
+}
+
+
+/* ### 2012 ### */
+/* base */
+.spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-video-controls {
+    height: 35px !important;
+}
+.spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-player-chrome {
+    background: transparent !important;
+}
+
+/* buttons */
+.spitfire-body-container.v3[pt-year="2012"] .ytp-button.ytp-button-volume {
+    width: 30px !important;
+}
+
+.spitfire-body-container.v3[pt-year="2012"] .ytp-subtitles-button-active {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
+    background-size: 200px;
+    bottom: 5px;
+}
