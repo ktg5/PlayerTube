@@ -3,6 +3,7 @@ const path = require('path');
 const Zip = require('adm-zip');
 const v3Process = require('./v3Maker');
 const process = require('process');
+const readline = require('readline');
 
 
 // Before starting, make sure that the other folders don't exist.
@@ -129,8 +130,8 @@ copyDir('./', firefoxDir).then(async () => {
                 cssFile = cssFile.replaceAll('chrome-extension://', 'moz-extension://');
                 // Then write the CSS file with "cssFile"
                 fs.writeFileSync(cssPath, cssFile);
-                process.stdout.clearLine(0);
-                process.stdout.cursorTo(0);
+                readline.clearLine(process.stdout, 0);
+                readline.cursorTo(process.stdout, 0, null);
                 process.stdout.write(`✓ ${cssPath}\n`);
             }
         });

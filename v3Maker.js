@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const fsPromises = require('fs/promises');
 const v3elmnts = require('./v3elmnts.json');
 const process = require('process');
+const readline = require('readline');
 
 
 // Make the v3 folder in the css folder
@@ -31,8 +32,8 @@ cssFiles.forEach(cssFileName => {
         }
         // Write to a new css file in the v3 folder
         fs.writeFileSync(`css/v3/${cssFileName}`, cssFile);
-        process.stdout.clearLine(0);
-        process.stdout.cursorTo(0);
+        readline.clearLine(process.stdout, 0);
+        readline.cursorTo(process.stdout, 0, null);
         process.stdout.write(`✓ ${cssFileName}\n`);
     };
 });
