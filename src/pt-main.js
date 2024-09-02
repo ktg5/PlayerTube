@@ -61,7 +61,7 @@ function moveElement(element, pasteDiv) {
 };
 
 // Heartbeats
-var mainHeartbeat = setInterval(() => {
+var ptMainHeartBeat = setInterval(async () => {
     // Make sure script reruns on page update.
     if (window.location.href !== currentPath) {
         startPlayer();
@@ -190,6 +190,8 @@ var mainHeartbeat = setInterval(() => {
             document.body.setAttribute('pt-year', userConfig.year);
         }
     }
+
+    // console.log('ptMainHeartBeat: still rolling...');
 }, 1000);
 
 // Mainly used in fullscreen & embeds
@@ -250,135 +252,149 @@ var loadedPlayerStyle = false;
 
 // Custom theme stuff
 var didCustomTheme = false;
-function enableCustomTheme() {
+async function enableCustomTheme() {
     if (didCustomTheme !== true) {
-        var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
-        if (userConfig.controlsBack !== null) {
-            outputCssCustomTheme += `
-            :root {
-                --pt-background: ${userConfig.controlsBack} !important;
-                --pt-background-top: ${userConfig.controlsBack} !important;
+        await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
+            let V3Renames = data;
+            // we're going prepare to make a "copy" of this data so that we can set the correct elements for if V3 is enabled or not
+            let elementNames = {};
+            // we'll now need to check if V3 is being used, and if not, we change the value of a key in V3Renames to the key.
+            for (const [key, value] of Object.entries(V3Renames)) {
+                if (isProjectV3 == true) {
+                    elementNames[key] = value;
+                } else {
+                    elementNames[key] = key;
+                }
             }
-            `
-        } if (userConfig.settingsBgColor !== null) {
-            outputCssCustomTheme += `
-            :root {
-                --pt-settings-bg: ${userConfig.settingsBgColor} !important;
-            }
-            `
-        } if (userConfig.progressBarColor !== null) {
-            outputCssCustomTheme += `
-            :root {
-                --pt-main-colour: ${userConfig.progressBarColor} !important;
-                --pt-volume-slider: ${userConfig.progressBarColor} !important;
-                --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
-            }
-            `
-        } if (userConfig.progressBarBgColor !== null) {
-            outputCssCustomTheme += `
-            :root {
-                --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
-            }
-            `
-        } if (userConfig.volumeSliderBack !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-volume-slider-handle::before {
-                background: ${userConfig.volumeSliderBack} !important;
-            }
-            `
-        } if (userConfig.scrubberIcon !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-button {
-                background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-                border-radius: 0 !important;
-            }
-            `
-        } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-button:hover {
-                background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-                border-radius: 0 !important;
-            }
-            `
-        } if (userConfig.scrubberIconHover !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-button:hover {
-                background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
-                border-radius: 0 !important;
-            }
-            `
-        } if (userConfig.scrubberPosition !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-button {
-                background-position: ${userConfig.scrubberPosition} !important;
-            }
-            `
-        } if (userConfig.scrubberSize !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-button {
-                background-size: ${userConfig.scrubberSize}px !important;
-            }
-            #container .ytp-scrubber-button:hover {
-                background-size: ${userConfig.scrubberSize}px !important;
-            }
-            `
-        } if (userConfig.scrubberHeight !== null) {
-            outputCssCustomTheme += `
-            /* default */
-            #container .ytp-scrubber-button {
-                height: ${userConfig.scrubberHeight}px !important;
-            }
-            #container .ytp-scrubber-button:hover {
-                height: ${userConfig.scrubberHeight}px !important;
-            }
-            `
-        } if (userConfig.scrubberWidth !== null) {
-            outputCssCustomTheme += `
-            /* default */
-            #container .ytp-scrubber-button {
-                width: ${userConfig.scrubberWidth}px !important;
-            }
-            #container .ytp-scrubber-button:hover {
-                width: ${userConfig.scrubberWidth}px !important;
-            }
-            `
-        } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
-            outputCssCustomTheme += `
-            /* default */
-            #container .ytp-scrubber-button {
-                width: ${userConfig.scrubberHeight}px !important;
-            }
-            #container .ytp-scrubber-button:hover {
-                width: ${userConfig.scrubberHeight}px !important;
-            }
-            `
-        } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
-            outputCssCustomTheme += `
-            /* default */
-            #container .ytp-scrubber-button {
-                height: ${userConfig.scrubberWidth}px !important;
-            }
-            #container .ytp-scrubber-button:hover {
-                height: ${userConfig.scrubberWidth}px !important;
-            }
-            `
-        } if (userConfig.scrubberTop !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-container {
-                top: ${userConfig.scrubberTop}px !important;
-            }
-            `
-        } if (userConfig.scrubberLeft !== null) {
-            outputCssCustomTheme += `
-            #container .ytp-scrubber-container {
-                left: ${userConfig.scrubberLeft}px !important;
-            }
-            `
-        }
-        // output css
-        document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
 
-        didCustomTheme = true;
+            var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
+            if (userConfig.controlsBack !== null) {
+                outputCssCustomTheme += `
+                :root {
+                    --pt-background: ${userConfig.controlsBack} !important;
+                    --pt-background-top: ${userConfig.controlsBack} !important;
+                }
+                `
+            } if (userConfig.settingsBgColor !== null) {
+                outputCssCustomTheme += `
+                :root {
+                    --pt-settings-bg: ${userConfig.settingsBgColor} !important;
+                }
+                `
+            } if (userConfig.progressBarColor !== null) {
+                outputCssCustomTheme += `
+                :root {
+                    --pt-main-colour: ${userConfig.progressBarColor} !important;
+                    --pt-volume-slider: ${userConfig.progressBarColor} !important;
+                    --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
+                }
+                `
+            } if (userConfig.progressBarBgColor !== null) {
+                outputCssCustomTheme += `
+                :root {
+                    --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
+                }
+                `
+            } if (userConfig.volumeSliderBack !== null) {
+                outputCssCustomTheme += `
+                ${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
+                    background: ${userConfig.volumeSliderBack} !important;
+                }
+                `
+            } if (userConfig.scrubberIcon !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-button {
+                    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+                    border-radius: 0 !important;
+                }
+                `
+            } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-button:hover {
+                    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+                    border-radius: 0 !important;
+                }
+                `
+            } if (userConfig.scrubberIconHover !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-button:hover {
+                    background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
+                    border-radius: 0 !important;
+                }
+                `
+            } if (userConfig.scrubberPosition !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-button {
+                    background-position: ${userConfig.scrubberPosition} !important;
+                }
+                `
+            } if (userConfig.scrubberSize !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-button {
+                    background-size: ${userConfig.scrubberSize}px !important;
+                }
+                #container .ytp-scrubber-button:hover {
+                    background-size: ${userConfig.scrubberSize}px !important;
+                }
+                `
+            } if (userConfig.scrubberHeight !== null) {
+                outputCssCustomTheme += `
+                /* default */
+                #container .ytp-scrubber-button {
+                    height: ${userConfig.scrubberHeight}px !important;
+                }
+                #container .ytp-scrubber-button:hover {
+                    height: ${userConfig.scrubberHeight}px !important;
+                }
+                `
+            } if (userConfig.scrubberWidth !== null) {
+                outputCssCustomTheme += `
+                /* default */
+                #container .ytp-scrubber-button {
+                    width: ${userConfig.scrubberWidth}px !important;
+                }
+                #container .ytp-scrubber-button:hover {
+                    width: ${userConfig.scrubberWidth}px !important;
+                }
+                `
+            } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
+                outputCssCustomTheme += `
+                /* default */
+                #container .ytp-scrubber-button {
+                    width: ${userConfig.scrubberHeight}px !important;
+                }
+                #container .ytp-scrubber-button:hover {
+                    width: ${userConfig.scrubberHeight}px !important;
+                }
+                `
+            } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
+                outputCssCustomTheme += `
+                /* default */
+                #container .ytp-scrubber-button {
+                    height: ${userConfig.scrubberWidth}px !important;
+                }
+                #container .ytp-scrubber-button:hover {
+                    height: ${userConfig.scrubberWidth}px !important;
+                }
+                `
+            } if (userConfig.scrubberTop !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-container {
+                    top: ${userConfig.scrubberTop}px !important;
+                }
+                `
+            } if (userConfig.scrubberLeft !== null) {
+                outputCssCustomTheme += `
+                #container .ytp-scrubber-container {
+                    left: ${userConfig.scrubberLeft}px !important;
+                }
+                `
+            }
+            // output css
+            document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
+
+            didCustomTheme = true;
+        });
     }
 }
 
@@ -662,7 +678,7 @@ function startPlayer() {
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
-                    enableCustomTheme();
+                    await enableCustomTheme();
                     // .ytp-scrubber-button.ytp-swatch-background-color {
                     //     background-color: transparent !important;
                     // }
@@ -694,7 +710,7 @@ function startPlayer() {
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
-                    enableCustomTheme();
+                    await enableCustomTheme();
                 }
             break;
 
@@ -739,7 +755,7 @@ function startPlayer() {
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
-                    enableCustomTheme();
+                    await enableCustomTheme();
 
                     var CustomThemeCss2010 = `
                     /* someother custom theme stuff for 2010 */
@@ -804,7 +820,7 @@ function startPlayer() {
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
-                    enableCustomTheme();
+                    await enableCustomTheme();
                 }
 
                 // Move stuffs

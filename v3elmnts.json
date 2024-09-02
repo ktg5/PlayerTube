@@ -1,4 +1,6 @@
 {
+    "#container": ".spitfire-body-container.v3",
+
     ".ytp-chrome-bottom": ".html5-video-controls",
     ".ytp-chrome-controls": ".html5-player-chrome",
 
@@ -7,6 +9,9 @@
     ".ytp-prev-button": ".ytp-button-prev",
     ".ytp-next-button": ".ytp-button-next",
     ".ytp-mute-button": ".ytp-button-volume",
+
+    ".ytp-volume-slider-handle::before": ".ytp-volume-slider-foreground::before",
+    ".ytp-volume-slider-handle::after": ".ytp-volume-slider-foreground::after",
 
     ".playertube-watchlater": ".ytp-button-watch-later",
     ".ytp-subtitles-button[aria-pressed=true]": ".ytp-subtitles-button-active",

@@ -433,10 +433,6 @@
 	height: 4px !important;
 }
 
-.ytp-volume-panel .ytp-volume-slider-handle::before {
-	left: -64px;
-}
-
 /* ################################# */
 
 /* RIGHT BUTTONS */

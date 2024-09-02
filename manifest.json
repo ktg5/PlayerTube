@@ -47,7 +47,7 @@
 
     "web_accessible_resources": [{
         "matches": ["*://*.youtube.com/*"],
-        "resources": ["css/*", "src/*", "img/*"]
+        "resources": ["css/*", "src/*", "img/*", "v3elmnts.json"]
     }],
 
     "permissions": [

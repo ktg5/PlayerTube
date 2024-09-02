@@ -22,15 +22,6 @@
     background: var(--pt-progress-bar-bg) !important;
 }
 
-/* volume slider */
-.spitfire-body-container.v3 .html5-video-controls .ytp-volume-slider .ytp-volume-slider-foreground:before {
-    background: var(--pt-volume-slider) !important;
-}
-
-.spitfire-body-container.v3 .html5-video-controls .ytp-volume-slider .ytp-volume-slider-foreground:after {
-    background: black;
-}
-
 
 /* ### 2012 ### */
 /* base */
@@ -38,14 +29,28 @@
     height: 35px !important;
 }
 .spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-player-chrome {
-    background: transparent !important;
+    top: -2px;
+}
+.spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-player-chrome:before {
+    content: '';
+    display: block;
+    position: relative;
+    top: 2px;
+    width: 100%;
+    height: 1px;
+    background: #ffffff33;
+}
+
+/* volume control & panel */
+.spitfire-body-container.v3[pt-year="2012"] .ytp-volume-slider-active .ytp-volume-panel {
+    width: 56px !important;
+}
+
+.spitfire-body-container.v3[pt-year="2012"] .ytp-volume-panel {
+    top: 2px;
 }
 
 /* buttons */
-.spitfire-body-container.v3[pt-year="2012"] .ytp-button.ytp-button-volume {
-    width: 30px !important;
-}
-
 .spitfire-body-container.v3[pt-year="2012"] .ytp-subtitles-button-active {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
     background-size: 200px;

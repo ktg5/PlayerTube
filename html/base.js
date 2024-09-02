@@ -10,7 +10,8 @@ var runtime = browser.runtime;
 /// Version
 var version = runtime.getManifest().version;
 
-setTimeout(() => {
+
+setTimeout(async () => {
     // Add version number to page title
     var pageName = document.getElementById('page-name').innerHTML;
     document.title = `PlayerTube v${version} : ${pageName}`;

@@ -305,9 +305,9 @@
 /* PLAY BUTTON */
 
 .ytp-button.ytp-play-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png);
-	background-position: -79px 153.5px;
-	background-size: 210px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
+	background-position: -79px 153.5px !important;
+	background-size: 210px !important;
 	width: 55px !important;
 }
 
@@ -316,11 +316,11 @@
 }
 
 .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
-	background-position: -114px 91.5px;
+	background-position: -114px 91.5px !important;
 }
 
 .ended-mode .ytp-button.ytp-play-button {
-	background-position: -114px 27px;
+	background-position: -114px 27px !important;
 }
 
 /* NEXT BUTTON */
@@ -331,9 +331,9 @@
 /* VOLUME BUTTON */
 /* DEFAULT */
 .ytp-button.ytp-mute-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png);
-	background-position: -175px -296px;
-	background-size: 210px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
+	background-position: -175px -296px !important;
+	background-size: 210px !important;
 	width: 40px !important;
 }
 
@@ -344,12 +344,12 @@
 
 /* MEDIUM VOLUME */
 .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button {
-    background-position: -138px -296px;
+    background-position: -138px -296px !important;
 }
 
 /* LOW VOLUME */
 .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button {
-    background-position: -138px -296px;
+    background-position: -138px -296px !important;
 }
 
 /* MUTE */
@@ -460,10 +460,6 @@
 .ytp-big-mode .ytp-volume-slider-handle:before {
     width: 64px;
     height: 4px !important;
-}
-
-.ytp-volume-panel .ytp-volume-slider-handle::before {
-	left: -64px;
 }
 
 /* ################################# */
