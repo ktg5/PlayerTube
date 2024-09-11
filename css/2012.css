@@ -190,7 +190,7 @@
 	background-size: 18px !important;
 	height: 18px !important;
 	width: 18px !important;
-	transition: .5s !important;
+	border: none;
 	position: relative;
 }
 
@@ -238,7 +238,7 @@
 /* BUTTONS BASE */
 
 .ytp-chrome-controls .ytp-left-controls {
-	top: -1px;
+	top: 1px;
 	padding-left: 0;
 }
 
@@ -385,6 +385,7 @@
 /* CHAPTER TITLE */
 
 .ytp-chrome-bottom .ytp-chapter-title.ytp-button {
+	top: 3px;
     width: auto !important;
 }
 
@@ -467,7 +468,7 @@
 /* RIGHT BUTTONS */
 
 .ytp-right-controls {
-	top: -1px;
+	top: 1px;
 	position: relative !important;
 	padding-right: 0px;
 }
@@ -812,6 +813,10 @@
     min-width: 0;
     max-width: 35px;
     background-position: -1px -524px;
+}
+
+.ytp-embed .ytp-left-controls, .ytp-embed .ytp-right-controls {
+	top: 3px;
 }
 
 /* ################################# */

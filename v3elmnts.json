@@ -4,6 +4,8 @@
     ".ytp-chrome-bottom": ".html5-video-controls",
     ".ytp-chrome-controls": ".html5-player-chrome",
 
+    ".ytp-scrubber-button": ".html5-scrubber-button",
+
     ".ytp-play-button": "[tabindex=\"6000\"]",
     "[tabindex=\"6000\"][data-title-no-tooltip=\"Play\"]": ".ytp-button-play",
     ".ytp-prev-button": ".ytp-button-prev",

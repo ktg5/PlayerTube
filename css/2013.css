@@ -162,7 +162,7 @@
 	background-size: 18px !important;
 	height: 18px !important;
 	width: 18px !important;
-	transition: .5s !important;
+	border: none;
 	position: relative;
 }
 

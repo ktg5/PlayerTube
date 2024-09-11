@@ -668,6 +668,16 @@ function startPlayer() {
                                 --pt-volume-slider: #cc181e;
                                 --pt-progress-bar-bg: #444;
                             }
+
+                            .ytp-scrubber-button {
+                                background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
+                                background-position: 0px 0px !important;
+                                background-size: 18px !important;
+                                height: 18px !important;
+                                width: 18px !important;
+                                border: none;
+                                position: relative;
+                            }
                         </style>
                     `);
                     if (userConfig.alternateMode == true) {

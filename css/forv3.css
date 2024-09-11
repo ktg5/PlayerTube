@@ -28,9 +28,6 @@
 .spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-video-controls {
     height: 35px !important;
 }
-.spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-player-chrome {
-    top: -2px;
-}
 .spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-player-chrome:before {
     content: '';
     display: block;
