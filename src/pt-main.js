@@ -23,7 +23,7 @@ if (userConfig.year == '2011') {
 // false = isn't installed
 // true = is installed
 var isProjectV3 = false;
-if (document.querySelector('.v3#vor_debugger_container')) {
+if (document.querySelector('.spitfire-body-container.v3')) {
     isProjectV3 = true;
     console.log('Project V3 detected');
     // Add the "forv3.css" file
@@ -303,89 +303,89 @@ async function enableCustomTheme() {
                 `
             } if (userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
                     border-radius: 0 !important;
                 }
                 `
             } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
                     border-radius: 0 !important;
                 }
                 `
             } if (userConfig.scrubberIconHover !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
                     border-radius: 0 !important;
                 }
                 `
             } if (userConfig.scrubberPosition !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     background-position: ${userConfig.scrubberPosition} !important;
                 }
                 `
             } if (userConfig.scrubberSize !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     background-size: ${userConfig.scrubberSize}px !important;
                 }
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     background-size: ${userConfig.scrubberSize}px !important;
                 }
                 `
             } if (userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
                 /* default */
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     height: ${userConfig.scrubberHeight}px !important;
                 }
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     height: ${userConfig.scrubberHeight}px !important;
                 }
                 `
             } if (userConfig.scrubberWidth !== null) {
                 outputCssCustomTheme += `
                 /* default */
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     width: ${userConfig.scrubberWidth}px !important;
                 }
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     width: ${userConfig.scrubberWidth}px !important;
                 }
                 `
             } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
                 /* default */
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     width: ${userConfig.scrubberHeight}px !important;
                 }
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     width: ${userConfig.scrubberHeight}px !important;
                 }
                 `
             } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
                 outputCssCustomTheme += `
                 /* default */
-                #container .ytp-scrubber-button {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
                     height: ${userConfig.scrubberWidth}px !important;
                 }
-                #container .ytp-scrubber-button:hover {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
                     height: ${userConfig.scrubberWidth}px !important;
                 }
                 `
             } if (userConfig.scrubberTop !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-container {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
                     top: ${userConfig.scrubberTop}px !important;
                 }
                 `
             } if (userConfig.scrubberLeft !== null) {
                 outputCssCustomTheme += `
-                #container .ytp-scrubber-container {
+                ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
                     left: ${userConfig.scrubberLeft}px !important;
                 }
                 `
@@ -770,11 +770,11 @@ function startPlayer() {
                     var CustomThemeCss2010 = `
                     /* someother custom theme stuff for 2010 */
 
-                    #container .ytp-chrome-controls {
+                    ${elementNames['#container']} .ytp-chrome-controls {
                         border-top: solid 2px #d1d1d180 !important;
                     }
 
-                    #container .ytp-chrome-bottom .ytp-left-controls:before {
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
                         position: absolute;
                         content: "";
                         height: 100%;
@@ -783,7 +783,7 @@ function startPlayer() {
                         background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
                     }
 
-                    #container .ytp-chrome-bottom .ytp-right-controls:before {
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
                         position: absolute;
                         content: "";
                         height: 100%;
@@ -791,16 +791,16 @@ function startPlayer() {
                         background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
                     }
 
-                    #container .ytp-chrome-bottom .ytp-button {
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
                         border: solid 1px rgb(255 255 255 / 35%);
                         background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
                     }
 
                     /* igrone background & border for the following: */
-                    #container .ytp-chrome-bottom .ytp-button.ytp-settings-button,
-                    #container .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-                    #container .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-                    #container .ytp-chrome-bottom .ytp-chapter-title.ytp-button
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                     {
                         background: none !important;
                         border: none !important;
