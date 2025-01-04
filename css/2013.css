@@ -342,6 +342,7 @@
 }
 
 .ytp-volume-slider-handle::before {
+	width: 58px;
 	background: var(--pt-main-colour);
     height: 4px;
 }
@@ -359,8 +360,8 @@
 	top: 20%;
 }
 
-.ytp-big-mode .ytp-volume-slider-handle:before {
-    width: 64px;
+.ytp-big-mode .ytp-volume-slider-handle::before {
+    width: 86px;
 	height: 4px !important;
 }
 
