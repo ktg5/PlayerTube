@@ -439,6 +439,7 @@
 }
 
 .ytp-volume-slider-handle::before {
+	width: 58px;
 	background: var(--pt-volume-slider);
     height: 5px;
 }
@@ -459,7 +460,7 @@
 }
 
 .ytp-big-mode .ytp-volume-slider-handle:before {
-    width: 64px;
+    width: 86px;
     height: 4px !important;
 }
 
