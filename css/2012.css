@@ -464,6 +464,10 @@
     height: 4px !important;
 }
 
+.ytp-big-mode .ytp-volume-slider-handle::after {
+	left: 0px;
+}
+
 /* ################################# */
 
 /* RIGHT BUTTONS */
