@@ -408,7 +408,10 @@
     top: 37.5%;
 }
 
+/* TODO: Weirdness happening here, investigate further! */
+
 .ytp-volume-slider-handle::before {
+	width: 58px;
 	background: var(--pt-volume-slider);
     height: 5px;
 }
@@ -424,12 +427,16 @@
     margin-top: 0px !important;
     height: 14px !important;
     width: 5px !important;
-    background: rgb(221, 221, 221);
+    background: rgb(226, 226, 226);
     border-radius: 0px !important;
 }
 
+.ytp-big-mode .ytp-volume-slider-handle::after {
+	left: 0px;
+}
+
 .ytp-big-mode .ytp-volume-slider-handle:before {
-    width: 64px;
+    width: 93px;
 	height: 4px !important;
 }
 
