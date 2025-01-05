@@ -122,6 +122,8 @@ body {
 
 
 #yt-html5-menu .menu-option select {
+    color: black;
+    background: white;
     position: relative;
     width: 8em;
     left: calc(100% - 8em);
@@ -218,6 +220,7 @@ body {
 
 
 #yt-html5-menu .menu-apply-overwrite-button {
+    color: white;
     background: #f48c8c;
     font-weight: bold;
     width: 100%;
