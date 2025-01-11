@@ -7,6 +7,7 @@
 	--pt-volume-slider: linear-gradient(180deg, #b22427, #751819);
 	--pt-main-colour-solid: #901b1d;
 	--pt-progress-bar-bg: rgb(34 34 34);
+	--pt-progress-bar-unfocused-height: 3px;
 	--pt-progress-bar-full-height: 10px;
 	--pt-progress-text: #fff;
 	--pt-alt-progress-text: #969696;
@@ -36,6 +37,7 @@
 	width: 100% !important;
 	border-bottom: 1px solid #181818;
 	bottom: 32px !important;
+	height: var(--pt-progress-bar-unfocused-height);
 }
 
 .ytp-chrome-bottom .ytp-chapters-container {
@@ -95,13 +97,20 @@
 	bottom: 0;
 }
 
-.ytp-progress-bar {
+.ytp-chrome-bottom .ytp-progress-bar {
 	transition: .5s;
 }
 
-.ytp-progress-bar:hover {
-	margin-bottom: 1px;
+.ytp-chrome-bottom .ytp-progress-bar:hover,
+.html5-video-player[pt-video-hover="true"] .ytp-progress-bar-container,
+.html5-video-player[pt-video-hover="true"] .ytp-progress-bar
+{
 	height: var(--pt-progress-bar-full-height);
+}
+
+.ytp-progress-list {
+	background: var(--pt-progress-bar-bg) !important;
+	transform: scaleY(1);
 }
 
 .ytp-progress-list {
@@ -159,6 +168,11 @@
     bottom: -40px;
 }
 
+.ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
+.ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar {
+	height: var(--pt-progress-bar-unfocused-height) !important;
+}
+
 .ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -41px;
@@ -207,9 +221,23 @@
 }
 
 .ytp-scrubber-container {
-	top: 1px !important;
-    left: -15px !important;
-    margin-top: -5px;
+	width: 0px;
+	height: 0px;
+	top: 5px;
+	left: 0px;
+	margin-top: -5px;
+	justify-items: center;
+	overflow: hidden;
+	transition: width .5s, height .5s, top .5s, left .5s !important;
+}
+
+.ytp-progress-bar:hover .ytp-scrubber-container,
+.html5-video-player[pt-video-hover="true"] .ytp-scrubber-container
+{
+	width: 18px;
+	height: 18px;
+	top: 1px;
+	left: -15px;
 }
 
 .ytp-big-mode .ytp-scrubber-button {

@@ -179,13 +179,14 @@ var ptMainHeartBeat = setInterval(async () => {
         // console.log('theater mode check:', isinTheaterMode);
     }
 
-    // Make sure the config year is either in the body or the body containter depending on if project v3 is on
     if (isProjectV3 == true) {
+        // Make sure the config year is either in the body or the body containter depending on if project v3 is on
         let targetDiv = document.querySelector('.spitfire-body-container.v3');
         if (!targetDiv.getAttribute('pt-year') && targetDiv.getAttribute('pt-year') !== userConfig.year) {
             targetDiv.setAttribute('pt-year', userConfig.year);
         }
     } else {
+        // Make sure the config year is either in the body or the body containter depending on if project v3 is on
         if (!document.body.getAttribute('pt-year') && document.body.getAttribute('pt-year') !== userConfig.year) {
             document.body.setAttribute('pt-year', userConfig.year);
         }
@@ -210,7 +211,7 @@ function progressBarChanger() {
                 } else {
                     if (progressbar.classList.contains('finished')) {
                         progressbar.classList.remove('finished');
-                        console.log(`%cPlayerTube video started, reerting back.`, styles2);
+                        console.log(`%cPlayerTube video started, reverting back.`, styles2);
                     }
                 }
             }
@@ -865,6 +866,26 @@ function startPlayer() {
                 console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
             break;
         };
+
+        // Add event listeners
+        // Hover over video
+        if (isProjectV3 == false && userConfig.extendProgressBarMore != false) {
+            document.querySelector('.html5-video-container video').addEventListener('mouseover', () => {
+                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
+            });
+            document.querySelector('.html5-video-container video').addEventListener('mouseout', () => {
+                let videoDiv = document.querySelector('.html5-video-player video');
+                console.log(videoDiv.paused);
+                if (videoDiv && videoDiv.paused != true) document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
+            });
+
+            document.querySelector('.html5-video-container video').addEventListener('pause', () => {
+                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
+            });
+            document.querySelector('.html5-video-container video').addEventListener('play', () => {
+                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
+            });
+        }
 
         // Make fake bar
         // No need to load the JS for fake bar here, that's at the top of this script.

@@ -16,6 +16,7 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
+    extendProgressBarMore: true,
     fakeBarToggle: true,
     toggleFadeOut: false,
     endScreenToggle: true,
@@ -326,6 +327,8 @@ async function start(userConfig) {
             ${makeMenuOption(`toggle`, `toggleSpinner`, `Toggle the loading spinner that appears when loading a video`)}
 
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
+
+            ${makeMenuOption(`toggle`, `extendProgressBarMore`, `Extend the Progress Bar when hovering over a video or when a video is paused`)}
 
             ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when not active`)}
 

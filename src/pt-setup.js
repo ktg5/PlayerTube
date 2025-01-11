@@ -45,6 +45,7 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
+    extendProgressBarMore: true,
     fakeBarToggle: true,
     toggleFadeOut: false,
     endScreenToggle: true,
