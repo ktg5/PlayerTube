@@ -146,7 +146,7 @@ async function start(userConfig) {
                         <div style="position: relative; left: 12px;">
                             <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action'>
-                                <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
+                                <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
@@ -158,7 +158,7 @@ async function start(userConfig) {
                         <div>
                             <input type="text" class="menu-input menu-action" placeholder="view desc." name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
-                                <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
+                                <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ async function start(userConfig) {
                         <div style="position: relative; left: 12px;">
                             <input type="number" style="width: 4em;" class="menu-input menu-action" placeholder="0" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
-                                <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
+                                <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
@@ -182,7 +182,7 @@ async function start(userConfig) {
                         <div>
                             <input type="url" class="menu-input menu-action" placeholder="https://" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
-                                <img src="https://raw.githubusercontent.com/ktg5/YT-HTML5-Player/main/img/reset.png" style="height: 1em;">
+                                <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>

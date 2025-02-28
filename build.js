@@ -7,18 +7,14 @@ const readline = require('readline');
 
 
 // Before starting, make sure that the other folders don't exist.
-var chromeDir = '../PlayerTube-Chrome';
-var firefoxDir = '../PlayerTube-Firefox';
-if (fs.existsSync(chromeDir)) {
-    console.log(`Deleting past Chrome folder`);
-    fs.rmSync(chromeDir, { recursive: true });
-    console.log(`Deleted past Chrome folder`);
+var chromeDir = 'dist/PlayerTube-Chrome';
+var firefoxDir = 'dist/PlayerTube-Firefox';
+if (fs.existsSync(`dist`)) {
+    console.log(`Deleting past dist folder`);
+    fs.rmSync(`dist`, { recursive: true });
+    console.log(`Deleted past dist folder`);
 }
-if (fs.existsSync(firefoxDir)) {
-    console.log(`Deleting past Firefox folder`);
-    fs.rmSync(firefoxDir, { recursive: true });
-    console.log(`Deleted past Firefox folder`);
-}
+fs.mkdirSync(`dist`);
 
 
 // Function to copy all the dirs but not REALLY all of them.
@@ -35,6 +31,7 @@ async function copyDir(sourceDir, newDir) {
             entry.name === '.github' ||
             entry.name === 'psds' ||
             entry.name === 'node_modules' ||
+            entry.name === 'dist' ||
             entry.name === 'build.js' ||
             entry.name === 'v3Maker.js' ||
             entry.name === 'v3elmnts.json' ||
@@ -61,9 +58,9 @@ copyDir('./', chromeDir).then(async () => {
     console.log(`(Re)made the Chrome folder`);
 
     // If the zip already exists...
-    if (fs.existsSync('../PlayerTube-Chrome.zip')) {
+    if (fs.existsSync(`${chromeDir}.zip`)) {
         console.log("Deleting old Chrome zip");
-        fs.unlinkSync('../PlayerTube-Chrome.zip');
+        fs.unlinkSync(`${chromeDir}.zip`);
         console.log("Deleted old Chrome zip");
     }
 
@@ -71,13 +68,13 @@ copyDir('./', chromeDir).then(async () => {
     // Try to zip up the extension
     try {
         const zip = new Zip();
-        const outputDir = "../PlayerTube-Chrome.zip";
-        zip.addLocalFolder("../PlayerTube-Chrome");
+        const outputDir = `${chromeDir}.zip`;
+        zip.addLocalFolder(chromeDir);
         zip.writeZip(outputDir);
     } catch (e) {
         console.log(`WHAT THE FRICK! ${e}`);
     }
-    console.log(`Zipped Chrome version into ../PlayerTube-Chrome.zip`);
+    console.log(`Zipped Chrome version into ${chromeDir}.zip`);
     console.log(`-------------`);
 });
 
@@ -87,7 +84,7 @@ copyDir('./', firefoxDir).then(async () => {
     // Then we modify the Firefox extension a bit cuz no
     // browser developer can come up with extension
     // manifest standards like WHY.
-    var firefoxManifest = JSON.parse(fs.readFileSync('../PlayerTube-Firefox/manifest.json', { encoding: 'utf8' }));
+    var firefoxManifest = JSON.parse(fs.readFileSync(`${firefoxDir}/manifest.json`, { encoding: 'utf8' }));
     firefoxManifest.manifest_version = 2;
     firefoxManifest.background = {
         "scripts": [
@@ -111,7 +108,7 @@ copyDir('./', firefoxDir).then(async () => {
     delete firefoxManifest.action; // Manifest v2 moment
     delete firefoxManifest.background.service_worker; // This is only for Chrome, Firefox will freak out if this isn't deleted lol.
     // Write the manifest file for Firefox
-    fs.writeFileSync('../PlayerTube-Firefox/manifest.json', JSON.stringify(firefoxManifest, null, 2));
+    fs.writeFileSync(`${firefoxDir}/manifest.json`, JSON.stringify(firefoxManifest, null, 2));
 
     // Since v1.6, we also have to replace all the "chrome-extension://" with "moz-extension://"
     // WHY CAN'T IT JUST BE "extension://" OR SOMETHING??????
@@ -120,7 +117,7 @@ copyDir('./', firefoxDir).then(async () => {
     async function replaceChromewithMoz(cssFiles) {
         let fsCssFiles = fs.readdirSync(cssFiles);
         fsCssFiles.forEach(cssFileName => {
-            let cssPath = `../PlayerTube-Firefox/css/${cssFileName}`;
+            let cssPath = `${firefoxDir}/css/${cssFileName}`;
             // Make sure cssPath has an extension
             if (cssPath.endsWith('.css')) {
                 process.stdout.write(`> ${cssPath}`);
@@ -136,15 +133,15 @@ copyDir('./', firefoxDir).then(async () => {
             }
         });
     };
-    await replaceChromewithMoz('../PlayerTube-Firefox/css/');
-    await replaceChromewithMoz('../PlayerTube-Firefox/css/v3/');
+    await replaceChromewithMoz(`${firefoxDir}/css/`);
+    await replaceChromewithMoz(`${firefoxDir}/css/v3/`);
 
     console.log(`Replace complete.`);
 
     // If the zip already exists...
-    if (fs.existsSync('../PlayerTube-Firefox.zip')) {
+    if (fs.existsSync(`${firefoxDir}.zip`)) {
         console.log("Deleting old Firefox zip");
-        fs.unlinkSync('../PlayerTube-Firefox.zip');
+        fs.unlinkSync(`${firefoxDir}.zip`);
         console.log("Deleted old Firefox zip");
     }
 
@@ -152,13 +149,13 @@ copyDir('./', firefoxDir).then(async () => {
     // Try to zip up the extension
     try {
         const zip = new Zip();
-        const outputDir = '../PlayerTube-Firefox.zip';
-        zip.addLocalFolder("../PlayerTube-Firefox");
+        const outputDir = `${firefoxDir}.zip`;
+        zip.addLocalFolder(firefoxDir);
         zip.writeZip(outputDir);
     } catch (e) {
         console.log(`WHAT THE FRICK! ${e}`);
     }
-    console.log(`Zipped Firefox version into ../PlayerTube-Firefox.zip`);
+    console.log(`Zipped Firefox version into ${firefoxDir}.zip`);
     // End
     console.log(`-------------`);
 });

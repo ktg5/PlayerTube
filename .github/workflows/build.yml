@@ -44,21 +44,16 @@ jobs:
       - name: Run the build node script
         run: npm start
 
-      # Unzip stuffs.
-      - name: Unzip extension
-        run: unzip -qq ../PlayerTube-Chrome -d PlayerTube-Chrome; unzip -qq ../PlayerTube-Firefox.zip -d PlayerTube-Firefox
-        working-directory: ${{ github.workspace }}
-
       # Upload the ZIP files to the "Artifacts" tab on this action's page.
       ## Firefox
       - name: Upload the Firefox build to the "Artifacts" tab
         uses: actions/upload-artifact@v4.3.4
         with:
           name: PlayerTube Firefox Build
-          path: ${{ github.workspace }}/PlayerTube-Firefox
+          path: ${{ github.workspace }}/dist/PlayerTube-Firefox
       ## Chrome
       - name: Upload the Chromium build to the "Artifacts" tab
         uses: actions/upload-artifact@v4.3.4
         with:
           name: PlayerTube Chromium Build
-          path: ${{ github.workspace }}/PlayerTube-Chrome
+          path: ${{ github.workspace }}/dist/PlayerTube-Chrome
