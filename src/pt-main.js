@@ -875,7 +875,6 @@ function startPlayer() {
             });
             document.querySelector('.html5-video-container video').addEventListener('mouseout', () => {
                 let videoDiv = document.querySelector('.html5-video-player video');
-                console.log(videoDiv.paused);
                 if (videoDiv && videoDiv.paused != true) document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
             });
 

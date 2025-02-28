@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "node build.js",
-    "v3": "node v3Maker.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "v3": "node v3Maker.js"
   },
   "repository": {
     "type": "git",

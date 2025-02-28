@@ -36,13 +36,9 @@ jobs:
       - name: Install NPM packages
         run: npm install
 
-      # Get the ability to unzip.
-      - name: Install action-zip
-        uses: montudor/action-zip@v1.0.0
-
       # Run the "build.js" script through our newly acquired Node.js environment.
       - name: Run the build node script
-        run: npm start
+        run: npm start folders
 
       # Upload the ZIP files to the "Artifacts" tab on this action's page.
       ## Firefox

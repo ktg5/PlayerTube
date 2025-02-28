@@ -50,6 +50,19 @@ async function copyDir(sourceDir, newDir) {
     }
 }
 
+
+var delFolders = false;
+var delZips = false;
+// Check for args
+process.argv.forEach(function (val, index, array) {
+    if (index === 2 && val === "folders") {
+        delZips = true;
+    } else if (index === 2 && val === "zips") {
+        delFolders = true;
+    }
+});
+
+
 console.log(`-------------`);
 
 // Here's we build.
@@ -57,24 +70,27 @@ console.log(`-------------`);
 copyDir('./', chromeDir).then(async () => {
     console.log(`(Re)made the Chrome folder`);
 
-    // If the zip already exists...
-    if (fs.existsSync(`${chromeDir}.zip`)) {
-        console.log("Deleting old Chrome zip");
-        fs.unlinkSync(`${chromeDir}.zip`);
-        console.log("Deleted old Chrome zip");
-    }
+    if (!delZips) {
+        // If the zip already exists...
+        if (fs.existsSync(`${chromeDir}.zip`)) {
+            console.log("Deleting old Chrome zip");
+            fs.unlinkSync(`${chromeDir}.zip`);
+            console.log("Deleted old Chrome zip");
+        }
 
-    console.log("Zipping Chrome version...");
-    // Try to zip up the extension
-    try {
-        const zip = new Zip();
-        const outputDir = `${chromeDir}.zip`;
-        zip.addLocalFolder(chromeDir);
-        zip.writeZip(outputDir);
-    } catch (e) {
-        console.log(`WHAT THE FRICK! ${e}`);
+        console.log("Zipping Chrome version...");
+        // Try to zip up the extension
+        try {
+            const zip = new Zip();
+            const outputDir = `${chromeDir}.zip`;
+            zip.addLocalFolder(chromeDir);
+            zip.writeZip(outputDir);
+            if (delFolders) fs.rmSync(chromeDir, { recursive: true });
+        } catch (e) {
+            console.log(`WHAT THE FRICK! ${e}`);
+        }
+        console.log(`Zipped Chrome version into ${chromeDir}.zip`);
     }
-    console.log(`Zipped Chrome version into ${chromeDir}.zip`);
     console.log(`-------------`);
 });
 
@@ -146,16 +162,19 @@ copyDir('./', firefoxDir).then(async () => {
     }
 
     console.log("Zipping Firefox version...");
-    // Try to zip up the extension
-    try {
-        const zip = new Zip();
-        const outputDir = `${firefoxDir}.zip`;
-        zip.addLocalFolder(firefoxDir);
-        zip.writeZip(outputDir);
-    } catch (e) {
-        console.log(`WHAT THE FRICK! ${e}`);
+    if (!delZips) {
+        // Try to zip up the extension
+        try {
+            const zip = new Zip();
+            const outputDir = `${firefoxDir}.zip`;
+            zip.addLocalFolder(firefoxDir);
+            zip.writeZip(outputDir);
+            if (delFolders) fs.rmSync(firefoxDir, { recursive: true });
+        } catch (e) {
+            console.log(`WHAT THE FRICK! ${e}`);
+        }
+        console.log(`Zipped Firefox version into ${firefoxDir}.zip`);
     }
-    console.log(`Zipped Firefox version into ${firefoxDir}.zip`);
     // End
     console.log(`-------------`);
 });
