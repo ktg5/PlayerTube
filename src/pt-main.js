@@ -870,20 +870,21 @@ function startPlayer() {
         // Add event listeners
         // Hover over video
         if (isProjectV3 == false && userConfig.extendProgressBarMore != false) {
-            document.querySelector('.html5-video-container video').addEventListener('mouseover', () => {
-                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
-            });
-            document.querySelector('.html5-video-container video').addEventListener('mouseout', () => {
-                let videoDiv = document.querySelector('.html5-video-player video');
-                if (videoDiv && videoDiv.paused != true) document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
-            });
+            // disabled due to some issue that lags inputs somehow
+            // document.querySelector('.html5-video-container video').addEventListener('mouseover', () => {
+            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
+            // });
+            // document.querySelector('.html5-video-container video').addEventListener('mouseout', () => {
+            //     let videoDiv = document.querySelector('.html5-video-player video');
+            //     if (videoDiv && videoDiv.paused != true) document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
+            // });
 
-            document.querySelector('.html5-video-container video').addEventListener('pause', () => {
-                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
-            });
-            document.querySelector('.html5-video-container video').addEventListener('play', () => {
-                document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
-            });
+            // document.querySelector('.html5-video-container video').addEventListener('pause', () => {
+            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
+            // });
+            // document.querySelector('.html5-video-container video').addEventListener('play', () => {
+            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
+            // });
         }
 
         // Make fake bar
