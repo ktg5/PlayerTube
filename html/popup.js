@@ -479,10 +479,7 @@ async function start(userConfig) {
 
     // Event listener to make the BUTTONS ACTUALLY WORK LIKE WHY
     var buttons = document.getElementsByClassName('menu-action');
-    console.log(`buttons:`, buttons)
     for (let element of buttons) {
-        console.log(element);
-
         // For disabling opinions that conflict with others
         function disableAria(element) {
             if (element.ariaDisabled !== null) {
