@@ -91,8 +91,14 @@ For those who want the newest of features right now, here's what you gotta do:
 * Make sure the `Developer mode` switch is enabled at the top right.
 * Click on `Load unpacked` at the top left, and navigate to the folder which has the extension.
 ### Firefox-based browsers!!!
+Extension Signning Required (For most users):
 * Go to `about:debugging#/runtime/this-firefox`
 * Click on `Load Temporary Add-on` at the top, and navigate to the ZIP file which has the extension.
+
+No Signning Required (Developer Edition, MyPal, and some other browsers):
+* Go to `about:addons`
+* Click on the gear icon below the search bar at the top right of the page, and click on `Install Add-on From Files...`
+* Navigate to the ZIP file of the extension.
 
 ## If you're awesome, build it yourself!
 So, you like to build stuff yourself? Well, here's how to do it.

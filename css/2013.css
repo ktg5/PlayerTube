@@ -641,12 +641,20 @@
 
 /* 3rd-party extensions */
 
-.ytp-autohide .ytp-chrome-bottom #previewbar {
+.ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+	top: 1px;
+}
+
+.ytp-big-mode .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+	top: 0;
+}
+
+.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
 	top: -7px;
 }
 
-.ytp-big-mode.ytp-autohide .ytp-chrome-bottom #previewbar {
-    top: -9px;
+.ytp-big-mode.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+    top: -8px;
 }
 
 /* ################################# */

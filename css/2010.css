@@ -702,11 +702,11 @@
 
 /* 3rd-party extensions */
 
-.ytp-autohide .ytp-chrome-bottom #previewbar {
-	top: -5px;
+.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+	top: -9px;
 }
 
-.ytp-big-mode.ytp-autohide .ytp-chrome-bottom #previewbar {
+.ytp-big-mode.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
     top: -7px;
 }
 

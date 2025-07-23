@@ -118,9 +118,8 @@ copyDir('./', firefoxDir).then(async () => {
         "default_popup": "html/popup.html",
         "default_icon": "img/playertube/icon.png"
     }; // Popups
-    firefoxManifest.web_accessible_resources = [
-        "css/*"
-    ],
+    let resources = firefoxManifest.web_accessible_resources[0].resources;
+    firefoxManifest.web_accessible_resources = resources,
     delete firefoxManifest.action; // Manifest v2 moment
     delete firefoxManifest.background.service_worker; // This is only for Chrome, Firefox will freak out if this isn't deleted lol.
     // Write the manifest file for Firefox

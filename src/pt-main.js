@@ -78,6 +78,13 @@ var ptMainHeartBeat = setInterval(async () => {
         } else {
             // Video to pull info off of
             var ytVideo = document.getElementsByClassName('video-stream html5-main-video')[0];
+
+            // If the video has not started yet, don't continue.
+            if (
+                !ytVideo.buffered
+                || ytVideo.buffered.length == 0
+            ) return;
+
             // Vars from ytVideo
             var ytVideoCurrent = ytVideo.currentTime;
             var ytBuffered = ytVideo.buffered.end(0);
@@ -893,11 +900,15 @@ function startPlayer() {
             if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
                 return;
             } else {
+                const chromeBottom = document.querySelector(`.${elements.controlsbase[isProjectV3 ? 'v3' : 'default']}`);
+                /// Add [data-pt-fakebar] to chrome bottom (player controls) for CSS reasons
+                chromeBottom.setAttribute('data-pt-fakebar', '');
+
                 /// Load fake bar CSS
                 var link = runtime.getURL(`css/fakebar.css`);
                 document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
                 /// Load fake bar HTML
-                document.getElementsByClassName(elements.controlsbase[isProjectV3 ? 'v3' : 'default'])[0].insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
+                chromeBottom.insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
                     `
                     <div id="playertube-fake-bar">
                         <div class="current"></div>
