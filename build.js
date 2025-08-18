@@ -130,9 +130,9 @@ copyDir('./', firefoxDir).then(async () => {
     console.log('Replacing all css files that include "chrome-extension://" with "moz-extension://"');
     // For each CSS file, do the replacing moment for both vanilla css and v3 css
     async function replaceChromewithMoz(cssFiles) {
-        let fsCssFiles = fs.readdirSync(cssFiles);
+        let fsCssFiles = fs.readdirSync(`${firefoxDir}/${cssFiles}`);
         fsCssFiles.forEach(cssFileName => {
-            let cssPath = `${firefoxDir}/css/${cssFileName}`;
+            let cssPath = `${firefoxDir}/${cssFiles}${cssFileName}`;
             // Make sure cssPath has an extension
             if (cssPath.endsWith('.css')) {
                 process.stdout.write(`> ${cssPath}`);
@@ -144,12 +144,12 @@ copyDir('./', firefoxDir).then(async () => {
                 fs.writeFileSync(cssPath, cssFile);
                 readline.clearLine(process.stdout, 0);
                 readline.cursorTo(process.stdout, 0, null);
-                process.stdout.write(`✓ ${cssPath}\n`);
+                process.stdout.write(`✓ ${cssPath.replace(`${firefoxDir}/`, '')}\n`);
             }
         });
     };
-    await replaceChromewithMoz(`${firefoxDir}/css/`);
-    await replaceChromewithMoz(`${firefoxDir}/css/v3/`);
+    await replaceChromewithMoz(`css/`);
+    await replaceChromewithMoz(`css/v3/`);
 
     console.log(`Replace complete.`);
 

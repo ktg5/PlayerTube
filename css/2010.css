@@ -16,7 +16,7 @@
 	background: none !important;
 }
 
-.html5-video-player .ytp-chrome-bottom {
+#movie_player.html5-video-player .ytp-chrome-bottom {
 	height: 35px !important;
 	width: 100% !important;
     left: 0 !important;
@@ -26,7 +26,7 @@
 
 /* PROGRESS BAR */
 
-.ytp-chrome-bottom .ytp-progress-bar-container {
+#movie_player .ytp-chrome-bottom .ytp-progress-bar-container {
 	width: 100% !important;
 	bottom: 34px !important;
 	height: var(--pt-progress-bar-unfocused-height);
@@ -310,11 +310,11 @@
 
 /* TIME DISPLAY */
 
-.ytp-chrome-bottom .ytp-time-display span {
+#movie_player .ytp-chrome-bottom .ytp-time-display span {
     font-size: 14px;
 }
 
-.ytp-chrome-bottom .ytp-time-display {
+#movie_player .ytp-chrome-bottom .ytp-time-display {
 	line-height: 47px !important;
 	padding: 0px 10px;
 	margin-top: -8px;

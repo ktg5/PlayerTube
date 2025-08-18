@@ -6,19 +6,19 @@
 
 /* ### for all ### */
 /* progress bar */
-.spitfire-body-container.v3 .html5-video-controls .ytp-progress-bar-container {
+.spitfire-body-container.v3 #movie_player .html5-video-controls .ytp-progress-bar-container {
     bottom: 0 !important;
 }
 
-.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-play-progress {
+.spitfire-body-container.v3 #movie_player .html5-video-controls .ytp-progress-list .ytp-play-progress {
     background: var(--pt-main-colour) !important;
 }
 
-.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-load-progress {
+.spitfire-body-container.v3 #movie_player .html5-video-controls .ytp-progress-list .ytp-load-progress {
     background: var(--pt-alt-colour) !important;
 }
 
-.spitfire-body-container.v3 .html5-video-controls .ytp-progress-list .ytp-unloaded-progress {
+.spitfire-body-container.v3 #movie_player .html5-video-controls .ytp-progress-list .ytp-unloaded-progress {
     background: var(--pt-progress-bar-bg) !important;
 }
 

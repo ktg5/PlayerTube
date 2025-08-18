@@ -26,6 +26,13 @@ cssFiles.forEach(cssFileName => {
         let cssPath = `css/${cssFileName}`;
         let cssFile = fs.readFileSync(cssPath, { encoding: 'utf8' });
 
+        // Add comment to file
+        cssFile = cssFile = `/* ##################### */
+/* THIS FILE WAS EDITED USING PLAYERTUBE'S CUSTOM V3MAKER SCRIPT LOL */
+/* ##################### */
+
+${cssFile}`;
+
         // Replace any of the keys in v3elmnts with their value
         for (const [key, value] of Object.entries(v3elmnts)) {
             cssFile = cssFile.replaceAll(key, value);
