@@ -19,7 +19,7 @@
 
 /* SCRUBBER */
 
-.ytp-scrubber-button {
+.ytp-swatch-background-color.ytp-scrubber-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber.png) no-repeat !important;
     background-position: 0px 0px !important;
     background-size: 16px !important;
@@ -29,7 +29,7 @@
     position: relative;
 }
 
-.ytp-scrubber-button:hover {
+.ytp-swatch-background-color.ytp-scrubber-button:hover {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
     background-size: 18px !important;

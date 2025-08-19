@@ -137,7 +137,7 @@
 }
 
 .ytp-play-progress.ytp-swatch-background-color, .ytp-hover-progress.ytp-hover-progress-light {
-	background: var(--pt-main-colour);
+	background: var(--pt-main-colour) !important;
 }
 
 /* other */
@@ -198,7 +198,7 @@
 
 /* SCRUBBER */
 
-.ytp-scrubber-button {
+.ytp-swatch-background-color.ytp-scrubber-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
@@ -208,7 +208,7 @@
 	position: relative;
 }
 
-.ytp-scrubber-button:hover {
+.ytp-swatch-background-color.ytp-scrubber-button:hover {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
 	background-size: 18px !important;
@@ -216,7 +216,7 @@
 	width: 18px !important;
 }
 
-.ytp-scrubber-button.ytp-swatch-background-color {
+.ytp-swatch-background-color.ytp-scrubber-button.ytp-swatch-background-color {
 	background-color: transparent !important;
 }
 
