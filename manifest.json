@@ -31,6 +31,18 @@
             "matches": ["*://*.youtube.com/*"],
             "js": ["src/pt-main.js"]
         },
+        
+        {
+            "matches": ["*://www.youtube-nocookie.com/embed/*"],
+            "js": ["src/pt-setup.js"],
+            "run_at": "document_start",
+            "all_frames": true
+        },
+        {
+            "matches": ["*://www.youtube-nocookie.com/embed/*"],
+            "js": ["src/pt-main.js"],
+            "all_frames": true
+        },
 
         {
             "matches": ["*://*.youtube.com/embed/*"],
@@ -46,7 +58,7 @@
     ],
 
     "web_accessible_resources": [{
-        "matches": ["*://*.youtube.com/*"],
+        "matches": ["*://*.youtube.com/*", "*://www.youtube-nocookie.com/*"],
         "resources": ["css/*", "src/*", "img/*", "v3elmnts.json"]
     }],
 
