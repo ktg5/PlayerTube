@@ -25,7 +25,7 @@
 
 /* ### 2012 ### */
 /* base */
-.spitfire-body-container.v3[pt-year="2012"] .html5-video-player .html5-video-controls {
+.spitfire-body-container.v3[pt-year="2012"] #movie_player.html5-video-player .html5-video-controls {
     height: 35px !important;
 }
 
