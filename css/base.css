@@ -38,3 +38,10 @@
 .ytp-bezel-icon {
     display: none;
 }
+
+/* tooltips */
+
+.ytp-tooltip:not(.ytp-preview) .ytp-tooltip-text-wrapper {
+    border-radius: 0;
+	background-color: rgb(28, 28, 28);
+}

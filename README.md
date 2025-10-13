@@ -83,7 +83,7 @@ You may edit these examples as much as you'd like, or use them as a template for
 For those who want the newest of features right now, here's what you gotta do:
 1. ⚠️ IMPORTANTE!!! ⚠️ Make sure you're logged into a GitHub account, or else you can't download any files from the Actions tab, which is where the Beta / Dev builds are stored.
 2. Go to the [`PlayerTube build-n-pack` workflow in the Actions tab](https://github.com/ktg5/PlayerTube/actions/workflows/build.yml) and click on the latest workflow run at the top of the list.
-3. Download the Artifact for your browser (For Chrome, Opera, or Brave users: get the Chromium Build. For Firefox-based users: get the Firefox build).
+3. Download the Artifact for your browser (For Chrome, Opera, Brave, etc. users: get the Chromium-based Build. For Firefox, Zen, Waterfox, etc. users: get the Firefox-based build).
 4. If you're not using a Firefox-based browser, extract all the files from the ZIP file into a folder.
 5. Load the extension on your browser, which is explained below.
 ### Chromium browsers (Chrome, Opera, Brave).
@@ -93,7 +93,8 @@ For those who want the newest of features right now, here's what you gotta do:
 ### Firefox-based browsers!!!
 Extension Signning Required (For most users):
 * Go to `about:debugging#/runtime/this-firefox`
-* Click on `Load Temporary Add-on` at the top, and navigate to the ZIP file which has the extension.
+* Click on `Load Temporary Add-on` at the top
+* Navigate to the ZIP file of the extension.
 
 No Signning Required (Developer Edition, MyPal, and some other browsers):
 * Go to `about:addons`

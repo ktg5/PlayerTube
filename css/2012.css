@@ -7,7 +7,7 @@
 	--pt-volume-slider: linear-gradient(180deg, #b22427, #751819);
 	--pt-main-colour-solid: #901b1d;
 	--pt-progress-bar-bg: rgb(34 34 34);
-	--pt-progress-bar-unfocused-height: 3px;
+	--pt-progress-bar-unfocused-height: 4px;
 	--pt-progress-bar-full-height: 10px;
 	--pt-progress-text: #fff;
 	--pt-alt-progress-text: #969696;
@@ -15,10 +15,10 @@
 	--pt-setting-after-label: #b91f1f;
 }
 
-.ytp-chrome-controls {
+.ytp-chrome-bottom .ytp-chrome-controls {
 	background: var(--pt-background);
 	box-shadow: inset 0px 1px 0px 0px #ffffff33;
-	height: inherit;
+	height: inherit !important;
 }
 
 .ytp-gradient-bottom {
@@ -163,7 +163,7 @@
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -40px;
 }
@@ -173,17 +173,13 @@
 	height: var(--pt-progress-bar-unfocused-height) !important;
 }
 
-.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
+.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -41px;
 }
 
 .ytp-progress-bar-container {
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
-}
-
-.ytp-autohide .ytp-progress-bar {
-    height: 5px;
 }
 
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {
@@ -357,35 +353,46 @@
 }	
 
 /* VOLUME BUTTON */
+
 /* DEFAULT */
-.ytp-button.ytp-mute-button {
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
+{
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
 	background-position: -175px -296px !important;
 	background-size: 210px !important;
 	width: 40px !important;
 }
 
-.ytp-button.ytp-mute-button:hover {
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon:hover
+{
 	background-position: -138px -17px !important;
     filter: brightness(1.5) !important;
 }
 
 /* MEDIUM VOLUME */
-.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button {
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon
+{
     background-position: -138px -296px !important;
 }
 
 /* LOW VOLUME */
-.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button {
-    background-position: -138px -296px !important;
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon
+{
+	background-position: -138px -296px !important;
 }
 
 /* MUTE */
-.ytp-button.ytp-mute-button[title="Unmute (m)"] {
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[title="Unmute (m)"],
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[title="Unmute (m)"] {
 	background-position: -138px -17px !important;
 }
 
-.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover {
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover {
 	background-position: -175px -296px !important;
     filter: brightness(1.5);
 }
@@ -500,10 +507,11 @@
 
 /* RIGHT BUTTONS */
 
-.ytp-right-controls {
-	top: 1px;
+.html5-video-player .ytp-chrome-bottom .ytp-right-controls {
+	background: transparent !important;
 	position: relative !important;
-	padding-right: 0px;
+	padding-right: 0;
+	margin: 0 !important;
 }
 
 .ytp-big-mode .ytp-right-controls .ytp-button {

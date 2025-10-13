@@ -1,0 +1,77 @@
+/*
+ * This is for the new YouTube player update, which I think
+ * is called, "delhi".
+ */
+
+.ytp-delhi-modern .ytp-chrome-controls .ytp-button:before,
+.ytp-delhi-modern .ytp-chrome-controls .ytp-button:after
+{
+    display: none !important;
+}
+
+.ytp-delhi-modern.ytp-delhi-modern-compact-controls .ytp-chrome-controls .ytp-play-button {
+    margin-top: 0;
+}
+
+.ytp-delhi-modern .ytp-chrome-controls .ytp-button,
+.ytp-delhi-modern .ytp-chrome-controls .ytp-volume-area
+{
+    background-color: transparent !important;
+    margin-top: 0 !important;
+    border-radius: 0;
+}
+
+.ytp-delhi-modern .ytp-chrome-controls .ytp-volume-area {
+    background: none !important;
+    height: fit-content !important;
+    margin: 0;
+}
+
+.ytp-delhi-modern.ytp-delhi-horizontal-volume-controls .ytp-chrome-bottom.ytp-volume-slider-active .ytp-volume-area {
+    padding-right: 0;
+}
+
+.ytp-delhi-modern .ytp-chrome-controls .ytp-volume-area:after {
+    background: none !important;
+}
+
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper-delhi,
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper-delhi:after
+{
+    background: none;
+}
+
+.ytp-autohide.paused-mode .ytp-playlist-menu-button, .ytp-autohide.paused-mode .ytp-shorts-title-channel, .ytp-autohide.paused-mode .ytp-title-channel, .ytp-autohide.paused-mode .ytp-title, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-watch-later-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-share-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-copylink-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-search-button, .ytp-autohide:not(.ytp-cards-teaser-shown) .ytp-cards-button, .ytp-autohide.paused-mode .ytp-overflow-button, .ytp-autohide.paused-mode .ytp-chrome-bottom, .ytp-chrome-top[aria-hidden="true"], .ytp-chrome-bottom[aria-hidden="true"] {
+    display: block;
+    opacity: 1;
+}
+
+.ytp-fullscreen-metadata-top .ytp-title .ytp-title-text, .ytp-fullscreen-metadata-bottom .ytp-title .ytp-title-text, .ytp-hide-fullscreen-title .ytp-title .ytp-title-text {
+    display: block;
+    height: 100%;
+}
+
+.ytp-delhi-modern.ytp-autohide .ytp-progress-bar-container .ytp-timed-marker {
+    opacity: 0;
+}
+
+.ytp-delhi-modern .ytp-progress-bar-container .ytp-timed-marker {
+    width: 4px !important;
+    height: 2px !important;
+    top: 0 !important;
+    margin: auto;
+}
+
+.ytp-delhi-modern .ytp-tooltip .ytp-tooltip-progress-bar-pill {
+    background-color: rgb(35, 35, 35) !important;
+    border-radius: 0 !important;
+    padding: 5px 10px !important;
+}
+
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button {
+    transform: scale(1) !important;
+}
+
+.ytp-delhi-modern .ytp-overlays-container .ytp-overlay-top-left {
+    display: none;
+}

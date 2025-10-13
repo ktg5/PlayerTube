@@ -132,10 +132,8 @@ var ptMainHeartBeat = setInterval(async () => {
     // Volume (exact & simple)
     let volumePanel = document.querySelector('.ytp-volume-panel');
     let volumeArea = document.querySelector('.ytp-volume-area');
-    // Update volume area elmnt to work with v3 if detected
-    if (isProjectV3 == true) {
-        volumeArea = document.querySelector('.ytp-volume-hover-area');
-    }
+    // Change volume area elmnt to work with v3 if detected
+    if (isProjectV3 == true) volumeArea = document.querySelector('.ytp-volume-hover-area');
     // Set values
     if (buttonBase &&
         volumeArea &&
@@ -640,74 +638,74 @@ function watchLaterButtonAdd() {
 // This function will keep going until it's happy.
 function startPlayer() {
     // Keep going 'til we get a hit & are able to "inject".
-    const starter = setInterval(async function () {
-        switch (userConfig.year) {
-            case '2013':
-                // Project V3 uses it's own 2013 theme which can't be disabled, but that's fine by me.
-                // (makes my life easier lmao)
-                // also, IMPORT CSS (if it wasn't already loaded)
-                if (isProjectV3 == false && loadedPlayerStyle == false) {
-                    // Base
-                    var baselink = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                    
-                    // Alt mode stuff
-                    if (userConfig.alternateMode == true) {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                    } else {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+    const starter = setInterval(async () => {
+        if (loadedPlayerStyle !== true) {
+            switch (userConfig.year) {
+                case '2013':
+                    // Project V3 uses it's own 2013 theme which can't be disabled, but that's fine by me.
+                    // (makes my life easier lmao)
+                    // also, IMPORT CSS (if it wasn't already loaded)
+                    if (isProjectV3 == false) {
+                        // Base
+                        var baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                        
+                        // Alt mode stuff
+                        if (userConfig.alternateMode == true) {
+                            var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        } else {
+                            var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                        }
+                        loadedPlayerStyle = true;
+
+                        // IMPORT THE OTHER CSS
+                        extraStyles();
+
+                        // Custom watch later button
+                        watchLaterButtonAdd();
+                    } else if (isProjectV3 == true) {
+                        // Make a basic style script for V3 with root vars and stuff
+                        document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `
+                            <style id="playertube-css" class="playertube-v3-2013">
+                                :root {
+                                    --pt-main-colour: #cc181e;
+                                    --pt-alt-colour: rgba(255,255,255,.3);
+                                    --pt-volume-slider: #cc181e;
+                                    --pt-progress-bar-bg: #444;
+                                }
+
+                                .ytp-scrubber-button {
+                                    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
+                                    background-position: 0px 0px !important;
+                                    background-size: 18px !important;
+                                    height: 18px !important;
+                                    width: 18px !important;
+                                    border: none;
+                                    position: relative;
+                                }
+                            </style>
+                        `);
+                        if (userConfig.alternateMode == true) {
+                            // todo
+                        }
+                        extraStyles();
                     }
-                    loadedPlayerStyle = true;
 
-                    // IMPORT THE OTHER CSS
-                    extraStyles();
-
-                    // Custom watch later button
-                    watchLaterButtonAdd();
-                } else if (isProjectV3 == true && loadedPlayerStyle == false) {
-                    // Make a basic style script for V3 with root vars and stuff
-                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `
-                        <style id="playertube-css" class="playertube-v3-2013">
-                            :root {
-                                --pt-main-colour: #cc181e;
-                                --pt-alt-colour: rgba(255,255,255,.3);
-                                --pt-volume-slider: #cc181e;
-                                --pt-progress-bar-bg: #444;
-                            }
-
-                            .ytp-scrubber-button {
-                                background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
-                                background-position: 0px 0px !important;
-                                background-size: 18px !important;
-                                height: 18px !important;
-                                width: 18px !important;
-                                border: none;
-                                position: relative;
-                            }
-                        </style>
-                    `);
-                    if (userConfig.alternateMode == true) {
-                        // todo
+                    // IMPORT USER CUSTOMIZATION
+                    if (customTheme === true) {
+                        await enableCustomTheme();
+                        // .ytp-scrubber-button.ytp-swatch-background-color {
+                        //     background-color: transparent !important;
+                        // }
                     }
-                    extraStyles();
-                }
+                break;
 
-                // IMPORT USER CUSTOMIZATION
-                if (customTheme === true) {
-                    await enableCustomTheme();
-                    // .ytp-scrubber-button.ytp-swatch-background-color {
-                    //     background-color: transparent !important;
-                    // }
-                }
-            break;
-
-            case '2012':
-                // IMPORT CSS (if it wasn't already loaded)
-                if (loadedPlayerStyle == false) {
+                case '2012':
+                    // IMPORT CSS (if it wasn't already loaded)
                     // Base
-                    let link;
+                    var link;
                     if (isProjectV3 == true) {
                         link = runtime.getURL(`css/v3/${userConfig.year}.css`);
                         document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
@@ -724,18 +722,16 @@ function startPlayer() {
                     if (isProjectV3 == false) {
                         watchLaterButtonAdd();
                     }
-                }
 
-                // IMPORT USER CUSTOMIZATION
-                if (customTheme === true) {
-                    await enableCustomTheme();
-                }
-            break;
+                    // IMPORT USER CUSTOMIZATION
+                    if (customTheme === true) {
+                        await enableCustomTheme();
+                    }
+                break;
 
-            case '2010':
-                // IMPORT CSS (if it wasn't already loaded)
-                if (loadedPlayerStyle == false) {
-                    let baselink,
+                case '2010':
+                    // IMPORT CSS (if it wasn't already loaded)
+                    var baselink,
                         colorlink;
                     if (isProjectV3 == true) {
 
@@ -769,130 +765,114 @@ function startPlayer() {
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
                     extraStyles();
-                }
 
-                // IMPORT USER CUSTOMIZATION
-                if (customTheme === true) {
-                    await enableCustomTheme();
+                    // IMPORT USER CUSTOMIZATION
+                    if (customTheme === true) {
+                        await enableCustomTheme();
 
-                    var CustomThemeCss2010 = `
-                    /* someother custom theme stuff for 2010 */
+                        var CustomThemeCss2010 = `
+                        /* someother custom theme stuff for 2010 */
 
-                    ${elementNames['#container']} .ytp-chrome-controls {
-                        border-top: solid 2px #d1d1d180 !important;
-                    }
+                        ${elementNames['#container']} .ytp-chrome-controls {
+                            border-top: solid 2px #d1d1d180 !important;
+                        }
 
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
-                        position: absolute;
-                        content: "";
-                        height: 100%;
-                        width: 100%;
-                        left: 80px;
-                        background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
-                    }
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
+                            position: absolute;
+                            content: "";
+                            height: 100%;
+                            width: 100%;
+                            left: 80px;
+                            background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
+                        }
 
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
-                        position: absolute;
-                        content: "";
-                        height: 100%;
-                        width: 60%;
-                        background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
-                    }
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
+                            position: absolute;
+                            content: "";
+                            height: 100%;
+                            width: 60%;
+                            background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
+                        }
 
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
-                        border: solid 1px rgb(255 255 255 / 35%);
-                        background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
-                    }
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
+                            border: solid 1px rgb(255 255 255 / 35%);
+                            background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
+                        }
 
-                    /* igrone background & border for the following: */
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-                    ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
-                    {
-                        background: none !important;
-                        border: none !important;
-                    }
-                    `
-                    if (userConfig.progressBarColor) {
-                        CustomThemeCss2010 += `
-                        :root {
-                            --pt-alt-colour: ${userConfig.progressBarColor}45;
+                        /* igrone background & border for the following: */
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
+                        {
+                            background: none !important;
+                            border: none !important;
                         }
                         `
+                        if (userConfig.progressBarColor) {
+                            CustomThemeCss2010 += `
+                            :root {
+                                --pt-alt-colour: ${userConfig.progressBarColor}45;
+                            }
+                            `
+                        }
+                        // output css
+                        document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme-for-2010" type="text/css">${CustomThemeCss2010}</style>`);
                     }
-                    // output css
-                    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme-for-2010" type="text/css">${CustomThemeCss2010}</style>`);
-                }
-            break;
+                break;
 
-            case '2006':
-                // IMPORT CSS (if it wasn't already loaded)
-                if (loadedPlayerStyle == false) {
+                case '2006':
+                    // IMPORT CSS (if it wasn't already loaded)
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
                     extraStyles();
-                }
 
-                // IMPORT USER CUSTOMIZATION
-                if (customTheme === true) {
-                    await enableCustomTheme();
-                }
+                    // IMPORT USER CUSTOMIZATION
+                    if (customTheme === true) {
+                        await enableCustomTheme();
+                    }
 
-                // Move stuffs
-                setInterval(() => {
-                    // Move volume area to right side
-                    var VolumePanel = document.querySelector("span.ytp-volume-area");
-                    if (VolumePanel && VolumePanel.parentNode.className !== 'ytp-right-controls') {
-                        if (VolumePanel) {
-                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
-            
-                            moveElement(VolumePanel, pastDiv1);
-                        }
-                        // Do the same for the time display
-                        var TimePanel = document.querySelector("div.ytp-time-display");
-                        if (TimePanel) {
-                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
-            
-                            moveElement(TimePanel, pastDiv1);
-                        }
-                        // Move the panel ahead of the actual volume button
-                        var VolumeButton = document.querySelector(".ytp-volume-panel");
-                        if (VolumeButton) {
-                            pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
-            
-                            moveElement(VolumeButton, pastDiv1);
-                        }
-                    } else {}
-                }, 500);
-            break; 
+                    // Move stuffs
+                    setInterval(() => {
+                        // Move volume area to right side
+                        var VolumePanel = document.querySelector("span.ytp-volume-area");
+                        if (VolumePanel && VolumePanel.parentNode.className !== 'ytp-right-controls') {
+                            if (VolumePanel) {
+                                pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
+                
+                                moveElement(VolumePanel, pastDiv1);
+                            }
+                            // Do the same for the time display
+                            var TimePanel = document.querySelector("div.ytp-time-display");
+                            if (TimePanel) {
+                                pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
+                
+                                moveElement(TimePanel, pastDiv1);
+                            }
+                            // Move the panel ahead of the actual volume button
+                            var VolumeButton = document.querySelector(".ytp-volume-panel");
+                            if (VolumeButton) {
+                                pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
+                
+                                moveElement(VolumeButton, pastDiv1);
+                            }
+                        } else {}
+                    }, 500);
+                break; 
 
-            default:
-                console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
-            break;
-        };
+                default:
+                    console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
+                break;
+            };
 
-        // Add event listeners
-        // Hover over video
-        if (isProjectV3 == false && userConfig.extendProgressBarMore != false) {
-            // disabled due to some issue that lags inputs somehow
-            // document.querySelector('.html5-video-container video').addEventListener('mouseover', () => {
-            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
-            // });
-            // document.querySelector('.html5-video-container video').addEventListener('mouseout', () => {
-            //     let videoDiv = document.querySelector('.html5-video-player video');
-            //     if (videoDiv && videoDiv.paused != true) document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
-            // });
 
-            // document.querySelector('.html5-video-container video').addEventListener('pause', () => {
-            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'true');
-            // });
-            // document.querySelector('.html5-video-container video').addEventListener('play', () => {
-            //     document.querySelector('.html5-video-player').setAttribute('pt-video-hover', 'false');
-            // });
+            // Delhi CSS
+            var link = runtime.getURL(`css/delhi.css`);
+            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-delhi" rel="stylesheet" type="text/css" href="${link}">`);
         }
+
 
         // Make fake bar
         // No need to load the JS for fake bar here, that's at the top of this script.
