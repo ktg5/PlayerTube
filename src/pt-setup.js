@@ -45,7 +45,6 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
-    extendProgressBarMore: true,
     fakeBarToggle: true,
     toggleFadeOut: false,
     endScreenToggle: true,
@@ -55,6 +54,8 @@ var def_pt_config = {
     togglePaidContent: false,
     toggleInfoCards: true,
     toggleSpinner: true,
+    toggleMoreVids: false,
+    toggleFSButtons: false,
     customTheme: false,
 
     // Only for custom themes.

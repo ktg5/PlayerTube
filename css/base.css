@@ -45,6 +45,23 @@
     display: none;
 }
 
+/* right controls sides */
+
+.html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-left,
+.html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-right {
+	height: 100%;
+}
+
+/* more video button */
+
+.html5-video-player.ytp-big-mode .ytp-fullscreen-grid-expand-button {
+    margin-top: -120px !important;
+}
+
+.html5-video-player .ytp-fullscreen-grid-expand-button.ytp-button path {
+    display: block !important;
+}
+
 /* tooltips */
 
 .ytp-tooltip:not(.ytp-preview) .ytp-tooltip-text-wrapper {

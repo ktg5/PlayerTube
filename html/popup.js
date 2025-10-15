@@ -16,7 +16,6 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
-    extendProgressBarMore: true,
     fakeBarToggle: true,
     toggleFadeOut: false,
     endScreenToggle: true,
@@ -26,6 +25,8 @@ var def_pt_config = {
     togglePaidContent: false,
     toggleInfoCards: true,
     toggleSpinner: true,
+    toggleMoreVids: false,
+    toggleFSButtons: false,
     customTheme: false,
 
     // Only for custom themes.
@@ -328,9 +329,11 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
 
-            ${makeMenuOption(`toggle`, `extendProgressBarMore`, `Extend the Progress Bar when hovering over a video or when a video is paused`)}
-
             ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when not active`)}
+
+            ${makeMenuOption('toggle', 'toggleMoreVids', 'Toggle the "More Videos" feature when in fullscreen')}
+
+            ${makeMenuOption('toggle', 'toggleFSButtons', 'Toggle the fullscreen buttons that show at the bottom right')}
 
             ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
 

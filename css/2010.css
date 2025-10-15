@@ -369,11 +369,11 @@
 }
 
 .ytp-chapter-container .ytp-chapter-title-content {
-  margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .ytp-chapter-container .ytp-chapter-title-prefix {
-  margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 /* ################################# */
@@ -493,7 +493,8 @@
 .ytp-chrome-bottom .ytp-right-controls {
 	position: relative !important;
 	background: none !important;
-    margin: 0 !important;
+	height: initial !important;
+	margin: 0 !important;
 	padding-right: 0px;
 }
 

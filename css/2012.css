@@ -294,7 +294,7 @@
 	width: 35px;
 }
 
-.ytp-autohide .ytp-chrome-top {
+.ytp-autohide:not(.paused-mode) .ytp-chrome-top {
     display: none;
 }
 

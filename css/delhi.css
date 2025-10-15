@@ -43,6 +43,7 @@
 .ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper-delhi:after
 {
     background: none !important;
+    padding: 0 !important;
 }
 
 .ytp-autohide.paused-mode .ytp-playlist-menu-button, .ytp-autohide.paused-mode .ytp-shorts-title-channel, .ytp-autohide.paused-mode .ytp-title-channel, .ytp-autohide.paused-mode .ytp-title, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-watch-later-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-share-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-copylink-button, .ytp-autohide.paused-mode .ytp-chrome-top .ytp-search-button, .ytp-autohide:not(.ytp-cards-teaser-shown) .ytp-cards-button, .ytp-autohide.paused-mode .ytp-overflow-button, .ytp-autohide.paused-mode .ytp-chrome-bottom, .ytp-chrome-top[aria-hidden="true"], .ytp-chrome-bottom[aria-hidden="true"] {
@@ -64,6 +65,10 @@
     height: 2px !important;
     top: 0 !important;
     margin: auto;
+}
+
+.html5-video-player.ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls {
+    padding: 0;
 }
 
 .ytp-delhi-modern .ytp-tooltip .ytp-tooltip-progress-bar-pill {

@@ -262,7 +262,7 @@
 	width: 35px !important;
 }
 
-.ytp-autohide .ytp-chrome-top {
+.ytp-autohide:not(.paused-mode) .ytp-chrome-top {
     display: none;
 }
 

@@ -115,6 +115,7 @@ var ptMainHeartBeat = setInterval(async () => {
             && userConfig.year !== '2010'
         ) {
             nextButton.style.display = 'block';
+            buttonBase.classList.remove('no-right-button');
         } else {
             // There'll be no button
             buttonBase.classList.add('no-right-button');
@@ -281,125 +282,125 @@ async function enableCustomTheme() {
             var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
             if (userConfig.controlsBack !== null) {
                 outputCssCustomTheme += `
-                :root {
-                    --pt-background: ${userConfig.controlsBack} !important;
-                    --pt-background-top: ${userConfig.controlsBack} !important;
-                }
-                `
+:root {
+    --pt-background: ${userConfig.controlsBack} !important;
+    --pt-background-top: ${userConfig.controlsBack} !important;
+}
+                `;
             } if (userConfig.settingsBgColor !== null) {
                 outputCssCustomTheme += `
-                :root {
-                    --pt-settings-bg: ${userConfig.settingsBgColor} !important;
-                }
-                `
+:root {
+    --pt-settings-bg: ${userConfig.settingsBgColor} !important;
+}
+                `;
             } if (userConfig.progressBarColor !== null) {
                 outputCssCustomTheme += `
-                :root {
-                    --pt-main-colour: ${userConfig.progressBarColor} !important;
-                    --pt-volume-slider: ${userConfig.progressBarColor} !important;
-                    --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
-                }
-                `
+:root {
+    --pt-main-colour: ${userConfig.progressBarColor} !important;
+    --pt-volume-slider: ${userConfig.progressBarColor} !important;
+    --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
+}
+                `;
             } if (userConfig.progressBarBgColor !== null) {
                 outputCssCustomTheme += `
-                :root {
-                    --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
-                }
-                `
+:root {
+    --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
+}
+                `;
             } if (userConfig.volumeSliderBack !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
-                    background: ${userConfig.volumeSliderBack} !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
+    background: ${userConfig.volumeSliderBack} !important;
+}
+                `;
             } if (userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-                    border-radius: 0 !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+    border-radius: 0 !important;
+}
+                `;
             } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
-                    border-radius: 0 !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    background: url(${userConfig.scrubberIcon}) no-repeat center !important;
+    border-radius: 0 !important;
+}
+                `;
             } if (userConfig.scrubberIconHover !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
-                    border-radius: 0 !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
+    border-radius: 0 !important;
+}
+                `;
             } if (userConfig.scrubberPosition !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    background-position: ${userConfig.scrubberPosition} !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    background-position: ${userConfig.scrubberPosition} !important;
+}
+                `;
             } if (userConfig.scrubberSize !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    background-size: ${userConfig.scrubberSize}px !important;
-                }
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    background-size: ${userConfig.scrubberSize}px !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    background-size: ${userConfig.scrubberSize}px !important;
+}
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    background-size: ${userConfig.scrubberSize}px !important;
+}
+                `;
             } if (userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
-                /* default */
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    height: ${userConfig.scrubberHeight}px !important;
-                }
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    height: ${userConfig.scrubberHeight}px !important;
-                }
-                `
+/* default */
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    height: ${userConfig.scrubberHeight}px !important;
+}
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    height: ${userConfig.scrubberHeight}px !important;
+}
+                `;
             } if (userConfig.scrubberWidth !== null) {
                 outputCssCustomTheme += `
-                /* default */
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    width: ${userConfig.scrubberWidth}px !important;
-                }
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    width: ${userConfig.scrubberWidth}px !important;
-                }
-                `
+/* default */
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    width: ${userConfig.scrubberWidth}px !important;
+}
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    width: ${userConfig.scrubberWidth}px !important;
+}
+                `;
             } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
-                /* default */
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    width: ${userConfig.scrubberHeight}px !important;
-                }
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    width: ${userConfig.scrubberHeight}px !important;
-                }
-                `
+/* default */
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    width: ${userConfig.scrubberHeight}px !important;
+}
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    width: ${userConfig.scrubberHeight}px !important;
+}
+                `;
             } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
                 outputCssCustomTheme += `
-                /* default */
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
-                    height: ${userConfig.scrubberWidth}px !important;
-                }
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
-                    height: ${userConfig.scrubberWidth}px !important;
-                }
-                `
+/* default */
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+    height: ${userConfig.scrubberWidth}px !important;
+}
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+    height: ${userConfig.scrubberWidth}px !important;
+}
+                `;
             } if (userConfig.scrubberTop !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
-                    top: ${userConfig.scrubberTop}px !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
+    top: ${userConfig.scrubberTop}px !important;
+}
+                `;
             } if (userConfig.scrubberLeft !== null) {
                 outputCssCustomTheme += `
-                ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
-                    left: ${userConfig.scrubberLeft}px !important;
-                }
-                `
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
+    left: ${userConfig.scrubberLeft}px !important;
+}
+                `;
             }
             // output css
             document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
@@ -415,123 +416,141 @@ function extraStyles() {
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
     if (userConfig.endScreenToggle == false) {
         outputCssToggles += `
-        /* TOGGLE END SCREEN (disabled) */
-        .ytp-ce-element.ytp-ce-element-show {
-            display: none !important;
-        }
+/* TOGGLE END SCREEN (disabled) */
+.ytp-ce-element.ytp-ce-element-show {
+    display: none !important;
+}
         `
     } if (userConfig.embedOtherVideos == false) {
         outputCssToggles += `
-        /* EMBED SHOW "Other Videos" (disabled) */
-        .ytp-expand-pause-overlay .ytp-pause-overlay {
-            display: none !important;
-        }
+/* EMBED SHOW "Other Videos" (disabled) */
+.ytp-expand-pause-overlay .ytp-pause-overlay {
+    display: none !important;
+}
         `
     } if (userConfig.autoplayButton !== true) {
         outputCssToggles += `
-        /* AUTO PLAY BUTTON (disabled / not set) */
-        .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"] {
-            display: none !important;
-        }
+/* AUTO PLAY BUTTON (disabled / not set) */
+.ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"] {
+    display: none !important;
+}
         `
     } if (userConfig.heatMapToggle !== true) {
         outputCssToggles += `
-        /* PROGRESS BAR HEAT MAP (disabled) */
-        .ytp-progress-bar-container .ytp-heat-map-container {
-            display: none !important;
-        }
+/* PROGRESS BAR HEAT MAP (disabled) */
+.ytp-progress-bar-container .ytp-heat-map-container {
+    display: none !important;
+}
         `
     } if (userConfig.toggleWatermark == false) {
         outputCssToggles += `
-        /* CHANNEL WATERMARK (disabled) */
-        .annotation.annotation-type-custom.iv-branding {
-            display: none;
-        }
+/* CHANNEL WATERMARK (disabled) */
+.annotation.annotation-type-custom.iv-branding {
+    display: none;
+}
         `
     } if (userConfig.toggleRoundedCorners !== true) {
         outputCssToggles += `
-        /* ROUNDED CORNERS (disabled / not set) */
-        #ytd-player.ytd-watch-flexy {
-            border-radius: 0 !important;
-        }
+/* ROUNDED CORNERS (disabled / not set) */
+#ytd-player.ytd-watch-flexy {
+    border-radius: 0 !important;
+}
         `
     } else if (userConfig.toggleRoundedCorners == true) {
         outputCssToggles += `
-        /* ROUNDED CORNERS (enabled) */
-        #ytd-player.ytd-watch-flexy {
-            border-radius: 12px !important;
-        }
+/* ROUNDED CORNERS (enabled) */
+#ytd-player.ytd-watch-flexy {
+    border-radius: 12px !important;
+}
         `
     } if (userConfig.togglePaidContent !== true) {
         outputCssToggles += `
-        /* PAID CONTENT (disabled / not set) */
-        .ytp-suggested-action-badge[aria-label="View products"], .ytp-paid-content-overlay-link {
-            display: none !important;
-        }
+/* PAID CONTENT (disabled / not set) */
+.ytp-suggested-action-badge[aria-label="View products"], .ytp-paid-content-overlay-link {
+    display: none !important;
+}
         `
     } if (userConfig.toggleInfoCards == false) {
         outputCssToggles += `
-        /* INFO CARDS (disabled) */
-        .ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
-            display: none !important;
-        }
+/* INFO CARDS (disabled) */
+.ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
+    display: none !important;
+}
         `
     } if (userConfig.fullyExtendBar == true) {
         outputCssToggles += `
-        /* FULLY EXTEND PROGRESS BAR (enabled) */
-        .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
-            height: var(--pt-progress-bar-full-height) !important;
-            margin-bottom: 1px !important;
-        }
+/* FULLY EXTEND PROGRESS BAR (enabled) */
+.ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+    height: var(--pt-progress-bar-full-height) !important;
+    margin-bottom: 1px !important;
+}
 
-        .ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
-            height: 4px !important;
-        }
-        
-        .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
-            transform: scaleY(1) !important;
-        }
-        
-        .ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
-            transform: scale(1) !important;
-        }
+.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+    height: 4px !important;
+}
 
-        .ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
-            transform: scale(0) !important;
-        }
-        
-        .ytp-chrome-bottom .ytp-progress-bar:after {
-            transform: scale(1) !important;
-        }
+.ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
+    transform: scaleY(1) !important;
+}
 
-        /* 3rd-party stuff for setting */
-        .ytp-autohide #previewbar {
-            transform: scaleY(0.5);
-            top: -8px;
-        }
+.ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
+    transform: scale(1) !important;
+}
+
+.ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
+    transform: scale(0) !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar:after {
+    transform: scale(1) !important;
+}
+
+/* 3rd-party stuff for same setting */
+.ytp-autohide #previewbar {
+    transform: scaleY(0.5);
+    top: -8px;
+}
         `
 
         if (userConfig.year == '2010') {
             outputCssToggles += `
-            #previewbar {
-                transform: scale(1) !important;
-            }
+#previewbar {
+    transform: scale(1) !important;
+}
             `
         }
     } if (userConfig.toggleFadeOut == true) {
         outputCssToggles += `
-        /* TOGGLE FADE OUT (enabled) */
-        #movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
-            opacity: 0 !important;
-            bottom: 0 !important;
-        }
+/* TOGGLE FADE OUT (enabled) */
+#movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+    opacity: 0 !important;
+    bottom: 0 !important;
+}
         `
     } if (userConfig.toggleSpinner == false) {
         outputCssToggles += `
-        .ytp-spinner {
-            background: none !important;
-            height: auto !important;
-        }
+/* TOGGLE CUSTOM SPINNER (disabled) */
+.ytp-spinner {
+    background: none !important;
+    height: auto !important;
+}
+        `
+    } if (userConfig.toggleMoreVids !== true) {
+        outputCssToggles += `
+/* TOGGLE MORE VIDEOS FEATURE (disabled) */
+.html5-video-player {
+    --ytp-grid-scroll-percentage: 0 !important;
+}
+
+.ytp-fullscreen-grid {
+    display: none !important;
+}
+        `
+    } if (userConfig.toggleFSButtons !== true) {
+        outputCssToggles += `
+.html5-video-player.ytp-big-mode.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
+    display: none;
+}
         `
     }
     // output css
@@ -544,50 +563,46 @@ function extraStyles() {
     if (userConfig.year == "2010") {
         var thirdPartyCSS2010 = 
         `
-        /* This is 3rd-party CSS for those using the 2010 theme */
-        
-        .ytp-chrome-bottom .playerButton.ytp-button {
-            background: none !important;
-            border: none !important;
-        }
+/* This is 3rd-party CSS for those using the 2010 theme */
 
-        #sbSkipIconControlBarImage {
-            background: none !important;
-            border: none !important;
-        }
+.ytp-chrome-bottom .playerButton.ytp-button {
+    background: none !important;
+    border: none !important;
+}
+
+#sbSkipIconControlBarImage {
+    background: none !important;
+    border: none !important;
+}
         `
         if (userConfig.alternateMode == false) thirdPartyCSS2010 += 
         `
         
-        .skipButtonControlBarContainer div {
-            color: black;
-        }
+.skipButtonControlBarContainer div {
+    color: black;
+}
         `
 
-        document.body.insertAdjacentHTML('afterbegin', 
-        `
-        <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
-        ${thirdPartyCSS2010}
-        </style>
-        `
-        )
+        document.body.insertAdjacentHTML('afterbegin', `
+            <style id="playertube-css" class="playertube-3rd-party-2010" type="text/css">
+            ${thirdPartyCSS2010}
+            </style>
+        `);
     } else if (userConfig.year == "2006") {
         var thirdPartyCSS2006 = 
         `
-        /* This is 3rd-party CSS for those using the 2006 theme */
+/* This is 3rd-party CSS for those using the 2006 theme */
 
-        #previewbar {
-            transform: scaleY(1);
-        }
+#previewbar {
+    transform: scaleY(1);
+}
         `
 
-        document.body.insertAdjacentHTML('afterbegin', 
-        `
-        <style id="playertube-css" class="playertube-3rd-party-2006" type="text/css">
-        ${thirdPartyCSS2006}
-        </style>
-        `
-        )
+        document.body.insertAdjacentHTML('afterbegin', `
+            <style id="playertube-css" class="playertube-3rd-party-2006" type="text/css">
+            ${thirdPartyCSS2006}
+            </style>
+        `);
     }
 }
 
@@ -601,12 +616,11 @@ function watchLaterButtonAdd() {
     let tempInterval = setInterval(() => {
         if (subtitlesButton) {
             subtitlesButton.insertAdjacentHTML('beforebegin', `
-            <button
+                <button
                 class="ytp-button playertube-watchlater"
                 data-tooltip-opaque="false" aria-label="Watch later"
-                title="Watch later"
-            >
-            </button>
+                title="Watch later">
+                </button>
             `);
             // Click listener
             document.querySelector(`.ytp-button.playertube-watchlater`).addEventListener('click', async () => {
@@ -674,22 +688,22 @@ function startPlayer() {
                         // Make a basic style script for V3 with root vars and stuff
                         document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `
                             <style id="playertube-css" class="playertube-v3-2013">
-                                :root {
-                                    --pt-main-colour: #cc181e;
-                                    --pt-alt-colour: rgba(255,255,255,.3);
-                                    --pt-volume-slider: #cc181e;
-                                    --pt-progress-bar-bg: #444;
-                                }
+:root {
+    --pt-main-colour: #cc181e;
+    --pt-alt-colour: rgba(255,255,255,.3);
+    --pt-volume-slider: #cc181e;
+    --pt-progress-bar-bg: #444;
+}
 
-                                .ytp-scrubber-button {
-                                    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
-                                    background-position: 0px 0px !important;
-                                    background-size: 18px !important;
-                                    height: 18px !important;
-                                    width: 18px !important;
-                                    border: none;
-                                    position: relative;
-                                }
+.ytp-scrubber-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
+    background-position: 0px 0px !important;
+    background-size: 18px !important;
+    height: 18px !important;
+    width: 18px !important;
+    border: none;
+    position: relative;
+}
                             </style>
                         `);
                         if (userConfig.alternateMode == true) {
@@ -776,49 +790,49 @@ function startPlayer() {
                         await enableCustomTheme();
 
                         var CustomThemeCss2010 = `
-                        /* someother custom theme stuff for 2010 */
+/* someother custom theme stuff for 2010 */
 
-                        ${elementNames['#container']} .ytp-chrome-controls {
-                            border-top: solid 2px #d1d1d180 !important;
-                        }
+${elementNames['#container']} .ytp-chrome-controls {
+    border-top: solid 2px #d1d1d180 !important;
+}
 
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
-                            position: absolute;
-                            content: "";
-                            height: 100%;
-                            width: 100%;
-                            left: 80px;
-                            background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
-                        }
+${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: 80px;
+    background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
+}
 
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
-                            position: absolute;
-                            content: "";
-                            height: 100%;
-                            width: 60%;
-                            background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
-                        }
+${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
+}
 
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
-                            border: solid 1px rgb(255 255 255 / 35%);
-                            background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
-                        }
+${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
+    border: solid 1px rgb(255 255 255 / 35%);
+    background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
+}
 
-                        /* igrone background & border for the following: */
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-                        ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
-                        {
-                            background: none !important;
-                            border: none !important;
-                        }
+/* igrone background & border for the following: */
+${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
+{
+    background: none !important;
+    border: none !important;
+}
                         `
                         if (userConfig.progressBarColor) {
                             CustomThemeCss2010 += `
-                            :root {
-                                --pt-alt-colour: ${userConfig.progressBarColor}45;
-                            }
+:root {
+    --pt-alt-colour: ${userConfig.progressBarColor}45;
+}
                             `
                         }
                         // output css
