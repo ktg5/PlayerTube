@@ -96,7 +96,6 @@
 .html5-video-player .ytp-chrome-bottom .ytp-progress-list {
 	background: var(--pt-progress-bar-bg) !important;
 	transform: scaleY(1) !important;
-	border-radius: 0;
 }
 
 .html5-video-player .ytp-timed-markers-container {

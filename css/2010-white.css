@@ -42,10 +42,6 @@
 /* BUTTONS BASE */
 
 .ytp-chrome-bottom .ytp-button {
-    position: sticky !important;
-    height: 33px !important;
-    width: 40px !important;
-    bottom: 9px;
     border: solid 1px lightgray;
     background: var(--pt-button-gradient) !important;
 }
@@ -76,31 +72,43 @@
 
 /* VOLUME BUTTON */
 /* DEFAULT */
-.ytp-button.ytp-mute-button svg {
+.ytp-button.ytp-mute-button svg,
+.ytp-button.ytp-volume-icon svg
+{
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume.png') no-repeat center;
 }
 
-.ytp-button.ytp-mute-button:hover svg {
+.ytp-button.ytp-mute-button:hover svg,
+.ytp-button.ytp-volume-icon:hover svg
+{
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-mute-hover.png') no-repeat center !important;
     background-size: 36px !important;
 }
 
 /* MEDIUM VOLUME */
-.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button svg {
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button svg,
+.ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon svg
+{
     background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-med.png') no-repeat center;
 }
 
 /* LOW VOLUME */
-.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button svg {
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button svg,
+.ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon svg
+{
     background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-low.png') no-repeat center;
 }
 
 /* MUTE */
-.ytp-button.ytp-mute-button[title="Unmute (m)"] svg {
+.ytp-button.ytp-mute-button[title="Unmute (m)"] svg,
+.ytp-button.ytp-volume-icon[title="Unmute (m)"] svg
+{
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-mute.png') no-repeat center;
 }
 
-.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover svg {
+.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover svg,
+.ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover svg
+{
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-hover.png') no-repeat center;
 }
 
@@ -128,7 +136,7 @@
 
 .ytp-button.ytp-settings-button svg {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2012-icons.png') no-repeat;
-    background-position: -164px -132px;
+    background-position: -172px -136px;
     background-size: 200px;
     bottom: 5px;
     transform: rotate(0) !important;

@@ -145,7 +145,7 @@
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -45px;
 }
@@ -155,7 +155,7 @@
 	height: var(--pt-progress-bar-unfocused-height) !important;
 }
 
-.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
+.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -41px;
 }
@@ -260,6 +260,23 @@
 	height: 35px;
 }
 
+.ytp-chrome-bottom .ytp-button {
+	position: sticky !important;
+    height: 33px !important;
+    width: 40px !important;
+    bottom: 9px;
+}
+
+.ytp-chrome-bottom .ytp-button svg {
+    position: absolute;
+    padding: 0 !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 /* igrone background & border for the following: */
 .ytp-chrome-bottom .ytp-button.ytp-settings-button,
 .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
@@ -279,7 +296,9 @@
 	width: auto;
 }
 
-.ytp-button.ytp-mute-button svg {
+.ytp-button.ytp-mute-button svg,
+.ytp-button.ytp-volume-icon svg
+{
 	background-size: 36px !important;
     position: absolute;
     top: 0;
@@ -471,8 +490,10 @@
 
 /* RIGHT BUTTONS */
 
-.ytp-right-controls {
+.ytp-chrome-bottom .ytp-right-controls {
 	position: relative !important;
+	background: none !important;
+    margin: 0 !important;
 	padding-right: 0px;
 }
 

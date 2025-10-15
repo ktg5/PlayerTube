@@ -108,14 +108,13 @@ var ptMainHeartBeat = setInterval(async () => {
     if (nextButton &&
         prevButton &&
         buttonBase) {
-        // Left
-        if (nextButton.getAttribute('style') == "display: none;") {
-            buttonBase.classList.add('no-right-button');
+        // Left (Should always be on else in a embed)
+        // If not a embed
+        if (!window.location.href.includes('embed')) {
+            nextButton.style.display = 'block';
         } else {
-            // Remove if spotted
-            if (buttonBase.classList.contains('no-right-button')) {
-                buttonBase.classList.remove('no-right-button');
-            }
+            // There'll be no button
+            buttonBase.classList.add('no-right-button');
         }
     
         // Right
@@ -234,21 +233,24 @@ var baseCSS = runtime.getURL(`css/base.css`);
 document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baseCSS}">`);
 
 
-// Insert resizing progress bar script
-// First, make sure this isn't a embed and isn't using Project V3, as they don't have the weird stuff YT does
-if (!window.location.href.includes('embed') && isProjectV3 == false) {
-    let tempInterval = setInterval(() => {
-        if (document.querySelector('.video-stream.html5-main-video')) {
-            // Now insert
-            var srcDoc = document.createElement('script');
-            srcDoc.id = 'playertube-js';
-            srcDoc.className = 'playertube-resize-bar';
-            srcDoc.src = runtime.getURL(`src/pt-resize.js`);
-            document.body.append(srcDoc);
-            // Stop
-            clearInterval(tempInterval);
-        }
-    }, 1000);
+// Stuff for no embeds
+if (!window.location.href.includes('embed')) {
+    // Insert resizing progress bar script
+    // Also make sure we're not in a ProjectV3 instance
+    if (isProjectV3 == false) {
+        let tempInterval = setInterval(() => {
+            if (document.querySelector('.video-stream.html5-main-video')) {
+                // Now insert
+                var srcDoc = document.createElement('script');
+                srcDoc.id = 'playertube-js';
+                srcDoc.className = 'playertube-resize-bar';
+                srcDoc.src = runtime.getURL(`src/pt-resize.js`);
+                document.body.append(srcDoc);
+                // Stop
+                clearInterval(tempInterval);
+            }
+        }, 1000);
+    }
 }
 
 
@@ -855,6 +857,7 @@ function startPlayer() {
                             var VolumeButton = document.querySelector(".ytp-volume-panel");
                             if (VolumeButton) {
                                 pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
+                                if (!pastDiv1) pastDiv1 = document.querySelector('.ytp-volume-icon.ytp-button');
                 
                                 moveElement(VolumeButton, pastDiv1);
                             }
