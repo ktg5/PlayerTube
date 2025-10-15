@@ -21,10 +21,6 @@
     border-radius: 0 !important;
 }
 
-.html5-video-player.ytp-delhi-modern:not(.ytp-embed) .ytp-button.ytp-next-button {
-    display: block !important;
-}
-
 .html5-video-player .ytp-chrome-bottom .ytp-progress-list {
     border-radius: 0 !important;
 }

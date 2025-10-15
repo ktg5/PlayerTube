@@ -110,7 +110,10 @@ var ptMainHeartBeat = setInterval(async () => {
         buttonBase) {
         // Left (Should always be on else in a embed)
         // If not a embed
-        if (!window.location.href.includes('embed')) {
+        if (
+            !window.location.href.includes('embed')
+            && userConfig.year !== '2010'
+        ) {
             nextButton.style.display = 'block';
         } else {
             // There'll be no button

@@ -4,6 +4,12 @@
     display: none;
 }
 
+/* show thumbnail in unstarted mode */
+
+.html5-video-player.unstarted-mode .video-stream.html5-main-video {
+    opacity: 0;
+}
+
 /* hd icon */
 
 .ytp-cairo-refresh .ytp-settings-button.ytp-hd-quality-badge::after, .ytp-cairo-refresh .ytp-settings-button.ytp-hdr-quality-badge::after, .ytp-cairo-refresh .ytp-settings-button.ytp-4k-quality-badge::after, .ytp-cairo-refresh .ytp-settings-button.ytp-5k-quality-badge::after, .ytp-cairo-refresh .ytp-settings-button.ytp-8k-quality-badge::after, .ytp-cairo-refresh .ytp-settings-button.ytp-3d-badge-grey::after, .ytp-cairo-refresh .ytp-settings-button.ytp-3d-badge::after {
