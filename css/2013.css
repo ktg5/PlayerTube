@@ -266,8 +266,8 @@
     display: none;
 }
 
-#ytd-player .html5-video-player .ytp-chrome-bottom .ytp-button {
-	background-size: 200px;
+.html5-video-player .ytp-chrome-bottom .ytp-button {
+	background-size: 200px !important;
 }
 
 .ytp-button svg {
@@ -288,13 +288,15 @@
 
 .ytp-left-controls {
 	position: relative;
-	padding-left: 10px;
+	padding-left: 6px;
 	top: 0;
 }
 
 /* TIME DISPLAY */
 
 #movie_player .ytp-chrome-bottom .ytp-time-display {
+	color: var(--pt-progress-text) !important;
+	text-shadow: none !important;
 	line-height: 47px !important;
     padding: 0px 10px;
     margin-top: -7px;

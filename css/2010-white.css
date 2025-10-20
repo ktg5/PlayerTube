@@ -100,8 +100,8 @@
 }
 
 /* MUTE */
-.ytp-button.ytp-mute-button[title="Unmute (m)"] svg,
-.ytp-button.ytp-volume-icon[title="Unmute (m)"] svg
+.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"] svg,
+.ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"] svg
 {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/volume-mute.png') no-repeat center;
 }

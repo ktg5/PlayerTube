@@ -4,7 +4,13 @@
     height: 3px;
     background: var(--pt-progress-bar-bg);
     bottom: 0;
+    opacity: 0;
     z-index: 50;
+    transition: opacity 1s;
+}
+
+.ytp-autohide:not(.paused-mode) #playertube-fake-bar {
+    opacity: 1;
 }
 
 #playertube-fake-bar .current {

@@ -333,6 +333,15 @@
     margin-left: 4px;
 }
 
+.html5-video-player.ytp-delhi-modern .ytp-button.ytp-volume-icon {
+    position: relative;
+    bottom: 8px;
+}
+
+.html5-video-player.ytp-delhi-modern.ytp-delhi-modern-compact-controls .ytp-button.ytp-volume-icon {
+    bottom: 5px;
+}
+
 .html5-video-player.ytp-big-mode .ytp-button.ytp-volume-icon {
     top: -23px;
 }
@@ -361,8 +370,8 @@
 }
 
 /* MUTE */
-.ytp-button.ytp-mute-button[title="Unmute (m)"]
-.ytp-button.ytp-volume-icon[title="Unmute (m)"]
+.ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]
+.ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]
 {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2006/volume-button-mute.png') !important;
     background-position: center center !important;
@@ -395,6 +404,15 @@
 .ytp-volume-area .ytp-volume-panel {
     display: inline-block !important;
     width: 46px !important;
+}
+
+.html5-video-player.ytp-delhi-modern .ytp-volume-area .ytp-volume-panel {
+    position: relative;
+    bottom: 4px;
+}
+
+.html5-video-player.ytp-delhi-modern.ytp-delhi-modern-compact-controls .ytp-volume-area .ytp-volume-panel {
+    bottom: 1px;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-volume-area:before {
@@ -477,7 +495,7 @@
 
 .ytp-big-mode .ytp-right-controls .ytp-button {
     width: 40px !important;
-    height: auto !important;
+    height: 100% !important;
 }
 
 /* SUBTITLES BUTTON */
@@ -608,6 +626,11 @@
 
 .html5-video-player.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper {
     height: 100%;
+    top: -12px;
+}
+
+.html5-video-player.ytp-delhi-modern.ytp-small-mode .ytp-chrome-bottom .ytp-time-wrapper,
+.html5-video-player.ytp-delhi-modern.ytp-delhi-modern-compact-controls .ytp-chrome-bottom .ytp-time-wrapper {
     top: -9px;
 }
 
@@ -644,6 +667,15 @@
 .ytp-time-clip-icon svg {
     width: 12px;
     height: 12px;
+}
+
+.ytp-clip .ytp-clip-watch-full-video-button {
+    position: relative;
+    bottom: 11px;
+    height: 12px !important;
+    font-size: 10px;
+    line-height: 12px;
+    margin-left: 16px !important;
 }
 
 /* ################################# */

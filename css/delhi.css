@@ -3,14 +3,31 @@
  * is called, "delhi".
  */
 
+.html5-video-player .ytp-chrome-bottom {
+    width: 100%;
+}
+
 .ytp-delhi-modern .ytp-chrome-controls .ytp-button:before,
 .ytp-delhi-modern .ytp-chrome-controls .ytp-button:after
 {
     display: none !important;
 }
 
+.ytp-delhi-modern-icons .ytp-chrome-controls .ytp-button svg {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
 .ytp-delhi-modern.ytp-delhi-modern-compact-controls .ytp-chrome-controls .ytp-play-button {
     margin-top: 0;
+}
+
+.ytp-delhi-modern .ytp-chrome-controls .ytp-prev-button,
+.ytp-delhi-modern .ytp-chrome-controls .ytp-next-button,
+.ytp-delhi-modern .ytp-chrome-controls .ytp-next-button:not(.ytp-miniplayer-button-container>*)
+{
+    padding: 0;
 }
 
 .ytp-delhi-modern .ytp-chrome-controls .ytp-button,
@@ -39,11 +56,16 @@
     background: none !important;
 }
 
-.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper-delhi,
-.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper-delhi:after
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper,
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-time-wrapper:after,
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-clip-watch-full-video-button
 {
     background: none !important;
     padding: 0 !important;
+}
+
+.ytp-delhi-modern .ytp-chrome-bottom .ytp-clip-watch-full-video-button {
+    height: fit-content;
 }
 
 .ytp-delhi-modern .ytp-chapter-container {

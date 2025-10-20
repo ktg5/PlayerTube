@@ -193,7 +193,7 @@ async function start(userConfig) {
     }
 
     /// Get year options for menu
-    var years = [2013, 2012, 2010, 2006];
+    var years = [2015, 2013, 2012, 2010, 2006];
     var yearOptions = '';
     years.forEach(element => {
         if (element == userConfig['year']) {

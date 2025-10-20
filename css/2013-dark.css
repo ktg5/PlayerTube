@@ -83,8 +83,8 @@
 }
 
 /* MUTE */
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[title="Unmute (m)"],
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[title="Unmute (m)"]
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]
 {
 	background-position: -155px -1000px !important;
 }
@@ -176,7 +176,7 @@
 	bottom: 5px;
 }
 
-.ytp-button.ytp-fullscreen-button[title="Exit full screen (f)"] {
+.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] {
 	background-position: -114px -1149px;
 }
 

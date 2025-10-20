@@ -240,8 +240,11 @@ document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class=
 // Stuff for no embeds
 if (!window.location.href.includes('embed')) {
     // Insert resizing progress bar script
-    // Also make sure we're not in a ProjectV3 instance
-    if (isProjectV3 == false) {
+    // Also make sure we're not in a ProjectV3 instance & using a theme that needs it
+    if (
+        isProjectV3 == false
+        && userConfig.year !== '2015'
+    ) {
         let tempInterval = setInterval(() => {
             if (document.querySelector('.video-stream.html5-main-video')) {
                 // Now insert
@@ -660,6 +663,28 @@ function startPlayer() {
     const starter = setInterval(async () => {
         if (loadedPlayerStyle !== true) {
             switch (userConfig.year) {
+                case '2015':
+                    // IMPORT CSS (if it wasn't already loaded)
+                    // Base
+                    var link;
+                    if (isProjectV3 == true) {
+                        link = runtime.getURL(`css/v3/${userConfig.year}.css`);
+                        document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    } else {
+                        link = runtime.getURL(`css/${userConfig.year}.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
+                    }
+                    loadedPlayerStyle = true;
+
+                    // IMPORT THE OTHER CSS
+                    extraStyles();
+
+                    // IMPORT USER CUSTOMIZATION
+                    if (customTheme === true) {
+                        await enableCustomTheme();
+                    }
+                break;
+
                 case '2013':
                     // Project V3 uses it's own 2013 theme which can't be disabled, but that's fine by me.
                     // (makes my life easier lmao)
