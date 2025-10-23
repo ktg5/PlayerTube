@@ -62,7 +62,7 @@ function moveElement(element, pasteDiv) {
 };
 
 // Heartbeats
-var ptMainHeartBeat = setInterval(async () => {
+const ptMainHeartBeatFunc = async () => {
     // Make sure script reruns on page update.
     if (window.location.href !== currentPath) {
         startPlayer();
@@ -201,8 +201,9 @@ var ptMainHeartBeat = setInterval(async () => {
         }
     }
 
-    // console.log('ptMainHeartBeat: still rolling...');
-}, 1000);
+    console.log('ptMainHeartBeat: still rolling...');
+};
+var ptMainHeartBeat = setInterval(ptMainHeartBeatFunc, 1000);
 
 // Mainly used in fullscreen & embeds
 var progressBarFullDetector;
