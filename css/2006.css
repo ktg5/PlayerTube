@@ -57,12 +57,6 @@
     left: 0 !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar {
-	transition: .5s;
-	margin-bottom: -0.5px !important;
-	height: var(--pt-progress-bar-full-height) !important;
-}
-
 .ytp-chrome-bottom .ytp-progress-bar:hover {
 	margin-bottom: 1px !important;
 }
@@ -148,24 +142,19 @@
 	transition: .5s !important;
 }
 
-/* Fully bar plz */
-
 .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
     width: auto;
+    height: 4px;
+    margin-bottom: 2px !important;
+}
+
+.ytp-chrome-bottom .ytp-progress-bar-container:hover .ytp-progress-bar {
     height: var(--pt-progress-bar-full-height) !important;
     margin-bottom: 1px !important;
 }
 
-.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
-    height: 4px !important;
-}
-
 .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
     transform: scaleY(1) !important;
-}
-
-.ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
-    transform: scale(1) !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:after {
@@ -186,10 +175,6 @@
     bottom: -45px;
 }
 
-.ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
-    transform: scale(0) !important;
-}
-
 .ytp-big-mode.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
     bottom: -41px;
@@ -201,10 +186,6 @@
 
 .ytp-progress-bar-container {
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
-}
-
-.ytp-autohide .ytp-progress-bar {
-    height: 5px;
 }
 
 .ytp-autohide .ytp-progress-bar-container {
@@ -688,8 +669,8 @@
 /* SCRUBBER */
 
 .ytp-scrubber-container {
-	top: 1px !important;
-    left: 0px !important;
+	top: 0 !important;
+	left: -5px !important;
 	margin-top: -5px;
 }
 
@@ -699,11 +680,8 @@
     background-size: 16px !important;
     height: 16px !important;
     width: 16px !important;
-    top: -1px;
-    left: -7px;
     transition: .5s !important;
     position: relative;
-    transform: scale(1) !important;
 }
 
 .ytp-swatch-background-color.ytp-scrubber-button:hover {
@@ -714,20 +692,12 @@
     width: 16px !important;
 }
 
-.ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-button {
-    transform: scale(0) !important;
-}
-
 .ytp-swatch-background-color.ytp-scrubber-button.ytp-swatch-background-color {
 	background-color: transparent !important;
 }
 
 .ytp-big-mode .ytp-scrubber-container {
     left: 0 !important;
-}
-
-.ytp-big-mode .ytp-scrubber-button {
-    left: -14px;
 }
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-scrubber-button.ytp-scrubber-button-hover {

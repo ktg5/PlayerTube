@@ -232,18 +232,11 @@
 	left: 0px !important;
 }
 
-.ytp-progress-bar:hover .ytp-scrubber-container,
-.html5-video-player[pt-force-extend] .ytp-scrubber-container
-{
+.ytp-progress-bar .ytp-scrubber-container {
 	width: 18px;
 	height: 18px;
 	top: 1px;
 	left: -15px;
-}
-
-.ytp-big-mode .ytp-scrubber-button {
-	left: 0px !important;
-	top: 0px !important;
 }
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-scrubber-button.ytp-scrubber-button-hover {

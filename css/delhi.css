@@ -103,7 +103,7 @@
     padding: 5px 10px !important;
 }
 
-.ytp-delhi-modern .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button {
+.ytp-delhi-modern .ytp-progress-bar-container:hover:not([aria-disabled="true"]) .ytp-scrubber-button, .ytp-delhi-modern .ytp-touch-mode .ytp-progress-bar-container:not([aria-disabled="true"]) .ytp-scrubber-button, .ytp-delhi-modern .ytp-drag .ytp-scrubber-button {
     transform: scale(1) !important;
 }
 

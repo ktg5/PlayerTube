@@ -4,6 +4,24 @@
     display: none;
 }
 
+/* progress bar scrubber */
+
+.html5-video-player .ytp-scrubber-button {
+    transform: scale(0);
+    transition: transform .5s;
+}
+
+.html5-video-player .ytp-progress-bar-container:hover .ytp-scrubber-button,
+.html5-video-player .ytp-scrubber-button:hover
+{
+    transform: scale(1);
+}
+
+.html5-video-player.ytp-big-mode .ytp-swatch-background-color.ytp-scrubber-button {
+    bottom: 0;
+    left: 0;
+}
+
 /* show thumbnail in unstarted mode */
 
 .html5-video-player.unstarted-mode .video-stream.html5-main-video {
