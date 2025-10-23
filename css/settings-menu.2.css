@@ -1,0 +1,51 @@
+.ytp-popup {
+	background: var(--pt-settings-bg) !important;
+}
+
+.ytp-popup.ytp-settings-menu {
+	bottom: 30px !important;
+    border-radius: 0 !important;
+}
+
+.ytp-settings-menu .ytp-panel {
+    min-width: 225px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-panel-menu {
+	padding: 0px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
+	display: none !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
+	padding-left: 20px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
+	padding-left: 35px !important;
+}
+
+.ytp-menuitem .ytp-menuitem-label,
+.ytp-menuitem .ytp-menuitem-content,
+.ytp-panel .ytp-panel-footer,
+.ytp-panel .ytp-panel-header {
+	color: rgb(10, 10, 10);
+    text-shadow: none;
+}
+
+.ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: var(--pt-main-colour) !important;
+}
+
+.ytp-settings-menu .ytp-panel-back-button {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/x-1.png') no-repeat center;
+    background-size: 20px;
+}
+
+.ytp-menuitem[role=menuitemradio][aria-checked=true] .ytp-menuitem-label {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/dot-1.png') no-repeat center;
+    background-size: 12px !important;
+    background-position: left 10px center;
+}

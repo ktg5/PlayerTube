@@ -315,6 +315,10 @@ function enableCustomTheme() {
                     `;
                 } if (userConfig.volumeSliderBack !== null) {
                     outputCssCustomTheme += `
+:root {
+    --pt-volume-slider: ${userConfig.volumeSliderBack} !important;
+}
+
 ${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
     background: ${userConfig.volumeSliderBack} !important;
 }
@@ -435,7 +439,7 @@ ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
 }
 
 // User settings toggles
-function extraStyles() {
+function applyUserSettings() {
     // toggles
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
     if (userConfig.endScreenToggle == false) {
@@ -540,7 +544,7 @@ function extraStyles() {
     } if (userConfig.toggleFadeOut == true) {
         outputCssToggles += `
 /* TOGGLE FADE OUT (enabled) */
-#movie_player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+.html5-video-player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 0 !important;
     bottom: 0 !important;
 }
@@ -692,7 +696,10 @@ function startPlayer() {
                     loadedPlayerStyle = true;
 
                     // IMPORT THE OTHER CSS
-                    extraStyles();
+                    /// User settings
+                    applyUserSettings();
+                    /// Settings menu
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
 
                     // IMPORT USER CUSTOMIZATION
                     if (customTheme === true) {
@@ -723,7 +730,12 @@ function startPlayer() {
                         loadedPlayerStyle = true;
 
                         // IMPORT THE OTHER CSS
-                        extraStyles();
+                        /// User settings
+                        applyUserSettings();
+                        /// Top buttons style
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/old-top-buttons.css`)}">`);
+                        /// Settings menu
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
 
                         // Custom watch later button
                         watchLaterButtonAdd();
@@ -755,7 +767,7 @@ function startPlayer() {
                         ) {
                             // todo
                         }
-                        extraStyles();
+                        applyUserSettings();
                     }
 
                     // IMPORT USER CUSTOMIZATION
@@ -781,7 +793,12 @@ function startPlayer() {
                     loadedPlayerStyle = true;
 
                     // IMPORT THE OTHER CSS
-                    extraStyles();
+                    /// User settings
+                    applyUserSettings();
+                    /// Top buttons style
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/old-top-buttons.css`)}">`);
+                    /// Settings menu
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
 
                     // Custom watch later button
                     if (isProjectV3 == false) {
@@ -822,7 +839,10 @@ function startPlayer() {
 
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
-                    extraStyles();
+                    /// User settings
+                    applyUserSettings();
+                    /// Settings menu
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.2.css`)}">`);                    
 
                     // IMPORT USER CUSTOMIZATION
                     if (customTheme === true) {
@@ -884,8 +904,12 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                     var link = runtime.getURL(`css/${userConfig.year}.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                     loadedPlayerStyle = true;
+
                     // IMPORT THE OTHER CSS
-                    extraStyles();
+                    /// User settings
+                    applyUserSettings();
+                    /// Settings menu
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.2.css`)}">`);                    
 
                     // IMPORT USER CUSTOMIZATION
                     if (customTheme === true) {

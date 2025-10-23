@@ -21,7 +21,7 @@
 	background: none !important;
 }
 
-#movie_player.html5-video-player .ytp-chrome-bottom {
+.html5-video-player .ytp-chrome-bottom {
 	height: 30px !important;
 	width: 100% !important;
     left: 0 !important;
@@ -39,7 +39,7 @@
 
 /* PROGRESS BAR */
 
-#movie_player .ytp-chrome-bottom .ytp-progress-bar-container {
+.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container {
 	bottom: 34px !important;
 	height: 11px;
     top: 10px;
@@ -48,11 +48,11 @@
     z-index: 60;
 }
 
-#movie_player .ytp-chrome-bottom .ytp-chapters-container {
-	width: fit-content !important;
+.html5-video-player .ytp-chrome-bottom .ytp-chapters-container {
+	width: 100% !important;
 }
 
-#movie_player.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
+.html5-video-player.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar-container {
     top: -9px !important;
     left: 0 !important;
 }
@@ -732,58 +732,6 @@
 
 .ytp-progress-bar-container:hover:not([aria-disabled=true]) .ytp-scrubber-button.ytp-scrubber-button-hover {
 	transform: scale(1) !important;
-}
-
-/* ################################# */
-
-/* SETTINGS MENU */
-
-.ytp-popup {
-	background: var(--pt-settings-bg) !important;
-}
-
-.ytp-popup.ytp-settings-menu {
-	bottom: 30px !important;
-    border-radius: 0 !important;
-}
-
-.ytp-settings-menu .ytp-panel {
-    min-width: 225px !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-panel-menu {
-	padding: 0px !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
-	display: none !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
-	padding-left: 20px !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
-	padding-left: 35px !important;
-}
-
-.ytp-menuitem .ytp-menuitem-label,
-.ytp-menuitem .ytp-menuitem-content,
-.ytp-panel .ytp-panel-footer,
-.ytp-panel .ytp-panel-header {
-	color: rgb(10, 10, 10);
-    text-shadow: none;
-}
-
-.ytp-settings-menu .ytp-panel-back-button {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/x-1.png') no-repeat center;
-    background-size: 20px;
-}
-
-.ytp-menuitem[role=menuitemradio][aria-checked=true] .ytp-menuitem-label {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/dot-1.png') no-repeat center;
-    background-size: 12px !important;
-    background-position: left 10px center;
 }
 
 /* ################################# */

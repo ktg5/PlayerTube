@@ -18,36 +18,40 @@
 	height: inherit !important;
 }
 
-#movie_player.html5-video-player .ytp-chrome-bottom {
+.html5-video-player .ytp-chrome-bottom {
 	height: 42px !important;
 	left: 0 !important;
 	right: 0;
 	margin: auto;
 }
 
-#movie_player.html5-video-player:not(.ytp-big-mode) .ytp-chrome-bottom {
+.html5-video-player:not(.ytp-big-mode) .ytp-chrome-bottom {
 	width: calc(100% - 24px) !important;
 }
 
-.ytp-gradient-bottom {
+.ytp-gradient-bottom,
+.ytp-big-mode .ytp-gradient-top
+{
 	display: block !important;
 	opacity: 1 !important;
 }
 
-.ytp-autohide:not(.paused-mode) .ytp-gradient-bottom {
+.ytp-autohide:not(.paused-mode) .ytp-gradient-bottom,
+.ytp-autohide:not(.paused-mode) .ytp-gradient-top
+{
 	opacity: 0 !important;
 }
 
 /* PROGRESS BAR */
 
-#movie_player .ytp-chrome-bottom .ytp-progress-bar-container {
+.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container {
 	width: 100% !important;
 	bottom: 43px !important;
 	height: var(--pt-progress-bar-unfocused-height);
 }
 
-.ytp-chrome-bottom .ytp-chapters-container {
-	width: fit-content !important;
+.html5-video-player .ytp-chrome-bottom .ytp-chapters-container {
+	width: 100% !important;
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -133,11 +137,6 @@
 .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
 .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar {
 	height: var(--pt-progress-bar-unfocused-height) !important;
-}
-
-.ytp-big-mode.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-big-mode .ytp-chrome-bottom[aria-hidden=true] {
-    opacity: 1 !important;
-    bottom: -41px;
 }
 
 .ytp-progress-bar-container {
@@ -362,11 +361,11 @@
 
 /* TIME DISPLAY */
 
-#movie_player .ytp-chrome-bottom .ytp-time-display {
+.html5-video-player .ytp-chrome-bottom .ytp-time-display {
 	color: var(--pt-progress-text) !important;
 	text-shadow: none !important;
 	line-height: 47px !important;
-    padding: 0px 10px;
+    padding: 0px 10px !important;
     margin-top: -3px;
     font-size: 12px;
     height: 46px;
@@ -433,7 +432,7 @@
 
 .ytp-volume-slider-handle::before {
 	width: 58px;
-	background: var(--pt-main-colour);
+	background: var(--pt-volume-slider);
     height: 4px;
 }
 
@@ -637,29 +636,8 @@
 
 /* SETTINGS MENU */
 
-.ytp-popup {
-	background: var(--pt-settings-bg) !important;
-}
-
 .ytp-popup.ytp-settings-menu {
-	margin-bottom: -8px;
-    border-radius: 0 !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-panel-menu {
-	padding: 0px !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
-	display: none !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
-	padding-left: 20px !important;
-}
-
-.ytp-popup.ytp-settings-menu .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
-	padding-left: 35px !important;
+    bottom: 60px !important;
 }
 
 /* ################################# */

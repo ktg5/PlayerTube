@@ -1,0 +1,76 @@
+.ytp-gradient-top {
+	display: none;
+}
+
+.ytp-chrome-top {
+	right: 0px !important;
+	left: 0px !important;
+	padding: 0px 10px;
+	height: 40px;
+}
+
+.ytd-channel-video-player-renderer .ytp-chrome-top {
+	display: none; /* this should only affect channel trailers. */
+}
+
+.ytp-big-mode .ytp-chrome-top .ytp-button {
+	padding-top: 0px;
+}
+
+.ytp-chrome-top .ytp-button.ytp-playlist-menu-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
+    background-position: -78px -914px;
+    transition: .5s !important;
+    background-size: 220px;
+    width: 40px !important;
+    bottom: 5px;
+}
+
+.ytp-title-text {
+	padding: 0px !important;
+}
+
+.ytp-title-link {
+    position: relative;
+    width: fit-content;
+    font-size: 18px;
+    top: 8px;
+}
+
+.ytp-chrome-top .ytp-button.ytp-share-button {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
+	background-position: 2px -524px;
+	transition: .5s !important;
+	background-size: 220px;
+	width: 40px !important;
+	bottom: 5px;
+}
+
+.ytp-chrome-top .ytp-button.ytp-share-button svg {
+	display: none;
+}
+
+.ytp-chrome-top .ytp-button.ytp-cards-button {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons.png) no-repeat;
+	background-position: 5px -512px;
+	transition: .5s !important;
+	background-size: 200px;
+	width: 40px !important;
+	bottom: 5px;
+}
+
+.ytp-title-link.yt-uix-sessionlink.ytp-title-fullerscreen-link:hover {
+	cursor: pointer;
+}
+
+.ytp-share-panel-service-button svg {
+	display: inherit;
+}
+
+.ytp-share-panel-close svg {
+	margin: 0px 6px
+}
+
+.ytp-button.ytp-watch-later-button {
+	display: none !important;
+}

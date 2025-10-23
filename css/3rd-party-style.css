@@ -7,7 +7,10 @@ be fixed for this script, please send a issue
 on the GitHUb repo! Much thanks! */
 
 /* YouTube Redux */
-/* yes, this extension messes with this, and some other stuff too that I'll find out about */
+/*
+yes, this extension messes with this, and some
+other stuff too that I'll find out abou
+*/
 .ytp-volume-area svg {
     transform: scale(1) !important;
 }

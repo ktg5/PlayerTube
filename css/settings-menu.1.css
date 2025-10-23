@@ -1,0 +1,28 @@
+.ytp-popup {
+	background: var(--pt-settings-bg) !important;
+}
+
+.ytp-popup.ytp-settings-menu {
+	bottom: 35px !important;
+    border-radius: 0 !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-panel-menu {
+	padding: 0px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem-icon {
+	display: none !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem .ytp-menuitem-label {
+	padding-left: 20px !important;
+}
+
+.ytp-popup.ytp-settings-menu .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
+	padding-left: 35px !important;
+}
+
+.ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: var(--pt-main-colour) !important;
+}
