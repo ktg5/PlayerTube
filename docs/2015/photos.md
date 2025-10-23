@@ -4,13 +4,8 @@
 
   <br>
 
-  <img src="screenshot1-1.png">
-  <div font-size="8px">Just the player with alternate theme enabled.</div>
-
-  <br>
-
   <img src="screenshot2.png">
-  <div font-size="8px">Context menu. (same as 2012)</div>
+  <div font-size="8px">Context menu.</div>
 
   <br>
 

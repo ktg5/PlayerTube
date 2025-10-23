@@ -219,7 +219,7 @@
 .ytp-scrubber-container {
 	width: 0px;
 	height: 0px;
-	top: 5px;
+	top: 2px;
 	left: 0px;
 	margin-top: -5px;
 	justify-items: center;
@@ -227,8 +227,13 @@
 	transition: width .5s, height .5s, top .5s, left .5s !important;
 }
 
+.html5-video-player.ytp-delhi-modern .ytp-scrubber-container {
+	top: 2px !important;
+	left: 0px !important;
+}
+
 .ytp-progress-bar:hover .ytp-scrubber-container,
-.html5-video-player[pt-video-hover="true"] .ytp-scrubber-container
+.html5-video-player[pt-force-extend] .ytp-scrubber-container
 {
 	width: 18px;
 	height: 18px;
@@ -346,30 +351,31 @@
 	background-position: -114px 91.5px !important;
 }
 
-.ended-mode .ytp-button.ytp-play-button {
+.html5-video-player.ended-mode .ytp-button.ytp-play-button {
 	background-position: -114px 27px !important;
 }
 
 /* NEXT BUTTON */
+
 .ytp-button.ytp-next-button {
     display: none !important;
 }	
 
 /* VOLUME BUTTON */
-
 /* DEFAULT */
+
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
 {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
-	background-position: -175px -296px !important;
+	background-position: -150px -257px !important;
 	width: 40px !important;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover,
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon:hover
 {
-	background-position: -138px -17px !important;
+	background-position: -118px -14px !important;
     filter: brightness(1.5) !important;
 }
 
@@ -390,12 +396,12 @@
 /* MUTE */
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"] {
-	background-position: -138px -17px !important;
+	background-position: -118px -14px !important;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -175px -296px !important;
+	background-position: -150px -257px !important;
     filter: brightness(1.5);
 }
 
@@ -524,7 +530,7 @@
 
 .ytp-button.ytp-subtitles-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-    background-position: -69.5px -222px;
+    background-position: -73.5px -233px;
     background-size: 200px !important;
     bottom: 5px;
 }
@@ -534,7 +540,7 @@
 }
 
 .ytp-button.ytp-subtitles-button[aria-pressed=true] {
-	background-position: -34.5px -163px !important;
+	background-position: -36.5px -171px !important;
 }
 
 .ytp-button.ytp-subtitles-button[aria-pressed=true]:hover {
@@ -553,7 +559,7 @@
 
 .ytp-button.ytp-settings-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat !important;
-	background-position: -166px -134px !important;
+	background-position: -175px -141px !important;
 	background-size: 200px !important;
 	bottom: 5px !important;
 }
@@ -582,11 +588,11 @@
 }
 
 .ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -61px -135.5px !important;
+	background-position: -65px -142px !important;
 }
 
 .ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -96.5px -17.5px !important;
+	background-position: -101.5px -18.5px !important;
 }
 
 .ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
@@ -603,7 +609,7 @@
 
 .ytp-button.ytp-fullscreen-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-	background-position: -96px -135.5px;
+	background-position: -101px -142.5px;
 	background-size: 200px !important;
 	bottom: 5px;
 }
@@ -620,7 +626,7 @@
 
 .ytp-button.playertube-watchlater {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat !important;
-	background-position: 1px -282px !important;
+	background-position: 0px -296px !important;
 	background-size: 200px !important;
 	display: inline-block;
 	bottom: 5px;
@@ -768,8 +774,9 @@
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
 	background: rgb(255, 255, 255) !important;
 	outline: 2px solid #dfdfdf;
-	height: 230px !important;
-	width: 267px !important;
+	height: 250px !important;
+    width: 265px !important;
+	border-radius: 0 !important;
 	text-shadow: 0 0 0;
 	transition: none;
 }
@@ -801,6 +808,10 @@
 	font-size: 130%;
 	padding: 0 5px;
 	color: gray;
+}
+
+.ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg);
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {

@@ -329,7 +329,7 @@ async function start(userConfig) {
 
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
 
-            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when not active`)}
+            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when playing`)}
 
             ${makeMenuOption('toggle', 'toggleMoreVids', 'Toggle the "More Videos" feature when in fullscreen')}
 
@@ -382,7 +382,10 @@ async function start(userConfig) {
 
     // Checks
     // If theme is 2010 or 2013, show Alternate Theme opinion
-    if (userConfig.year == "2010" || userConfig.year == "2013") {
+    if (
+        (userConfig.year == "2010" || userConfig.year == "2013")
+        && userConfig.customTheme !== true
+    ) {
         document.getElementById('menu-if-alt-mode').insertAdjacentHTML(
             `afterbegin`,
             

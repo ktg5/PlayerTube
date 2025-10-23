@@ -45,11 +45,23 @@
     display: none;
 }
 
+/* button hover shadows */
+
+.ytp-button .ytp-svg-shadow {
+    display: none;
+}
+
 /* right controls sides */
 
 .html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-left,
 .html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-right {
-	height: 100%;
+	height: 100% !important;
+}
+
+/* settings icon turn */
+
+.ytp-settings-button[aria-expanded=true] svg {
+    transform: none !important;
 }
 
 /* more video button */

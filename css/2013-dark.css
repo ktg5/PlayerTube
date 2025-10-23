@@ -1,7 +1,7 @@
 /* PLAYER BASE */
 
 :root {
-	--pt-background: rgb(28, 28, 28);
+	--pt-background: rgba(28, 28, 28, 0.9);
 	--pt-main-colour: #cc181e;
 	--pt-alt-colour: rgba(255,255,255,.3);
 	--pt-volume-slider: #cc181e;
@@ -208,11 +208,6 @@
 /* ################################# */
 
 /* CONTEXT MENU */
-
-.ytp-contextmenu.ytp-popup.ytp-contextmenu {
-	background: rgb(255, 255, 255) !important;
-	outline: 2px solid #dfdfdf;
-}
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem:hover {
 	background: #4f4f4f;

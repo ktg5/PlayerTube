@@ -91,7 +91,7 @@
 }
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
-	background: var(--pt-main-colour);
+    background: #fc0 !important;
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -195,8 +195,13 @@
 	transition: width .5s, height .5s, top .5s, left .5s !important;
 }
 
+.html5-video-player.ytp-delhi-modern .ytp-scrubber-container {
+	top: 2px !important;
+	left: 0px !important;
+}
+
 .ytp-progress-bar:hover .ytp-scrubber-container,
-.html5-video-player[pt-video-hover="true"] .ytp-scrubber-container
+.html5-video-player[pt-force-extend] .ytp-scrubber-container
 {
 	width: 18px;
 	height: 18px;
@@ -626,8 +631,9 @@
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
 	background: rgb(255, 255, 255) !important;
 	outline: 2px solid #dfdfdf;
-	height: 230px !important;
-	width: 267px !important;
+	height: 250px !important;
+    width: 265px !important;
+	border-radius: 0 !important;
 	text-shadow: 0 0 0;
 	transition: none;
 }
@@ -659,6 +665,10 @@
 	font-size: 130%;
 	padding: 0 5px;
 	color: gray;
+}
+
+.ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg);
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {

@@ -25,7 +25,7 @@
 
 #movie_player .ytp-chrome-bottom .ytp-progress-bar-container {
 	width: 100% !important;
-	bottom: 31px !important;
+	bottom: 32px !important;
 	height: var(--pt-progress-bar-unfocused-height);
 }
 
@@ -200,13 +200,16 @@
 	transition: width .5s, height .5s, top .5s, left .5s !important;
 }
 
+.html5-video-player.ytp-delhi-modern .ytp-scrubber-container {
+	top: 1px !important;
+	left: -2px !important;
+}
+
 .ytp-progress-bar:hover .ytp-scrubber-container,
-.html5-video-player[pt-video-hover="true"] .ytp-scrubber-container
+.html5-video-player[pt-force-extend] .ytp-scrubber-container
 {
 	width: 18px;
 	height: 18px;
-	top: 1px;
-	left: -15px;
 }
 
 .ytp-big-mode .ytp-scrubber-button {
@@ -562,8 +565,11 @@
 /* CONTEXT MENU */
 
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
-	height: 230px !important;
-	width: 267px !important;
+	background: rgb(255, 255, 255) !important;
+	outline: 2px solid #dfdfdf !important;
+	height: 250px !important;
+    width: 265px !important;
+	border-radius: 0 !important;
 	text-shadow: 0 0 0;
 	transition: none;
 }
@@ -590,10 +596,15 @@
 	padding-left: 10px !important;
 	font-size: 130%;
 	padding: 0 5px;
+	color: gray;
 }
 
 .ytp-big-mode .ytp-menuitem-label {
 	font-size: 90% !important;
+}
+
+.ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg);
 }
   
 .ytp-big-mode.ytp-contextmenu.ytp-popup.ytp-contextmenu {

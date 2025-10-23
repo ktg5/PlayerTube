@@ -34,7 +34,6 @@ async function copyDir(sourceDir, newDir) {
             entry.name === 'dist' ||
             entry.name === 'build.js' ||
             entry.name === 'v3Maker.js' ||
-            entry.name === 'v3elmnts.json' ||
             entry.name === 'package-lock.json' ||
             entry.name === 'package.json'
         ) continue;

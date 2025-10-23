@@ -104,7 +104,7 @@
 }
 
 .ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
-	background: var(--pt-main-colour);
+    background: #fc0 !important;
 }
 
 /* Make sure YouTube doesn't fuck with these */
@@ -498,12 +498,17 @@
     height: 100% !important;
 }
 
+.ytp-chrome-controls .ytp-right-controls .ytp-subtitles-button.ytp-button,
+.ytp-chrome-controls .ytp-right-controls .ytp-button.ytp-settings-button {
+    width: 35px !important;
+}
+
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
     display: inline-block !important;
     background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-    background-position: -60px -199px;
+    background-position: -60px -198px;
     background-size: 180px !important;
 }
 
@@ -532,7 +537,7 @@
 .ytp-button.ytp-settings-button {
     display: inline-block !important;
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) no-repeat;
-    background-position: -147px -120px;
+    background-position: -147px -119px;
     background-size: 180px !important;
 }
 
@@ -800,8 +805,9 @@
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
 	background: rgb(255, 255, 255) !important;
 	outline: 2px solid #dfdfdf;
-	height: 230px !important;
-	width: 267px !important;
+	height: 250px !important;
+    width: 265px !important;
+    border-radius: 0 !important;
 	text-shadow: 0 0 0;
 	transition: none;
 }
@@ -833,6 +839,10 @@
 	font-size: 130%;
 	padding: 0 5px;
 	color: gray;
+}
+
+.ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg);
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {

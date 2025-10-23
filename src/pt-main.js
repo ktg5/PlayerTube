@@ -17,6 +17,7 @@ var elements = {
 if (userConfig.year == '2011') {
     userConfig.year = '2012';
     storage.set({PTConfig: userConfig});
+    location.reload();
 }
 
 // Check for Project V3 (Rehike in a extension)
@@ -267,150 +268,169 @@ var loadedPlayerStyle = false;
 
 // Custom theme stuff
 var didCustomTheme = false;
-async function enableCustomTheme() {
-    if (didCustomTheme !== true) {
-        await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
-            let V3Renames = data;
-            // we're going prepare to make a "copy" of this data so that we can set the correct elements for if V3 is enabled or not
-            let elementNames = {};
-            // we'll now need to check if V3 is being used, and if not, we change the value of a key in V3Renames to the key.
-            for (const [key, value] of Object.entries(V3Renames)) {
-                if (isProjectV3 == true) {
-                    elementNames[key] = value;
-                } else {
-                    elementNames[key] = key;
+var elementNames = {};
+function enableCustomTheme() {
+    return new Promise(async (resolve, reject) => {
+        if (didCustomTheme !== true) {
+            await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
+                let V3Renames = data;
+                // we're going prepare to make a "copy" of this data so that we can set the correct elements for if V3 is enabled or not
+                // we'll now need to check if V3 is being used, and if not, we change the value of a key in V3Renames to the key.
+                for (const [key, value] of Object.entries(V3Renames)) {
+                    if (isProjectV3 == true) {
+                        elementNames[key] = value;
+                    } else {
+                        elementNames[key] = key;
+                    }
                 }
-            }
-
-            var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
-            if (userConfig.controlsBack !== null) {
-                outputCssCustomTheme += `
+    
+                var outputCssCustomTheme = `/* hi this is the custom theme you set lolz */`;
+                if (userConfig.controlsBack !== null) {
+                    outputCssCustomTheme += `
 :root {
     --pt-background: ${userConfig.controlsBack} !important;
     --pt-background-top: ${userConfig.controlsBack} !important;
 }
-                `;
-            } if (userConfig.settingsBgColor !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.settingsBgColor !== null) {
+                    outputCssCustomTheme += `
 :root {
     --pt-settings-bg: ${userConfig.settingsBgColor} !important;
 }
-                `;
-            } if (userConfig.progressBarColor !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.progressBarColor !== null) {
+                    outputCssCustomTheme += `
 :root {
     --pt-main-colour: ${userConfig.progressBarColor} !important;
     --pt-volume-slider: ${userConfig.progressBarColor} !important;
     --pt-setting-after-label: ${userConfig.progressBarBgColor} !important;
 }
-                `;
-            } if (userConfig.progressBarBgColor !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.progressBarBgColor !== null) {
+                    outputCssCustomTheme += `
 :root {
     --pt-progress-bar-bg: ${userConfig.progressBarBgColor} !important;
 }
-                `;
-            } if (userConfig.volumeSliderBack !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.volumeSliderBack !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
     background: ${userConfig.volumeSliderBack} !important;
 }
-                `;
-            } if (userConfig.scrubberIcon !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberIcon !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
     border-radius: 0 !important;
 }
-                `;
-            } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
     border-radius: 0 !important;
 }
-                `;
-            } if (userConfig.scrubberIconHover !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberIconHover !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
     background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
     border-radius: 0 !important;
 }
-                `;
-            } if (userConfig.scrubberPosition !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberPosition !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
     background-position: ${userConfig.scrubberPosition} !important;
 }
-                `;
-            } if (userConfig.scrubberSize !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberSize !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
     background-size: ${userConfig.scrubberSize}px !important;
 }
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
     background-size: ${userConfig.scrubberSize}px !important;
 }
-                `;
-            } if (userConfig.scrubberHeight !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberHeight !== null) {
+                    outputCssCustomTheme += `
 /* default */
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+{
     height: ${userConfig.scrubberHeight}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+{
     height: ${userConfig.scrubberHeight}px !important;
 }
-                `;
-            } if (userConfig.scrubberWidth !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberWidth !== null) {
+                    outputCssCustomTheme += `
 /* default */
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+{
     width: ${userConfig.scrubberWidth}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+{
     width: ${userConfig.scrubberWidth}px !important;
 }
-                `;
-            } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
+                    outputCssCustomTheme += `
 /* default */
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+{
     width: ${userConfig.scrubberHeight}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+{
     width: ${userConfig.scrubberHeight}px !important;
 }
-                `;
-            } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
+                    outputCssCustomTheme += `
 /* default */
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+{
     height: ${userConfig.scrubberWidth}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
+${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+{
     height: ${userConfig.scrubberWidth}px !important;
 }
-                `;
-            } if (userConfig.scrubberTop !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberTop !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
     top: ${userConfig.scrubberTop}px !important;
 }
-                `;
-            } if (userConfig.scrubberLeft !== null) {
-                outputCssCustomTheme += `
+                    `;
+                } if (userConfig.scrubberLeft !== null) {
+                    outputCssCustomTheme += `
 ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
     left: ${userConfig.scrubberLeft}px !important;
 }
-                `;
-            }
-            // output css
-            document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
-
-            didCustomTheme = true;
-        });
-    }
+                    `;
+                }
+                // output css
+                document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
+    
+                didCustomTheme = true;
+            });
+        }
+        resolve();
+    });
 }
 
 // User settings toggles
@@ -483,13 +503,9 @@ function extraStyles() {
     } if (userConfig.fullyExtendBar == true) {
         outputCssToggles += `
 /* FULLY EXTEND PROGRESS BAR (enabled) */
-.ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
     height: var(--pt-progress-bar-full-height) !important;
     margin-bottom: 1px !important;
-}
-
-.ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
-    height: 4px !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
@@ -498,10 +514,6 @@ function extraStyles() {
 
 .ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
     transform: scale(1) !important;
-}
-
-.ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-container .ytp-scrubber-button {
-    transform: scale(0) !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar:after {
@@ -514,6 +526,8 @@ function extraStyles() {
     top: -8px;
 }
         `
+
+        document.querySelector('.html5-video-player').setAttribute('pt-force-extend', true);
 
         if (userConfig.year == '2010') {
             outputCssToggles += `
@@ -695,7 +709,10 @@ function startPlayer() {
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
                         
                         // Alt mode stuff
-                        if (userConfig.alternateMode == true) {
+                        if (
+                            userConfig.alternateMode == true
+                            && userConfig.customTheme !== true
+                        ) {
                             var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
                             document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                         } else {
@@ -731,7 +748,10 @@ function startPlayer() {
 }
                             </style>
                         `);
-                        if (userConfig.alternateMode == true) {
+                        if (
+                            userConfig.alternateMode == true
+                            && userConfig.customTheme !== true
+                        ) {
                             // todo
                         }
                         extraStyles();
@@ -778,34 +798,27 @@ function startPlayer() {
                     var baselink,
                         colorlink;
                     if (isProjectV3 == true) {
-
                         // V3
                         baselink = runtime.getURL(`css/v3/${userConfig.year}.css`);
                         document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                        // Alt mode stuff
-                        if (userConfig.alternateMode == true) {
-                            colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                            document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                        } else {
-                            colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                            document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                        }
-
                     } else {
-
                         // Vanilla
                         baselink = runtime.getURL(`css/${userConfig.year}.css`);
                         document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                        // Alt mode stuff
-                        if (userConfig.alternateMode == true) {
-                            colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                        } else {
-                            colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                        }
-
                     }
+
+                    // Alt mode stuff
+                    if (
+                        userConfig.alternateMode == true
+                        && userConfig.customTheme !== true
+                    ) {
+                        colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    } else {
+                        colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                    }
+
                     loadedPlayerStyle = true;
                     // IMPORT THE OTHER CSS
                     extraStyles();

@@ -10,7 +10,6 @@
 	--pt-progress-bar-unfocused-height: 4px;
 	--pt-progress-bar-full-height: 8px;
 	--pt-progress-text: #fff;
-	--pt-alt-progress-text: #969696;
 	--pt-settings-bg: rgb(35, 35, 35);
 	--pt-setting-after-label: var(--pt-main-colour);
 }
@@ -20,8 +19,14 @@
 }
 
 #movie_player.html5-video-player .ytp-chrome-bottom {
-	width: 97% !important;
 	height: 42px !important;
+	left: 0 !important;
+	right: 0;
+	margin: auto;
+}
+
+#movie_player.html5-video-player:not(.ytp-big-mode) .ytp-chrome-bottom {
+	width: calc(100% - 24px) !important;
 }
 
 .ytp-gradient-bottom {
@@ -62,36 +67,12 @@
     transform: scaleY(1) !important;
 }
 
-/* this is only used in embeds & fullscreen */
-.ytp-embed .ytp-chrome-bottom .ytp-progress-bar:after,
-.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 24px;
-    height: var(--pt-progress-bar-full-height);
-    background: var(--pt-progress-bar-bg);
-    margin-top: -10px;
-    right: 0;
-    bottom: -3px;
-    transform: scaleY(.4);
-}
-
-.ytp-big-mode .ytp-chrome-bottom .ytp-progress-bar:after {
-	width: 48px;
-}
-
-.ytp-chrome-bottom .ytp-progress-bar.finished:after {
-    background: var(--pt-main-colour) !important;
-}
-
 .ytp-chrome-bottom .ytp-progress-bar .ytp-load-progress {
     background: var(--pt-alt-colour)
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:hover:after {
-	transform: scaleY(1);
-	bottom: 0 !important;
+.ad-interrupting .ytp-play-progress.ytp-swatch-background-color {
+    background: #fc0 !important;
 }
 
 .ytp-chrome-bottom .ytp-progress-bar {
@@ -213,7 +194,7 @@
 }
 
 .ytp-progress-bar:hover .ytp-scrubber-container,
-.html5-video-player[pt-video-hover="true"] .ytp-scrubber-container
+.html5-video-player[pt-force-extend] .ytp-scrubber-container
 {
 	width: 18px;
 	height: 18px;
@@ -272,6 +253,10 @@
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button svg path {
+	translate: 0px, 1px;
+}
+
+.html5-video-player.ytp-delhi-modern .ytp-chrome-bottom .ytp-button svg path {
 	transform: translate(1px, -1px) scale(.6);
 }
 
@@ -301,12 +286,16 @@
 /* PLAY BUTTON */
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button svg path {
-	d: path("M11,10 L18,13.74 18,22.28 11,26 Z M18,13.74 L26,18 26,18 18,22.28 Z");
-    transform: translate(1px, -1px) scale(.9);
+	d: path("M11,10 L17,10 17,26 11,26 Z M20,10 L26,10 26,26 20,26 Z");
+    transform: translate(1px, -1px) scale(1);
+}
+
+.html5-video-player.ytp-delhi-modern .ytp-chrome-bottom .ytp-button.ytp-play-button svg path {
+	transform: translate(1px, -3px) scale(1);
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] svg path {
-	d: path("M11,10 L17,10 17,26 11,26 Z M20,10 L26,10 26,26 20,26 Z");
+	d: path("M11,10 L18,13.74 18,22.28 11,26 Z M18,13.74 L26,18 26,18 18,22.28 Z");
 }
 
 .html5-video-player.ended-mode .ytp-chrome-bottom .ytp-button.ytp-play-button svg path {
@@ -321,10 +310,15 @@
 
 /* VOLUME BUTTON */
 /* DEFAULT */
+
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button svg path,
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon svg path
 {
-    d: path("M12.39,15.54 L10,15.54 L10,20.44 L12.4,20.44 L17,25.50 L17,10.48 L12.39,15.54 Z M22,17.99 C22,16.4 20.74,15.05 19,14.54 L19,21.44 C20.74,20.93 22,19.59 22,17.99 Z");
+	d: path("M12.39,15.54 L10,15.54 L10,20.44 L12.4,20.44 L17,25.50 L17,10.48 L12.39,15.54 Z M22,17.99 C22,16.4 20.74,15.05 19,14.54 L19,21.44 C20.74,20.93 22,19.59 22,17.99 Z M19,24.31 L19,26 C22.99,25.24 26,21.94 26,18 C26,14.05 22.99,10.75 19,10 L19,11.68 C22.01,12.41 24.24,14.84 24.24,18 C24.24,21.15 22.01,23.58 19,24.31 Z");
+}
+
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button svg path {
+	translate: 0px -3.5px;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover svg path,
@@ -333,11 +327,17 @@
 	d: path("M 12.39 15.54 L 10 15.54 L 10 20.44 L 12.4 20.44 L 17 25.5 L 17 10.48 L 12.39 15.54 Z M19.63,15.92 L20.68,14.93 L22.81,16.94 L24.94,14.93 L26,15.92 L23.86,17.93 L26,19.93 L24.94,20.92 L22.81,18.92 L20.68,20.92 L19.63,19.93 L21.76,17.93 L19.63,15.92 Z");
 }
 
+.ytp-chrome-bottom .ytp-button.ytp-mute-button #ytp-svg-volume-animation-mask,
+.ytp-chrome-bottom .ytp-button.ytp-mute-button #ytp-svg-volume-animation-slash-mask
+{
+	display: none;
+}
+
 /* MEDIUM VOLUME */
 .html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button svg path,
 .html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon svg path
 {
-    d: path("M12.39,15.54 L10,15.54 L10,20.44 L12.4,20.44 L17,25.50 L17,10.48 L12.39,15.54 Z M22,17.99 C22,16.4 20.74,15.05 19,14.54 L19,21.44 C20.74,20.93 22,19.59 22,17.99 Z M19,24.31 L19,26 C22.99,25.24 26,21.94 26,18 C26,14.05 22.99,10.75 19,10 L19,11.68 C22.01,12.41 24.24,14.84 24.24,18 C24.24,21.15 22.01,23.58 19,24.31 Z");
+    d: path("M12.39,15.54 L10,15.54 L10,20.44 L12.4,20.44 L17,25.50 L17,10.48 L12.39,15.54 Z M22,17.99 C22,16.4 20.74,15.05 19,14.54 L19,21.44 C20.74,20.93 22,19.59 22,17.99 Z");
 }
 
 /* LOW VOLUME */
@@ -374,12 +374,6 @@
 
 .ytp-time-current {
 	color: var(--pt-progress-text) !important;
-	text-shadow: none;
-}
-
-.ytp-time-separator, .ytp-time-duration {
-	color: var(--pt-alt-progress-text) !important;
-	text-shadow: none;
 }
 
 /* CHAPTER TITLE */
@@ -547,7 +541,7 @@
 }
 
 .ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] svg path {
-	d: path("M10,13 L26,13 26,23 10,23 10,13 Z M23,10 L23,13 L26,13 L26,16 L29,16 L29,10 L23,10 Z M23,23 L23,26 L29,26 L29,20 L26,20 L26,23 L23,23 Z M10,20 L7,20 L7,26 L13,26 L13,23 L10,23 L10,20 Z M10,10 L10,13 L13,13 L13,16 L7,16 L7,10 L10,10 Z");
+	d: path("M13,10 L10,10 L10,13 L7,13 L7,16 L13,16 L13,10 Z M29,16 L29,13 L26,13 L26,10 L23,10 L23,16 L29,16 Z M29,23 L29,20 L23,20 L23,26 L26,26 L26,23 L29,23 Z M10,26 L13,26 L13,20 L7,20 L7,23 L10,23 L10,26 Z");
 }
 
 /* DISPLAY NONE OF THESE */
@@ -560,7 +554,7 @@
 
 /* TOP BUTTONS */
 
-.ytp-chrome-top {
+.html5-video-player:not(.ytp-embed):not(.unstarted-mode) .ytp-chrome-top {
 	right: 0px !important;
 	left: 0px !important;
 	padding: 0px 10px;
@@ -569,6 +563,12 @@
 
 .ytd-channel-video-player-renderer .ytp-chrome-top {
 	display: none; /* this should only affect channel trailers. */
+}
+
+.ytp-chrome-top .ytp-share-icon svg,
+.ytp-chrome-top .ytp-share-title
+{
+	display: none;
 }
 
 .ytp-big-mode .ytp-chrome-top .ytp-button {
@@ -584,7 +584,7 @@
     bottom: 5px;
 }
 
-.ytp-title-text {
+.html5-video-player:not(.ytp-embed) .ytp-title-text {
 	padding: 0px !important;
 }
 
@@ -630,7 +630,7 @@
 /* TOOLTIPS */
 
 .ytp-tooltip.ytp-bottom {
-	margin-top: 4px;
+	margin-top: -4px;
 }
 
 /* ################################# */
@@ -642,7 +642,7 @@
 }
 
 .ytp-popup.ytp-settings-menu {
-	bottom: 35px !important;
+	margin-bottom: -8px;
     border-radius: 0 !important;
 }
 
@@ -667,8 +667,9 @@
 /* CONTEXT MENU */
 
 .ytp-contextmenu.ytp-popup.ytp-contextmenu {
-	height: 230px !important;
-	width: 267px !important;
+	height: 250px !important;
+    width: 265px !important;
+	border-radius: 0 !important;
 	text-shadow: 0 0 0;
 	transition: none;
 }
@@ -722,13 +723,12 @@
 	background-size: contain;
 }
 
-.ytp-embed .ytp-title-channel {
-	display: none;
+.html5-video-player.ytp-embed:not(.ad-showing) .ytp-title-text {
+	padding-top: 12px;
 }
 
 .ytp-embed .ytp-chrome-bottom {
 	transition: .5s !important;
-	width: inherit !important;
 	height: 35px !important;
 	left: unset !important;
 }
