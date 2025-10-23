@@ -28,6 +28,7 @@
 .ytp-delhi-modern .ytp-chrome-controls .ytp-next-button:not(.ytp-miniplayer-button-container>*)
 {
     padding: 0;
+    margin: 0;
 }
 
 .ytp-delhi-modern .ytp-chrome-controls .ytp-button,
