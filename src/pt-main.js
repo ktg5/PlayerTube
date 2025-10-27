@@ -44,7 +44,7 @@ document.body.insertAdjacentHTML('afterbegin', `
 
 // MOVING ELEMENTS
 /**
- * Inserts `element` next to `pasteDiv`. Moves `element` from it's parent element
+ * Inserts `element` next to `pasteDiv`
  * @param {HTMLElement} element The element to move
  * @param {HTMLElement} pasteDiv The element for the `element` to be moved next to
  * @returns {void}

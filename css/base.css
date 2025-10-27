@@ -4,6 +4,19 @@
     display: none;
 }
 
+/* popout/miniplayer/minimized player buttons */
+
+.ytp-miniplayer-ui .ytp-miniplayer-scrim .ytp-button {
+    background: none !important;
+}
+
+.ytp-miniplayer-ui .ytp-miniplayer-scrim .ytp-button svg,
+.ytp-miniplayer-ui .ytp-miniplayer-scrim .ytp-button svg path
+{
+    display: block !important;
+    background: none !important;
+}
+
 /* progress bar scrubber */
 
 .html5-video-player .ytp-scrubber-button {
