@@ -151,8 +151,8 @@
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-autohide .ytp-progress-bar {
-    height: 5px;
+.ytp-progress-bar {
+    height: 4px;
 }
 
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {

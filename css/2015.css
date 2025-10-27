@@ -143,8 +143,8 @@
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-autohide .ytp-progress-bar {
-    height: 5px;
+.ytp-progress-bar {
+    height: 4px;
 }
 
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {
@@ -546,7 +546,7 @@
 
 /* TOP BUTTONS */
 
-.html5-video-player:not(.ytp-embed):not(.unstarted-mode) .ytp-chrome-top {
+.html5-video-player.ytp-big-mode:not(.ytp-embed):not(.unstarted-mode) .ytp-chrome-top {
 	right: 0px !important;
 	left: 0px !important;
 	padding: 0px 10px;

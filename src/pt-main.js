@@ -52,7 +52,6 @@ document.body.insertAdjacentHTML('afterbegin', `
 function moveElement(element, pasteDiv) {
     console.log('moveElement: checking', element)
     if (pasteDiv) {
-        console.log('moveElement: element is valid')
         if (pasteDiv.contains(element)) {
             return console.error('moveElement: pasteDiv already has element');
         } else if (element.parentElement.contains(element)) {
@@ -964,7 +963,7 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
     // Make fake bar
     // No need to load the JS for fake bar here, that's at the top of this script.
     if (userConfig.fakeBarToggle !== false) {
-        if (!document.getElementsByClassName('video-stream html5-main-video')[0] || document.getElementsByClassName('video-stream html5-main-video')[0].paused == true || document.getElementById('playertube-fake-bar')) {
+        if (document.getElementById('playertube-fake-bar')) {
             return;
         } else {
             const chromeBottom = document.querySelector(`.${elements.controlsbase[isProjectV3 ? 'v3' : 'default']}`);

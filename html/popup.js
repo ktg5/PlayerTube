@@ -313,7 +313,7 @@ async function start(userConfig) {
 
             <h3>General Settings</h3>
 
-            ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes when reloading or updating PlayerTube')}
+            ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes after reinstalling or updating PlayerTube')}
 
             ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
 

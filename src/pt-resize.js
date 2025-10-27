@@ -1,10 +1,9 @@
 // Update (14.08.2024): this should fix the issue with "'TrustedHTML' assignment." bs whatever
+// This was mainly for Chrome I'm pretty sure, Firefox has no issue & still works the same with or without this TrustedTypes stuff
 if (window.trustedTypes && window.trustedTypes.createPolicy) {  
     window.trustedTypes.createPolicy('default', {  
         createHTML: (string, sink) => string  
     }); 
-} else {
-    console.error('TrustedTypes not supported, resize script will most likely fail.');
 }
 
 // Global vars
@@ -45,34 +44,37 @@ document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class
 var checkBar = setInterval(() => {
     // Actual check
     if (document.getElementById('movie_player') && ytVideo && ytVideo.src.includes('blob')) {
-        // Get current progress bar width
-        var completeWidth = document.querySelector('.ytp-chapters-container').clientWidth;
+        // Get current progress bar width -- v2 (10.2025)
+        // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
+        const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
+        var progressBarWidth = 0;
+        allChapterHovers.forEach((elmnt) => { progressBarWidth = progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', '')); });
         // Actual width
-        var tempVideoWidth = parseInt(getVideoWidth());
+        const videoWidth = Number(getVideoWidth());
 
         // Debug detection
-        // console.log('resize debug detection (player):', completeWidth, pastWidth);
-        // console.log('resize debug detection (video):', tempVideoWidth, pastVideoWidth);
+        // console.log('resize debug detection (player):', progressBarWidth, pastWidth);
+        // console.log('resize debug detection (video):', videoWidth, pastVideoWidth);
         // Detection... v2.1...
-        if (completeWidth !== pastWidth || tempVideoWidth !== pastVideoWidth) {
+        if (progressBarWidth !== pastWidth || videoWidth !== pastVideoWidth) {
             // Set pastWidth
-            pastWidth = parseInt(completeWidth);
-            pastVideoWidth = parseInt(tempVideoWidth);
+            pastWidth = Number(progressBarWidth);
+            pastVideoWidth = Number(videoWidth);
 
             // Video width + add possible offset (say for 2006 theme)
-            var videoWidth;
+            var videoWidthChange;
             switch (userConfig.year) {
                 case '2006':
-                    videoWidth = getOffset(userConfig.year) - 24;
+                    videoWidthChange = getOffset(userConfig.year) - 24;
                 break;
             
                 default:
-                    videoWidth = tempVideoWidth;
+                    videoWidthChange = videoWidth;
                 break;
             }
 
             // Go!
-            console.log(`%cPlayerTube resize script: Detected big progress bar change! Fixing...`, styles2, `${completeWidth} !== ${videoWidth}`)
+            console.log(`%cPlayerTube resize script: Detected big progress bar change! Fixing...`, styles2, `${progressBarWidth} !== ${videoWidth}`)
             fixBar();
         }
     }
@@ -111,12 +113,6 @@ function getFixedWidth() {
     // Get actual current player width
     let videoWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
-        case '2013':
-        case '2012':
-        case '2010':
-            result = videoWidth + getOffset(userConfig.year);
-        break;
-
         case '2006':
             // Since 2006 is in the middle of the player, we gotta do more.
             result = getOffset(userConfig.year);
@@ -133,20 +129,11 @@ function getFixedWidth() {
 // Fix progress bar
 function fixBar() {
     // Define stuff
-    let playerWidth = getFixedWidth();
-    // If chapters
-    // if (document.querySelectorAll(`.ytp-chapter-hover-container`).length > 1) {
-    //     playerWidth = playerWidth - 1;
-    // }
+    const playerWidth = getFixedWidth();
 
     // Set width that needs to be set
-    let width;
-    if (document.querySelectorAll('.ytp-chapter-hover-container').length > 1) {
-        width = playerWidth - 1;
-    } else {
-        width = playerWidth;
-    }
-    let height = document.getElementById('movie_player').clientHeight;
+    const width = playerWidth;
+    const height = document.getElementById('movie_player').clientHeight;
 
     // Use YouTube function to change width
     document.getElementById('movie_player').setInternalSize(width, height);
