@@ -5,13 +5,6 @@ var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];
 var customTheme = userConfig.customTheme;
 var extensionLocation = runtime.getURL('');
 var isinTheaterMode = false;
-// Elements
-var elements = {
-    "controlsbase": {
-        "default": "ytp-chrome-bottom",
-        "v3": "html5-video-controls"
-    }
-}
 
 // Fix for older configs
 if (userConfig.year == '2011') {
@@ -265,10 +258,6 @@ if (!window.location.href.includes('embed')) {
         }, 1000);
     }
 }
-
-
-// Elements names to use around this script
-var elementNames = {};
 
 
 // You might be asking, "why is this a thing?"
@@ -663,6 +652,9 @@ function watchLaterButtonAdd() {
     }, 1000);
 }
 
+
+// Elements names to use around this script
+var elementNames = {};
 // Load everything else.
 // Includes year theme & fake bar.
 // This function will keep going until it's happy.
@@ -966,22 +958,30 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
         if (document.getElementById('playertube-fake-bar')) {
             return;
         } else {
-            const chromeBottom = document.querySelector(`.${elements.controlsbase[isProjectV3 ? 'v3' : 'default']}`);
-            /// Add [data-pt-fakebar] to chrome bottom (player controls) for CSS reasons
-            chromeBottom.setAttribute('data-pt-fakebar', '');
+            var chromeBottom = document.querySelector(elementNames['.ytp-chrome-bottom']);
+            
+            let tempInt = setInterval(() => {
+                if (chromeBottom) {
+                    /// Add [data-pt-fakebar] to chrome bottom (player controls) for CSS reasons
+                    chromeBottom.setAttribute('data-pt-fakebar', '');
 
-            /// Load fake bar CSS
-            var link = runtime.getURL(`css/fakebar.css`);
-            document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
-            /// Load fake bar HTML
-            chromeBottom.insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
-                `
-                <div id="playertube-fake-bar">
-                    <div class="current"></div>
-                    <div class="loaded"></div>
-                </div>
-                `
-            )
+                    /// Load fake bar CSS
+                    var link = runtime.getURL(`css/fakebar.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
+                    /// Load fake bar HTML
+                    chromeBottom.insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
+                        `
+                        <div id="playertube-fake-bar">
+                            <div class="current"></div>
+                            <div class="loaded"></div>
+                        </div>
+                        `
+                    );
+
+                    // Make sure to end our checker
+                    clearInterval(tempInt);
+                } else chromeBottom = document.querySelector(elementNames['.ytp-chrome-bottom']);
+            }, 100);
         }
     }
 

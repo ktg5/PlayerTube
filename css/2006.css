@@ -184,10 +184,6 @@
     border-top: 0 none !important;
 }
 
-.ytp-progress-bar-container {
-    transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
-}
-
 .ytp-autohide .ytp-progress-bar-container {
     width: calc( 100% + 20px );
     margin-left: -12px;

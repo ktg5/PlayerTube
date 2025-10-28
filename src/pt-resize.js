@@ -61,18 +61,6 @@ var checkBar = setInterval(() => {
             pastWidth = Number(progressBarWidth);
             pastVideoWidth = Number(videoWidth);
 
-            // Video width + add possible offset (say for 2006 theme)
-            var videoWidthChange;
-            switch (userConfig.year) {
-                case '2006':
-                    videoWidthChange = getOffset(userConfig.year) - 24;
-                break;
-            
-                default:
-                    videoWidthChange = videoWidth;
-                break;
-            }
-
             // Go!
             console.log(`%cPlayerTube resize script: Detected big progress bar change! Fixing...`, styles2, `${progressBarWidth} !== ${videoWidth}`)
             fixBar();
@@ -86,50 +74,62 @@ var checkBar = setInterval(() => {
             currentPath = window.location.href;
         }, 2000);
     }
-}, 50);
+}, 200);
 
 // Easy call to progress bar width
 function getVideoWidth() {
-    return document.querySelector('#movie_player').clientWidth;
+    return document.querySelector('.html5-video-player').clientWidth;
 }
 
 function getOffset(year) {
-    var result;
-    switch (year) {
-        case '2006':
-            result = (parseInt(getVideoWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
-        break;
+    return new Promise((resolve, reject) => {
+        var result;
+        switch (year) {
+            case '2006':
+                // Check if the the player div exists
+                let tempInt = setInterval(() => {
+                    if (getVideoWidth()) {
+                        result = (parseInt(getVideoWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
+                        resolve(result);
+                        clearInterval(tempInt);
+                    }
+                }, 100);
+            break;
 
-        default:
-            result = 24;
-        break;
-    }
-
-    return result;
+            default:
+                result = 24;
+                resolve(result);
+            break;
+        }
+    });
 }
 
 // Get fixed width for user's theme
-function getFixedWidth() {
+async function getFixedWidth() {
     // Get actual current player width
     let videoWidth = parseInt(getVideoWidth());
     switch (userConfig.year) {
         case '2006':
             // Since 2006 is in the middle of the player, we gotta do more.
-            result = getOffset(userConfig.year);
+            result = await getOffset(userConfig.year);
         break;
 
         default:
-            result = videoWidth + getOffset(userConfig.year);
+            result = videoWidth + await getOffset(userConfig.year);
         break;
     }
 
+    // Dev
+    // console.log(`getFixedWidth: `, result);
     return result;
 }
 
+
+// Main function
 // Fix progress bar
-function fixBar() {
+async function fixBar() {
     // Define stuff
-    const playerWidth = getFixedWidth();
+    const playerWidth = await getFixedWidth();
 
     // Set width that needs to be set
     const width = playerWidth;
