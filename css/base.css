@@ -20,8 +20,8 @@
 /* progress bar scrubber */
 
 .html5-video-player .ytp-scrubber-button {
-    transform: scale(0);
-    transition: transform .5s;
+    transform: scale(0) !important;
+    transition: transform .5s !important;
 }
 
 .html5-video-player .ytp-progress-bar-container:hover .ytp-scrubber-button,

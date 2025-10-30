@@ -15,10 +15,6 @@ other stuff too that I'll find out abou
     transform: scale(1) !important;
 }
 
-#movie_player:not(.ytp-delhi-modern) .ytp-progress-bar-container {
-    bottom: inherit !important;
-}
-
 /* SponsorBlock */
 #previewbar {
     top: 0px;

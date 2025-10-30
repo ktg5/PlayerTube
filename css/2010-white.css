@@ -41,7 +41,7 @@
 
 /* BUTTONS BASE */
 
-.ytp-chrome-bottom .ytp-button {
+.html5-video-player .ytp-chrome-bottom .ytp-button {
     border: solid 1px lightgray;
     background: var(--pt-button-gradient) !important;
 }

@@ -22,76 +22,39 @@
 /* PREV BUTTON */
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-prev-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
-	background-position: 4px -1px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
+	background-position: 1px -1px !important;
+	background-size: var(--pt-icon-size) !important; 
 }
 
 /* PLAY BUTTON */
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
-	background-position: -50px -1330px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
+	background-position: -48px -1330px !important;
 	width: 55px !important;
-}
-
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
-	background-position: -122px -446px;
-}
-
-.html5-video-player.ended-mode .ytp-chrome-bottom .ytp-button.ytp-play-button {
-	background-position: -48px -634px;
+	background-size: var(--pt-icon-size) !important; 
 }
 
 /* NEXT BUTTON */
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-next-button
 {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
-	background-position: 4px -1216px;
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
+	background-position: 4px -1216px !important;
 	width: 45px !important;
+	background-size: var(--pt-icon-size) !important; 
 }	
 
 /* VOLUME BUTTON */
 /* DEFAULT */
+
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
 {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
-	background-position: -113px -154.5px;
+	background-position: -113px -154.5px !important;
 	width: 45px !important;
-}
-
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon:hover
-{
-	background-position: -155px -1000px !important;
-}
-
-/* MEDIUM VOLUME */
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon
-{
-    background-position: -113px -408.5px;
-}
-
-/* LOW VOLUME */
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon
-{
-    background-position: -113px -408.5px;
-}
-
-/* MUTE */
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]
-{
-	background-position: -155px -1000px !important;
-}
-
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover
-{
-	background-position: -113px -154.5px;
 }
 
 /* ################################# */
@@ -112,16 +75,13 @@
 
 /* ################################# */
 
+/* RIGHT BUTTONS */
 /* SUBTITLES BUTTON */
 
 .ytp-subtitles-button.ytp-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
 	background-position: -116px -998px;
 	bottom: 5px;
-}
-
-.ytp-subtitles-button.ytp-button[aria-pressed=true] {
-	filter: brightness(1.5);
 }
 
 /* SETTINGS BUTTON */
@@ -132,29 +92,11 @@
 	bottom: 5px;
 }
 
-.ytp-button.ytp-settings-button[aria-expanded="true"] {
-	filter: brightness(1.5);
-}
-
-.ytp-big-mode .ytp-button.ytp-settings-button::after {
-	font-size: 8px !important;
-	right: 2px !important;
-	top: 5px !important;
-}
-
 /* THEATER BUTTON */
 
 .ytp-button.ytp-size-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
 	bottom: 5px;
-}
-
-.ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
-	background-position: -158px -484px !important;
-}
-
-.ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
-	background-position: -43px 0px !important;
 }
 
 /* WATCH ON YOUTUBE BUTTON (usually displayed on embed videos) */
@@ -173,10 +115,6 @@
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
 	background-position: -116px -523px;
 	bottom: 5px;
-}
-
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] {
-	background-position: -117px -1149px;
 }
 
 /* WATCH LATER (custom made) */

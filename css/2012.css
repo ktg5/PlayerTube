@@ -296,7 +296,7 @@
     display: none;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-button {
+.html5-video-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
 	background-size: 210px !important;
 }
 
@@ -316,9 +316,8 @@
 
 /* LEFT BUTTONS */
 
-.ytp-left-controls {
+.html5-video-player .ytp-chrome-bottom .ytp-left-controls {
 	position: relative;
-	padding-left: 10px;
 	top: 0;
 }
 
@@ -330,22 +329,22 @@
 
 /* PLAY BUTTON */
 
-.ytp-button.ytp-play-button {
+.html5-video-player .ytp-button.ytp-play-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
-	background-position: -79px 153.5px !important;
-	width: 55px !important;
+	background-position: -75px 153.5px !important;
+	width: 65px !important;
 }
 
-.ytp-button.ytp-play-button:hover {
+.html5-video-player .ytp-button.ytp-play-button:hover {
     filter: brightness(1.5);
 }
 
-.ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
-	background-position: -114px 91.5px !important;
+.html5-video-player .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
+	background-position: -110px 91.5px !important;
 }
 
 .html5-video-player.ended-mode .ytp-button.ytp-play-button {
-	background-position: -114px 27px !important;
+	background-position: -110px 27px !important;
 }
 
 /* NEXT BUTTON */
@@ -358,44 +357,47 @@
 /* DEFAULT */
 
 .html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover
 {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2012-icons.png) !important;
-	background-position: -150px -257px !important;
-	width: 40px !important;
-}
-
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon:hover
-{
-	background-position: -118px -14px !important;
-    filter: brightness(1.5) !important;
-}
-
-/* MEDIUM VOLUME */
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon
-{
-    background-position: -138px -296px !important;
-}
-
-/* LOW VOLUME */
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon
-{
-	background-position: -138px -296px !important;
+	background-position: 32px -296px !important;
+	background-size: 210px !important;
 }
 
 /* MUTE */
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"] {
-	background-position: -118px -14px !important;
+
+.html5-video-player .ytp-button.ytp-mute-button:hover,
+.html5-video-player .ytp-button.ytp-volume-icon:hover,
+.html5-video-player .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
+.html5-video-player .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]
+{
+	background-position: 69px -17px !important;
+    
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover {
-	background-position: -150px -257px !important;
-    filter: brightness(1.5);
+/* MUTE (hover) */
+
+.html5-video-player .ytp-button.ytp-mute-button:hover,
+.html5-video-player .ytp-button.ytp-volume-icon:hover {
+	filter: brightness(1.5) !important;
+}
+
+/* MEDIUM & LOW VOLUME */
+
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon
+{
+    background-position: -141px -296px !important;
+}
+
+/* LOW VOLUME */
+
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon
+{
+	background-position: -176px -265px !important;
 }
 
 /* TIME DISPLAY */
@@ -403,7 +405,7 @@
 .html5-video-player .ytp-chrome-bottom .ytp-time-display {
 	line-height: 47px !important;
 	padding: 0px 10px !important;
-	margin-top: -8px;
+	margin-top: -8px !important;
 	font-size: 12px;
 	height: 46px;
 }
@@ -448,7 +450,6 @@
 .ytp-volume-panel {
 	transition: .5s !important;
 	position: relative;
-	padding-left: 8px;
     bottom: 1px
 }
 

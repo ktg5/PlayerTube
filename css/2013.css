@@ -4,6 +4,7 @@
 	--pt-progress-bar-unfocused-height: 3px;
 	--pt-progress-bar-full-height: 10px;
 	--pt-setting-after-label: #b91f1f;
+	--pt-icon-size: 200px;
 }
 
 .ytp-chrome-controls {
@@ -263,7 +264,7 @@
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button {
-	background-size: 200px !important;
+	background-size: var(--pt-icon-size) !important;
 }
 
 .ytp-button svg {
@@ -288,6 +289,52 @@
 	top: 0;
 }
 
+/* PLAY BUTTON */
+
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button[data-title-no-tooltip="Play"] {
+	background-position: -122px -446px !important;
+}
+
+.html5-video-player.ended-mode .ytp-chrome-bottom .ytp-button.ytp-play-button {
+	background-position: -48px -634px !important;
+}
+
+/* VOLUME BUTTON */
+/* DEFAULT */
+
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button:hover,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon:hover
+{
+	background-position: -155px -1000px !important;
+}
+
+/* MEDIUM VOLUME */
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="med"] .ytp-button.ytp-volume-icon
+{
+    background-position: -113px -408.5px !important;
+}
+
+/* LOW VOLUME */
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-mute-button,
+.html5-video-player .ytp-chrome-bottom .ytp-volume-area[simplevolumenow="low"] .ytp-button.ytp-volume-icon
+{
+    background-position: -113px -408.5px !important;
+}
+
+/* MUTE */
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"],
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]
+{
+	background-position: -155px -1000px !important;
+}
+
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button[data-title-no-tooltip="Unmute"]:hover,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon[data-title-no-tooltip="Unmute"]:hover
+{
+	background-position: -113px -154.5px !important;
+}
+
 /* TIME DISPLAY */
 
 .html5-video-player .ytp-chrome-bottom .ytp-time-display {
@@ -295,7 +342,7 @@
 	text-shadow: none !important;
 	line-height: 47px !important;
     padding: 0px 10px !important;
-    margin-top: -7px;
+    margin-top: -7px !important;
     font-size: 12px;
     height: 46px;
 }
@@ -340,7 +387,6 @@
 	transition: .5s !important;
 	position: relative;
 	width: 0 !important;
-	padding-left: 8px;
     bottom: 1px
 }
 
@@ -408,6 +454,10 @@
 
 /* SUBTITLES BUTTON */
 
+.ytp-subtitles-button.ytp-button[aria-pressed=true] {
+	filter: brightness(1.5);
+}
+
 .ytp-subtitles-button.ytp-button[title="Subtitles/closed captions unavailable"] {
 	display: none !important;
 }
@@ -418,6 +468,10 @@
 
 /* SETTINGS BUTTON */
 
+.ytp-button.ytp-settings-button[aria-expanded="true"] {
+	filter: brightness(1.5);
+}
+
 .ytp-button.ytp-settings-button:after {
     background-color: var(--pt-setting-after-label);
 	top: 8px !important;
@@ -427,6 +481,22 @@
 	font-size: 8px !important;
 	right: 2px !important;
 	top: 5px !important;
+}
+
+/* THEATER BUTTON */
+
+.ytp-button.ytp-size-button, .ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover {
+	background-position: -158px -484px !important;
+}
+
+.ytp-button.ytp-size-button:hover, .ytp-button.ytp-size-button[title="Default view (t)"] {
+	background-position: -43px 0px !important;
+}
+
+/* FULLSCREEN BUTTON */
+
+.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] {
+	background-position: -114px -1149px;
 }
 
 /* DISPLAY NONE OF THESE */
