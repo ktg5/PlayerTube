@@ -37,25 +37,50 @@ document.body.insertAdjacentHTML('afterbegin', `
 
 // MOVING ELEMENTS
 /**
- * Inserts `element` next to `pasteDiv`
- * @param {HTMLElement} element The element to move
- * @param {HTMLElement} pasteDiv The element for the `element` to be moved next to
+ * Inserts `element` next to `paste`
+ * @param {string} element The element query name to move
+ * @param {string} paste The element query name for the `element` value to be moved next to
  * @returns {void}
  */
-function moveElement(element, pasteDiv) {
-    console.log('moveElement: checking', element)
-    if (pasteDiv) {
-        if (pasteDiv.contains(element)) {
-            return console.error('moveElement: pasteDiv already has element');
-        } else if (element.parentElement.contains(element)) {
-            pasteDiv.parentNode.insertBefore(element, pasteDiv.parentNode.firstElementChild);
-            return console.log('moveElement: move successful')
+function moveElement(element, paste) {
+    let moveInt, tried = 0;
+
+    function imove() {
+        let elementDiv = document.querySelector(`${element}`);
+        let pasteDivDiv = document.querySelector(`${paste}`);
+
+        let logData = {
+            elementStr: element,
+            elementDiv: elementDiv,
+            pasteStr: paste,
+            pasteDiv: pasteDivDiv
+        };
+
+        if (
+            elementDiv
+            && pasteDivDiv
+        ) {
+            if (pasteDivDiv.contains(elementDiv)) {
+                return console.error('moveElement: pasteDiv already has element', logData);
+            } else if (elementDiv.parentElement.contains(elementDiv)) {
+                pasteDivDiv.parentNode.insertBefore(elementDiv, pasteDivDiv.parentNode.firstElementChild);
+                clearInterval(moveInt);
+                return console.log('moveElement: move successful', logData)
+            } else {
+                return console.log('moveElement: something else failed', logData);
+            }
         } else {
-            return console.log('moveElement: something else failed');
+            return console.error('moveElement: elements can\'t be found.', logData);
         }
-    } else {
-        return console.error('moveElement: pasteDiv can\'t be found', pasteDiv);
     }
+
+    moveInt = setInterval(() => {
+        if (tried >= 5) return clearInterval(moveInt);
+        else {
+            imove();
+            tried++;
+        }
+    }, 500);
 };
 
 // Heartbeats
@@ -914,29 +939,19 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                 // Move stuffs
                 setInterval(() => {
                     // Move volume area to right side
-                    var VolumePanel = document.querySelector("span.ytp-volume-area");
+                    let VolumePanel = document.querySelector("span.ytp-volume-area");
                     if (VolumePanel && VolumePanel.parentNode.className !== 'ytp-right-controls') {
-                        if (VolumePanel) {
-                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
-            
-                            moveElement(VolumePanel, pastDiv1);
-                        }
+                        let firstRightControl = document.querySelector(".ytp-right-controls").childNodes[0];
+                        let firstRightControlStr = `.${firstRightControl.classList[0]}`;
+
+                        if (VolumePanel) moveElement('span.ytp-volume-area', firstRightControlStr);
                         // Do the same for the time display
-                        var TimePanel = document.querySelector("div.ytp-time-display");
-                        if (TimePanel) {
-                            pastDiv1 = document.querySelector(".ytp-right-controls").childNodes[0];
-            
-                            moveElement(TimePanel, pastDiv1);
-                        }
+                        let TimePanel = document.querySelector("div.ytp-time-display");
+                        if (TimePanel) moveElement('div.ytp-time-display', firstRightControlStr);
                         // Move the panel ahead of the actual volume button
-                        var VolumeButton = document.querySelector(".ytp-volume-panel");
-                        if (VolumeButton) {
-                            pastDiv1 = document.querySelector(".ytp-mute-button.ytp-button");
-                            if (!pastDiv1) pastDiv1 = document.querySelector('.ytp-volume-icon.ytp-button');
-            
-                            moveElement(VolumeButton, pastDiv1);
-                        }
-                    } else {}
+                        let VolumeButton = document.querySelector(".ytp-volume-panel");
+                        if (VolumeButton) moveElement(".ytp-volume-panel", '.ytp-volume-icon.ytp-button');
+                    }
                 }, 500);
             break; 
 
@@ -987,5 +1002,5 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
 
 
     // Move previous button back to where it should be (why would you change this bro...)
-    if (!isProjectV3) moveElement(document.querySelector(elementNames['.ytp-prev-button']), document.querySelector(elementNames['.ytp-play-button']));
+    if (!isProjectV3) moveElement(elementNames['.ytp-prev-button'], elementNames['.ytp-play-button']);
 }

@@ -758,7 +758,7 @@
 }
 
 .ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg);
+	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg) !important;
 }
 
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {
