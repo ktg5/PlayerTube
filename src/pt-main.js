@@ -577,6 +577,12 @@ function applyUserSettings() {
     display: none;
 }
         `
+    } if (userConfig.toggleScrubberThumbs !== true) {
+        outputCssToggles += `
+.html5-video-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
+    opacity: 0;
+}
+        `
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);

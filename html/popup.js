@@ -27,6 +27,7 @@ var def_pt_config = {
     toggleSpinner: true,
     toggleMoreVids: false,
     toggleFSButtons: false,
+    toggleScrubberThumbs: false,
     customTheme: false,
 
     // Only for custom themes.
@@ -324,6 +325,8 @@ async function start(userConfig) {
             ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">Autoplay toggle</a> on the right-side of the player`)}
 
             ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
+
+            ${makeMenuOption(`toggle`, `toggleScrubberThumbs`, `Toggle the video preview when hovering or using the progress bar`)}
 
             ${makeMenuOption(`toggle`, `toggleSpinner`, `Toggle the loading spinner that appears when loading a video`)}
 

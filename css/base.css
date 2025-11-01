@@ -111,3 +111,11 @@
     border-radius: 0;
 	background-color: rgb(28, 28, 28);
 }
+
+.ytp-delhi-modern .ytp-tooltip.ytp-preview:not(.ytp-text-detail) {
+    background: none;
+}
+
+.html5-video-player .ytp-fine-scrubbing-exp .ytp-preview:not(.ytp-text-detail) .ytp-tooltip-edu {
+    display: none;
+}

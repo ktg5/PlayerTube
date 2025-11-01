@@ -56,6 +56,7 @@ var def_pt_config = {
     toggleSpinner: true,
     toggleMoreVids: false,
     toggleFSButtons: false,
+    toggleScrubberThumbs: false,
     customTheme: false,
 
     // Only for custom themes.
