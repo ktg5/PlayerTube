@@ -43,7 +43,12 @@ document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class
 // Heartbeat
 var checkBar = setInterval(() => {
     // Actual check
-    if (document.getElementById('movie_player') && ytVideo && ytVideo.src.includes('blob')) {
+    if (
+        document.querySelector('.html5-video-player')
+        && !document.querySelector('.html5-video-player').classList.contains('ytp-big-mode')
+        && ytVideo
+        && ytVideo.src.includes('blob')
+    ) {
         // Get current progress bar width -- v2 (10.2025)
         // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
         const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
@@ -56,7 +61,11 @@ var checkBar = setInterval(() => {
         // console.log('resize debug detection (player):', progressBarWidth, pastWidth);
         // console.log('resize debug detection (video):', videoWidth, pastVideoWidth);
         // Detection... v2.1...
-        if (progressBarWidth !== pastWidth || videoWidth !== pastVideoWidth) {
+        if (
+            progressBarWidth !== pastWidth
+            || videoWidth !== pastVideoWidth
+            || progressBarWidth !== videoWidth
+        ) {
             // Set pastWidth
             pastWidth = Number(progressBarWidth);
             pastVideoWidth = Number(videoWidth);
