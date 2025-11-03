@@ -547,7 +547,7 @@ function applyUserSettings() {
     } if (userConfig.toggleFadeOut == true) {
         outputCssToggles += `
 /* TOGGLE FADE OUT (enabled) */
-.html5-video-player.ytp-autohide:not(.ytp-watch-controls) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+.html5-video-player.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 0 !important;
     bottom: 0 !important;
 }
