@@ -16,7 +16,7 @@
 	background: none !important;
 }
 
-.html5-video-player.html5-video-player .ytp-chrome-bottom {
+.html5-video-player[aria-label] .ytp-chrome-bottom {
 	height: 35px !important;
 	width: 100% !important;
     left: 0 !important;
@@ -184,10 +184,28 @@
 
 /* SCRUBBER */
 
-.ytp-scrubber-container {
-	width: 0px;
-	height: 0px;
-	top: 5px;
+.html5-video-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber.png) no-repeat !important;
+    background-position: 0px 0px !important;
+    background-size: 16px !important;
+    height: 18px !important;
+    width: 18px !important;
+    transition: .5s !important;
+    position: relative;
+}
+
+.html5-video-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button:hover {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber-hover.png) !important;
+	background-position: 0px 0px !important;
+    background-size: 18px !important;
+    height: 18px !important;
+    width: 18px !important;
+}
+
+.html5-video-player .ytp-chrome-bottom .ytp-scrubber-container {
+	width: 18px;
+	height: 18px;
+	top: 1px;
 	left: 0px;
 	margin-top: -5px;
 	justify-items: center;
@@ -195,15 +213,9 @@
 	transition: width .5s, height .5s, top .5s, left .5s !important;
 }
 
-.html5-video-player.ytp-delhi-modern .ytp-scrubber-container {
+.html5-video-player.ytp-delhi-modern .ytp-chrome-bottom .ytp-scrubber-container {
 	top: 2px !important;
 	left: 0px !important;
-}
-
-.ytp-progress-bar .ytp-scrubber-container {
-	width: 18px;
-	height: 18px;
-	top: 1px;
 }
 
 .ytp-autohide:not(.ytp-watch-controls) .ytp-scrubber-button {
@@ -277,11 +289,11 @@
 }
 
 /* igrone background & border for the following: */
-.ytp-chrome-bottom .ytp-button.ytp-settings-button,
-.ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-.ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-.ytp-chrome-bottom .ytp-chapter-title.ytp-button,
-.ytp-chrome-bottom .ytp-button.ytp-live-badge
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+.html5-video-player .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+.html5-video-player .ytp-chrome-bottom .ytp-chapter-title.ytp-button,
+.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-live-badge
 {
     background: none !important;
     border: none !important;
@@ -329,14 +341,13 @@
 /* TIME DISPLAY */
 
 .html5-video-player .ytp-chrome-bottom .ytp-time-display span {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-time-display {
 	line-height: 47px !important;
 	padding: 0px 10px !important;
 	margin-top: -8px !important;
-	font-size: 12px;
 	height: 50px;
 }
 

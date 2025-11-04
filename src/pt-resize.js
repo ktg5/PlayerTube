@@ -64,7 +64,10 @@ var checkBar = setInterval(() => {
         if (
             progressBarWidth !== pastWidth
             || videoWidth !== pastVideoWidth
-            || progressBarWidth !== videoWidth
+            || (
+                progressBarWidth !== videoWidth
+                && userConfig.year !== '2006'
+            )
         ) {
             // Set pastWidth
             pastWidth = Number(progressBarWidth);

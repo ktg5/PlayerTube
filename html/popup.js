@@ -145,7 +145,7 @@ async function start(userConfig) {
                     return `
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
-                        <div style="position: relative; left: 12px;">
+                        <div class="menu-option-color" style="position: absolute; right: 0;">
                             <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action'>
                                 <img src="/img/reset.png" style="height: 1em;">
@@ -157,7 +157,7 @@ async function start(userConfig) {
                     return `
                     <div class="menu-option">
                         <div class="menu-name">${desc}</div>
-                        <div>
+                        <div style="position: absolute; right: 0;">
                             <input type="text" class="menu-input menu-action" placeholder="view desc." name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="/img/reset.png" style="height: 1em;">
@@ -169,7 +169,7 @@ async function start(userConfig) {
                     return `
                     <div class="menu-option">
                         <div class="menu-name" style="max-width: 12em;">${desc}</div>
-                        <div style="position: relative; left: 12px;">
+                        <div style="position: absolute; right: 0;">
                             <input type="number" style="width: 4em;" class="menu-input menu-action" placeholder="0" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="/img/reset.png" style="height: 1em;">
@@ -229,7 +229,7 @@ async function start(userConfig) {
             }
         }
         output += '\n}'
-        console.log(`getUserConfigText`, `${output}`)
+        // console.log(`getUserConfigText: `, `${output}`);
         return output;
     };
 
@@ -299,20 +299,20 @@ async function start(userConfig) {
                 <h3>Reload page for changes to take effect!</h3>
             </div></a>
 
-            <img src="../img/playertube/logo-dark.png" style="width: 200px;">
-            <div class="version"> v${version}</div>
-
-            <br>
-
-            <div class="links">
-                <a href="update.html" target="_blank">Release Notes</a>
-                <a href="https://github.com/ktg5/PlayerTube/issues" target="_blank">Report a Issue</a>
-                <a href="https://ktg5.online" target="_blank">ktg5.online</a>
+            <div id="top">
+                <div class="about">
+                    <img src="../img/playertube/logo-dark.png" style="width: 200px;">
+                    <div class="version">v${version}</div>
+                </div>
+                <div class="links">
+                    <a href="update.html" target="_blank">Release Notes</a>
+                    <a href="https://github.com/ktg5/PlayerTube/issues" target="_blank">Report a Issue</a>
+                    <a href="https://ktg5.online" target="_blank">ktg5.online</a>
+                </div>
             </div>
 
-            <br>
 
-            <h3>General Settings</h3>
+            <h3 class="spacer-top">General Settings</h3>
 
             ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes after reinstalling or updating PlayerTube')}
 
@@ -322,43 +322,41 @@ async function start(userConfig) {
 
             ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners around a YouTube video')}
 
-            ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">Autoplay toggle</a> on the right-side of the player`)}
+            ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">autoplay toggle</a> on the right-side of the player`)}
 
-            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank">Heat Map</a> on the top of the Progress Bar (Shows you the most played parts of a video)`)}
+            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank"><i>Heat Map</i></a> on the top of the progress bar (Shows you the most played parts of a video)`)}
 
             ${makeMenuOption(`toggle`, `toggleScrubberThumbs`, `Toggle the video preview when hovering or using the progress bar`)}
 
             ${makeMenuOption(`toggle`, `toggleSpinner`, `Toggle the loading spinner that appears when loading a video`)}
 
-            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the Progress Bar's height at all times`)}
+            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the progress bar's height at all times`)}
 
             ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when playing`)}
 
-            ${makeMenuOption('toggle', 'toggleMoreVids', 'Toggle the "More Videos" feature when in fullscreen')}
+            ${makeMenuOption('toggle', 'toggleMoreVids', 'Toggle the <i>More Videos</i> feature when in fullscreen')}
 
             ${makeMenuOption('toggle', 'toggleFSButtons', 'Toggle the fullscreen buttons that show at the bottom right')}
 
             ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
 
-            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a> that displays at the bottom right of YouTube videos')}
+            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a> at the bottom right of YouTube videos')}
 
-            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank">Paid Products / Sponsorships</a> popups on videos that are sponsored')}
+            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank"><i>Paid Products</i> / <i>Sponsorships</i></a> popups on videos that are sponsored')}
 
-            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open the <a href="https://support.google.com/youtube/answer/6140493" target="_blank">Info Cards tab</a>')}
+            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open the <a href="https://support.google.com/youtube/answer/6140493" target="_blank">info cards tab</a>')}
 
-            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">End Screen</a> at the end of videos')}
+            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">end screen</a> at the end of videos')}
 
-            ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the "Show other videos" box in embeds')}
+            ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the <i>Show Other Videos</i> box in embeds')}
 
-            <br>
-
-            <h3>Custom Theme Settings</h3>
+            <h3 class="spacer-top">Custom Theme Settings</h3>
             <p>
                 PlayerTube has the ability to change the look of it's multiple themes through
                 this menu. If you'd like to learn about how custom themes work & how to make
-                your own, check out the <a href="themes.html" target="_blank">Theme Guide</a>
-                that is included with this extension.
-                If you'd like to see some examples of some custom themes,
+                your own, check out the <a href="themes.html" target="_blank">
+                <i>Theme Guide</i></a> that is included with this extension. If you'd like to
+                see some examples of some custom themes,
                 <a href='https://github.com/ktg5/PlayerTube#user-customization' target="_blank">
                 please check out this page on our ReadMe!</a>
             </p>
@@ -367,16 +365,13 @@ async function start(userConfig) {
 
             <div id='menu-custom-options'></div>
 
-            <br>
-
-            <h3>Import, Copy, or Reset Settings</h3>
+            <h3 class="spacer-top">Import, Copy, or Reset Settings</h3>
 
             <textarea id="menu-config-selection">
             ${collectedUserConfig}
             </textarea>
         </div>
-        `
-    )
+    `);
 
     // Move everything to the body element
     setTimeout(() => {
@@ -396,76 +391,75 @@ async function start(userConfig) {
             ${makeMenuOption(`toggle`, `alternateMode`, `Toggle Alternate Theme for your current theme`)}
             <div class='menu-option-note'>Some themes may have alternate themes, this one does! <b>Alternate Mode will be disabled when custom themes are enabled.</b></div>
             `
-        )
-    }
+        );
+    };
 
     // Custom Themes Buttons
-    if (userConfig.customTheme == true) {
-        document.getElementById(`menu-custom-options`).insertAdjacentHTML(
+    if (userConfig.customTheme == true) customThemeHTML();
+    function customThemeHTML() {
+        const customThemeDiv = document.querySelector('.menu-custom-theme');
+        // Remove the custom theme menu stuff if found
+        if (customThemeDiv) customThemeDiv.remove();
+        // Else add it
+        else document.getElementById(`menu-custom-options`).insertAdjacentHTML(
             `afterbegin`,
 
             `
-            <b>
-                Note: You're editing raw CSS values. If something like
-                the Scrubber doesn't seem to appear, try changing the
-                Scrubber size. Else, open up your browser's Developer Tools.
-            </b>
+            <div class="menu-custom-theme">
+                <b>
+                    Note: You're editing raw CSS values. If something like
+                    the scrubber doesn't seem to appear, try changing the
+                    scrubber size. Else, open up your browser's Developer Tools.
+                </b>
 
-            <br>
-            <br>
+                <button class="menu-copy-theme spacer-top"><b>Copy Custom Theme Settings to Clipboard</b></button>
 
-            <button class="menu-copy-theme"><b>Copy Custom Theme Settings to Clipboard</b></button>
+                <b class="spacer-top">Base Color Settings</b>
+                ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
 
-            <br>
-            <br>
-            <b>Base Color Settings</b>
-            ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
+                ${makeMenuOption('input', 'settingsBgColor', 'Change the color of the player\'s settings background', 'color')}
 
-            ${makeMenuOption('input', 'settingsBgColor', 'Change the color of the player\'s settings background', 'color')}
+                ${makeMenuOption('input', 'progressBarColor', 'Change the color of the progress bar', 'color')}
 
-            ${makeMenuOption('input', 'progressBarColor', 'Change the color of the Progress Bar', 'color')}
+                ${makeMenuOption('input', 'progressBarBgColor', 'Change the background color of the progress bar', 'color')}
 
-            ${makeMenuOption('input', 'progressBarBgColor', 'Change the background color of the Progress Bar', 'color')}
+                ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the volume slider', 'color')}
+                <div class='menu-option-note'>If you want to use the exact same color as the progress bar for the volume slider, you don't need to change this value.</div>
 
-            ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the Volume Silder', 'color')}
-            <div class='menu-option-note'>If you want to use the exact same color as the Progress Bar for the Volume Silder, you don't need to change this value.</div>
+                <b class="spacer-top">Scrubber Base Settings</b>
+                ${makeMenuOption('input', 'scrubberIcon', 'Change the image of the scrubber', 'url')}
 
-            <br>
-            <b>Scrubber Base Settings</b>
-            ${makeMenuOption('input', 'scrubberIcon', 'Change the image of the Scrubber', 'url')}
+                ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the scrubber <b>when hovering</b>', 'url')}
+                <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
 
-            ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the Scrubber <b>when hovering</b>', 'url')}
-            <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
+                <b class="spacer-top">Scrubber Size</b>
+                ${makeMenuOption('input', 'scrubberSize', 'Change the image size of the scrubber', 'pxs')}
+                <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
 
-            <br>
-            <b>Scrubber Size</b>
-            ${makeMenuOption('input', 'scrubberSize', 'Change the image size of the Scrubber', 'pxs')}
-            <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
+                ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the scrubber', 'pxs')}
+                <div class='menu-option-note'>If you want to use the same width value on here, don't change this value.</div>
 
-            ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the Scrubber', 'pxs')}
-            <div class='menu-option-note'>If you want to use the same width value on here, don't change this value.</div>
+                ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the scrubber', 'pxs')}
+                <div class='menu-option-note'>If you want to use the same height value on here, don't change this value.</div>
 
-            ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the Scrubber', 'pxs')}
-            <div class='menu-option-note'>If you want to use the same height value on here, don't change this value.</div>
+                <b class="spacer-top">Scrubber Position</b>
+                ${makeMenuOption('input', 'scrubberTop', 'Move the scrubber down (Make value negative to move up)', 'pxs')}
 
-            <br>
-            <b>Scrubber Position</b>
-            ${makeMenuOption('input', 'scrubberTop', 'Move the Scrubber down (Make value negative to move up)', 'pxs')}
+                ${makeMenuOption('input', 'scrubberLeft', 'Move the scrubber right (Make value negative to move left)', 'pxs')}
 
-            ${makeMenuOption('input', 'scrubberLeft', 'Move the Scrubber right (Make value negative to move left)', 'pxs')}
-
-            ${makeMenuOption('input', 'scrubberPosition', 'If needed, change the Scrubber image position.', 'text')}
-            <div class='menu-option-note'>
-                Example: <kbd>10px (for x) 5px (for y)</kbd>
-                <br>
-                Note this <b>does not</b> change where the
-                Scrubber will be moved to, you still have to
-                play off of all the other sizing settings
-                above.
+                ${makeMenuOption('input', 'scrubberPosition', 'If needed, change the scrubber image position.', 'text')}
+                <div class='menu-option-note'>
+                    Example: <kbd>10px (for x) 5px (for y)</kbd>
+                    <br>
+                    Note this <b>does not</b> change where the
+                    Scrubber will be moved to, you still have to
+                    play off of all the other sizing settings
+                    above.
+                </div>
             </div>
             `
-        )
-    }
+        );
+    };
 
     // Ending stuffs
     document.getElementById(`menu-config-selection`).insertAdjacentHTML(
@@ -476,15 +470,13 @@ async function start(userConfig) {
             Apply Settings
         </button>
 
-        <br>
-        <br>
-
         <button class="menu-nuke-all">
             THE BIG NUKE BUTTON. (aka reset all settings) NO TURNING BACK WHEN THIS IS PRESSED.
         </button>
 
         <div class="blank"></div>
-    `)
+    `);
+
 
     // Event listener to make the BUTTONS ACTUALLY WORK LIKE WHY
     var buttons = document.getElementsByClassName('menu-action');
@@ -504,7 +496,7 @@ async function start(userConfig) {
                     }
                 });
             };
-        }
+        };
 
         switch (element.classList[0]) {
             case 'menu-select':
@@ -556,22 +548,17 @@ async function start(userConfig) {
             default:
                 alert(`One of the buttons for the settings can't find itself, please report this! "${element.classList}"`)
             break;
-        }
-    }
+        };
+    };
+
+
     // Event listeners for reset & overwrite config.
-    document.querySelector('.menu-apply-overwrite-button')
-    .addEventListener('click', async () => {
-        overWriteUserConfig(document.getElementById(`menu-config-selection`).value);
-    });
+    document.querySelector('.menu-apply-overwrite-button').addEventListener('click', async () => overWriteUserConfig(document.getElementById(`menu-config-selection`).value) );
+    document.querySelector('.menu-nuke-all').addEventListener('click', async () => resetConfig() );
+    if (document.querySelector('.menu-copy-theme')) document.querySelector('.menu-copy-theme').addEventListener('click', async () => getCustomThemeCfg() );
 
-    document.querySelector('.menu-nuke-all')
-    .addEventListener('click', async () => {
-        resetConfig();
-    });
 
-    document.querySelector('.menu-copy-theme')
-    .addEventListener('click', async () => {
-        getCustomThemeCfg();
-    });
+    // Event listener for showing custom theme buttons
+    document.querySelector('.menu-toggle[name="customTheme"]').addEventListener('click', async () => customThemeHTML());
 
 }

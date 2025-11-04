@@ -19,13 +19,13 @@
 
 /* progress bar scrubber */
 
-.html5-video-player .ytp-scrubber-button {
+.html5-video-player .ytp-chrome-bottom .ytp-scrubber-button {
     transform: scale(0) !important;
     transition: transform .5s !important;
 }
 
-.html5-video-player .ytp-progress-bar-container:hover .ytp-scrubber-button,
-.html5-video-player .ytp-scrubber-button:hover
+.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container:hover .ytp-scrubber-button,
+.html5-video-player .ytp-chrome-bottom .ytp-scrubber-button:hover
 {
     transform: scale(1);
 }

@@ -4,8 +4,10 @@
     font-family: "lol";
 }
 
-html {
-    height: 29em;
+html
+{
+    height: 500px;
+    width: 400px;
 }
 
 a {
@@ -44,10 +46,24 @@ body {
 }
 
 
-.links a {
+#top,
+#top .about,
+#top .links
+{
+    width: fit-content !important;
+    margin: auto;
+}
+
+#top .links a {
     font-weight: 800;
     margin-right: 6px;
     font-size: 12px;
+}
+
+
+.spacer-top {
+    display: block;
+    margin-top: 18px !important;
 }
 
 
@@ -77,10 +93,10 @@ body {
 
 
 #yt-html5-menu {
+    position: fixed;
     font-family: Arial, Helvetica, sans-serif;
-    width: 22em;
-    height: 30em;
     border: solid 0.5em rgba(0, 0, 0, 0.15);
+    height: 91.5%;
     padding: 1em;
     background: white;
     color: rgb(0, 0, 0);
@@ -104,7 +120,8 @@ body {
 
 #yt-html5-menu .menu-option {
     display: grid;
-    grid-template-columns: auto auto;
+    position: relative;
+    grid-template-columns: 60% auto;
     margin: .5em 0;
 }
 
@@ -116,26 +133,12 @@ body {
     margin-bottom: 0;
 }
 
-#yt-html5-menu .menu-option .menu-name {
-    max-width: 14em;
-}
-
-
-#yt-html5-menu .menu-option select {
-    color: black;
-    background: white;
-    position: relative;
-    width: 8em;
-    left: calc(100% - 8em);
-    overflow: hidden !important;
-}
-
-
 #yt-html5-menu .menu-option-note {
     position: relative;
     bottom: 6px;
     font-size: 12px;
 }
+
 
 #yt-html5-menu .menu-toggle {
     background: #1d1d1d;
@@ -190,12 +193,25 @@ body {
     width: 18px;
 }
 
-.clr-field button {
+#yt-html5-menu .menu-option select {
+    color: black;
+    background: white;
+    position: relative;
+    width: 8em;
+    left: calc(100% - 8em);
+    overflow: hidden !important;
+}
+
+#yt-html5-menu .menu-option input[type="number"] {
+    margin-right: 4px;
+}
+
+#yt-html5-menu .menu-option .menu-option-color button:not(.menu-input-reset) {
     border: solid 1px black !important;
     width: 4em !important;
 }
 
-.clr-field input {
+#yt-html5-menu .menu-option .menu-option-color input {
     width: 4em;
     cursor: pointer;
 }
@@ -215,7 +231,8 @@ body {
 
 #yt-html5-menu .menu-copy-theme {
     background: #f48c8c;
-    width: 100%;
+    width: 180px;
+    margin: auto;
 }
 
 
@@ -236,23 +253,28 @@ body {
 
 
 #yt-html5-menu .menu-nuke-all {
+    position: absolute;
     background: rgb(200, 0, 0);
     color: white;
     font-weight: bold;
+    max-width: 260px;
+    margin: auto;
+    margin-top: 36px;
+    left: 0;
+    right: 0;
 }
 
 
 #yt-html5-menu .warning {
     position: fixed;
-    width: 20em;
+    width: 325px;
     border: solid 0.5em red;
     border-radius: 0.5em 0.5em 0 0;
     background: red;
     color: white;
     text-align: center;
-    top: 28.75em;
-    left: 18px;
-    z-index: 1;
+    bottom: 7px;
+    z-index: 100;
 }
 
 .warning h1, h2, h3 {
@@ -261,7 +283,7 @@ body {
 }
 
 #yt-html5-menu .blank {
-    height: 70px;
+    height: 100px;
 }
 
 /* keyframes */

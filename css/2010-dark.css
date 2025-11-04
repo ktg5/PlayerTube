@@ -14,35 +14,11 @@
     --pt-settings-bg: rgb(35, 35, 35);
 }
 
-
-/* ################################# */
-
-/* SCRUBBER */
-
-.ytp-swatch-background-color.ytp-scrubber-button {
-    background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber.png) no-repeat !important;
-    background-position: 0px 0px !important;
-    background-size: 16px !important;
-    height: 18px !important;
-    width: 18px !important;
-    transition: .5s !important;
-    position: relative;
-}
-
-.ytp-swatch-background-color.ytp-scrubber-button:hover {
-	background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber-hover.png) !important;
-	background-position: 0px 0px !important;
-    background-size: 18px !important;
-    height: 18px !important;
-    width: 18px !important;
-    top: -2px;
-}
-
 /* ################################# */
 
 /* BUTTONS BASE */
 
-.html5-video-player .ytp-chrome-bottom .ytp-button {
+.html5-video-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
     border: solid 1px rgb(60, 65, 68);
     background: var(--pt-button-gradient) !important;
 }

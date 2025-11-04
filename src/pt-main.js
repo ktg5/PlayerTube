@@ -131,11 +131,10 @@ const ptMainHeartBeatFunc = async () => {
     if (nextButton &&
         prevButton &&
         buttonBase) {
-        // Left (Should always be on in a embed & playlists)
-        // If not a embed
+        // Left (Should always be on in playlists & specific themes)
         if (
-            !window.location.href.includes('embed')
-            && new URLSearchParams(window.location.search).get('list') !== null
+            new URLSearchParams(window.location.search).get('list') !== null
+            || userConfig.year === '2006'
         ) {
             nextButton.style.display = 'block';
             buttonBase.classList.remove('no-right-button');
