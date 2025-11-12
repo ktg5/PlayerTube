@@ -234,7 +234,7 @@
 }
 
 .ytp-autohide:not(.paused-mode) .ytp-chrome-top {
-    display: none;
+	opacity: 0;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button svg path {
@@ -539,11 +539,15 @@
 
 /* TOP BUTTONS */
 
-.html5-video-player.ytp-big-mode:not(.ytp-embed):not(.unstarted-mode) .ytp-chrome-top {
+.html5-video-player:not(.ytp-embed) .ytp-chrome-top {
 	right: 0px !important;
 	left: 0px !important;
 	padding: 0px 10px;
 	height: 40px;
+}
+
+.html5-video-player:not(.ytp-fullscreen):not(.ytp-embed) .ytp-chrome-top .ytp-title {
+	display: none;
 }
 
 .ytd-channel-video-player-renderer .ytp-chrome-top {

@@ -255,7 +255,7 @@
 }
 
 .ytp-autohide:not(.paused-mode) .ytp-chrome-top {
-    display: none;
+    opacity: 0;
 }
 
 .html5-video-player .ytp-chrome-bottom .ytp-button {

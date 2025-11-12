@@ -105,6 +105,12 @@
     display: block !important;
 }
 
+/* top buttons */
+
+.html5-video-player .ytp-overlays-container .ytp-playlist-menu-button.ytp-button svg {
+    display: block;
+}
+
 /* tooltips */
 
 .ytp-tooltip:not(.ytp-preview) .ytp-tooltip-text-wrapper {

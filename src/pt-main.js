@@ -706,6 +706,10 @@ async function startPlayer() {
 
 
     if (loadedPlayerStyle !== true) {
+        // Delhi CSS
+        var link = runtime.getURL(`css/delhi.css`);
+        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-delhi" rel="stylesheet" type="text/css" href="${link}">`);        
+
         switch (userConfig.year) {
             case '2015':
                 // IMPORT CSS (if it wasn't already loaded)
@@ -964,11 +968,6 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                 console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
             break;
         };
-
-
-        // Delhi CSS
-        var link = runtime.getURL(`css/delhi.css`);
-        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-delhi" rel="stylesheet" type="text/css" href="${link}">`);
     }
 
 
