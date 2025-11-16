@@ -516,7 +516,20 @@ async function start(userConfig) {
 
             case 'menu-input':
                 element.addEventListener('change', async () => {
-                    changeUserDB(element.name, element.value);
+                    // If the input is a "url" we should prob do some checks
+                    let value = element.value;
+                    let linkPassed = true;
+                    if (element.getAttribute('type', 'url')) {
+                        try {
+                            let urlValue = new URL(value);
+                            if (urlValue.host !== "i.imgur.com") linkPassed = false;
+                        } catch (error) {
+                            linkPassed = false;
+                        }
+                    }
+                    if (linkPassed == false) return alert(`A URL option's value under, "${element.parentElement.parentElement.querySelector('.menu-name').innerText}" can not be used. Please make sure the URL is a "i.imgur.com" link.`)
+
+                    changeUserDB(element.name, value);
                     disableAria(element);
                 });
             break;
