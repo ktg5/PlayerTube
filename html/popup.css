@@ -4,7 +4,9 @@
     font-family: "lol";
 }
 
-html
+html,
+#content,
+body
 {
     height: 500px;
     width: 400px;
@@ -22,6 +24,10 @@ h1, h2, h3 {
     margin: 0;
     font-family: 'lol';
     font-weight: 400;
+}
+
+#content {
+    position: absolute;
 }
 
 body {
