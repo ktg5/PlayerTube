@@ -53,7 +53,7 @@ var checkBar = setInterval(() => {
         // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
         const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
         var progressBarWidth = 0;
-        allChapterHovers.forEach((elmnt) => progressBarWidth = progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', '')) + 1);
+        allChapterHovers.forEach((elmnt) => progressBarWidth = progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', '')));
         // Actual width
         const videoWidth = Number(getVideoWidth());
 
