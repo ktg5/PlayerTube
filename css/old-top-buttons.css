@@ -13,7 +13,7 @@
 	display: none; /* this should only affect channel trailers. */
 }
 
-.ytp-big-mode .ytp-chrome-top .ytp-button {
+.ytp-fullscreen .ytp-chrome-top .ytp-button {
 	padding-top: 0px;
 }
 

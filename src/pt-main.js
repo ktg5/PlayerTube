@@ -572,12 +572,14 @@ function applyUserSettings() {
         `
     } if (userConfig.toggleFSButtons !== true) {
         outputCssToggles += `
-.html5-video-player.ytp-big-mode.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
+/* TOGGLE FULLSCREEN BUTTONS (disabled) */
+.html5-video-player.ytp-fullscreen.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
     display: none;
 }
         `
     } if (userConfig.toggleScrubberThumbs !== true) {
         outputCssToggles += `
+/* TOGGLE THUMBNAIL PREVIEWS WHEN SCRUBBING (disabled) */
 .html5-video-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
     opacity: 0;
 }

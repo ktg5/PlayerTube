@@ -30,7 +30,7 @@
     transform: scale(1);
 }
 
-.html5-video-player.ytp-big-mode .ytp-swatch-background-color.ytp-scrubber-button {
+.html5-video-player.ytp-fullscreen .ytp-swatch-background-color.ytp-scrubber-button {
     bottom: 0;
     left: 0;
 }
@@ -97,7 +97,7 @@
 
 /* more video button */
 
-.html5-video-player.ytp-big-mode .ytp-fullscreen-grid-expand-button {
+.html5-video-player.ytp-fullscreen .ytp-fullscreen-grid-expand-button {
     margin-top: -120px !important;
 }
 
