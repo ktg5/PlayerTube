@@ -569,6 +569,22 @@ function applyUserSettings() {
 .ytp-fullscreen-grid {
     display: none !important;
 }
+
+.html5-video-player .ytp-gradient-bottom {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==) !important;
+    background-position-y: bottom !important;
+}
+
+.html5-video-player.ytp-delhi-modern:not(.ytp-disable-bottom-gradient) .ytp-gradient-bottom,
+.ytp-delhi-modern.ytp-fullscreen-grid-active .ytp-gradient-bottom
+{
+    height: 64px;
+}
+
+.html5-video-player.ytp-delhi-modern.ytp-fullscreen-grid-active:not(.html5-video-player.ended-mode):not(.ytp-grid-scrolling) .ytp-chrome-bottom {
+    display: inherit;
+    pointer-events: all;
+}
         `
     } if (userConfig.toggleFSButtons !== true) {
         outputCssToggles += `
@@ -691,7 +707,8 @@ var elementNames = {};
 // Includes year theme & fake bar.
 // This function will keep going until it's happy.
 async function startPlayer() {
-    await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
+    const V3Url = runtime.getURL('v3elmnts.json');
+    if (V3Url) await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
         let V3Renames = data;
         // we're going prepare to make a "copy" of this data so that we can set the correct elements for if V3 is enabled or not
         // we'll now need to check if V3 is being used, and if not, we change the value of a key in V3Renames to the key.
@@ -705,12 +722,22 @@ async function startPlayer() {
     
         console.log(`elementNames: `, elementNames);
     });
+    else {
+        alert(`PlayerTube ERROR! "v3elmnts.json" couldn't be fetched! If this happens again, report this issue onto the GitHub page!`)
+        console.error(`MAJOR ERROR!!!!!!!!! "v3elmnts.json" couldn't be fetched!`);
+        return;
+    }
 
 
     if (loadedPlayerStyle !== true) {
         // Delhi CSS
         var link = runtime.getURL(`css/delhi.css`);
-        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-delhi" rel="stylesheet" type="text/css" href="${link}">`);        
+        if (link) document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-delhi" rel="stylesheet" type="text/css" href="${link}">`);
+        else {
+            alert(`PlayerTube ERROR! "delhi.css" couldn't be fetched! If this happens again, report this issue onto the GitHub page!`)
+            console.error(`MAJOR ERROR!!!!!!!!! "delhi.css" couldn't be fetched!`);
+            return;
+        }
 
         switch (userConfig.year) {
             case '2015':
@@ -970,15 +997,18 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                 console.error(`PLAYERTUBE ERROR:`, `no userConfig.year is selected, please fix that.`);
             break;
         };
-    }
+
+        // Move previous button back to where it should be (why would you change this bro...)
+        // console.log("DEBUG: elementNames: ", elementNames);
+        if (!isProjectV3) moveElement(elementNames['.ytp-prev-button'], elementNames['.ytp-play-button']);
+    };
 
 
     // Make fake bar
     // No need to load the JS for fake bar here, that's at the top of this script.
     if (userConfig.fakeBarToggle !== false) {
-        if (document.getElementById('playertube-fake-bar')) {
-            return;
-        } else {
+        if (document.getElementById('playertube-fake-bar')) return;
+        else {
             var chromeBottom = document.querySelector(elementNames['.ytp-chrome-bottom']);
             
             let tempInt = setInterval(() => {
@@ -1005,8 +1035,4 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
             }, 100);
         }
     }
-
-
-    // Move previous button back to where it should be (why would you change this bro...)
-    if (!isProjectV3) moveElement(elementNames['.ytp-prev-button'], elementNames['.ytp-play-button']);
 }

@@ -20,9 +20,11 @@
 
 .html5-video-player[aria-label] .ytp-chrome-bottom {
 	height: 42px !important;
+	bottom: 0 !important;
 	left: 0 !important;
 	right: 0;
 	margin: auto;
+	opacity: 1 !important;
 }
 
 .html5-video-player:not(.ytp-fullscreen) .ytp-chrome-bottom {
@@ -144,7 +146,8 @@
 }
 
 .ytp-progress-bar {
-    height: 4px;
+	width: 101%;
+	height: 4px;
 }
 
 .ytp-autohide .ytp-player-content:not(.html5-endscreen) {
