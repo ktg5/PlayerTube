@@ -8,7 +8,7 @@
 	--pt-progress-bar-bg: #444;
 	--pt-progress-text: #080808;
 	--pt-alt-progress-text: #434343;
-	--pt-settings-bg: rgb(35, 35, 35);
+	--pt-settings-bg: rgba(35, 35, 35, 0.9);
 }
 
 /* PROGRESS BAR */

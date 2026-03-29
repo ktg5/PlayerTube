@@ -693,10 +693,6 @@
 .ytp-contextmenu .ytp-panel-menu .ytp-menuitem-label:hover {
 	color: white;
 }
-
-.ytp-fullscreen .ytp-menuitem-label {
-	font-size: 90% !important;
-}
   
 .ytp-fullscreen.ytp-contextmenu.ytp-popup.ytp-contextmenu {
 	height: 240px !important;

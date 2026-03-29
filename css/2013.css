@@ -547,10 +547,6 @@
 	color: gray;
 }
 
-.ytp-fullscreen .ytp-menuitem-label {
-	font-size: 90% !important;
-}
-
 .ytp-contextmenu .ytp-menuitem[aria-checked=true] .ytp-menuitem-toggle-checkbox {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/inverted-check.svg) !important;
 }
