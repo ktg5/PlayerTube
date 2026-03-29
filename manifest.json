@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "PlayerTube",
     "description": "The secret ingredient for a older (and better) looking YouTube.",
-    "version": "1.11.1",
+    "version": "1.12",
     "homepage_url": "https://github.com/ktg5/PlayerTube",
 
     "background": {
@@ -34,20 +34,14 @@
 
         {
             "matches": ["*://*.youtube.com/embed/*", "*://*.youtube-nocookie.com/embed/*"],
-            "js": ["src/pt-setup.js"],
-            "run_at": "document_start",
-            "all_frames": true
-        },
-        {
-            "matches": ["*://*.youtube.com/embed/*", "*://*.youtube-nocookie.com/embed/*"],
-            "js": ["src/pt-main.js"],
+            "js": ["src/pt-delhiembed.js"],
             "all_frames": true
         }
     ],
 
     "web_accessible_resources": [{
         "matches": ["*://*.youtube.com/*", "*://*.youtube-nocookie.com/*"],
-        "resources": ["css/*", "src/*", "img/*", "v3elmnts.json"]
+        "resources": ["css/*", "src/*", "img/*"]
     }],
 
     "permissions": [

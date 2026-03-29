@@ -45,7 +45,7 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
-    fakeBarToggle: true,
+    fakeBarToggle: false,
     toggleFadeOut: false,
     endScreenToggle: true,
     embedOtherVideos: true,
@@ -57,6 +57,7 @@ var def_pt_config = {
     toggleMoreVids: false,
     toggleFSButtons: false,
     toggleScrubberThumbs: false,
+    toggleLessSettings: false,
     customTheme: false,
 
     // Only for custom themes.

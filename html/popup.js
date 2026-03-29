@@ -16,7 +16,7 @@ var def_pt_config = {
     autoplayButton: false,
     heatMapToggle: false,
     fullyExtendBar: false,
-    fakeBarToggle: true,
+    fakeBarToggle: false,
     toggleFadeOut: false,
     endScreenToggle: true,
     embedOtherVideos: true,
@@ -28,6 +28,7 @@ var def_pt_config = {
     toggleMoreVids: false,
     toggleFSButtons: false,
     toggleScrubberThumbs: false,
+    toggleLessSettings: false,
     customTheme: false,
 
     // Only for custom themes.
@@ -229,7 +230,6 @@ async function start(userConfig) {
             }
         }
         output += '\n}'
-        // console.log(`getUserConfigText: `, `${output}`);
         return output;
     };
 
@@ -320,35 +320,53 @@ async function start(userConfig) {
 
             <div id="menu-if-alt-mode"></div>
 
-            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners around a YouTube video')}
+            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners')}
+            <div class='menu-option-note'>Turns on or off the rounded corners around video</div>
 
-            ${makeMenuOption(`toggle`, `autoplayButton`, `Toggle the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">autoplay toggle</a> on the right-side of the player`)}
+            ${makeMenuOption(`toggle`, `autoplayButton`, `Show the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">autoplay button</a>`)}
+            <div class='menu-option-note'>The autoplay button is located on the right side of controls</div>
 
-            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank"><i>Heat Map</i></a> on the top of the progress bar (Shows you the most played parts of a video)`)}
+            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank"><i>Heat Map</i></a>`)}
+            <div class='menu-option-note'>YouTube's Heat Map is displayed on top of the progress bar, showing where other viewers went to in the video</div>
 
-            ${makeMenuOption(`toggle`, `toggleScrubberThumbs`, `Toggle the video preview when hovering or using the progress bar`)}
+            ${makeMenuOption(`toggle`, `toggleScrubberThumbs`, `Toggle video preview when srubbing`)}
+            <div class='menu-option-note'>When moving the srubber in the progress bar, a preview of the video where you're at will show above the progress bar</div>
 
-            ${makeMenuOption(`toggle`, `toggleSpinner`, `Toggle the loading spinner that appears when loading a video`)}
+            ${makeMenuOption(`toggle`, `toggleSpinner`, `Show custom loading spinner`)}
+            <div class='menu-option-note'>Turns on or off the loading spinner loaded in by PlayerTube</div>
 
             ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the progress bar's height at all times`)}
+            <div class='menu-option-note'>When enabled, the progress bar will be at hover height no matter if you're hovering over the progress bar or not</div>
 
-            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle the fake bar that displays below a video when playing`)}
+            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle fake bar`)}
+            <div class='menu-option-note'>When enabled, PlayerTube will make a fake progress bar at the bottom of a video to show where you're at without showing the controls</div>
 
-            ${makeMenuOption('toggle', 'toggleMoreVids', 'Toggle the <i>More Videos</i> feature when in fullscreen')}
-
-            ${makeMenuOption('toggle', 'toggleFSButtons', 'Toggle the fullscreen buttons that show at the bottom right')}
-
-            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls instead of moving them down`)}
-
-            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a> at the bottom right of YouTube videos')}
-
-            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank"><i>Paid Products</i> / <i>Sponsorships</i></a> popups on videos that are sponsored')}
-
-            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle the ability to open the <a href="https://support.google.com/youtube/answer/6140493" target="_blank">info cards tab</a>')}
-
-            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">end screen</a> at the end of videos')}
+            ${makeMenuOption('toggle', 'toggleMoreVids', 'Show the <i>More Videos</i> area in fullscreen')}
+            <div class='menu-option-note'>When enabled, using the mouse scroll-wheel will scroll up related videos & the player controls with it. This feature was introduced on & off since 2023, but later fully introduced with the Delhi player UI</div>
 
             ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the <i>Show Other Videos</i> box in embeds')}
+            <div class='menu-option-note'>This option is different than the option above. When paused <b>in a embedded video</b>, a box with related videos will display</div>
+
+            ${makeMenuOption('toggle', 'toggleLessSettings', 'Minify settings menu')}
+            <div class='menu-option-note'>When enabled, fewer options in the player settings menu will appear</div>
+
+            ${makeMenuOption('toggle', 'toggleFSButtons', 'Toggle fullscreen buttons')}
+            <div class='menu-option-note'>These buttons are shown at the bottom right above the player controls. This feature was introduced with the Delhi player UI</div>
+
+            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls`)}
+            <div class='menu-option-note'>By default, PlayerTube moves the player controls down instead of fading them out</div>
+
+            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a>')}
+            <div class='menu-option-note'>Channel watermarks are displayed at the bottom right of a video</div>
+
+            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank"><i>Paid Products</i> / <i>Sponsorships</i></a> popups')}
+            <div class='menu-option-note'>If a video has sponsorships or paid products within the video details, popups at the top right will often appear</div>
+
+            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle <a href="https://support.google.com/youtube/answer/6140493" target="_blank">info cards tab</a>')}
+            <div class='menu-option-note'>When disabled, the button for a video's info cards will be removed</div>
+
+            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">end screen cards</a>')}
+            <div class='menu-option-note'>Disables all end screen cards (channels, videos, playlists, etc.)</div>
 
             <h3 class="spacer-top">Custom Theme Settings</h3>
             <p>
@@ -367,9 +385,7 @@ async function start(userConfig) {
 
             <h3 class="spacer-top">Import, Copy, or Reset Settings</h3>
 
-            <textarea id="menu-config-selection">
-            ${collectedUserConfig}
-            </textarea>
+            <textarea id="menu-config-selection">${collectedUserConfig}</textarea>
         </div>
     `);
 
@@ -415,19 +431,19 @@ async function start(userConfig) {
                 <button class="menu-copy-theme spacer-top"><b>Copy Custom Theme Settings to Clipboard</b></button>
 
                 <b class="spacer-top">Base Color Settings</b>
-                ${makeMenuOption('input', 'controlsBack', 'Change the color of the player\'s background', 'color')}
+                ${makeMenuOption('input', 'controlsBack', 'Color of the player\'s background', 'color')}
 
-                ${makeMenuOption('input', 'settingsBgColor', 'Change the color of the player\'s settings background', 'color')}
+                ${makeMenuOption('input', 'settingsBgColor', 'Color of the player\'s settings background', 'color')}
 
-                ${makeMenuOption('input', 'progressBarColor', 'Change the color of the progress bar', 'color')}
+                ${makeMenuOption('input', 'progressBarColor', 'Color of the progress bar', 'color')}
 
-                ${makeMenuOption('input', 'progressBarBgColor', 'Change the background color of the progress bar', 'color')}
+                ${makeMenuOption('input', 'progressBarBgColor', 'Background color of the progress bar', 'color')}
 
-                ${makeMenuOption('input', 'volumeSliderBack', 'Change the color of the volume slider', 'color')}
+                ${makeMenuOption('input', 'volumeSliderBack', 'Color of the volume slider', 'color')}
                 <div class='menu-option-note'>If you want to use the exact same color as the progress bar for the volume slider, you don't need to change this value.</div>
 
                 <b class="spacer-top">Scrubber Base Settings</b>
-                ${makeMenuOption('input', 'scrubberIcon', 'Change the image of the scrubber', 'url')}
+                ${makeMenuOption('input', 'scrubberIcon', 'Image of the scrubber', 'url')}
 
                 ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the scrubber <b>when hovering</b>', 'url')}
                 <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>

@@ -26,19 +26,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Node.js environment.
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.2
+        uses: oven-sh/setup-bun@v2
 
-      # Install the NPM modules that are included with this repo.
-      - name: Install NPM packages
-        run: npm install
+      # Install the node modules that are included with this repo.
+      - name: Install Node packages
+        run: bun i
 
-      # Run the "build.js" script through our newly acquired Node.js environment.
-      - name: Run the build node script
-        run: npm start folders
+      # Run the "build.ts" script through our newly acquired Node.js environment.
+      - name: Run the build script
+        run: bun start folders
 
       # Upload the ZIP files to the "Artifacts" tab on this action's page.
       ## Firefox

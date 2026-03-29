@@ -111,10 +111,10 @@ No Signning Required (Developer Edition, MyPal, and some other browsers):
 
 ## If you're awesome, build it yourself!
 So, you like to build stuff yourself? Well, here's how to do it.
-* ⚠️ IMPORTANTE!!! ⚠️ Make sure you have Node.js & NPM installed, 'cuz the build script uses it!!!!
+* ⚠️ IMPORTANTE!!! ⚠️ [Make sure you have Bun installed](https://bun.com/), 'cuz the build script uses it!!!!
 1. Download le code `git clone https://github.com/ktg5/PlayerTube.git`
-2. Install the NPM modules `npm i`
-3. Run the build script `npm start` or `npm start folders` to keep the folders or `npm start zips` to keep the zips.
+2. Install the NPM modules `bun i`
+3. Run the build script `bun start` or `bun start folders` to keep the folders or `bun start zips` to keep the zips.
 4. Once the building script is done and no errors appear, follow the instructions for [loading the extension for your browser](https://github.com/ktg5/PlayerTube#chromium-browsers-chrome-opera-brave) via the "Beta / Dev builds" instructions
 
 

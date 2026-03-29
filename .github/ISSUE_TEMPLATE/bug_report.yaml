@@ -7,36 +7,47 @@ body:
   - id: problem
     type: textarea
     attributes:
-      label: A clear and concise description of what the bug is.
+      label: What's this issue about?
+      description: A brief description of the issue you're currently experiencing.
     validations:
       required: true
+
   - id: screenshots
     type: textarea
     attributes:
       label: If applicable, add screenshots to help explain your problem.
     validations:
-      required: true
+      required: false
+
   - id: expected-behavior
     type: textarea
     attributes:
-      label: What should actually happen instead of the issue.
+      label: What should happen instead of said issue?
+      description: A brief description of what PlayerTube needs to be doing instead of the issue at hand.
     validations:
       required: true
+
   - id: reproduce
     type: textarea
     attributes:
-      label: Steps to reproduce the behavior.
+      label: Steps to reproduce the behavior:
+      description: A step-by-step process of reproducing said issue.
     validations:
       required: true
+
   - id: config
     type: textarea
     attributes:
-      label: PlayerTube settings. (Can be found under "Import, Copy, or Reset Settings")
+      label: PlayerTube settings:
+      description: Can be found under "Import, Copy, or Reset Settings". This will be automatically formatted into code, so no need for backticks.
+      render: shell
     validations:
       required: true
+
   - id: browser-info
     type: textarea
     attributes:
       label: Browser & Extension information (& video if shown).
+      description: IMPORTANT!!! Make sure you fill out this information, especially if the video itself is what triggers said issue.
     validations:
       required: true

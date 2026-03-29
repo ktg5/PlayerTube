@@ -1,9 +1,8 @@
-const fs = require('fs-extra');
-const path = require('path');
-const Zip = require('adm-zip');
-const v3Process = require('./v3Maker');
-const process = require('process');
-const readline = require('readline');
+import fs from 'fs';
+import path from 'path';
+import AdmZip from "adm-zip";
+import process from 'process';
+import readline from 'readline';
 
 
 // Before starting, make sure that the other folders don't exist.
@@ -18,7 +17,7 @@ fs.mkdirSync(`dist`);
 
 
 // Function to copy all the dirs but not REALLY all of them.
-async function copyDir(sourceDir, newDir) {
+async function copyDir(sourceDir: string, newDir: string) {
     // Get dirs in the project folder.
     var dirs = fs.readdirSync(sourceDir, { withFileTypes: true });
     fs.mkdirSync(newDir);
@@ -53,7 +52,7 @@ async function copyDir(sourceDir, newDir) {
 var delFolders = false;
 var delZips = false;
 // Check for args
-process.argv.forEach(function (val, index, array) {
+process.argv.forEach(function (val: string, index: number) {
     if (index === 2 && val === "folders") {
         delZips = true;
     } else if (index === 2 && val === "zips") {
@@ -80,7 +79,7 @@ copyDir('./', chromeDir).then(async () => {
         console.log("Zipping Chrome version...");
         // Try to zip up the extension
         try {
-            const zip = new Zip();
+            const zip = new AdmZip();
             const outputDir = `${chromeDir}.zip`;
             zip.addLocalFolder(chromeDir);
             zip.writeZip(outputDir);
@@ -128,9 +127,9 @@ copyDir('./', firefoxDir).then(async () => {
     // WHY CAN'T IT JUST BE "extension://" OR SOMETHING??????
     console.log('Replacing all css files that include "chrome-extension://" with "moz-extension://"');
     // For each CSS file, do the replacing moment for both vanilla css and v3 css
-    async function replaceChromewithMoz(cssFiles) {
+    async function replaceChromewithMoz(cssFiles: string) {
         let fsCssFiles = fs.readdirSync(`${firefoxDir}/${cssFiles}`);
-        fsCssFiles.forEach(cssFileName => {
+        fsCssFiles.forEach((cssFileName: string) => {
             let cssPath = `${firefoxDir}/${cssFiles}${cssFileName}`;
             // Make sure cssPath has an extension
             if (cssPath.endsWith('.css')) {
@@ -163,7 +162,7 @@ copyDir('./', firefoxDir).then(async () => {
     if (!delZips) {
         // Try to zip up the extension
         try {
-            const zip = new Zip();
+            const zip = new AdmZip();
             const outputDir = `${firefoxDir}.zip`;
             zip.addLocalFolder(firefoxDir);
             zip.writeZip(outputDir);

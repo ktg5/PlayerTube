@@ -7,22 +7,10 @@ var extensionLocation = runtime.getURL('');
 var isinTheaterMode = false;
 
 // Fix for older configs
-if (userConfig.year == '2011') {
+if (userConfig.year === '2011') {
     userConfig.year = '2012';
     storage.set({PTConfig: userConfig});
     location.reload();
-}
-
-// Check for Project V3 (Rehike in a extension)
-// false = isn't installed
-// true = is installed
-var isProjectV3 = false;
-if (document.querySelector('.spitfire-body-container.v3')) {
-    isProjectV3 = true;
-    console.log('Project V3 detected');
-    // Add the "forv3.css" file
-    let link = runtime.getURL('css/forv3.css');
-    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-forv3" rel="stylesheet" type="text/css" href="${link}">`);
 }
 
 // Put config in a element for certain scripts
@@ -35,7 +23,6 @@ document.body.insertAdjacentHTML('afterbegin', `
 
 // #################################
 
-// MOVING ELEMENTS
 /**
  * Inserts `element` next to `paste`
  * @param {string} element The element query name to move
@@ -47,23 +34,23 @@ function moveElement(element, paste) {
 
     function imove() {
         let elementDiv = document.querySelector(`${element}`);
-        let pasteDivDiv = document.querySelector(`${paste}`);
+        let pasteDiv = document.querySelector(`${paste}`);
 
         let logData = {
             elementStr: element,
             elementDiv: elementDiv,
             pasteStr: paste,
-            pasteDiv: pasteDivDiv
+            pasteDiv: pasteDiv
         };
 
         if (
             elementDiv
-            && pasteDivDiv
+            && pasteDiv
         ) {
-            if (pasteDivDiv.contains(elementDiv)) {
+            if (pasteDiv.contains(elementDiv)) {
                 return console.error('moveElement: pasteDiv already has element', logData);
             } else if (elementDiv.parentElement.contains(elementDiv)) {
-                pasteDivDiv.parentNode.insertBefore(elementDiv, pasteDivDiv.parentNode.firstElementChild);
+                pasteDiv.parentNode.insertBefore(elementDiv, pasteDiv.parentNode.firstElementChild);
                 clearInterval(moveInt);
                 return console.log('moveElement: move successful', logData)
             } else {
@@ -95,7 +82,7 @@ const ptMainHeartBeatFunc = async () => {
     // Fake bar heartbeat
     if (userConfig.fakeBarToggle !== false) {
         if (!document.getElementsByClassName('video-stream html5-main-video')[0] ||
-            document.getElementsByClassName('video-stream html5-main-video')[0].paused == true ||
+            document.getElementsByClassName('video-stream html5-main-video')[0].paused === true ||
             !document.getElementById('playertube-fake-bar')) {
             return;
         } else {
@@ -105,7 +92,7 @@ const ptMainHeartBeatFunc = async () => {
             // If the video has not started yet, don't continue.
             if (
                 !ytVideo.buffered
-                || ytVideo.buffered.length == 0
+                || ytVideo.buffered.length === 0
             ) return;
 
             // Vars from ytVideo
@@ -144,7 +131,7 @@ const ptMainHeartBeatFunc = async () => {
         }
     
         // Right
-        if (prevButton.getAttribute('style') == "display: none;") {
+        if (prevButton.getAttribute('style') === "display: none;") {
             buttonBase.classList.add('no-left-button');
         } else {
             // Remove if spotted
@@ -157,8 +144,6 @@ const ptMainHeartBeatFunc = async () => {
     // Volume (exact & simple)
     let volumePanel = document.querySelector('.ytp-volume-panel');
     let volumeArea = document.querySelector('.ytp-volume-area');
-    // Change volume area elmnt to work with v3 if detected
-    if (isProjectV3 == true) volumeArea = document.querySelector('.ytp-volume-hover-area');
     // Set values
     if (buttonBase &&
         volumeArea &&
@@ -209,17 +194,9 @@ const ptMainHeartBeatFunc = async () => {
         // console.log('theater mode check:', isinTheaterMode);
     }
 
-    if (isProjectV3 == true) {
-        // Make sure the config year is either in the body or the body containter depending on if project v3 is on
-        let targetDiv = document.querySelector('.spitfire-body-container.v3');
-        if (!targetDiv.getAttribute('pt-year') && targetDiv.getAttribute('pt-year') !== userConfig.year) {
-            targetDiv.setAttribute('pt-year', userConfig.year);
-        }
-    } else {
-        // Make sure the config year is either in the body or the body containter depending on if project v3 is on
-        if (!document.body.getAttribute('pt-year') && document.body.getAttribute('pt-year') !== userConfig.year) {
-            document.body.setAttribute('pt-year', userConfig.year);
-        }
+    // Make sure the config year is either in the body or the body containter depending on if project v3 is on
+    if (!document.body.getAttribute('pt-year') && document.body.getAttribute('pt-year') !== userConfig.year) {
+        document.body.setAttribute('pt-year', userConfig.year);
     }
 
     // console.log('ptMainHeartBeat: still rolling...');
@@ -229,25 +206,22 @@ var ptMainHeartBeat = setInterval(ptMainHeartBeatFunc, 1000);
 // Mainly used in fullscreen & embeds
 var progressBarFullDetector;
 function progressBarChanger() {
-    // Project V3 doesn't need this
-    if (isProjectV3 == false) {
-        progressBarFullDetector = setInterval(() => {
-            // Check progress bar
-            if (progressbar) {
-                // If finished
-                if (progressbar.getAttribute('aria-valuemax') == progressbar.getAttribute('aria-valuenow')) {
-                    progressbar.classList.add('finished');
-                    console.log(`%cPlayerTube video finished, progress bar should be all main color.`, styles2);
-                // If restarted or keep going.
-                } else {
-                    if (progressbar.classList.contains('finished')) {
-                        progressbar.classList.remove('finished');
-                        console.log(`%cPlayerTube video started, reverting back.`, styles2);
-                    }
+    progressBarFullDetector = setInterval(() => {
+        // Check progress bar
+        if (progressbar) {
+            // If finished
+            if (progressbar.getAttribute('aria-valuemax') === progressbar.getAttribute('aria-valuenow')) {
+                progressbar.classList.add('finished');
+                console.log(`%cPlayerTube video finished, progress bar should be all main color.`, styles2);
+            // If restarted or keep going.
+            } else {
+                if (progressbar.classList.contains('finished')) {
+                    progressbar.classList.remove('finished');
+                    console.log(`%cPlayerTube video started, reverting back.`, styles2);
                 }
             }
-        }, 1000);
-    }
+        }
+    }, 1000);
 }
 
 
@@ -263,24 +237,18 @@ document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class=
 // Stuff for no embeds
 if (!window.location.href.includes('embed')) {
     // Insert resizing progress bar script
-    // Also make sure we're not in a ProjectV3 instance & using a theme that needs it
-    if (
-        isProjectV3 == false
-        && userConfig.year !== '2015'
-    ) {
-        let tempInterval = setInterval(() => {
-            if (document.querySelector('.video-stream.html5-main-video')) {
-                // Now insert
-                var srcDoc = document.createElement('script');
-                srcDoc.id = 'playertube-js';
-                srcDoc.className = 'playertube-resize-bar';
-                srcDoc.src = runtime.getURL(`src/pt-resize.js`);
-                document.body.append(srcDoc);
-                // Stop
-                clearInterval(tempInterval);
-            }
-        }, 1000);
-    }
+    let tempInterval = setInterval(() => {
+        if (document.querySelector('.video-stream.html5-main-video')) {
+            // Now insert
+            var srcDoc = document.createElement('script');
+            srcDoc.id = 'playertube-js';
+            srcDoc.className = 'playertube-resize-bar';
+            srcDoc.src = runtime.getURL(`src/pt-resize.js`);
+            document.body.append(srcDoc);
+            // Stop
+            clearInterval(tempInterval);
+        }
+    }, 1000);
 }
 
 
@@ -327,107 +295,107 @@ function enableCustomTheme() {
     --pt-volume-slider: ${userConfig.volumeSliderBack} !important;
 }
 
-${elementNames['#container']} ${elementNames['.ytp-volume-slider-handle::before']} {
+#container .ytp-volume-slider-handle::before {
     background: ${userConfig.volumeSliderBack} !important;
 }
                 `;
             } if (userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+#container .ytp-scrubber-button {
     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
     border-radius: 0 !important;
 }
                 `;
-            } if (userConfig.scrubberIconHover == null && userConfig.scrubberIcon !== null) {
+            } if (userConfig.scrubberIconHover === null && userConfig.scrubberIcon !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+#container .ytp-scrubber-button:hover {
     background: url(${userConfig.scrubberIcon}) no-repeat center !important;
     border-radius: 0 !important;
 }
                 `;
             } if (userConfig.scrubberIconHover !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+#container .ytp-scrubber-button:hover {
     background: url(${userConfig.scrubberIconHover}) no-repeat center !important;
     border-radius: 0 !important;
 }
                 `;
             } if (userConfig.scrubberPosition !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+#container .ytp-scrubber-button {
     background-position: ${userConfig.scrubberPosition} !important;
 }
                 `;
             } if (userConfig.scrubberSize !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']} {
+#container .ytp-scrubber-button {
     background-size: ${userConfig.scrubberSize}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover {
+#container .ytp-scrubber-button:hover {
     background-size: ${userConfig.scrubberSize}px !important;
 }
                 `;
             } if (userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+#container .ytp-scrubber-container,
+#container .ytp-scrubber-button
 {
     height: ${userConfig.scrubberHeight}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+#container .ytp-scrubber-container:hover,
+#container .ytp-scrubber-button:hover
 {
     height: ${userConfig.scrubberHeight}px !important;
 }
                 `;
             } if (userConfig.scrubberWidth !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+#container .ytp-scrubber-container,
+#container .ytp-scrubber-button
 {
     width: ${userConfig.scrubberWidth}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+#container .ytp-scrubber-container:hover,
+#container .ytp-scrubber-button:hover
 {
     width: ${userConfig.scrubberWidth}px !important;
 }
                 `;
-            } if (userConfig.scrubberWidth == null && userConfig.scrubberHeight !== null) {
+            } if (userConfig.scrubberWidth === null && userConfig.scrubberHeight !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+#container .ytp-scrubber-container,
+#container .ytp-scrubber-button
 {
     width: ${userConfig.scrubberHeight}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+#container .ytp-scrubber-container:hover,
+#container .ytp-scrubber-button:hover
 {
     width: ${userConfig.scrubberHeight}px !important;
 }
                 `;
-            } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight == null) {
+            } if (userConfig.scrubberWidth !== null && userConfig.scrubberHeight === null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']},
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}
+#container .ytp-scrubber-container,
+#container .ytp-scrubber-button
 {
     height: ${userConfig.scrubberWidth}px !important;
 }
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']}:hover,
-${elementNames['#container']} ${elementNames['.ytp-scrubber-button']}:hover
+#container .ytp-scrubber-container:hover,
+#container .ytp-scrubber-button:hover
 {
     height: ${userConfig.scrubberWidth}px !important;
 }
                 `;
             } if (userConfig.scrubberTop !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
+#container .ytp-scrubber-container {
     top: ${userConfig.scrubberTop}px !important;
 }
                 `;
             } if (userConfig.scrubberLeft !== null) {
                 outputCssCustomTheme += `
-${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
+#container .ytp-scrubber-container {
     left: ${userConfig.scrubberLeft}px !important;
 }
                 `;
@@ -444,14 +412,14 @@ ${elementNames['#container']} ${elementNames['.ytp-scrubber-container']} {
 function applyUserSettings() {
     // toggles
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
-    if (userConfig.endScreenToggle == false) {
+    if (userConfig.endScreenToggle === false) {
         outputCssToggles += `
 /* TOGGLE END SCREEN (disabled) */
 .ytp-ce-element.ytp-ce-element-show {
     display: none !important;
 }
         `
-    } if (userConfig.embedOtherVideos == false) {
+    } if (userConfig.embedOtherVideos === false) {
         outputCssToggles += `
 /* EMBED SHOW "Other Videos" (disabled) */
 .ytp-expand-pause-overlay .ytp-pause-overlay {
@@ -472,7 +440,7 @@ function applyUserSettings() {
     display: none !important;
 }
         `
-    } if (userConfig.toggleWatermark == false) {
+    } if (userConfig.toggleWatermark === false) {
         outputCssToggles += `
 /* CHANNEL WATERMARK (disabled) */
 .annotation.annotation-type-custom.iv-branding {
@@ -486,7 +454,7 @@ function applyUserSettings() {
     border-radius: 0 !important;
 }
         `
-    } else if (userConfig.toggleRoundedCorners == true) {
+    } else if (userConfig.toggleRoundedCorners === true) {
         outputCssToggles += `
 /* ROUNDED CORNERS (enabled) */
 #ytd-player.ytd-watch-flexy {
@@ -500,14 +468,14 @@ function applyUserSettings() {
     display: none !important;
 }
         `
-    } if (userConfig.toggleInfoCards == false) {
+    } if (userConfig.toggleInfoCards === false) {
         outputCssToggles += `
 /* INFO CARDS (disabled) */
 .ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
     display: none !important;
 }
         `
-    } if (userConfig.fullyExtendBar == true) {
+    } if (userConfig.fullyExtendBar === true) {
         outputCssToggles += `
 /* FULLY EXTEND PROGRESS BAR (enabled) */
 .html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
@@ -536,14 +504,14 @@ function applyUserSettings() {
 
         document.querySelector('.html5-video-player').setAttribute('pt-force-extend', true);
 
-        if (userConfig.year == '2010') {
+        if (userConfig.year === '2010') {
             outputCssToggles += `
 #previewbar {
     transform: scale(1) !important;
 }
             `
         }
-    } if (userConfig.toggleFadeOut == true) {
+    } if (userConfig.toggleFadeOut === true) {
         outputCssToggles += `
 /* TOGGLE FADE OUT (enabled) */
 .html5-video-player.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
@@ -551,7 +519,7 @@ function applyUserSettings() {
     bottom: 0 !important;
 }
         `
-    } if (userConfig.toggleSpinner == false) {
+    } if (userConfig.toggleSpinner === false) {
         outputCssToggles += `
 /* TOGGLE CUSTOM SPINNER (disabled) */
 .ytp-spinner {
@@ -600,6 +568,16 @@ function applyUserSettings() {
     opacity: 0;
 }
         `
+    } if (userConfig.toggleLessSettings === true) {
+        // id menu options by SVG LMAOOO
+        let svgPaths = [
+            'd="M12 .99C5.92 .99 1 5.92 1 11.99C1 18.07 5.92 22.99 12 22.99C18.07 22.99 23 18.07 23 11.99C23 5.92 18.07 .99 12 .99ZM12 2.99C14.38 2.99 16.67 3.94 18.36 5.63C20.05 7.32 21 9.61 21 11.99C21 14.38 20.05 16.67 18.36 18.36C16.67 20.05 14.38 20.99 12 20.99C9.61 20.99 7.32 20.05 5.63 18.36C3.94 16.67 3 14.38 3 11.99C3 9.61 3.94 7.32 5.63 5.63C7.32 3.94 9.61 2.99 12 2.99ZM14 6.00C13.73 6.00 13.48 6.10 13.29 6.29C13.10 6.48 13 6.73 13 7.00V17.00C13 17.26 13.10 17.52 13.29 17.70C13.48 17.89 13.73 18.00 14 18.00C14.26 18.00 14.51 17.89 14.70 17.70C14.89 17.52 15 17.26 15 17.00V7.00C15 6.73 14.89 6.48 14.70 6.29C14.51 6.10 14.26 6.00 14 6.00ZM10 8.00C9.73 8.00 9.48 8.10 9.29 8.29C9.10 8.48 9 8.73 9 9.00V15.00C9 15.26 9.10 15.52 9.29 15.70C9.48 15.89 9.73 16.00 10 16.00C10.26 16.00 10.51 15.89 10.70 15.70C10.89 15.52 11 15.26 11 15.00V9.00C11 8.73 10.89 8.48 10.70 8.29C10.51 8.10 10.26 8.00 10 8.00ZM18 9.00C17.73 9.00 17.48 9.10 17.29 9.29C17.10 9.48 17 9.73 17 10.00V14.00C17 14.26 17.10 14.52 17.29 14.70C17.48 14.89 17.73 15.00 18 15.00C18.26 15.00 18.51 14.89 18.70 14.70C18.89 14.52 19 14.26 19 14.00V10.00C19 9.73 18.89 9.48 18.70 9.29C18.51 9.10 18.26 9.00 18 9.00ZM6 10.00C5.73 10.00 5.48 10.10 5.29 10.29C5.10 10.48 5 10.73 5 11.00V13.00C5 13.26 5.10 13.52 5.29 13.70C5.48 13.89 5.73 14.00 6 14.00C6.26 14.00 6.51 13.89 6.70 13.70C6.89 13.52 7 13.26 7 13.00V11.00C7 10.73 6.89 10.48 6.70 10.29C6.51 10.10 6.26 10.00 6 10.00Z"',
+            'd="M11.48 2.14 3.91 6.68A6 6 0 0 0 1 11.83v.33a6 6 0 0 0 2.91 5.14l7.57 4.54A1 1 0 0 0 13 21V3a1.00 1.00 0 0 0-1.51-.85Zm6.88 2.07a1 1 0 0 0-.00 1.41 9 9 0 0 1 0 12.72 1 1 0 0 0 1.41 1.41 11 11 0 0 0 0-15.55 1 1 0 0 0-1.41 0ZM4.94 8.40l.00-.00L11 4.76v14.46l-6.05-3.63A4 4 0 0 1 3 12.16v-.33a4 4 0 0 1 1.94-3.42ZM15.53 7.05a1 1 0 0 0 0 1.41 5 5 0 0 1 0 7.07 1 1 0 0 0 1.41 1.41 6.99 6.99 0 0 0 0-9.9 1 1 0 0 0-1.41 0Z"',
+            'd="M12.33 1.00C12.22 1.00 12.11 1.00 12 1C5.92 1 1 5.92 1 12C1 18.07 5.92 23 12 23C13.90 23.00 15.78 22.50 17.44 21.55C19.10 20.61 20.48 19.25 21.46 17.61L21.64 17.29C22.06 16.52 21.21 15.73 20.35 15.88C18.76 16.15 17.12 15.94 15.66 15.27C14.19 14.59 12.97 13.49 12.14 12.11C11.31 10.73 10.91 9.13 11.01 7.52C11.11 5.91 11.69 4.37 12.67 3.09L12.89 2.83C13.45 2.16 13.20 1.03 12.33 1.00ZM15.56 2.60C15.45 2.84 15.43 3.11 15.51 3.36C15.59 3.61 15.77 3.82 16.01 3.94C16.91 4.39 17.73 4.99 18.44 5.71L18.73 6.03L18.80 6.10C18.99 6.27 19.22 6.36 19.47 6.37C19.72 6.37 19.96 6.28 20.15 6.12C20.33 5.95 20.45 5.72 20.48 5.48C20.51 5.23 20.44 4.98 20.29 4.78L20.23 4.70L19.87 4.31C19.01 3.43 18.01 2.70 16.90 2.15C16.67 2.03 16.39 2.01 16.14 2.10C15.89 2.18 15.68 2.36 15.56 2.60M10.24 3.17C9.42 4.64 8.99 6.31 9 8C9 13.42 13.32 17.84 18.71 17.99C17.86 18.93 16.83 19.69 15.67 20.21C14.52 20.73 13.26 21.00 12 21C9.76 21.00 7.60 20.17 5.95 18.67C4.29 17.17 3.25 15.10 3.03 12.88C2.81 10.65 3.43 8.43 4.76 6.63C6.09 4.84 8.05 3.60 10.24 3.17M21.16 7.88C20.93 7.96 20.73 8.12 20.61 8.34C20.49 8.55 20.45 8.81 20.50 9.05L20.53 9.15L20.66 9.56C20.93 10.53 21.04 11.54 20.98 12.55C20.97 12.81 21.06 13.06 21.23 13.26C21.41 13.45 21.65 13.57 21.92 13.59C22.18 13.60 22.44 13.52 22.63 13.34C22.83 13.17 22.95 12.93 22.97 12.67C23.05 11.44 22.92 10.20 22.58 9.02L22.43 8.51L22.39 8.42C22.29 8.19 22.11 8.01 21.88 7.91C21.65 7.81 21.40 7.80 21.16 7.88Z"',
+            'd="M12 .5C11.73 .5 11.48 .60 11.29 .79C11.10 .98 11 1.23 11 1.5V3.5C11 3.76 11.10 4.01 11.29 4.20C11.48 4.39 11.73 4.5 12 4.5C12.26 4.5 12.51 4.39 12.70 4.20C12.89 4.01 13 3.76 13 3.5V1.5C13 1.23 12.89 .98 12.70 .79C12.51 .60 12.26 .5 12 .5ZM3.79 1.29C3.61 1.46 3.51 1.70 3.50 1.94C3.48 2.19 3.56 2.43 3.72 2.63L3.79 2.70L5.29 4.20L5.37 4.27C5.56 4.42 5.80 4.50 6.04 4.49C6.29 4.47 6.52 4.37 6.70 4.20C6.87 4.02 6.97 3.79 6.99 3.54C7.00 3.30 6.92 3.06 6.77 2.86L6.70 2.79L5.20 1.29L5.13 1.22C4.93 1.06 4.69 .98 4.44 1.00C4.20 1.01 3.96 1.11 3.79 1.29ZM18.86 1.22L18.79 1.29L17.29 2.79L17.22 2.86C17.07 3.06 16.99 3.30 17.00 3.54C17.01 3.79 17.12 4.02 17.29 4.20C17.47 4.37 17.70 4.48 17.95 4.49C18.19 4.50 18.43 4.42 18.63 4.27L18.70 4.20L20.20 2.70L20.27 2.63C20.42 2.43 20.50 2.19 20.49 1.95C20.48 1.70 20.37 1.47 20.20 1.29C20.02 1.12 19.79 1.01 19.54 1.00C19.30 .99 19.06 1.07 18.86 1.22ZM19.20 6.01L19 6H5L4.79 6.01C4.30 6.06 3.84 6.29 3.51 6.65C3.18 7.02 2.99 7.50 3 8V16L3.01 16.20C3.05 16.66 3.26 17.08 3.58 17.41C3.91 17.73 4.33 17.94 4.79 17.99L5 18H19L19.20 17.98C19.66 17.94 20.08 17.73 20.41 17.41C20.73 17.08 20.94 16.66 20.99 16.20L21 16V8C20.99 7.50 20.81 7.02 20.48 6.66C20.15 6.29 19.69 6.06 19.20 6.01ZM5 16V8H19V16H5ZM17.29 19.79C17.11 19.96 17.01 20.20 17.00 20.44C16.98 20.69 17.06 20.93 17.22 21.13L17.29 21.20L18.79 22.70L18.86 22.77C19.06 22.92 19.30 23.00 19.54 22.99C19.79 22.98 20.02 22.87 20.20 22.70C20.37 22.52 20.48 22.29 20.49 22.04C20.50 21.80 20.42 21.56 20.27 21.36L20.20 21.29L18.70 19.79L18.63 19.72C18.43 19.56 18.19 19.48 17.94 19.50C17.70 19.51 17.46 19.61 17.29 19.79ZM5.37 19.72L5.29 19.79L3.79 21.29L3.72 21.36C3.57 21.56 3.49 21.80 3.50 22.04C3.51 22.29 3.62 22.52 3.79 22.70C3.97 22.87 4.20 22.98 4.45 22.99C4.69 23.00 4.93 22.92 5.13 22.77L5.20 22.70L6.70 21.20L6.77 21.13C6.92 20.93 7.00 20.69 6.99 20.45C6.97 20.20 6.87 19.97 6.70 19.79C6.52 19.62 6.29 19.52 6.04 19.50C5.80 19.49 5.56 19.57 5.37 19.72ZM12 19.5C11.73 19.5 11.48 19.60 11.29 19.79C11.10 19.98 11 20.23 11 20.5V22.5C11 22.76 11.10 23.01 11.29 23.20C11.48 23.39 11.73 23.5 12 23.5C12.26 23.5 12.51 23.39 12.70 23.20C12.89 23.01 13 22.76 13 22.5V20.5C13 20.23 12.89 19.98 12.70 19.79C12.51 19.60 12.26 19.5 12 19.5Z"',
+        ];
+        // manually set display none for each menuitem
+        svgPaths.forEach((svgPath) => svgPath.parentElement.parentElement.parentElement.style.display = 'none');
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
@@ -608,7 +586,7 @@ function applyUserSettings() {
     var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);
     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-3rd-party" rel="stylesheet" type="text/css" href="${thirdPartyCSS}">`);
     // Import 3rd-party CSS for 2010
-    if (userConfig.year == "2010") {
+    if (userConfig.year === "2010") {
         var thirdPartyCSS2010 = 
         `
 /* This is 3rd-party CSS for those using the 2010 theme */
@@ -623,7 +601,7 @@ function applyUserSettings() {
     border: none !important;
 }
         `
-        if (userConfig.alternateMode == false) thirdPartyCSS2010 += 
+        if (userConfig.alternateMode === false) thirdPartyCSS2010 += 
         `
         
 .skipButtonControlBarContainer div {
@@ -636,7 +614,7 @@ function applyUserSettings() {
             ${thirdPartyCSS2010}
             </style>
         `);
-    } else if (userConfig.year == "2006") {
+    } else if (userConfig.year === "2006") {
         var thirdPartyCSS2006 = 
         `
 /* This is 3rd-party CSS for those using the 2006 theme */
@@ -701,34 +679,10 @@ function watchLaterButtonAdd() {
 }
 
 
-// Elements names to use around this script
-var elementNames = {};
 // Load everything else.
 // Includes year theme & fake bar.
 // This function will keep going until it's happy.
 async function startPlayer() {
-    const V3Url = runtime.getURL('v3elmnts.json');
-    if (V3Url) await fetch(runtime.getURL('v3elmnts.json')).then(response => response.json()).then(data => {
-        let V3Renames = data;
-        // we're going prepare to make a "copy" of this data so that we can set the correct elements for if V3 is enabled or not
-        // we'll now need to check if V3 is being used, and if not, we change the value of a key in V3Renames to the key.
-        for (const [key, value] of Object.entries(V3Renames)) {
-            if (isProjectV3 == true) {
-                elementNames[key] = value;
-            } else {
-                elementNames[key] = key;
-            }
-        }
-    
-        console.log(`elementNames: `, elementNames);
-    });
-    else {
-        alert(`PlayerTube ERROR! "v3elmnts.json" couldn't be fetched! If this happens again, report this issue onto the GitHub page!`)
-        console.error(`MAJOR ERROR!!!!!!!!! "v3elmnts.json" couldn't be fetched!`);
-        return;
-    }
-
-
     if (loadedPlayerStyle !== true) {
         // Delhi CSS
         var link = runtime.getURL(`css/delhi.css`);
@@ -743,14 +697,8 @@ async function startPlayer() {
             case '2015':
                 // IMPORT CSS (if it wasn't already loaded)
                 // Base
-                var link;
-                if (isProjectV3 == true) {
-                    link = runtime.getURL(`css/v3/${userConfig.year}.css`);
-                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
-                } else {
-                    link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
-                }
+                var link = runtime.getURL(`css/${userConfig.year}.css`);
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                 loadedPlayerStyle = true;
 
                 // IMPORT THE OTHER CSS
@@ -766,67 +714,33 @@ async function startPlayer() {
             break;
 
             case '2013':
-                // Project V3 uses it's own 2013 theme which can't be disabled, but that's fine by me.
-                // (makes my life easier lmao)
-                // also, IMPORT CSS (if it wasn't already loaded)
-                if (isProjectV3 == false) {
-                    // Base
-                    var baselink = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                    
-                    // Alt mode stuff
-                    if (
-                        userConfig.alternateMode == true
-                        && userConfig.customTheme !== true
-                    ) {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                    } else {
-                        var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
-                        document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
-                    }
-                    loadedPlayerStyle = true;
-
-                    // IMPORT THE OTHER CSS
-                    /// User settings
-                    applyUserSettings();
-                    /// Top buttons style
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/old-top-buttons.css`)}">`);
-                    /// Settings menu
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
-
-                    // Custom watch later button
-                    watchLaterButtonAdd();
-                } else if (isProjectV3 == true) {
-                    // Make a basic style script for V3 with root vars and stuff
-                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `
-                        <style id="playertube-css" class="playertube-v3-2013">
-:root {
-    --pt-main-colour: #cc181e;
-    --pt-alt-colour: rgba(255,255,255,.3);
-    --pt-volume-slider: #cc181e;
-    --pt-progress-bar-bg: #444;
-}
-
-.ytp-scrubber-button {
-    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png) !important;
-    background-position: 0px 0px !important;
-    background-size: 18px !important;
-    height: 18px !important;
-    width: 18px !important;
-    border: none;
-    position: relative;
-}
-                        </style>
-                    `);
-                    if (
-                        userConfig.alternateMode == true
-                        && userConfig.customTheme !== true
-                    ) {
-                        // todo
-                    }
-                    applyUserSettings();
+                // Base
+                var baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
+                
+                // Alt mode stuff
+                if (
+                    userConfig.alternateMode === true
+                    && userConfig.customTheme !== true
+                ) {
+                    var colorlink = runtime.getURL(`css/${userConfig.year}-white.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
+                } else {
+                    var colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
+                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-alternateMode" rel="stylesheet" type="text/css" href="${colorlink}">`);
                 }
+                loadedPlayerStyle = true;
+
+                // IMPORT THE OTHER CSS
+                /// User settings
+                applyUserSettings();
+                /// Top buttons style
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/old-top-buttons.css`)}">`);
+                /// Settings menu
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
+
+                // Custom watch later button
+                watchLaterButtonAdd();
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
@@ -840,14 +754,8 @@ async function startPlayer() {
             case '2012':
                 // IMPORT CSS (if it wasn't already loaded)
                 // Base
-                var link;
-                if (isProjectV3 == true) {
-                    link = runtime.getURL(`css/v3/${userConfig.year}.css`);
-                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
-                } else {
-                    link = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
-                }
+                var link = runtime.getURL(`css/${userConfig.year}.css`);
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${link}">`);
                 loadedPlayerStyle = true;
 
                 // IMPORT THE OTHER CSS
@@ -859,9 +767,7 @@ async function startPlayer() {
                 document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${runtime.getURL(`css/settings-menu.1.css`)}">`);
 
                 // Custom watch later button
-                if (isProjectV3 == false) {
-                    watchLaterButtonAdd();
-                }
+                watchLaterButtonAdd();
 
                 // IMPORT USER CUSTOMIZATION
                 if (customTheme === true) {
@@ -871,21 +777,13 @@ async function startPlayer() {
 
             case '2010':
                 // IMPORT CSS (if it wasn't already loaded)
-                var baselink,
-                    colorlink;
-                if (isProjectV3 == true) {
-                    // V3
-                    baselink = runtime.getURL(`css/v3/${userConfig.year}.css`);
-                    document.querySelector('.spitfire-body-container.v3').insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                } else {
-                    // Vanilla
-                    baselink = runtime.getURL(`css/${userConfig.year}.css`);
-                    document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
-                }
+                var colorlink;
+                var baselink = runtime.getURL(`css/${userConfig.year}.css`);
+                document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-base" rel="stylesheet" type="text/css" href="${baselink}">`);
 
                 // Alt mode stuff
                 if (
-                    userConfig.alternateMode == true
+                    userConfig.alternateMode === true
                     && userConfig.customTheme !== true
                 ) {
                     colorlink = runtime.getURL(`css/${userConfig.year}-dark.css`);
@@ -909,11 +807,11 @@ async function startPlayer() {
                     var CustomThemeCss2010 = `
 /* someother custom theme stuff for 2010 */
 
-${elementNames['#container']} .ytp-chrome-controls {
+#container .ytp-chrome-controls {
     border-top: solid 2px #d1d1d180 !important;
 }
 
-${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
+#container .ytp-chrome-bottom .ytp-left-controls:before {
     position: absolute;
     content: "";
     height: 100%;
@@ -922,7 +820,7 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-left-controls:before {
     background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
 }
 
-${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
+#container .ytp-chrome-bottom .ytp-right-controls:before {
     position: absolute;
     content: "";
     height: 100%;
@@ -930,16 +828,16 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-right-controls:before {
     background: linear-gradient(rgb(0 0 0 / 17.5%), rgb(255 255 255 / 0%));
 }
 
-${elementNames['#container']} .ytp-chrome-bottom .ytp-button {
+#container .ytp-chrome-bottom .ytp-button {
     border: solid 1px rgb(255 255 255 / 35%);
     background: linear-gradient(rgb(255 255 255 / 35%), rgb(0 0 0 / 35%)) !important;
 }
 
 /* igrone background & border for the following: */
-${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-settings-button,
-${elementNames['#container']} .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-${elementNames['#container']} .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
+#container .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+#container .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+#container .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+#container .ytp-chrome-bottom .ytp-chapter-title.ytp-button
 {
     background: none !important;
     border: none !important;
@@ -999,8 +897,7 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
         };
 
         // Move previous button back to where it should be (why would you change this bro...)
-        // console.log("DEBUG: elementNames: ", elementNames);
-        if (!isProjectV3) moveElement(elementNames['.ytp-prev-button'], elementNames['.ytp-play-button']);
+        moveElement('.ytp-prev-button', '.ytp-play-button');
     };
 
 
@@ -1009,7 +906,7 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
     if (userConfig.fakeBarToggle !== false) {
         if (document.getElementById('playertube-fake-bar')) return;
         else {
-            var chromeBottom = document.querySelector(elementNames['.ytp-chrome-bottom']);
+            var chromeBottom = document.querySelector('.ytp-chrome-bottom');
             
             let tempInt = setInterval(() => {
                 if (chromeBottom) {
@@ -1020,18 +917,16 @@ ${elementNames['#container']} .ytp-chrome-bottom .ytp-chapter-title.ytp-button
                     var link = runtime.getURL(`css/fakebar.css`);
                     document.body.insertAdjacentHTML('afterbegin', `<link id="playertube-css" class="playertube-fakebar" rel="stylesheet" type="text/css" href="${link}">`);
                     /// Load fake bar HTML
-                    chromeBottom.insertAdjacentHTML(isProjectV3 ? 'beforeend' : 'afterend', 
-                        `
-                        <div id="playertube-fake-bar">
-                            <div class="current"></div>
-                            <div class="loaded"></div>
-                        </div>
-                        `
-                    );
+                    chromeBottom.insertAdjacentHTML('afterend', `
+<div id="playertube-fake-bar">
+    <div class="current"></div>
+    <div class="loaded"></div>
+</div>
+                    `);
 
                     // Make sure to end our checker
                     clearInterval(tempInt);
-                } else chromeBottom = document.querySelector(elementNames['.ytp-chrome-bottom']);
+                } else chromeBottom = document.querySelector('.ytp-chrome-bottom');
             }, 100);
         }
     }
