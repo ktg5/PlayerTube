@@ -32,7 +32,6 @@ async function copyDir(sourceDir: string, newDir: string) {
             entry.name === 'node_modules' ||
             entry.name === 'dist' ||
             entry.name === 'build.js' ||
-            entry.name === 'v3Maker.js' ||
             entry.name === 'package-lock.json' ||
             entry.name === 'package.json'
         ) continue;
@@ -147,7 +146,6 @@ copyDir('./', firefoxDir).then(async () => {
         });
     };
     await replaceChromewithMoz(`css/`);
-    await replaceChromewithMoz(`css/v3/`);
 
     console.log(`Replace complete.`);
 
