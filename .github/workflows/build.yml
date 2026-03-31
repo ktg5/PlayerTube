@@ -26,11 +26,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Setup Bun environment.
       - name: Setup Bun environment
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: "latest"
 
       # Install the node modules that are included with this repo.
       - name: Install Node packages
