@@ -28,15 +28,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup Node.js environment.
-      - name: Setup Node.js environment
+      # Setup Bun environment.
+      - name: Setup Bun environment
         uses: oven-sh/setup-bun@v2
 
       # Install the node modules that are included with this repo.
       - name: Install Node packages
         run: bun i
 
-      # Run the "build.ts" script through our newly acquired Node.js environment.
+      # Run the "build.ts" script through our newly acquired Bun environment.
       - name: Run the build script
         run: bun start folders
 

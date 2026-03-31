@@ -1,0 +1,23 @@
+player-fullscreen-controls.ytwPlayerFullscreenControlsHost {
+    display: none;
+}
+
+yt-progress-bar.ytPlayerProgressBarHost.watch-page-progress-bar.ytPlayerProgressBarHostLowerPlayer {
+    display: none;
+}
+
+player-middle-controls.ytwPlayerMiddleControlsHost.player-controls-middle.center.delhi-player {
+    display: none;
+}
+
+player-bottom-controls.ytwPlayerBottomControlsHost.delhi-player {
+    display: none;
+}
+
+#player #movie_player.html5-video-player {
+    z-index: 5;
+}
+
+#player .ytp-hide-controls .ytp-chrome-bottom {
+    display: block;
+}

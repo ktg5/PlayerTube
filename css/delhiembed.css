@@ -1,0 +1,272 @@
+:root {
+	--pt-background: rgba(28, 28, 28, 0.9);
+	--pt-main-colour: #cc181e;
+	--pt-alt-colour: rgba(255,255,255,.3);
+	--pt-volume-slider: #cc181e;
+	--pt-progress-bar-bg: #444;
+	--pt-progress-text: #fff;
+	--pt-alt-progress-text: #969696;
+	--pt-settings-bg: rgba(35, 35, 35, 0.9);
+
+	--pt-delhiembed-height: 32px;
+	--pt-delhiembed-transition-ms: 500ms;
+}
+
+/* base */
+#player-controls .fullscreen-action-menu {
+	background: var(--pt-background);
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0;
+	height: var(--pt-delhiembed-height);
+}
+
+.caption-window.ytp-caption-window-bottom {
+    margin-bottom: 64px !important;
+}
+
+#toasts {
+    display: none !important;
+}
+
+button.ytmFullscreenRelatedVideosEntryPointViewModelButton {
+    background: none;
+}
+
+
+/* time display */
+.ytwPlayerTimeDisplayTimeChunks.ytwPlayerTimeDisplayPill {
+    background: none;
+    margin-left: 8px;
+    padding: 0;
+}
+
+
+/* progress bar */
+#player-controls yt-progress-bar {
+	height: 14px;
+	width: 100vw;
+	left: 0;
+	bottom: calc(var(--pt-delhiembed-height) - 5px);
+	z-index: 3;
+	transition: bottom var(--pt-delhiembed-transition-ms);
+}
+
+#player-controls yt-progress-bar:hover {
+	bottom: calc(var(--pt-delhiembed-height) - 2px);
+}
+
+#player-controls yt-progress-bar:hover .ytProgressBarLineProgressBarLine {
+	height: 10px;
+}
+
+yt-progress-bar-line .ytProgressBarLineProgressBarPlayed
+, yt-progress-bar-line .ytProgressBarLineProgressBarHovered {
+    background: var(--pt-main-colour);
+    opacity: 1;
+}
+
+yt-progress-bar-line .ytProgressBarLineProgressBarBackground {
+    background: var(--pt-progress-bar-bg);
+    opacity: 1;
+}
+
+yt-progress-bar-line .ytProgressBarLineProgressBarLine {
+    height: 4px;
+	transition: height var(--pt-delhiembed-transition-ms);
+}
+
+
+/* top controls */
+#player-controls .player-controls-background {
+    display: none;
+}
+
+#player-controls .ytmCuedOverlayGradient {
+    display: none;
+}
+
+#player-controls .player-controls-top.ytwPlayerTopControlsContainerWithEmbeddedVideoDetails {
+    background: var(--pt-background);
+    left: 0;
+    width: 100%;
+}
+
+#player-controls .player-controls-top .ytmVideoInfoVideoDetailsContainer {
+	min-height: 0;
+	height: 50px;
+}
+
+#player-controls .player-controls-top .ytmVideoInfoVideoTitle {
+    padding: 0;
+}
+
+#player-controls .player-controls-top .ytmVideoInfoChannelContainer,
+#player-controls .player-controls-top .ytmVideoInfoChannelAvatar
+{
+    width: 100%;
+    height: 100%;
+}
+
+#player-controls .player-controls-top .ytmVideoInfoChannelLogo {
+    margin: 0;
+    margin-left: 8px;
+}
+
+#player-controls .player-controls-top .ytmVideoInfoVideoTitleContainer {
+    margin-top: 4px;
+    min-height: 0;
+}
+
+#player-controls c3-icon.ytmCuedOverlayPlayButtonIcon {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* storyboard/video preview */
+yt-player-storyboard .ytPlayerStoryboardTimestamp {
+    background: black;
+    padding: 0 4px;
+    text-shadow: none;
+}
+
+
+/* buttons */
+#player-controls ytm-custom-control .icon-button {
+    width: var(--pt-delhiembed-height);
+    height: var(--pt-delhiembed-height);
+    padding: 0;
+}
+
+#player-controls c3-icon {
+	width: calc(var(--pt-delhiembed-height) / 1.5);
+	height: calc(var(--pt-delhiembed-height) / 1.5);
+}
+
+button,
+c3-icon.ytmClosedCaptioningButtonYtIconOverlay,
+.action-menu-engagement-buttons-wrapper.delhi-player svg
+{
+	filter: drop-shadow(0 0 0 #000) !important;
+}
+
+.action-menu-engagement-buttons-wrapper.delhi-player,
+.action-menu-engagement-buttons-wrapper.delhi-player button
+{
+	text-shadow: none;
+}
+
+.action-menu-engagement-buttons-wrapper.no-label-exp.delhi-player {
+    padding: 0;
+}
+
+ytm-slim-metadata-button-renderer.ytmSlimMetadataButtonRendererHost {
+    margin: 0 !important;
+}
+
+#player-controls .player-control-play-pause-icon {
+    background: none;
+    width: calc(var(--pt-delhiembed-height) + 24px) !important;
+}
+
+#player-controls .player-control-play-pause-icon c3-icon {
+	width: 45%;
+	height: 100%;
+}
+
+#player-controls volume-controls {
+    width: var(--pt-delhiembed-height);
+}
+
+#player-controls button.ytdVolumeControlsMuteIconButton {
+    padding: 0;
+}
+
+#player-controls .ytdVolumeControlsMuteIconButtonContainer {
+    width: var(--pt-delhiembed-height);
+    height: 100%;
+    justify-content: center;
+}
+
+#player-controls c3-icon.ytdVolumeControlsMuteIcon {
+	width: calc(var(--pt-delhiembed-height) / 1.5);
+	height: calc(var(--pt-delhiembed-height) / 1.5);
+}
+
+#player-controls .action-menu-engagement-buttons-wrapper.delhi-player {
+	background: none;
+}
+
+#player-controls .watch-on-youtube-button-wrapper button-view-model {
+    padding: 0;
+}
+
+#player-controls .watch-on-youtube-button-wrapper .yt-spec-button-shape-next {
+    background: none;
+    padding: 0 8px;
+}
+
+
+/* volume panel */
+#player-controls .ytdVolumeControlsVolumeControlsContainer {
+    position: absolute;
+    flex-flow: unset;
+    bottom: 0;
+    max-width: unset;
+    width: 120px;
+    height: var(--pt-delhiembed-height);
+    gap: 6px;
+}
+
+#player-controls .ytdVolumeControlsSliderContainer {
+    background: #000;
+    transform: rotate(0);
+    margin: 0;
+    border-radius: 0;
+    padding: 0 6px;
+    min-height: unset;
+    height: 24px;
+}
+
+/* #player-controls #volume-input::-webkit-slider-runnable-track {
+    background: var(--pt-volume-slider);
+    height: 4px;
+}
+
+#player-controls #volume-input::-webkit-slider-thumb {
+    margin-top: -6px;
+} */
+
+
+/* settings/popups */
+ytw-scrim.ytWebScrimHost {
+    background: none;
+}
+
+.yt-spec-bottom-sheet-layout.yt-spec-bottom-sheet-layout__bottom-sheet-renderer-container.yt-spec-bottom-sheet-layout--modern {
+    background: var(--pt-settings-bg);
+    margin: 0;
+    margin-left: auto;
+    margin-right: 12px;
+    margin-bottom: 56px;
+}
+
+.yt-spec-bottom-sheet-layout.yt-spec-bottom-sheet-layout__bottom-sheet-renderer-container.yt-spec-bottom-sheet-layout--modern * {
+    color: #fff;
+}
+
+.yt-spec-bottom-sheet-layout__bottom-sheet-drag-line {
+    background: #fff;
+    opacity: .75;
+}
+
+input.unified-share-url-input {
+    background: #fff;
+    color: #000 !important;
+    margin: 12px;
+    padding: 8px;
+    height: 32px !important;
+    width: calc(100% - 24px);
+    cursor: pointer;
+}

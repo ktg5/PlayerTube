@@ -412,20 +412,20 @@ function enableCustomTheme() {
 function applyUserSettings() {
     // toggles
     var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
-    if (userConfig.endScreenToggle === false) {
+    if (userConfig.endScreenToggle !== true) {
         outputCssToggles += `
 /* TOGGLE END SCREEN (disabled) */
 .ytp-ce-element.ytp-ce-element-show {
     display: none !important;
 }
         `
-    } if (userConfig.embedOtherVideos === false) {
-        outputCssToggles += `
-/* EMBED SHOW "Other Videos" (disabled) */
-.ytp-expand-pause-overlay .ytp-pause-overlay {
-    display: none !important;
-}
-        `
+//     } if (userConfig.embedOtherVideos !== true) {
+//         outputCssToggles += `
+// /* EMBED SHOW "Other Videos" (disabled) */
+// .ytp-expand-pause-overlay .ytp-pause-overlay {
+//     display: none !important;
+// }
+//         `
     } if (userConfig.autoplayButton !== true) {
         outputCssToggles += `
 /* AUTO PLAY BUTTON (disabled / not set) */
@@ -603,7 +603,14 @@ function applyUserSettings() {
 
             // change page height
             if (onMainPage === true) {
-                const miniPanelHeight = '144px';
+                let miniPanelHeight = 0;
+
+                // get menu panel height from the amount of items shown
+                const allMenuItems = settingsMenuDiv.querySelectorAll('.ytp-panel .ytp-menuitem');
+                allMenuItems.forEach((menuItem) => {
+                    if (menuItem.style.display !== 'none') miniPanelHeight += 48;
+                });
+
                 settingsMenuDiv.style.height = miniPanelHeight;
                 settingsMenuDiv.querySelector(`.ytp-panel`).style.height = miniPanelHeight;
                 settingsMenuDiv.querySelector(`.ytp-panel .ytp-panel-menu`).style.height = miniPanelHeight;
@@ -622,7 +629,7 @@ function applyUserSettings() {
         function startSettingsMenuObs() {
             return settingsMenuObs.observe(document.querySelector(settingsMenuClass), settingsMenuObsConf);
         }
-        startSettingsMenuObs();
+        setTimeout(startSettingsMenuObs, 500);
     }
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
@@ -955,8 +962,8 @@ async function startPlayer() {
             
             let tempInt = setInterval(() => {
                 if (chromeBottom) {
-                    /// Add [data-pt-fakebar] to chrome bottom (player controls) for CSS reasons
-                    chromeBottom.setAttribute('data-pt-fakebar', '');
+                    /// Add [pt-fakebar] to chrome bottom (player controls) for CSS reasons
+                    chromeBottom.setAttribute('pt-fakebar', '');
 
                     /// Load fake bar CSS
                     var link = runtime.getURL(`css/fakebar.css`);

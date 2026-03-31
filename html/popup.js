@@ -19,7 +19,7 @@ var def_pt_config = {
     fakeBarToggle: false,
     toggleFadeOut: false,
     endScreenToggle: true,
-    embedOtherVideos: true,
+    embedOtherVideos: false,
     toggleWatermark: true,
     toggleRoundedCorners: false,
     togglePaidContent: false,

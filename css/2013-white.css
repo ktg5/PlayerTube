@@ -21,7 +21,7 @@
 
 /* PREV BUTTON */
 
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-prev-button {
+#player .ytp-chrome-bottom .ytp-button.ytp-prev-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
 	background-position: 1px -1px !important;
 	background-size: var(--pt-icon-size) !important; 
@@ -29,7 +29,7 @@
 
 /* PLAY BUTTON */
 
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-play-button {
+#player .ytp-chrome-bottom .ytp-button.ytp-play-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
 	background-position: -48px -1330px !important;
 	width: 55px !important;
@@ -38,8 +38,7 @@
 
 /* NEXT BUTTON */
 
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-next-button
-{
+#player .ytp-chrome-bottom .ytp-button.ytp-next-button {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat !important;
 	background-position: 4px -1216px !important;
 	width: 45px !important;
@@ -49,8 +48,8 @@
 /* VOLUME BUTTON */
 /* DEFAULT */
 
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
+#player .ytp-chrome-bottom .ytp-button.ytp-mute-button,
+#player .ytp-chrome-bottom .ytp-button.ytp-volume-icon
 {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-icons-alt.png) no-repeat;
 	background-position: -113px -154.5px !important;

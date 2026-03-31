@@ -47,9 +47,10 @@
 	margin-bottom: -0.5px !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:hover,
+.ytp-chrome-bottom .ytp-progress-bar:hover
+/* ,
 .html5-video-player[pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar-container,
-.html5-video-player[pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar
+.html5-video-player[pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar */
 {
 	height: var(--pt-progress-bar-full-height);
 	margin-bottom: 1px !important;
@@ -150,10 +151,10 @@
     bottom: -45px;
 }
 
-.ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
+/* .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
 .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar {
 	height: var(--pt-progress-bar-unfocused-height) !important;
-}
+} */
 
 .ytp-fullscreen.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-fullscreen .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
@@ -710,11 +711,11 @@
 
 /* 3rd-party extensions */
 
-.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-autohide .ytp-chrome-bottom[pt-fakebar] #previewbar {
 	top: -9px;
 }
 
-.ytp-fullscreen.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-fullscreen.ytp-autohide .ytp-chrome-bottom[pt-fakebar] #previewbar {
     top: -7px;
 }
 

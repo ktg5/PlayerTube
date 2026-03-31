@@ -34,7 +34,8 @@
 
         {
             "matches": ["*://*.youtube.com/embed/*", "*://*.youtube-nocookie.com/embed/*"],
-            "js": ["src/pt-delhiembed.js"],
+            "js": ["src/pt-setup.js", "src/pt-delhiembed.js"],
+            "run_at": "document_start",
             "all_frames": true
         }
     ],

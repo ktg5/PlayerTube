@@ -101,9 +101,10 @@
 	transition: .5s;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:hover,
+.ytp-chrome-bottom .ytp-progress-bar:hover
+/* ,
 .html5-video-player[pt-video-hover="true"] .ytp-progress-bar-container,
-.html5-video-player[pt-video-hover="true"] .ytp-progress-bar
+.html5-video-player[pt-video-hover="true"] .ytp-progress-bar */
 {
 	height: var(--pt-progress-bar-full-height);
 }
@@ -168,10 +169,10 @@
     bottom: -40px;
 }
 
-.ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
+/* .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar-container,
 .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar {
 	height: var(--pt-progress-bar-unfocused-height) !important;
-}
+} */
 
 .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-fullscreen .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 1 !important;
@@ -749,19 +750,19 @@
 
 /* 3rd-party extensions */
 
-.ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-chrome-bottom[pt-fakebar] #previewbar {
 	top: 1px;
 }
 
-.ytp-fullscreen .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-fullscreen .ytp-chrome-bottom[pt-fakebar] #previewbar {
 	top: 0;
 }
 
-.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-autohide .ytp-chrome-bottom[pt-fakebar] #previewbar {
 	top: -6px;
 }
 
-.ytp-fullscreen.ytp-autohide .ytp-chrome-bottom[data-pt-fakebar] #previewbar {
+.ytp-fullscreen.ytp-autohide .ytp-chrome-bottom[pt-fakebar] #previewbar {
     top: -9px;
 }
 
