@@ -75,11 +75,10 @@ window.addEventListener('load', () => {
 
 
     // move elements
-    moveElementInf('.player-controls-top-right', '.quick-actions-wrapper');                 // move ctrls on top right
-    moveElementInf('.player-settings-icon', '.watch-on-youtube-button-wrapper');            // move settings icon to right
-    moveElementInf('.player-control-play-pause-icon', '.quick-actions-wrapper');            // move play/pause btn
-    moveElementInf('.action-menu-engagement-buttons-wrapper', '.player-settings-icon');     // share btn
-    moveElementInf('yt-closed-captions-toggle-button', '.player-settings-icon');            // captions btn
+    moveElementInf('.player-controls-top-right', '.quick-actions-wrapper');             // move ctrls on top right
+    moveElementInf('.player-settings-icon', '.watch-on-youtube-button-wrapper');        // move settings icon to right
+    moveElementInf('.player-control-play-pause-icon', '.quick-actions-wrapper');        // move play/pause btn
+    moveElementInf('yt-closed-captions-toggle-button', '.player-settings-icon');        // captions btn
 
 
     // custom moving stuffs
@@ -100,8 +99,9 @@ window.addEventListener('load', () => {
 
             // button's here--move elmnts
             /// buttons
-            rightCtrlsDiv.insertAdjacentElement('beforeend', document.querySelector('button.fullscreen-icon'));
+            rightCtrlsDiv.insertAdjacentElement('beforeend', document.querySelector('.action-menu-engagement-buttons-wrapper'));
             rightCtrlsDiv.insertAdjacentElement('beforeend', document.querySelector('.watch-on-youtube-button-wrapper'));
+            rightCtrlsDiv.insertAdjacentElement('beforeend', document.querySelector('button.fullscreen-icon'));
 
             /// time display
             document.querySelector('.ytwPlayerTopControlsPlayerControlsTopRight').insertAdjacentElement('afterend', document.querySelector('player-time-display'));
@@ -109,8 +109,10 @@ window.addEventListener('load', () => {
 
             // config stuff
             if (userConfig.embedOtherVideos !== true) {
-                const moreVidsDiv = document.querySelector('button.ytmFullscreenRelatedVideosEntryPointViewModelButton');
-                if (moreVidsDiv) moreVidsDiv.style.display = 'none';
+                setTimeout(() => {
+                    const moreVidsDiv = document.querySelector('button.ytmFullscreenRelatedVideosEntryPointViewModelButton');
+                    if (moreVidsDiv) moreVidsDiv.style.display = 'none';
+                }, 1000);
             }
         } else reInitIntReqs();
     }, 500);

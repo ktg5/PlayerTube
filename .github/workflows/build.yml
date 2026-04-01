@@ -45,13 +45,13 @@ jobs:
       # Upload the ZIP files to the "Artifacts" tab on this action's page.
       ## Firefox
       - name: Upload the Firefox build to the "Artifacts" tab
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4
         with:
           name: PlayerTube Firefox Build
           path: ${{ github.workspace }}/dist/PlayerTube-Firefox
       ## Chrome
       - name: Upload the Chromium build to the "Artifacts" tab
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4
         with:
           name: PlayerTube Chromium Build
           path: ${{ github.workspace }}/dist/PlayerTube-Chrome

@@ -33,6 +33,10 @@ button.ytmFullscreenRelatedVideosEntryPointViewModelButton {
     background: none;
 }
 
+/* .ytmVideoInfoOverlay.ytmVideoInfoExpanded {
+    display: none;
+} */
+
 
 /* time display */
 .ytwPlayerTimeDisplayTimeChunks.ytwPlayerTimeDisplayPill {
@@ -66,6 +70,11 @@ yt-progress-bar-line .ytProgressBarLineProgressBarPlayed
     opacity: 1;
 }
 
+yt-progress-bar-line .ytProgressBarLineProgressBarLoaded {
+    background: var(--pt-alt-colour);
+	opacity: 1;
+}
+
 yt-progress-bar-line .ytProgressBarLineProgressBarBackground {
     background: var(--pt-progress-bar-bg);
     opacity: 1;
@@ -74,6 +83,46 @@ yt-progress-bar-line .ytProgressBarLineProgressBarBackground {
 yt-progress-bar-line .ytProgressBarLineProgressBarLine {
     height: 4px;
 	transition: height var(--pt-delhiembed-transition-ms);
+}
+
+/* scrubber */
+#player-controls yt-progress-bar yt-progress-bar-playhead:before {
+    content: '';
+	display: block;
+	position: absolute;
+    background: var(--pt-main-colour);
+    width: 50%;
+    height: 50%;
+    inset: 0;
+    margin: auto;
+    border-radius: 100px;
+}
+
+#player-controls yt-progress-bar-playhead .ytProgressBarPlayheadProgressBarPlayheadDot {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber.png);
+    background-position: 0px 0px;
+    background-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+#player-controls yt-progress-bar .ytProgressBarPlayheadProgressBarPlayheadDot,
+#player-controls yt-progress-bar yt-progress-bar-playhead:before
+{
+	scale: 0;
+    transition: scale var(--pt-delhiembed-transition-ms);
+}
+
+#player-controls yt-progress-bar:hover .ytProgressBarPlayheadProgressBarPlayheadDot,
+#player-controls yt-progress-bar:hover yt-progress-bar-playhead:before
+{
+	scale: 1 !important;
+}
+
+#player-controls yt-progress-bar .ytProgressBarPlayheadProgressBarPlayheadDot:hover {
+	background: url(chrome-extension://__MSG_@@extension_id__/img/2013-scrubber-hover.png);
+    background-position: 0px 0px;
+	background-size: 18px;
 }
 
 
@@ -92,30 +141,51 @@ yt-progress-bar-line .ytProgressBarLineProgressBarLine {
     width: 100%;
 }
 
-#player-controls .player-controls-top .ytmVideoInfoVideoDetailsContainer {
+#player-controls embedded-player-video-details .ytmVideoInfoVideoDetailsContainer {
 	min-height: 0;
 	height: 50px;
 }
 
-#player-controls .player-controls-top .ytmVideoInfoVideoTitle {
+#player-controls embedded-player-video-details.ytmVideoInfoHost:hover .ytmVideoInfoVideoTitleContainer {
+    opacity: 0;
+}
+
+#player-controls embedded-player-video-details .ytmVideoInfoVideoTitle {
     padding: 0;
 }
 
-#player-controls .player-controls-top .ytmVideoInfoChannelContainer,
-#player-controls .player-controls-top .ytmVideoInfoChannelAvatar
+#player-controls embedded-player-video-details .ytmVideoInfoOverlay {
+    background: none;
+    padding-left: 60px;
+    opacity: 0;
+}
+
+#player-controls embedded-player-video-details.ytmVideoInfoHost:hover .ytmVideoInfoOverlay {
+    opacity: 1;
+}
+
+#player-controls embedded-player-video-details .ytmVideoInfoChannelContainer,
+#player-controls embedded-player-video-details .ytmVideoInfoChannelAvatar
 {
     width: 100%;
     height: 100%;
+	margin: 0;
 }
 
-#player-controls .player-controls-top .ytmVideoInfoChannelLogo {
+#player-controls embedded-player-video-details .ytmVideoInfoChannelAvatar {
+	z-index: 6;
+}
+
+#player-controls embedded-player-video-details .ytmVideoInfoChannelLogo {
     margin: 0;
-    margin-left: 8px;
+	margin-top: 6px;
+    margin-left: 12px;
 }
 
-#player-controls .player-controls-top .ytmVideoInfoVideoTitleContainer {
-    margin-top: 4px;
+#player-controls embedded-player-video-details .ytmVideoInfoVideoTitleContainer {
+    margin-top: 2px;
     min-height: 0;
+    transition: opacity var(--pt-delhiembed-transition-ms);
 }
 
 #player-controls c3-icon.ytmCuedOverlayPlayButtonIcon {
@@ -126,14 +196,43 @@ yt-progress-bar-line .ytProgressBarLineProgressBarLine {
 
 /* storyboard/video preview */
 yt-player-storyboard .ytPlayerStoryboardTimestamp {
-    background: black;
+    background: #000;
     padding: 0 4px;
     text-shadow: none;
+}
+
+yt-player-storyboard .ytPlayerStoryboardHost {
+	background: #000;
+	padding: 2px;
+}
+
+yt-player-storyboard .ytPlayerStoryboardHost.ytPlayerStoryboardHostBigboard {
+    padding: 0;
+}
+
+yt-player-storyboard .ytPlayerStoryboardHost .ytPlayerStoryboardStoryboardImageWrapper {
+	border-radius: 0;
+}
+
+yt-player-storyboard .ytPlayerStoryboardHost .ytPlayerStoryboardMetadataBigboard {
+	background: #000;
+	border-radius: 0;
+	padding: 4px;
+    font-size: 16px;
 }
 
 
 /* buttons */
 #player-controls ytm-custom-control .icon-button {
+    width: var(--pt-delhiembed-height);
+    height: var(--pt-delhiembed-height);
+    padding: 0;
+}
+
+#player-controls .yt-spec-button-shape-next--size-l,
+#player-controls .yt-spec-button-shape-next--icon-only-default,
+#player-controls .ytmClosedCaptioningButtonButton
+{
     width: var(--pt-delhiembed-height);
     height: var(--pt-delhiembed-height);
     padding: 0;
@@ -203,8 +302,16 @@ ytm-slim-metadata-button-renderer.ytmSlimMetadataButtonRendererHost {
 }
 
 #player-controls .watch-on-youtube-button-wrapper .yt-spec-button-shape-next {
-    background: none;
-    padding: 0 8px;
+	position: relative;
+	background: none;
+	padding: 0;
+	width: 60px;
+	overflow: hidden;
+}
+
+#player-controls .watch-on-youtube-button-wrapper .yt-spec-button-shape-next .yt-spec-button-shape-next__button-text-content {
+    position: absolute;
+    right: 0;
 }
 
 
