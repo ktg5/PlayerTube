@@ -19,25 +19,25 @@
 
 /* progress bar scrubber */
 
-.html5-video-player .ytp-chrome-bottom .ytp-scrubber-button {
+#ytd-player .ytp-chrome-bottom .ytp-scrubber-button {
     transform: scale(0) !important;
     transition: transform .5s !important;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container:hover .ytp-scrubber-button,
-.html5-video-player .ytp-chrome-bottom .ytp-scrubber-button:hover
+#ytd-player .ytp-chrome-bottom .ytp-progress-bar-container:hover .ytp-scrubber-button,
+#ytd-player .ytp-chrome-bottom .ytp-scrubber-button:hover
 {
     transform: scale(1);
 }
 
-.html5-video-player.ytp-fullscreen .ytp-swatch-background-color.ytp-scrubber-button {
+#ytd-player .ytp-fullscreen .ytp-swatch-background-color.ytp-scrubber-button {
     bottom: 0;
     left: 0;
 }
 
 /* show thumbnail in unstarted mode */
 
-.html5-video-player.unstarted-mode .video-stream.html5-main-video {
+#ytd-player .unstarted-mode .video-stream.html5-main-video {
     opacity: 0;
 }
 
@@ -84,8 +84,8 @@
 
 /* right controls sides */
 
-.html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-left,
-.html5-video-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-right {
+#ytd-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-left,
+#ytd-player .ytp-chrome-bottom .ytp-right-controls .ytp-right-controls-right {
 	height: 100% !important;
 }
 
@@ -97,17 +97,17 @@
 
 /* more video button */
 
-.html5-video-player.ytp-fullscreen .ytp-fullscreen-grid-expand-button {
+#ytd-player .ytp-fullscreen .ytp-fullscreen-grid-expand-button {
     margin-top: -120px !important;
 }
 
-.html5-video-player .ytp-fullscreen-grid-expand-button.ytp-button path {
+#ytd-player .ytp-fullscreen-grid-expand-button.ytp-button path {
     display: block !important;
 }
 
 /* top buttons */
 
-.html5-video-player .ytp-overlays-container .ytp-playlist-menu-button.ytp-button svg {
+#ytd-player .ytp-overlays-container .ytp-playlist-menu-button.ytp-button svg {
     display: block;
 }
 
@@ -122,6 +122,6 @@
     background: none;
 }
 
-.html5-video-player .ytp-fine-scrubbing-exp .ytp-preview:not(.ytp-text-detail) .ytp-tooltip-edu {
+#ytd-player .ytp-fine-scrubbing-exp .ytp-preview:not(.ytp-text-detail) .ytp-tooltip-edu {
     display: none;
 }

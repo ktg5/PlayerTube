@@ -16,7 +16,7 @@
 	background: none !important;
 }
 
-.html5-video-player[aria-label] .ytp-chrome-bottom {
+#ytd-player [aria-label] .ytp-chrome-bottom {
 	height: 35px !important;
 	width: 100% !important;
     left: 0 !important;
@@ -26,7 +26,7 @@
 
 /* PROGRESS BAR */
 
-.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container {
+#ytd-player .ytp-chrome-bottom .ytp-progress-bar-container {
 	width: 100% !important;
 	bottom: 34px !important;
 	height: var(--pt-progress-bar-unfocused-height);
@@ -34,7 +34,7 @@
 	border-bottom: 1px solid var(--pt-progress-bar-outline);
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-chapters-container {
+#ytd-player .ytp-chrome-bottom .ytp-chapters-container {
 	width: 100% !important;
 }
 
@@ -49,8 +49,8 @@
 
 .ytp-chrome-bottom .ytp-progress-bar:hover
 /* ,
-.html5-video-player[pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar-container,
-.html5-video-player[pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar */
+#ytd-player [pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar-container,
+#ytd-player [pt-video-hover="true"] .ytp-chrome-bottom .ytp-progress-bar */
 {
 	height: var(--pt-progress-bar-full-height);
 	margin-bottom: 1px !important;
@@ -146,7 +146,9 @@
     transition: all .5s cubic-bezier(0.0,0.0,0.2,1) !important;
 }
 
-.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+#ytd-player .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom,
+.ytp-chrome-bottom[aria-hidden=true]
+{
     opacity: 1 !important;
     bottom: -45px;
 }
@@ -155,11 +157,6 @@
 .ytp-autohide:not(.ytp-watch-controls)[pt-video-hover="true"] .ytp-progress-bar {
 	height: var(--pt-progress-bar-unfocused-height) !important;
 } */
-
-.ytp-fullscreen.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-fullscreen .ytp-chrome-bottom[aria-hidden=true] {
-    opacity: 1 !important;
-    bottom: -41px;
-}
 
 .ytp-autohide .ytp-chrome-bottom .ytp-progress-bar-container {
     border-top: 0 none !important;
@@ -185,7 +182,7 @@
 
 /* SCRUBBER */
 
-.html5-video-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button {
+#ytd-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber.png) no-repeat !important;
     background-position: 0px 0px !important;
     background-size: 16px !important;
@@ -195,7 +192,7 @@
     position: relative;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button:hover {
+#ytd-player .ytp-chrome-bottom .ytp-swatch-background-color.ytp-scrubber-button:hover {
 	background: url(chrome-extension://__MSG_@@extension_id__/img/2010-scrubber-hover.png) !important;
 	background-position: 0px 0px !important;
     background-size: 18px !important;
@@ -203,7 +200,7 @@
     width: 18px !important;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-scrubber-container {
+#ytd-player .ytp-chrome-bottom .ytp-scrubber-container {
 	width: 18px;
 	height: 18px;
 	top: 1px;
@@ -214,7 +211,7 @@
 	transition: width .5s, height .5s, top .5s, left .5s !important;
 }
 
-.html5-video-player.ytp-delhi-modern .ytp-chrome-bottom .ytp-scrubber-container {
+#ytd-player .ytp-delhi-modern .ytp-chrome-bottom .ytp-scrubber-container {
 	top: 2px !important;
 	left: 0px !important;
 }
@@ -290,11 +287,11 @@
 }
 
 /* igrone background & border for the following: */
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-settings-button,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
-.html5-video-player .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
-.html5-video-player .ytp-chrome-bottom .ytp-chapter-title.ytp-button,
-.html5-video-player .ytp-chrome-bottom .ytp-button.ytp-live-badge
+#ytd-player .ytp-chrome-bottom .ytp-button.ytp-settings-button,
+#ytd-player .ytp-chrome-bottom .ytp-button.ytp-subtitles-button,
+#ytd-player .ytp-chrome-bottom .ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+#ytd-player .ytp-chrome-bottom .ytp-chapter-title.ytp-button,
+#ytd-player .ytp-chrome-bottom .ytp-button.ytp-live-badge
 {
     background: none !important;
     border: none !important;
@@ -341,11 +338,11 @@
 
 /* TIME DISPLAY */
 
-.html5-video-player .ytp-chrome-bottom .ytp-time-display span {
+#ytd-player .ytp-chrome-bottom .ytp-time-display span {
     font-size: 14px !important;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-time-display {
+#ytd-player .ytp-chrome-bottom .ytp-time-display {
 	line-height: 47px !important;
 	padding: 0px 10px !important;
 	margin-top: -8px !important;

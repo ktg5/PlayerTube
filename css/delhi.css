@@ -3,8 +3,10 @@
  * is called, "delhi".
  */
 
-.html5-video-player .ytp-chrome-bottom {
-    width: 100%;
+#ytd-player .ytp-chrome-bottom {
+    width: 100% !important;
+    height: auto;
+    left: 0 !important;
 }
 
 .ytp-delhi-modern .ytp-chrome-controls .ytp-button:before,
@@ -39,7 +41,7 @@
     border-radius: 0 !important;
 }
 
-.html5-video-player .ytp-chrome-bottom .ytp-progress-list {
+#ytd-player .ytp-chrome-bottom .ytp-progress-list {
     border-radius: 0 !important;
 }
 
@@ -94,7 +96,7 @@
     margin: auto;
 }
 
-.html5-video-player.ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls {
+#ytd-player .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls {
     padding: 0;
 }
 

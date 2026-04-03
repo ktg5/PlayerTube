@@ -69,15 +69,15 @@ This extension for some reason likes to
 resize the player when not in theater mode,
 the following lines of code should fix this.
 */
-html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html[disable-flexy-player="true"]:not([static]):not([pseudo-static]) ytd-watch-flexy:not([theater]):not([fullscreen]):not([no-top-margin]):not([reduced-top-margin]) #movie_player#ytd-player [aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
-html[static] #movie_player.html5-video-player[aria-label="YouTube Video Player"] .ytp-chrome-bottom {
+html[static] #movie_player#ytd-player [aria-label="YouTube Video Player"] .ytp-chrome-bottom {
     width: 100% !important;
 }
 
 /* for my theater mode gang */
-html[static] ytd-watch-flexy #movie_player.html5-video-player[aria-label="YouTube Video Player"] video {
+html[static] ytd-watch-flexy #movie_player#ytd-player [aria-label="YouTube Video Player"] video {
     position: relative;
     margin: auto !important;
     width: 100% !important;

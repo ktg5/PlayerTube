@@ -411,74 +411,74 @@ function enableCustomTheme() {
 // User settings toggles
 function applyUserSettings() {
     // toggles
-    var outputCssToggles = `/* hi this is the custom settings you set lolz */`;
+    var configCSSOutput = `/* hi this is the custom settings you set lolz */`;
     if (userConfig.endScreenToggle !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE END SCREEN (disabled) */
 .ytp-ce-element.ytp-ce-element-show {
     display: none !important;
 }
         `
 //     } if (userConfig.embedOtherVideos !== true) {
-//         outputCssToggles += `
+//         configCSSOutput += `
 // /* EMBED SHOW "Other Videos" (disabled) */
 // .ytp-expand-pause-overlay .ytp-pause-overlay {
 //     display: none !important;
 // }
 //         `
     } if (userConfig.autoplayButton !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* AUTO PLAY BUTTON (disabled / not set) */
 .ytp-chrome-controls .ytp-button.ytp-autonav-toggle {
     display: none !important;
 }
         `
     } if (userConfig.heatMapToggle !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* PROGRESS BAR HEAT MAP (disabled) */
 .ytp-progress-bar-container .ytp-heat-map-container {
     display: none !important;
 }
         `
     } if (userConfig.toggleWatermark === false) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* CHANNEL WATERMARK (disabled) */
 .annotation.annotation-type-custom.iv-branding {
     display: none;
 }
         `
     } if (userConfig.toggleRoundedCorners !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* ROUNDED CORNERS (disabled / not set) */
-#ytd-player.ytd-watch-flexy {
+#ytd-player .ytd-watch-flexy {
     border-radius: 0 !important;
 }
         `
     } else if (userConfig.toggleRoundedCorners === true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* ROUNDED CORNERS (enabled) */
-#ytd-player.ytd-watch-flexy {
+#ytd-player .ytd-watch-flexy {
     border-radius: 12px !important;
 }
         `
     } if (userConfig.togglePaidContent !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* PAID CONTENT (disabled / not set) */
 .ytp-suggested-action-badge[aria-label="View products"], .ytp-paid-content-overlay-link {
     display: none !important;
 }
         `
     } if (userConfig.toggleInfoCards === false) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* INFO CARDS (disabled) */
 .ytp-button.ytp-cards-button, .iv-drawer, .ytp-cards-teaser {
     display: none !important;
 }
         `
     } if (userConfig.fullyExtendBar === true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* FULLY EXTEND PROGRESS BAR (enabled) */
-.html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+#ytd-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
     height: var(--pt-progress-bar-full-height) !important;
     margin-bottom: 1px !important;
 }
@@ -502,25 +502,25 @@ function applyUserSettings() {
 }
         `
 
-        document.querySelector('.html5-video-player').setAttribute('pt-force-extend', true);
+        document.querySelector('#ytd-player').setAttribute('pt-force-extend', true);
 
         if (userConfig.year === '2010') {
-            outputCssToggles += `
+            configCSSOutput += `
 #previewbar {
     transform: scale(1) !important;
 }
             `
         }
     } if (userConfig.toggleFadeOut === true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE FADE OUT (enabled) */
-.html5-video-player.ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
+#ytd-player .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 0 !important;
     bottom: 0 !important;
 }
         `
     } if (userConfig.toggleSpinner === false) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE CUSTOM SPINNER (disabled) */
 .ytp-spinner {
     background: none !important;
@@ -528,9 +528,9 @@ function applyUserSettings() {
 }
         `
     } if (userConfig.toggleMoreVids !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE MORE VIDEOS FEATURE (disabled) */
-.html5-video-player {
+#ytd-player {
     --ytp-grid-scroll-percentage: 0 !important;
 }
 
@@ -538,33 +538,33 @@ function applyUserSettings() {
     display: none !important;
 }
 
-.html5-video-player .ytp-gradient-bottom {
+#ytd-player .ytp-gradient-bottom {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==) !important;
     background-position-y: bottom !important;
 }
 
-.html5-video-player.ytp-delhi-modern:not(.ytp-disable-bottom-gradient) .ytp-gradient-bottom,
+#ytd-player .ytp-delhi-modern:not(.ytp-disable-bottom-gradient) .ytp-gradient-bottom,
 .ytp-delhi-modern.ytp-fullscreen-grid-active .ytp-gradient-bottom
 {
     height: 64px;
 }
 
-.html5-video-player.ytp-delhi-modern.ytp-fullscreen-grid-active:not(.html5-video-player.ended-mode):not(.ytp-grid-scrolling) .ytp-chrome-bottom {
+#ytd-player .ytp-delhi-modern.ytp-fullscreen-grid-active:not(#ytd-player .ended-mode):not(.ytp-grid-scrolling) .ytp-chrome-bottom {
     display: inherit;
     pointer-events: all;
 }
         `
     } if (userConfig.toggleFSButtons !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE FULLSCREEN BUTTONS (disabled) */
-.html5-video-player.ytp-fullscreen.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
+#ytd-player .ytp-fullscreen.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
     display: none;
 }
         `
     } if (userConfig.toggleScrubberThumbs !== true) {
-        outputCssToggles += `
+        configCSSOutput += `
 /* TOGGLE THUMBNAIL PREVIEWS WHEN SCRUBBING (disabled) */
-.html5-video-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
+#ytd-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
     opacity: 0;
 }
         `
@@ -632,7 +632,7 @@ function applyUserSettings() {
         setTimeout(startSettingsMenuObs, 500);
     }
     // output css
-    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${outputCssToggles}</style>`);
+    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
 
     // Import 3rd-party CSS
     var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);

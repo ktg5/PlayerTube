@@ -6,7 +6,7 @@
  * 
  * If you're interesting the entirely bringing back the old UI, look at the
  * `pt-delhiembed-alt.js` script. I've already made a proof of concept that simply
- * pastes a string with the older UI HTML into the already existing '.html5-video-player'
+ * pastes a string with the older UI HTML into the already existing '#ytd-player'
  * element--since it's still there in the new embed UI.
  * 
  * If YouTube merges this to the main page, I'm archiving this extension. Deadass.
@@ -104,16 +104,30 @@ window.addEventListener('load', () => {
             rightCtrlsDiv.insertAdjacentElement('beforeend', document.querySelector('button.fullscreen-icon'));
 
             /// time display
-            document.querySelector('.ytwPlayerTopControlsPlayerControlsTopRight').insertAdjacentElement('afterend', document.querySelector('player-time-display'));
+            let ctrlsInsert = document.querySelector('.ytwPlayerTopControlsPlayerControlsTopRight');
+            if (!ctrlsInsert) ctrlsInsert = document.querySelector('.icon-button.player-control-play-pause-icon');
+            ctrlsInsert.insertAdjacentElement('afterend', document.querySelector('player-time-display'));
 
 
             // config stuff
+            let configCSSOutput = '/* hi this is the custom settings you set lolz */';
             if (userConfig.embedOtherVideos !== true) {
-                setTimeout(() => {
-                    const moreVidsDiv = document.querySelector('button.ytmFullscreenRelatedVideosEntryPointViewModelButton');
-                    if (moreVidsDiv) moreVidsDiv.style.display = 'none';
-                }, 1000);
+                configCSSOutput += `
+
+.ytmFullscreenRelatedVideosEntryPointViewModelHost {
+    display: none !important;
+}
+                `;
+            } if (userConfig.togglePaidContent !== true) {
+                configCSSOutput += `
+
+ytm-paid-content-overlay-renderer {
+    display: none !important;
+}
+                `;
             }
+            /// make css div with config changes
+            document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
         } else reInitIntReqs();
     }, 500);
 });

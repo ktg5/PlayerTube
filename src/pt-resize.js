@@ -95,22 +95,23 @@ function getVideoWidth() {
 
 function getOffset(year) {
     return new Promise((resolve, reject) => {
-        var result;
         switch (year) {
             case '2006':
                 // Check if the the player div exists
                 let tempInt = setInterval(() => {
                     if (getVideoWidth()) {
-                        result = (parseInt(getVideoWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
-                        resolve(result);
+                        resolve(parseInt(getVideoWidth()) - 56 - document.querySelector('.ytp-right-controls').clientWidth);
                         clearInterval(tempInt);
                     }
                 }, 100);
             break;
 
+            case '2015':
+                resolve(0);
+            break;
+
             default:
-                result = 24;
-                resolve(result);
+                resolve(24);
             break;
         }
     });

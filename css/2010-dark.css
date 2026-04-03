@@ -18,7 +18,7 @@
 
 /* BUTTONS BASE */
 
-.html5-video-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
+#ytd-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
     border: solid 1px rgb(60, 65, 68);
     background: var(--pt-button-gradient) !important;
 }
@@ -143,12 +143,16 @@
 	background-size: 20px;
 }
 
-.ytp-button.ytp-size-button[title="Default view (t)"] svg {
+#full-bleed-container .ytp-button.ytp-size-button svg,
+.ytp-button.ytp-size-button[title="Default view (t)"] svg
+{
     background: Url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/un-theater-mode.png') no-repeat center;
 	background-size: 20px;
 }
 
-.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover svg {
+#full-bleed-container .ytp-button.ytp-size-button:hover svg,
+.ytp-button.ytp-size-button[aria-label="Default view keyboard shortcut t"]:hover svg
+{
     background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/theater-mode-hover.png') no-repeat center;
 	background-size: 20px;
 }
@@ -165,12 +169,12 @@
     background-size: 24px;
 }
 
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"] svg {
+.ytp-fullscreen .ytp-button.ytp-fullscreen-button svg {
 	background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/un-fullscreen.png') no-repeat center;
     background-size: 24px;
 }
 
-.ytp-button.ytp-fullscreen-button[data-title-no-tooltip="Exit full screen"]:hover svg {
+.ytp-fullscreen .ytp-button.ytp-fullscreen-button:hover svg {
     background: url('chrome-extension://__MSG_@@extension_id__/img/2010%20icons/un-fullscreen-hover.png') no-repeat center;
     background-size: 24px;
 }

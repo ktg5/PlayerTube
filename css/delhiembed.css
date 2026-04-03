@@ -146,18 +146,12 @@ yt-progress-bar-line .ytProgressBarLineProgressBarLine {
 	height: 50px;
 }
 
-#player-controls embedded-player-video-details.ytmVideoInfoHost:hover .ytmVideoInfoVideoTitleContainer {
-    opacity: 0;
-}
-
 #player-controls embedded-player-video-details .ytmVideoInfoVideoTitle {
     padding: 0;
 }
 
 #player-controls embedded-player-video-details .ytmVideoInfoOverlay {
-    background: none;
-    padding-left: 60px;
-    opacity: 0;
+    display: none;
 }
 
 #player-controls embedded-player-video-details.ytmVideoInfoHost:hover .ytmVideoInfoOverlay {
@@ -167,7 +161,6 @@ yt-progress-bar-line .ytProgressBarLineProgressBarLine {
 #player-controls embedded-player-video-details .ytmVideoInfoChannelContainer,
 #player-controls embedded-player-video-details .ytmVideoInfoChannelAvatar
 {
-    width: 100%;
     height: 100%;
 	margin: 0;
 }
@@ -185,7 +178,6 @@ yt-progress-bar-line .ytProgressBarLineProgressBarLine {
 #player-controls embedded-player-video-details .ytmVideoInfoVideoTitleContainer {
     margin-top: 2px;
     min-height: 0;
-    transition: opacity var(--pt-delhiembed-transition-ms);
 }
 
 #player-controls c3-icon.ytmCuedOverlayPlayButtonIcon {
