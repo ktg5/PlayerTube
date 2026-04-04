@@ -81,6 +81,34 @@ window.addEventListener('load', () => {
     moveElementInf('yt-closed-captions-toggle-button', '.player-settings-icon');        // captions btn
 
 
+    // config stuff
+    let configCSSOutput = '/* hi this is the custom settings you set lolz */';
+    if (userConfig.embedOtherVideos !== true) {
+        configCSSOutput += `
+
+.ytmFullscreenRelatedVideosEntryPointViewModelHost {
+    display: none !important;
+}
+        `;
+    } if (userConfig.togglePaidContent !== true) {
+        configCSSOutput += `
+
+ytm-paid-content-overlay-renderer {
+    display: none !important;
+}
+        `;
+    } if (userConfig.toggleAlterInfo !== true) {
+        configCSSOutput += `
+
+ytm-embeds-info-panel-renderer {
+    display: none !important;
+}
+        `;
+    }
+    /// make css div with config changes
+    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
+
+
     // custom moving stuffs
     let rightCtrlsDiv, fullscreenBtn;
     function reInitIntReqs() {
@@ -107,27 +135,6 @@ window.addEventListener('load', () => {
             let ctrlsInsert = document.querySelector('.ytwPlayerTopControlsPlayerControlsTopRight');
             if (!ctrlsInsert) ctrlsInsert = document.querySelector('.icon-button.player-control-play-pause-icon');
             ctrlsInsert.insertAdjacentElement('afterend', document.querySelector('player-time-display'));
-
-
-            // config stuff
-            let configCSSOutput = '/* hi this is the custom settings you set lolz */';
-            if (userConfig.embedOtherVideos !== true) {
-                configCSSOutput += `
-
-.ytmFullscreenRelatedVideosEntryPointViewModelHost {
-    display: none !important;
-}
-                `;
-            } if (userConfig.togglePaidContent !== true) {
-                configCSSOutput += `
-
-ytm-paid-content-overlay-renderer {
-    display: none !important;
-}
-                `;
-            }
-            /// make css div with config changes
-            document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
         } else reInitIntReqs();
     }, 500);
 });

@@ -58,6 +58,7 @@ var def_pt_config = {
     toggleFSButtons: false,
     toggleScrubberThumbs: false,
     toggleLessSettings: false,
+    toggleAlterInfo: false,
     customTheme: false,
 
     // Only for custom themes.

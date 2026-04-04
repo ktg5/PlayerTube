@@ -7,8 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "bun build.js",
-    "v3": "bun v3Maker"
+    "start": "bun build.ts"
   },
   "repository": {
     "type": "git",
