@@ -363,7 +363,7 @@ async function start(userConfig) {
             ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank"><i>Paid Products</i> / <i>Sponsorships</i></a> popups')}
             <div class='menu-option-note'>If a video has sponsorships or paid products within the video details, popups at the top right (& left if in embeds) will often appear</div>
 
-            ${makeMenuOption('toggle', 'toggleAlterInfo', 'Toggle the <a href="https://support.google.com/youtube/answer/14328491" target="_blank"><i>Altered or Synthetic content</i></a> popups')}
+            ${makeMenuOption('toggle', 'toggleAlterInfo', 'Toggle the <a href="https://support.google.com/youtube/answer/14328491" target="_blank"><i>Altered or Synthetic Content</i></a> popups')}
             <div class='menu-option-note'>If a video has set <i>Altered content</i> to "Yes" via YouTube Studio, a popup will appear at the top left saying the video includes said content</div>
 
             ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle <a href="https://support.google.com/youtube/answer/6140493" target="_blank">info cards tab</a>')}
