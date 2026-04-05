@@ -149,7 +149,7 @@
 #ytd-player .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom,
 .ytp-chrome-bottom[aria-hidden=true]
 {
-    opacity: 1 !important;
+    opacity: 1;
     bottom: -45px;
 }
 
