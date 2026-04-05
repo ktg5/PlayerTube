@@ -118,5 +118,5 @@ So, you like to build stuff yourself? Well, here's how to do it.
   <br>
 
   <div class="text">Built with stupidity by</div>
-  <a href="https://ktg5.online/" target='_blank'><img id="ktg5-logo" src="https://ktg5.online/img/logo-r1.png" alt="No angels." height="60"></a>
+  <a href="https://ktg5.online/" target='_blank'><img id="ktg5-logo" src="https://github.com/ktg5/ktg5.github.io/raw/main/html/img/logo-r1.png?raw=true" alt="No angels." height="60"></a>
 </div>

@@ -10,6 +10,7 @@ a {
 
 h1, h2, h3 {
     font-family: 'lol';
+    font-weight: 100;
 }
 
 ul {

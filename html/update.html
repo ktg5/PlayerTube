@@ -30,28 +30,19 @@
             <div class="text">
                 <!-- <b>New updates to the <a href="extensions.html">Extension Support page</a>! Please check it to see if you need to do manual configuration for your extensions!</b>
                 <br> -->
-                <div class="v1dot11dot1">
+                <div class="v1dot12dot1">
                     <h1>PlayerTube has been updated!</h1>
+                    <span style="margin-bottom: 12px;">Slight bug fixes & improvements. <a href="#v1dot12">Please do check out the past version log though</a>.</span>
                     <ul>
-                        <li><b>Working on "restoring" the YouTube embed UI.</b> This new UI uses an entirely new HTML structure, meaning any of the changes PlayerTube makes already can not be used with this new UI. I have another concept for restoring the older UI, but it would require a lot of work. (<kbd>pt-delhiembed-alt.js</kbd>) <b>Any other workarounds that do get discovered, please let me know by sending in a GitHub issue.</b> (This all relates to <a href="https://github.com/ktg5/PlayerTube/issues/74">#74 - "[ Bug ] YouTube's New Embed UI"</a>)</li>
-                        <ul>
-                            <li>Also I ranted about the new embed UI in <a href="https://github.com/ktg5/PlayerTube/issues/74#issuecomment-4160106808">this comment</a> basically saying it's pretty bad, buggy and would be a slap in the face if it were put onto the watch page for YouTube and not just for embeds.</li>
-                        </ul>
-                        <li>Fix issues when scrolling in fullscreen</li>
-                        <li>Added option descriptions to all PlayerTube options & minified option titles</li>
-                        <li>Added the "Minify settings menu" option as requested by <a href="https://github.com/ktg5/PlayerTube/issues/82">#82 - "[ Feature Request ] Option to Make Settings Menu Less Cluttered"</a></li>
-                        <li>Added a toggle for the "Altered or Synthetic Content" popup for videos that use said disclaimer</li>
-                        <li>Fix <a href="https://github.com/ktg5/PlayerTube/issues/81">#81 - "[ Bug ] Settings Font Size Changes in Fullscreen"</a></li>
-                        <li>Replaced <a href="https://nodejs.org/">Node.js</a> for <a href="https://bun.com/">Bun</a> for building process</li>
-                        <li>Removed all Project V3 stuff--use <a href="https://github.com/lightbeam24/StarTube">StarTube</a> instead</li>
-                        <li>Slight CSS adjustments</li>
-                        <li>Improvements to GitHub issue templates</li>
+                        <li>Fixed <a href="https://github.com/ktg5/PlayerTube/issues/86">#86 - "[ Bug ] Fade out YouTube player controls option not working"</a></li>
+                        <li>Added images to past version log</li>
+                        <li>Adjusted HTML/CSS stuff with update page</li>
                     </ul>
                 </div>
 
                 <br>
 
-                As always, if you have any issues, <a href='https://github.com/ktg5/PlayerTube/issues'>please report them on the GitHub page!</a>
+                As always if you have any issues, <a href='https://github.com/ktg5/PlayerTube/issues'>please report them on the GitHub page!</a>
                 <br>
                 Enjoy!
 
@@ -62,9 +53,34 @@
                 <br>
 
                 <h2>Past versions...</h2>
-                <div class="v1dot11">
+                <div id="v1dot12">
+                    <div style="font-weight: 600;">v1.12</div>
+                    <ul>
+                        <li><b>Working on "restoring" the YouTube embed UI.</b> This new UI uses an entirely new HTML structure, meaning any of the changes PlayerTube makes already can not be used with this new UI. I have another concept for restoring the older UI, but it would require a lot of work. (<kbd>pt-delhiembed-alt.js</kbd>) <b>Any other workarounds that do get discovered, please let me know by sending in a GitHub issue.</b> (This all relates to <a href="https://github.com/ktg5/PlayerTube/issues/74">#74 - "[ Bug ] YouTube's New Embed UI"</a>)</li>
+                        <ul>
+                            <li>Also I ranted about the new embed UI in <a href="https://github.com/ktg5/PlayerTube/issues/74#issuecomment-4160106808">this comment</a> basically saying it's pretty bad, buggy and would be a slap in the face if it were put onto the watch page for YouTube and not just for embeds.</li>
+                        </ul>
+                        <li>Fix issues when scrolling in fullscreen</li>
+                        <li>Added option descriptions to all PlayerTube options & minified option titles</li>
+                        <li>Added the "Minify settings menu" option as requested by <a href="https://github.com/ktg5/PlayerTube/issues/82">#82 - "[ Feature Request ] Option to Make Settings Menu Less Cluttered"</a></li>
+                    </ul>
+                    <img src="../img/updates/1.12/img-1.png" style="display: block; margin: auto; margin-block: 1em;">
+                    <ul>
+                        <li>Added a toggle for the "Altered or Synthetic Content" popup for videos that use said disclaimer</li>
+                    </ul>
+                    <img src="../img/updates/1.12/img-2.png" style="display: block; margin: auto; margin-block: 1em;">
+                    <ul>
+                        <li>Fix <a href="https://github.com/ktg5/PlayerTube/issues/81">#81 - "[ Bug ] Settings Font Size Changes in Fullscreen"</a></li>
+                        <li>Replaced <a href="https://nodejs.org/">Node.js</a> for <a href="https://bun.com/">Bun</a> for building process</li>
+                        <li>Removed all Project V3 stuff--use <a href="https://github.com/lightbeam24/StarTube">StarTube</a> instead</li>
+                        <li>Slight CSS adjustments</li>
+                        <li>Improvements to GitHub issue templates</li>
+                    </ul>
+                </div>
+
+                <div id="v1dot11">
                     <div style="font-weight: 600;">v1.11</div>
-                    <p>Hopefully you had a good Christmas! And cheers to a better new year!</p>
+                    <span style="margin-bottom: 12px;">Hopefully you had a good Christmas! And cheers to a better new year!</span>
                     <ul>
                         <li><b>Fixed CSS relating to things that tie to fullscreen</b> (<kbd>.ytp-big-mode</kbd> has been changed to <kbd>.ytp-fullscreen</kbd>)</li>
                         <ul>
@@ -75,7 +91,7 @@
 
                 <br>
 
-                <div class="v1dot10dot2">
+                <div id="v1dot10dot2">
                     <div style="font-weight: 600;">v1.10.2</div>
                     <ul>
                         <li>Fixed <a href="https://github.com/ktg5/PlayerTube/issues/64">#64 - "[ Bug ] Themes Still Broken With YouTube Redux (for Firefox)"</a></li>
@@ -85,9 +101,9 @@
 
                 <br>
 
-                <div class="v1dot10dot1">
+                <div id="v1dot10dot1">
                     <div style="font-weight: 600;">v1.10.1</div>
-                    <p>While v1.10 is still a BIG improvement, I kinda missed somethings still...</p>
+                    <span style="margin-bottom: 12px;">While v1.10 is still a BIG improvement, I kinda missed somethings still...</span>
                     <ul>
                         <b><li>Fixed <a href="https://github.com/ktg5/PlayerTube/issues/58">#58 - "[ 3rd-Party Bug ] New YouTube Redux Update Messes with PlayerTube"</a></li></b>
                     </ul>
@@ -104,7 +120,7 @@
 
                 <br>
 
-                <div class="v1dot10">
+                <div id="v1dot10">
                     <div style="font-weight: 600;">v1.10</div>
                     <ul>
                         <b><li>Added a 2015 player theme! (Basically the player theme before Delhi/2025 but in it's first stage)</li></b>
@@ -127,7 +143,7 @@
 
                 <br>
 
-                <div class="v1dot9">
+                <div id="v1dot9">
                     <div style="font-weight: 600;">v1.9</div>
                     <ul>
                         <b><li>Fixed styling for the new YouTube player style named, Delhi (I think is what it's called)</li></b>
@@ -143,7 +159,7 @@
 
                 <br>
 
-                <div class="v1dot8dot3">
+                <div id="v1dot8dot3">
                     <div style="font-weight: 600;">v1.8.3</div>
                     <div style="margin-bottom: 12px;">I don't know why I love not uploading these updates to the webstores, but we're here now with another update!</div>
                     <ul>
@@ -157,7 +173,7 @@
 
                 <br>
 
-                <div class="v1dot8dot2">
+                <div id="v1dot8dot2">
                     <div style="font-weight: 600;">v1.8.2</div>
                     <ul>
                         <li>
@@ -175,7 +191,7 @@
 
                 <br>
 
-                <div class="v1dot8dot1">
+                <div id="v1dot8dot1">
                     <div style="font-weight: 600;">v1.8.1</div>
                     <ul>
                         <li>Added <a href="https://github.com/ktg5/PlayerTube/pull/32">#32 - "Fix volume sliders for all themes"</a> + additional fixes by myself. (hi ladd you're on here now)</li>
@@ -187,7 +203,7 @@
 
                 <br>
 
-                <div class="v1dot8">
+                <div id="v1dot8">
                     <div style="font-weight: 600;">v1.8</div>
                     <div style="margin-bottom: 12px;">This update shouldn't have taken so long, but I've working on other stuff recently!!</div>
                     <ul>
@@ -203,7 +219,7 @@
 
                 <br>
 
-                <div class="v1dot7dot2">
+                <div id="v1dot7dot2">
                     <div style="font-weight: 600;">v1.7.2</div>
                     <ul>
                         <li>Quick update to fix an issue with fake bar toggle not working.</li>
@@ -212,7 +228,7 @@
 
                 <br>
 
-                <div class="v1dot7dot1">
+                <div id="v1dot7dot1">
                     <div style="font-weight: 600;">v1.7.1</div>
                     <ul>
                         <li>Improvements to resize script (using custom detection v2.1).</li>
@@ -225,9 +241,9 @@
                 
                 <br>
 
-                <div class="v1dot7">
+                <div id="v1dot7">
                     <div style="font-weight: 600;">v1.7</div>
-                    This update took too long to make... <b>But I can say that this extension is now 90% stable & finished.</b>
+                    <span style="margin-bottom: 12px;">This update took too long to make... <b>But I can say that this extension is now 90% stable & finished.</b></span>
                     <br>
                     <ul>
                         <li>Fix <a href="https://github.com/ktg5/PlayerTube/issues/20">#20 - "narrow video is stretched (zoomed) to fit"</a>.</li>
@@ -245,7 +261,7 @@
 
                 <br>
 
-                <div class="v1dot6dot2">
+                <div id="v1dot6dot2">
                     <div style="font-weight: 600;">v1.6.2</div>
                     <ul>
                         <li>Fix <a href="https://github.com/ktg5/PlayerTube/issues/18">#18 - "HD Lettering Not Showing on Settings Button"</a>.</li>
@@ -256,9 +272,9 @@
 
                 <br>
 
-                <div class="v1dot6dot1">
+                <div id="v1dot6dot1">
                     <div style="font-weight: 600;">v1.6.1</div>
-                    <b>NOTE: "Dark Mode" is now renamed to "Alternate Theme" with the new 2013 white theme!</b>
+                    <span style="margin-bottom: 12px;"><b>NOTE: "Dark Mode" is now renamed to "Alternate Theme" with the new 2013 white theme!</b></span>
                     <ul>
                         <li><b>FINALLY finished 2006 theme.</b></li>
                         <li>Add <a href="https://github.com/ktg5/PlayerTube/issues/13">#13 - "Light Theme for 2015 YouTube Player"</a>.</li>
@@ -272,9 +288,10 @@
 
                 <br>
 
-                <div class="v1dot6">
+                <div id="v1dot6">
                     <div style="font-weight: 600;">v1.6</div>
-                    <b>NOTE: Year names have changed -- <i>2013</i> is now <i>2012</i> and <i>2015</i> is now <i>2013</i>.</b>
+                    
+                    <span style="margin-bottom: 12px;"><b>NOTE: Year names have changed -- <i>2013</i> is now <i>2012</i> and <i>2015</i> is now <i>2013</i>.</b></span>
                     <ul>
                         <li><b>Addition to the long-time issue of the Progress Bar not fully extending.</b> Currently the new fix doesn't work in embed & fullscreen, it's better than before. Old fix is used instead for those modes.</li>
                         <li>Also finally fixed the long-time issue of PlayerTube's scripts running multiple times.</li>
@@ -283,7 +300,7 @@
 
                 <br>
 
-                <div class="v1dot5dot2">
+                <div id="v1dot5dot2">
                     <div style="font-weight: 600;">v1.5.2</div>
                     <ul>
                         <li>Added <a href="https://github.com/ktg5/PlayerTube/issues/11">#11 - "Old Loading Spinner"</a></li>
@@ -293,9 +310,9 @@
 
                 <br>
 
-                <div class="v1dot5dot1">
+                <div id="v1dot5dot1">
                     <div style="font-weight: 600;">v1.5.1</div>
-                    somewhat a big minor update lol
+                    <span>somewhat a big minor update lol</span>
                     <ul>
                         <li>Fixed an issue with 2010 theme, where a Progress Bar with chapters would enlarge the chapter & fixed some of it's Custom Theme code.</li>
                         <li>Add user request -- <a href="https://github.com/ktg5/PlayerTube/issues/9">#9 - "Progress Bar keeps fading out with 'Fully extend the Progress Bar' enabled"</a></li>
@@ -306,7 +323,7 @@
 
                 <br>
 
-                <div class="v1dot5">
+                <div id="v1dot5">
                     <div style="font-weight: 600;">v1.5</div>
                     <ul>
                         <li><b>2010 now does not fully extend the progress bar by default. This can be re-enabled by using one of the new settings under, "Fully extend the Progress Bar's height at all times"</b></li>
@@ -324,7 +341,7 @@
 
                 <br>
 
-                <div class="v1dot4">
+                <div id="v1dot4">
                     <div style="font-weight: 600;">v1.4</div>
                     <ul>
                         <li>Added Dark Mode for the 2010 theme!</li>
@@ -339,7 +356,7 @@
 
                 <br>
 
-                <div class="v1dot3dot1">
+                <div id="v1dot3dot1">
                     <div style="font-weight: 600;">v1.3.1</div>
                     <ul>
                         <li>Fixed <a href="https://github.com/ktg5/PlayerTube/issues/5">#5 - "CustomTube's Custom Player Size Bug"</a></li>
@@ -351,7 +368,7 @@
 
                 <br>
 
-                <div class="v1dot3">
+                <div id="v1dot3">
                     <div style="font-weight: 600;">v1.3</div>
                     <ul>
                         <li>Fixed an Firefox issue with 2010 theme.</li>
@@ -360,12 +377,12 @@
                         <li>Improved the text area for the user's config.</li>
                         <li>Better color picker for custom theme settings.</li>
                     </ul>
-                    We're also on the Chrome web-store now!!!
+                    <span>We're also on the Chrome web-store now!!!</span>
                 </div>
 
                 <br>
 
-                <div class="v1dot2dot1">
+                <div id="v1dot2dot1">
                     <div style="font-weight: 600;">v1.2.1</div>
                     <ul>
                         <li>Fixed <a href="https://github.com/ktg5/PlayerTube/issues/3">#3 - "Extension doesn't work on embeds"</a></li>
@@ -374,7 +391,7 @@
 
                 <br>
 
-                <div class="v1dot2">
+                <div id="v1dot2">
                     <div style="font-weight: 600;">v1.2</div>
                     <ul>
                         <li>Extension is accepted on Firefox.</li>
@@ -385,7 +402,7 @@
 
                 <br>
 
-                <div class="v1dot1">
+                <div id="v1dot1">
                     <div style="font-weight: 600;">v1.1</div>
                     <ul>
                         <li>First version to be uploaded on web-stores! (Chrome & Firefox)</li>
@@ -397,7 +414,7 @@
 
                 <br>
 
-                <div class="v1">
+                <div id="v1">
                     <div style="font-weight: 600;">v1.0</div>
                     <ul>
                         <li>This is the first version for the PlayerTube extension!</li>
@@ -409,7 +426,7 @@
 
             <div id="credits">
                 <div class="text">Built with stupidity by</div>
-                <a href="https://ktg5.online/"><img id="ktg5-logo" src="https://ktg5.online/img/logo-r1.png" alt="No angels." height="60"></a>
+                <a href="https://ktg5.online/"><img id="ktg5-logo" src="https://github.com/ktg5/ktg5.github.io/raw/main/html/img/logo-r1.png?raw=true" alt="No angels." height="60"></a>
             </div>
         </div>
     </body>
