@@ -235,6 +235,35 @@ body {
 }
 
 
+#yt-html5-menu .sub-options {
+    position: relative;
+    margin-bottom: 8px;
+    margin-left: 4px;
+    padding: 12px;
+    padding-left: 24px;
+    padding-right: 0;
+}
+
+#yt-html5-menu .sub-options:before,
+#yt-html5-menu .sub-options:after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.15);
+    top: 4px;
+    left: 0;
+    width: 2px;
+    height: 16px;
+}
+
+#yt-html5-menu .sub-options:after {
+    top: 12px;
+    left: 8px;
+    rotate: 90deg;
+}
+
+
 #yt-html5-menu .menu-copy-theme {
     background: #f48c8c;
     width: 180px;

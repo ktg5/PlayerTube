@@ -83,6 +83,9 @@ Here's some examples provided by your's truly:
 </div>
 You may edit these examples as much as you'd like, or use them as a template for your own theme!
 
+## Making a Language
+[Read the `lang/README.md` for more information](lang/README.md)
+
 ## How to work.
 ### Stable / Web-store builds.
 <a target="_blank" href="https://chrome.google.com/webstore/detail/playertube/clepldejdgjigblladmahdigbllohioe"><img src="img/chrome-install-button.png" width="100"></a> <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/playertube/"><img src="img/firefox-install-button.png" width="100"></a>

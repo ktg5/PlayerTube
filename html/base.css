@@ -41,6 +41,14 @@ body {
     color: black;
 }
 
+.selected kbd {
+    color: black;
+}
+
+.selected a {
+    color: #cd0b0b;
+}
+
 
 /* Content */
 #content {

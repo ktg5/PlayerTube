@@ -37,50 +37,19 @@ var extension = browser.extension;
 var runtime = browser.runtime;
 
 // Default config
-var def_pt_config = {
-    // Basic settings.
-    year: '2013',
-    showReleaseNotes: true,
-    alternateMode: false,
-    autoplayButton: false,
-    heatMapToggle: false,
-    fullyExtendBar: false,
-    fakeBarToggle: false,
-    toggleFadeOut: false,
-    endScreenToggle: true,
-    embedOtherVideos: false,
-    toggleWatermark: true,
-    toggleRoundedCorners: false,
-    togglePaidContent: false,
-    toggleInfoCards: true,
-    toggleSpinner: true,
-    toggleMoreVids: false,
-    toggleFSButtons: false,
-    toggleScrubberThumbs: false,
-    toggleLessSettings: false,
-    toggleAlterInfo: false,
-    customTheme: false,
-
-    // Only for custom themes.
-    controlsBack: null,
-    settingsBgColor: null,
-    progressBarColor: null,
-    progressBarBgColor: null,
-    volumeSliderBack: null,
-    scrubberIcon: null,
-    scrubberIconHover: null,
-    scrubberPosition: null,
-    scrubberSize: null,
-    scrubberHeight: null,
-    scrubberWidth: null,
-    scrubberTop: null,
-    scrubberLeft: null,
-};
+var def_pt_config;
 
 // Start (config stuff)
 start();
 function start() {
 	storage.get(['PTConfig'], async function(result) {
+        // Also get default config
+        await fetch(runtime.getURL('default-config.json')).then(async (d) => {
+            const json = await d.json();
+            def_pt_config = json;
+        });
+
+
 		if (result == undefined || Object.keys(result).length == 0) {
 			await storage.set({PTConfig: def_pt_config});
 			userConfig = await storage.get(['PTConfig']);

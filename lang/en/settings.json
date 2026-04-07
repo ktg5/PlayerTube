@@ -1,0 +1,159 @@
+{
+    "showReleaseNotes": {
+        "title": "Release notes popup",
+        "desc": "PlayerTube will make a new tab with the release notes page once the extension has been updated"
+    },
+    "lang": {
+        "title": "Change menus language",
+        "desc": "This will only change the language within this popup as of currently. If you'd like to add your own language, please read up on the \"Making a Language\" part of the README on the GitHub page!"
+    },
+    "year": {
+        "title": "Change year of player",
+        "desc": "Setting this will change the player UI to match the selected year"
+    },
+    "alternateMode": {
+        "title": "Toggle alternate mode",
+        "desc": "Some themes may have alternate themes, this one does! Alternate Mode will be disabled when custom themes are enabled."
+    },
+    "toggleRoundedCorners": {
+        "title": "Toggle rounded corners",
+        "desc": "Turns on or off the rounded corners around video"
+    },
+    "autoplayButton": {
+        "title": "Show the autoplay button",
+        "desc": "The autoplay button is located on the right side of controls. Allows users toggle whether another video should play automatically"
+    },
+    "heatMapToggle": {
+        "title": "Toggle the \"Heat Map\"",
+        "desc": "YouTube's Heat Map is displayed on top of the progress bar, showing where other viewers went to or replayed in the video"
+    },
+    "toggleScrubberThumbs": {
+        "title": "Toggle video preview when srubbing",
+        "desc": "When moving the srubber in the progress bar, a preview of the video where you're at will show above the progress bar"
+    },
+    "toggleSpinner": {
+        "title": "Show custom loading spinner",
+        "desc": "Turns on or off the loading spinner loaded in by PlayerTube"
+    },
+    "fullyExtendBar": {
+        "title": "Fully extend the progress bar's height at all times",
+        "desc": "When enabled, the progress bar will be at hover height no matter if you're hovering over the progress bar or not"
+    },
+    "fakeBarToggle": {
+        "title": "Toggle fake bar",
+        "desc": "When enabled, PlayerTube will make a fake progress bar at the bottom of a video to show where you're at without showing the controls"
+    },
+    "toggleMoreVids": {
+        "title": "Show the \"More Videos\" area in fullscreen",
+        "desc": "When enabled, using the mouse scroll-wheel will scroll up related videos & the player controls with it. This feature was introduced on & off since 2023, but later fully introduced with the Delhi player UI"
+    },
+    "embedOtherVideos": {
+        "title": "Toggle the \"Show Other Videos\" box in embeds",
+        "desc": "This option is different than the option above. When paused in a embedded video, a box with related videos will display"
+    },
+    "toggleLessSettings._self": {
+        "title": "Minify settings menu",
+        "desc": "When enabled, options below this will appear with what to disable in the player settings menu. Reopening this popup is required after enabling this"
+    },
+    "toggleLessSettings.stableVol": {
+        "title": "Stable Volume"
+    },
+    "toggleLessSettings.voiceBoost": {
+        "title": "Voice boost"
+    },
+    "toggleLessSettings.sleepTimer": {
+        "title": "Sleep timer"
+    },
+    "toggleLessSettings.ambientMode": {
+        "title": "Ambient mode"
+    },
+    "toggleLessSettings.autoDub": {
+        "title": "Audio track (auto dubbing)"
+    },
+    "toggleLessSettings.annotations": {
+        "title": "Annotations"
+    },
+    "toggleFSButtons": {
+        "title": "Toggle fullscreen buttons",
+        "desc": "These buttons are shown at the bottom right above the player controls. This feature was introduced with the Delhi player UI"
+    },
+    "toggleFadeOut": {
+        "title": "Fade out YouTube player controls",
+        "desc": "By default, PlayerTube moves the player controls down instead of fading them out"
+    },
+    "toggleWatermark": {
+        "title": "Toggle a YouTube channel's watermark",
+        "desc": "Channel watermarks are displayed at the bottom right of a video"
+    },
+    "togglePaidContent": {
+        "title": "Toggle the \"Paid Products\" or Sponsorship popups",
+        "desc": "If a video has sponsorships or paid products within the video details, popups at the top right (& left if in embeds) will often appear"
+    },
+    "toggleAlterInfo": {
+        "title": "Toggle the \"Altered or Synthetic Content\" popups",
+        "desc": "If a video has set \"Altered content\" to \"Yes\" via YouTube Studio, a popup will appear at the top left saying the video includes said content"
+    },
+    "toggleInfoCards": {
+        "title": "Toggle the info cards tab",
+        "desc": "When disabled, the button for a video's info cards will be removed"
+    },
+    "endScreenToggle": {
+        "title": "Toggle end screen cards",
+        "desc": "Disables all end screen cards (channels, videos, playlists, etc.)"
+    },
+    "customTheme": {
+        "title": "Custom Theming",
+        "desc": "You'll need to reopen the settings popup after enabling this"
+    },
+
+    "controlsBack": {
+        "title": "Color of the player's background"
+    },
+    "settingsBgColor": {
+        "title": "Color of the player's settings background"
+    },
+    "progressBarColor": {
+        "title": "Color of the progress bar"
+    },
+    "progressBarBgColor": {
+        "title": "Background color of the progress bar"
+    },
+    "volumeSliderBack": {
+        "title": "Color of the volume slider",
+        "desc": "If you want to use the exact same color as the progress bar for the volume slider, you don't need to change this value."
+    },
+    "scrubberIcon": {
+        "title": "Image of the scrubber"
+    },
+    "scrubberIconHover": {
+        "title": "Change the image of the scrubber when hovering",
+        "desc": "If you want to use the same image for the value above, you don't need to change this value."
+    },
+    "scrubberSize": {
+        "title": "Change the image size of the scrubber",
+        "desc": "It is recommended to change this if you change the Scrubber icon; start low (something like 12) then go up"
+    },
+    "scrubberHeight": {
+        "title": "Change the height of the scrubber",
+        "desc": "If you want to use the same width value on here, don't change this value."
+    },
+    "scrubberWidth": {
+        "title": "Change the width of the scrubber",
+        "desc": "If you want to use the same height value on here, don't change this value."
+    },
+    "scrubberTop": {
+        "title": "Move the scrubber down",
+        "desc": "Make value negative to move up"
+    },
+    "scrubberLeft": {
+        "title": "Move the scrubber right",
+        "desc": "Make value negative to move left"
+    },
+    "scrubberPosition": {
+        "title": "If needed, change the scrubber image position",
+        "desc": "Example: 10px (for x) 5px (for y). Note this does not change where the Scrubber will be moved to, you still have to play off of all the other sizing settings above."
+    },
+
+    "overwrite_button": "Apply Settings",
+    "nuke_all": "THE BIG NUKE BUTTON. (aka reset all settings) NO TURNING BACK WHEN THIS IS PRESSED."
+}

@@ -27,7 +27,7 @@
 #ytd-player .ytp-chrome-bottom .ytp-progress-bar-container:hover .ytp-scrubber-button,
 #ytd-player .ytp-chrome-bottom .ytp-scrubber-button:hover
 {
-    transform: scale(1);
+    transform: scale(1) !important;
 }
 
 #ytd-player .ytp-fullscreen .ytp-swatch-background-color.ytp-scrubber-button {

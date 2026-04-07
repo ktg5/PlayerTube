@@ -8,45 +8,10 @@ var extension = browser.extension;
 var runtime = browser.runtime;
 
 // Default config
-var def_pt_config = {
-    // Basic settings.
-    year: '2013',
-    showReleaseNotes: true,
-    alternateMode: false,
-    autoplayButton: false,
-    heatMapToggle: false,
-    fullyExtendBar: false,
-    fakeBarToggle: false,
-    toggleFadeOut: false,
-    endScreenToggle: true,
-    embedOtherVideos: false,
-    toggleWatermark: true,
-    toggleRoundedCorners: false,
-    togglePaidContent: false,
-    toggleInfoCards: true,
-    toggleSpinner: true,
-    toggleMoreVids: false,
-    toggleFSButtons: false,
-    toggleScrubberThumbs: false,
-    toggleLessSettings: false,
-    toggleAlterInfo: false,
-    customTheme: false,
+var def_pt_config;
 
-    // Only for custom themes.
-    controlsBack: null,
-    settingsBgColor: null,
-    progressBarColor: null,
-    progressBarBgColor: null,
-    volumeSliderBack: null,
-    scrubberIcon: null,
-    scrubberIconHover: null,
-    scrubberPosition: null,
-    scrubberSize: null,
-    scrubberHeight: null,
-    scrubberWidth: null,
-    scrubberTop: null,
-    scrubberLeft: null,
-};
+var userConfig;
+var langJson;
 
 // Init document
 document.head.insertAdjacentHTML(
@@ -59,44 +24,78 @@ document.head.insertAdjacentHTML(
 
 // Get config
 storage.get(['PTConfig'], async function(result) {
+    // Also get default config
+    await fetch(`${location.origin}/default-config.json`).then(async (d) => {
+        const json = await d.json();
+        def_pt_config = json;
+    });
+
+
     if (result.PTConfig == undefined) {
         storage.set({PTConfig: def_pt_config}, async function(newResult) {
             var newConfig = await storage.get(['PTConfig']);
-            var userConfig = newConfig.PTConfig;
+            userConfig = newConfig.PTConfig;
             start(userConfig);
         });
     } else {
-        var userConfig = result.PTConfig;
+        userConfig = result.PTConfig;
         start(userConfig);
     }
 });
+
+/**
+ * Get normal option values but also sub-options too
+ * @param {string} option 
+ * @param {boolean} [useDef] if true, pull info from the default config
+ * @returns { { parent: object, key: string } }
+ */
+function getSetting(option, useDef = false) {
+    const keys = option.split('.');
+    const last = keys.pop();
+    
+    const parent = keys.reduce((acc, key) => acc?.[key], useDef ? def_pt_config : userConfig);
+    return { parent, key: last };
+}
 
 /// Version
 var version = runtime.getManifest().version;
 
 async function start(userConfig) {
 
+    /// Set language if not set
+    if (!userConfig.lang) {
+        userConfig.lang = 'en';
+        await storage.set({PTConfig: userConfig});
+    }
+    /// Get language file
+    await fetch(`${location.origin}/lang/${userConfig.lang}/settings.json`).then(async (d) => {
+        const json = await d.json();
+        langJson = json;
+    });
+
     /// Update User DB
     async function changeUserDB(option, newValue, lightElement) {
+        const { parent, key } = getSetting(option);
+
         if (newValue == "") newValue = null;
         if (lightElement) {
             if (lightElement.children[0].classList.contains('true')) {
                 lightElement.children[0].classList.remove('true');
                 lightElement.children[0].classList.add('false');
-                userConfig[option] = false;
+                parent[key] = false;
                 await storage.set({PTConfig: userConfig});
             } else if (lightElement.children[0].classList.contains('false')) {
                 lightElement.children[0].classList.remove('false');
                 lightElement.children[0].classList.add('true');
-                userConfig[option] = true;
+                parent[key] = true;
                 await storage.set({PTConfig: userConfig});
             } else {
                 lightElement.children[0].classList.add('true');
-                userConfig[option] = true;
+                parent[key] = true;
                 await storage.set({PTConfig: userConfig});
             }
         } else {
-            userConfig[option] = newValue;
+            parent[key] = newValue;
             await storage.set({PTConfig: userConfig});
         }
         console.log(`PLAYERTUBE USER DATA CHANGED:`, await storage.get(['PTConfig']));
@@ -110,7 +109,25 @@ async function start(userConfig) {
     }
 
     /// Make options in menu
-    function makeMenuOption(type, option, desc, values, disableOpinions) {
+    function makeMenuOption(type, option, values, disableOpinions) {
+        const { parent, key } = getSetting(option);
+        const optionTxt = langJson[option];
+
+        function makeOptionNote() {
+            function escapeHTML(str) {
+                return str
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            if (optionTxt.desc) return `<span class="menu-option-note">${escapeHTML(optionTxt.desc)}</span>`;
+            else return '';
+        }
+
+
         switch (type) {
             case 'selection':
                 var disabledOutput = ``;
@@ -119,11 +136,12 @@ async function start(userConfig) {
                 }
                 return `
                 <div class="menu-option">
-                    <div class="menu-name">${desc}</div>
+                    <div class="menu-name">${optionTxt.title}</div>
                     <select class="menu-select menu-action" name="${option}" ${disabledOutput}>
                         ${values}
                     </select>
                 </div>
+                ${makeOptionNote()}
                 `
             case 'toggle':
                 var disabledOutput = ``;
@@ -132,11 +150,12 @@ async function start(userConfig) {
                 }
                 return `
                 <div class="menu-option">
-                    <div class="menu-name">${desc}</div>
+                    <div class="menu-name">${optionTxt.title}</div>
                     <button class="menu-toggle menu-action" name="${option}" ${disabledOutput}>
-                        <div class="light ${userConfig[option]}"></div>
+                        <div class="light ${parent[key]}"></div>
                     </button>
                 </div>
+                ${makeOptionNote()}
                 `
             case 'input':
                 var disabledOutput = ``;
@@ -146,63 +165,98 @@ async function start(userConfig) {
                 if (values == 'color') {
                     return `
                     <div class="menu-option">
-                        <div class="menu-name">${desc}</div>
+                        <div class="menu-name">${optionTxt.title}</div>
                         <div class="menu-option-color" style="position: absolute; right: 0;">
-                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${userConfig[option] ?? '#ffffff'}" ${disabledOutput}>
+                            <input type="text" data-coloris class="menu-color-picker menu-action" name="${option}" value="${parent[key] ?? '#ffffff'}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action'>
                                 <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
+                    ${makeOptionNote()}
                     `
                 } else if (values == 'text') {
                     return `
                     <div class="menu-option">
-                        <div class="menu-name">${desc}</div>
+                        <div class="menu-name">${optionTxt.title}</div>
                         <div style="position: absolute; right: 0;">
-                            <input type="text" class="menu-input menu-action" placeholder="view desc." name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
+                            <input type="text" class="menu-input menu-action" placeholder="view desc." name="${option}" value="${parent[key] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
+                    ${makeOptionNote()}
                     `
                 } else if (values == 'pxs') {
                     return `
                     <div class="menu-option">
-                        <div class="menu-name" style="max-width: 12em;">${desc}</div>
+                        <div class="menu-name" style="max-width: 12em;">${optionTxt.title}</div>
                         <div style="position: absolute; right: 0;">
-                            <input type="number" style="width: 4em;" class="menu-input menu-action" placeholder="0" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>px
+                            <input type="number" style="width: 4em;" class="menu-input menu-action" placeholder="0" name="${option}" value="${parent[key] ??  ''}" ${disabledOutput}>px
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
+                    ${makeOptionNote()}
                     `
                 } else if (values == 'url') {
                     return `
                     <div class="menu-option">
-                        <div class="menu-name">${desc} (Must be an <kbd>https</kbd> link!)</div>
+                        <div class="menu-name">${optionTxt.title} (Must be an <kbd>https</kbd> link!)</div>
                         <div>
-                            <input type="url" class="menu-input menu-action" placeholder="https://" name="${option}" value="${userConfig[option] ??  ''}" ${disabledOutput}>
+                            <input type="url" class="menu-input menu-action" placeholder="https://" name="${option}" value="${parent[key] ??  ''}" ${disabledOutput}>
                             <button class='menu-input-reset menu-action' style="width: 2em;">
                                 <img src="/img/reset.png" style="height: 1em;">
                             </button>
                         </div>
                     </div>
+                    ${makeOptionNote()}
                     `
                 }
         }
     }
+
+    /// Get lang options from lang/index.json
+    let langOptionsJson = [];
+    // Get base langs
+    var langOptions = () => {
+        let result = '';
+
+        return new Promise(async (resolve, reject) => {
+            await fetch(`${location.origin}/lang/index.json`).then(async (d) => {
+                const baseLangs = (await d.json())['_'];
+
+                // Get index file from each lang folder
+                baseLangs.forEach(async (lang) => {
+                    await fetch(`${location.origin}/lang/${lang}/index.json`).then(async (d) => {
+                        langOptionsJson.push({ lang: lang, data: await d.json() });
+
+                        // Create HTML options
+                        langOptionsJson.forEach(element => {
+                            if (element.lang == userConfig['lang']) {
+                                result += `<option value="${element.lang}" selected>${element.data.displayName}</option> `;
+                            } else {
+                                result += `<option value="${element.lang}">${element.data.displayName}</option> `;
+                            }
+                        });
+
+                        resolve(result);
+                    });
+                });
+            });
+        });
+    };
 
     /// Get year options for menu
     var years = [2015, 2013, 2012, 2010, 2006];
     var yearOptions = '';
     years.forEach(element => {
         if (element == userConfig['year']) {
-            yearOptions += `<option value="${element}" selected>${element}</option> `
+            yearOptions += `<option value="${element}" selected>${element}</option> `;
         } else {
-            yearOptions += `<option value="${element}">${element}</option> `
+            yearOptions += `<option value="${element}">${element}</option> `;
         }
     });
 
@@ -215,20 +269,15 @@ async function start(userConfig) {
         };
         var counted = 0;
         for (let element in userConfig) {
-            counted++
-            if (counted == count) {
-                if (typeof userConfig[element] !== 'string') {
-                    output += `\n "${element}": ${userConfig[element]}`
-                } else if (userConfig[element]) {
-                    output += `\n "${element}": "${userConfig[element]}"`
-                }
-            } else {
-                if (typeof userConfig[element] !== 'string') {
-                    output += `\n "${element}": ${userConfig[element]},`
-                } else if (userConfig[element]) {
-                    output += `\n "${element}": "${userConfig[element]}",`
-                }
-            }
+            const { parent, key } = getSetting(element);
+
+            counted++;
+
+            if (typeof parent[key] === 'object') output += `\n "${element}": ${JSON.stringify(parent[key])}`;
+            else if (typeof parent[key] !== 'string') output += `\n "${element}": ${parent[key]}`;
+            else if (parent[key]) output += `\n "${element}": "${parent[key]}"`;
+
+            if (counted !== count) output += ',';
         }
         output += '\n}'
         return output;
@@ -274,16 +323,18 @@ async function start(userConfig) {
             if (def_pt_config[element] === undefined) {
                 unknownCount++;
             } else {
-                userConfig[element] = jsonInput[element];
+                const { parent, key } = getSetting(element);
+
+                parent[key] = jsonInput[element];
                 completedCount++;
             }
         }
         storage.set({PTConfig: userConfig});
 
         // Finish
-        alert(`User config completed. ${completedCount} settings were written, ${unknownCount} settings were not written`);
         console.log(`overWriteUserConfig input:`, jsonInput);
         console.log(`overWriteUserConfig current config:`, userConfig);
+        alert(`User config completed. ${completedCount} settings were written, ${unknownCount} settings were not written`);
         return;
     }
 
@@ -315,62 +366,49 @@ async function start(userConfig) {
 
             <h3 class="spacer-top">General Settings</h3>
 
-            ${makeMenuOption('toggle', 'showReleaseNotes', 'Toggle Release Notes after reinstalling or updating PlayerTube')}
+            ${makeMenuOption('toggle', 'showReleaseNotes')}
 
-            ${makeMenuOption(`selection`, `year`, `Change year of Player`, yearOptions)}
+            ${makeMenuOption(`selection`, `lang`, await langOptions())}
+
+            ${makeMenuOption(`selection`, `year`, yearOptions)}
 
             <div id="menu-if-alt-mode"></div>
 
-            ${makeMenuOption('toggle', 'toggleRoundedCorners', 'Toggle rounded corners')}
-            <div class='menu-option-note'>Turns on or off the rounded corners around video</div>
+            ${makeMenuOption('toggle', 'toggleRoundedCorners')}
 
-            ${makeMenuOption(`toggle`, `autoplayButton`, `Show the <a href="https://www.youtube.com/howyoutubeworks/user-settings/autoplay/" target="_blank">autoplay button</a>`)}
-            <div class='menu-option-note'>The autoplay button is located on the right side of controls</div>
+            ${makeMenuOption(`toggle`, `autoplayButton`)}
 
-            ${makeMenuOption(`toggle`, `heatMapToggle`, `Toggle the <a href="https://twitter.com/TeamYouTube/status/1527024322359005189" target="_blank"><i>Heat Map</i></a>`)}
-            <div class='menu-option-note'>YouTube's Heat Map is displayed on top of the progress bar, showing where other viewers went to in the video</div>
+            ${makeMenuOption(`toggle`, `heatMapToggle`)}
 
-            ${makeMenuOption(`toggle`, `toggleScrubberThumbs`, `Toggle video preview when srubbing`)}
-            <div class='menu-option-note'>When moving the srubber in the progress bar, a preview of the video where you're at will show above the progress bar</div>
+            ${makeMenuOption(`toggle`, `toggleScrubberThumbs`)}
 
-            ${makeMenuOption(`toggle`, `toggleSpinner`, `Show custom loading spinner`)}
-            <div class='menu-option-note'>Turns on or off the loading spinner loaded in by PlayerTube</div>
+            ${makeMenuOption(`toggle`, `toggleSpinner`)}
 
-            ${makeMenuOption(`toggle`, `fullyExtendBar`, `Fully extend the progress bar's height at all times`)}
-            <div class='menu-option-note'>When enabled, the progress bar will be at hover height no matter if you're hovering over the progress bar or not</div>
+            ${makeMenuOption(`toggle`, `fullyExtendBar`)}
 
-            ${makeMenuOption(`toggle`, `fakeBarToggle`, `Toggle fake bar`)}
-            <div class='menu-option-note'>When enabled, PlayerTube will make a fake progress bar at the bottom of a video to show where you're at without showing the controls</div>
+            ${makeMenuOption(`toggle`, `fakeBarToggle`)}
 
-            ${makeMenuOption('toggle', 'toggleMoreVids', 'Show the <i>More Videos</i> area in fullscreen')}
-            <div class='menu-option-note'>When enabled, using the mouse scroll-wheel will scroll up related videos & the player controls with it. This feature was introduced on & off since 2023, but later fully introduced with the Delhi player UI</div>
+            ${makeMenuOption('toggle', 'toggleMoreVids')}
 
-            ${makeMenuOption('toggle', 'embedOtherVideos', 'Toggle the <i>Show Other Videos</i> box in embeds')}
-            <div class='menu-option-note'>This option is different than the option above. When paused <b>in a embedded video</b>, a box with related videos will display</div>
+            ${makeMenuOption('toggle', 'embedOtherVideos')}
 
-            ${makeMenuOption('toggle', 'toggleLessSettings', 'Minify settings menu')}
-            <div class='menu-option-note'>When enabled, fewer options in the player settings menu will appear</div>
+            ${makeMenuOption('toggle', 'toggleLessSettings._self')}
 
-            ${makeMenuOption('toggle', 'toggleFSButtons', 'Toggle fullscreen buttons')}
-            <div class='menu-option-note'>These buttons are shown at the bottom right above the player controls. This feature was introduced with the Delhi player UI</div>
+            <div id="menu-less-settings" class="sub-options" data-sub-option="toggleLessSettings"></div>
 
-            ${makeMenuOption(`toggle`, `toggleFadeOut`, `Fade out YouTube player controls`)}
-            <div class='menu-option-note'>By default, PlayerTube moves the player controls down instead of fading them out</div>
+            ${makeMenuOption('toggle', 'toggleFSButtons')}
 
-            ${makeMenuOption('toggle', 'toggleWatermark', 'Toggle a <a href="https://support.google.com/youtube/answer/10456525" target="_blank">YouTube channel\'s watermark</a>')}
-            <div class='menu-option-note'>Channel watermarks are displayed at the bottom right of a video</div>
+            ${makeMenuOption(`toggle`, `toggleFadeOut`)}
 
-            ${makeMenuOption('toggle', 'togglePaidContent', 'Toggle the <a href="https://support.google.com/youtube/answer/154235" target="_blank"><i>Paid Products</i> / <i>Sponsorships</i></a> popups')}
-            <div class='menu-option-note'>If a video has sponsorships or paid products within the video details, popups at the top right (& left if in embeds) will often appear</div>
+            ${makeMenuOption('toggle', 'toggleWatermark')}
 
-            ${makeMenuOption('toggle', 'toggleAlterInfo', 'Toggle the <a href="https://support.google.com/youtube/answer/14328491" target="_blank"><i>Altered or Synthetic Content</i></a> popups')}
-            <div class='menu-option-note'>If a video has set <i>Altered content</i> to "Yes" via YouTube Studio, a popup will appear at the top left saying the video includes said content</div>
+            ${makeMenuOption('toggle', 'togglePaidContent')}
 
-            ${makeMenuOption('toggle', 'toggleInfoCards', 'Toggle <a href="https://support.google.com/youtube/answer/6140493" target="_blank">info cards tab</a>')}
-            <div class='menu-option-note'>When disabled, the button for a video's info cards will be removed</div>
+            ${makeMenuOption('toggle', 'toggleAlterInfo')}
 
-            ${makeMenuOption('toggle', 'endScreenToggle', 'Toggle <a href="https://support.google.com/youtube/answer/6388789" target="_blank">end screen cards</a>')}
-            <div class='menu-option-note'>Disables all end screen cards (channels, videos, playlists, etc.)</div>
+            ${makeMenuOption('toggle', 'toggleInfoCards')}
+
+            ${makeMenuOption('toggle', 'endScreenToggle')}
 
             <h3 class="spacer-top">Custom Theme Settings</h3>
             <p>
@@ -383,7 +421,7 @@ async function start(userConfig) {
                 please check out this page on our ReadMe!</a>
             </p>
 
-            ${makeMenuOption('toggle', 'customTheme', 'Toggle Custom Theme', null, ['alternateMode'])}
+            ${makeMenuOption('toggle', 'customTheme', null, ['alternateMode'])}
 
             <div id='menu-custom-options'></div>
 
@@ -408,10 +446,32 @@ async function start(userConfig) {
             `afterbegin`,
             
             `
-            ${makeMenuOption(`toggle`, `alternateMode`, `Toggle Alternate Theme for your current theme`)}
-            <div class='menu-option-note'>Some themes may have alternate themes, this one does! <b>Alternate Mode will be disabled when custom themes are enabled.</b></div>
+            ${makeMenuOption(`toggle`, `alternateMode`)}
             `
         );
+    };
+
+    // Options for sub options
+    const subOptionDivs = document.querySelectorAll('.sub-options');
+    for (let i = 0; i < subOptionDivs.length; i++) {
+        const elmnt = subOptionDivs[i];
+
+        const dataSubOption = elmnt.getAttribute('data-sub-option');
+        if (
+            !userConfig[dataSubOption]
+            || userConfig[dataSubOption]._self !== true
+        ) continue;
+
+        const subOptions = getSetting(dataSubOption, true).parent[getSetting(dataSubOption, true).key];
+
+        for (const key in subOptions) {
+            if (!Object.hasOwn(subOptions, key)) continue;
+            if (key === '_self') continue;
+            
+            elmnt.insertAdjacentHTML('afterbegin', `
+                ${makeMenuOption('toggle', `toggleLessSettings.${key}`)}
+            `);
+        }
     };
 
     // Custom Themes Buttons
@@ -435,47 +495,34 @@ async function start(userConfig) {
                 <button class="menu-copy-theme spacer-top"><b>Copy Custom Theme Settings to Clipboard</b></button>
 
                 <b class="spacer-top">Base Color Settings</b>
-                ${makeMenuOption('input', 'controlsBack', 'Color of the player\'s background', 'color')}
+                ${makeMenuOption('input', 'controlsBack', 'color')}
 
-                ${makeMenuOption('input', 'settingsBgColor', 'Color of the player\'s settings background', 'color')}
+                ${makeMenuOption('input', 'settingsBgColor', 'color')}
 
-                ${makeMenuOption('input', 'progressBarColor', 'Color of the progress bar', 'color')}
+                ${makeMenuOption('input', 'progressBarColor', 'color')}
 
-                ${makeMenuOption('input', 'progressBarBgColor', 'Background color of the progress bar', 'color')}
+                ${makeMenuOption('input', 'progressBarBgColor', 'color')}
 
-                ${makeMenuOption('input', 'volumeSliderBack', 'Color of the volume slider', 'color')}
-                <div class='menu-option-note'>If you want to use the exact same color as the progress bar for the volume slider, you don't need to change this value.</div>
+                ${makeMenuOption('input', 'volumeSliderBack', 'color')}
 
                 <b class="spacer-top">Scrubber Base Settings</b>
-                ${makeMenuOption('input', 'scrubberIcon', 'Image of the scrubber', 'url')}
+                ${makeMenuOption('input', 'scrubberIcon', 'url')}
 
-                ${makeMenuOption('input', 'scrubberIconHover', 'Change the image of the scrubber <b>when hovering</b>', 'url')}
-                <div class='menu-option-note'>If you want to use the same image for the value above, you don't need to change this value.</div>
+                ${makeMenuOption('input', 'scrubberIconHover', 'url')}
 
                 <b class="spacer-top">Scrubber Size</b>
-                ${makeMenuOption('input', 'scrubberSize', 'Change the image size of the scrubber', 'pxs')}
-                <div class='menu-option-note'>It is recommended to change this if you change the Scrubber icon; start low (Something like <kbd>12</kbd>) then go up</div>
+                ${makeMenuOption('input', 'scrubberSize', 'pxs')}
 
-                ${makeMenuOption('input', 'scrubberHeight', 'Change the height of the scrubber', 'pxs')}
-                <div class='menu-option-note'>If you want to use the same width value on here, don't change this value.</div>
+                ${makeMenuOption('input', 'scrubberHeight', 'pxs')}
 
-                ${makeMenuOption('input', 'scrubberWidth', 'Change the width of the scrubber', 'pxs')}
-                <div class='menu-option-note'>If you want to use the same height value on here, don't change this value.</div>
+                ${makeMenuOption('input', 'scrubberWidth', 'pxs')}
 
                 <b class="spacer-top">Scrubber Position</b>
-                ${makeMenuOption('input', 'scrubberTop', 'Move the scrubber down (Make value negative to move up)', 'pxs')}
+                ${makeMenuOption('input', 'scrubberTop', 'pxs')}
 
-                ${makeMenuOption('input', 'scrubberLeft', 'Move the scrubber right (Make value negative to move left)', 'pxs')}
+                ${makeMenuOption('input', 'scrubberLeft', 'pxs')}
 
-                ${makeMenuOption('input', 'scrubberPosition', 'If needed, change the scrubber image position.', 'text')}
-                <div class='menu-option-note'>
-                    Example: <kbd>10px (for x) 5px (for y)</kbd>
-                    <br>
-                    Note this <b>does not</b> change where the
-                    Scrubber will be moved to, you still have to
-                    play off of all the other sizing settings
-                    above.
-                </div>
+                ${makeMenuOption('input', 'scrubberPosition', 'text')}
             </div>
             `
         );
