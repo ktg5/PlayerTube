@@ -236,12 +236,17 @@ body {
 
 
 #yt-html5-menu .sub-options {
+    display: none;
     position: relative;
     margin-bottom: 8px;
     margin-left: 4px;
     padding: 12px;
     padding-left: 24px;
     padding-right: 0;
+}
+
+#yt-html5-menu .sub-options[active] {
+    display: block;
 }
 
 #yt-html5-menu .sub-options:before,

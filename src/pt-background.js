@@ -7,6 +7,10 @@ var runtime = browser.runtime;
 runtime.onInstalled.addListener(reason => {
 	storage.get(['PTConfig'], function(result) {
 		var userConfig = result.PTConfig;
+		if (!userConfig) return browser.tabs.create({
+			url: `./html/install.html`
+		});
+
 		// Check to see if user would like to get release notes
 		if (userConfig.showReleaseNotes !== false) {
 			// Check if previous version is not equal to current version
@@ -14,11 +18,6 @@ runtime.onInstalled.addListener(reason => {
 				// Make sure that only these specific reasons can create tabs
 				switch (reason.reason) {
 					case 'install':
-						browser.tabs.create({
-							url: `./html/${reason.reason}.html`
-						});
-					break;
-
 					case 'update':
 						browser.tabs.create({
 							url: `./html/${reason.reason}.html`

@@ -1,3 +1,13 @@
+var styles3 = [
+    'background: linear-gradient(#06d316, #075702)'
+    , 'border: 5px solid rgb(255 255 255 / 10%)'
+    , 'color: white'
+    , 'display: block'
+    , 'text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3)'
+    , 'box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
+].join(';');
+
+
 // Shortcuts
 var browser = browser;
 if (navigator.userAgent.includes("Chrome")) { 
@@ -7,11 +17,13 @@ var storage = browser.storage.sync;
 var extension = browser.extension;
 var runtime = browser.runtime;
 
+
 // Default config
 var def_pt_config;
 
 var userConfig;
 var langJson;
+
 
 // Init document
 document.head.insertAdjacentHTML(
@@ -21,6 +33,7 @@ document.head.insertAdjacentHTML(
     <div id="content"></div>
     `
 )
+
 
 // Get config
 storage.get(['PTConfig'], async function(result) {
@@ -43,6 +56,7 @@ storage.get(['PTConfig'], async function(result) {
     }
 });
 
+
 /**
  * Get normal option values but also sub-options too
  * @param {string} option 
@@ -57,10 +71,13 @@ function getSetting(option, useDef = false) {
     return { parent, key: last };
 }
 
+
 /// Version
 var version = runtime.getManifest().version;
 
 async function start(userConfig) {
+
+    console.log(`%cPLAYERTUBE USER DATA:`, styles3, userConfig);
 
     /// Set language if not set
     if (!userConfig.lang) {
@@ -462,6 +479,7 @@ async function start(userConfig) {
             || userConfig[dataSubOption]._self !== true
         ) continue;
 
+        elmnt.setAttribute('active', '');
         const subOptions = getSetting(dataSubOption, true).parent[getSetting(dataSubOption, true).key];
 
         for (const key in subOptions) {
