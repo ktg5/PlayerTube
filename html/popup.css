@@ -35,6 +35,22 @@ body {
 }
 
 
+#error-log {
+    --margin-size: 10px;
+    
+    display: none;
+    margin: var(--margin-size);
+    width: calc(100vw - (var(--margin-size) * 2));
+    height: calc(50vh - (var(--margin-size) * 2));
+    z-index: 1000;
+}
+
+#error-log textarea {
+    width: 100%;
+    height: 100%;
+}
+
+
 #yt-html5-menu-button {
     margin-right: 8px;
     margin-top: 4px;

@@ -404,6 +404,7 @@ function enableCustomTheme() {
             document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-custom-theme" type="text/css">${outputCssCustomTheme}</style>`);
 
             didCustomTheme = true;
+            resolve();
         }
     });
 }
