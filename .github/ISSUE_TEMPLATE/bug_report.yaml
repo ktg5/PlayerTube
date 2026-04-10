@@ -1,7 +1,7 @@
 name: Bug Report
 description: Create a report to help the extension improve.
 title: "[ Bug ] (Title)"
-labels: bug
+labels: [bug]
 
 body:
   - id: problem
@@ -30,7 +30,7 @@ body:
   - id: reproduce
     type: textarea
     attributes:
-      label: Steps to reproduce the behavior:
+      label: Steps to reproduce the behavior
       description: A step-by-step process of reproducing said issue.
     validations:
       required: true
@@ -38,7 +38,7 @@ body:
   - id: config
     type: textarea
     attributes:
-      label: PlayerTube settings:
+      label: PlayerTube settings
       description: Can be found under "Import, Copy, or Reset Settings". This will be automatically formatted into code, so no need for backticks.
       render: json
     validations:

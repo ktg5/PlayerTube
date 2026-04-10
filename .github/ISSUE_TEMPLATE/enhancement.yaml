@@ -1,7 +1,7 @@
 name: Enhancement / Feature request
 description: Request for a feature to include with the extension.
 title: "[ Feature Request ] (Title)"
-labels: enhancement
+labels: [enhancement]
 
 body:
   - id: enhancement

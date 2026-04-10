@@ -1,7 +1,7 @@
 name: Issues with other Extensions (3rd-Party Bug)
 description: Create a report that has to do with another extension.
 title: "[ 3rd-Party Bug ] (Title)"
-labels: 3rd-party, bug
+labels: [3rd-party, bug]
 
 body:
   - id: problem
@@ -11,12 +11,14 @@ body:
       description: A brief description of the issue you're currently experiencing.
     validations:
       required: true
+      
   - id: screenshots
     type: textarea
     attributes:
       label: If applicable, add screenshots to help explain your problem.
     validations:
       required: true
+
   - id: script-or-extension
     type: textarea
     attributes:
@@ -24,6 +26,7 @@ body:
       description: Obviously very important. If it's multiple, of course, list 'em.
     validations:
       required: true
+
   - id: expected-behavior
     type: textarea
     attributes:
@@ -31,21 +34,24 @@ body:
       description: A brief description of what PlayerTube needs to be doing instead of the issue at hand.
     validations:
       required: true
+
   - id: reproduce
     type: textarea
     attributes:
-      label: Steps to reproduce the behavior:
+      label: Steps to reproduce the behavior
       description: A step-by-step process of reproducing said issue.
     validations:
       required: true
+
   - id: config
     type: textarea
     attributes:
-      label: PlayerTube settings:
+      label: PlayerTube settings
       description: Can be found under "Import, Copy, or Reset Settings". This will be automatically formatted into code, so no need for backticks.
-      render: shell
+      render: json
     validations:
       required: true
+
   - id: browser-info
     type: textarea
     attributes:
