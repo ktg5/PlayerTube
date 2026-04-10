@@ -41,7 +41,7 @@ var CSSPatches = `
 document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-resize-patches" type="text/css">${CSSPatches}</style>`)
 
 // Heartbeat
-var checkBar = setInterval(() => {
+var checkBar = setInterval(async () => {
     // Actual check
     if (
         document.querySelector('.html5-video-player')
@@ -53,17 +53,19 @@ var checkBar = setInterval(() => {
         // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
         const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
         var progressBarWidth = 0;
-        if (allChapterHovers.length > 1) progressBarWidth++;
         allChapterHovers.forEach((elmnt) => progressBarWidth = progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', '')));
         // Actual width
-        const videoWidth = Number(getVideoWidth());
+        const videoWidth = Number(getVideoWidth()) - (await getOffset());
 
         // Debug detection
         // console.log('resize debug detection (player):', progressBarWidth, pastWidth);
         // console.log('resize debug detection (video):', videoWidth, pastVideoWidth);
         // Detection... v2.1...
         if (
-            progressBarWidth !== pastWidth
+            (
+                progressBarWidth !== pastWidth
+                && (progressBarWidth + 1) !== pastWidth
+            )
             || videoWidth !== pastVideoWidth
             || (
                 progressBarWidth !== videoWidth
@@ -94,6 +96,10 @@ function getVideoWidth() {
     return document.querySelector('.html5-video-player').clientWidth;
 }
 
+/**
+ * @param {string} year 
+ * @returns {Promise<Number>}
+ */
 function getOffset(year) {
     return new Promise((resolve, reject) => {
         switch (year) {

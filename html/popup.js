@@ -631,7 +631,7 @@ async function start(userConfig) {
             switch (element.classList[0]) {
                 case 'menu-select':
                     element.addEventListener('click', async () => {
-                        changeUserDB(element.nam, element.value);
+                        changeUserDB(element.name, element.value);
                         disableAria(element);
                     });
                 break;
