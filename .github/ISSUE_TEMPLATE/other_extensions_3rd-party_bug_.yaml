@@ -11,14 +11,12 @@ body:
       description: A brief description of the issue you're currently experiencing.
     validations:
       required: true
-
   - id: screenshots
     type: textarea
     attributes:
       label: If applicable, add screenshots to help explain your problem.
     validations:
       required: true
-
   - id: script-or-extension
     type: textarea
     attributes:
@@ -26,7 +24,6 @@ body:
       description: Obviously very important. If it's multiple, of course, list 'em.
     validations:
       required: true
-
   - id: expected-behavior
     type: textarea
     attributes:
@@ -34,7 +31,6 @@ body:
       description: A brief description of what PlayerTube needs to be doing instead of the issue at hand.
     validations:
       required: true
-
   - id: reproduce
     type: textarea
     attributes:
@@ -42,7 +38,6 @@ body:
       description: A step-by-step process of reproducing said issue.
     validations:
       required: true
-
   - id: config
     type: textarea
     attributes:
@@ -51,7 +46,6 @@ body:
       render: shell
     validations:
       required: true
-
   - id: browser-info
     type: textarea
     attributes:
