@@ -571,6 +571,19 @@ function applyUserSettings() {
         `
     } if (userConfig.toggleLessSettings._self === true) {
         const settingsMenuClass = '.ytp-popup.ytp-settings-menu';
+        const cssRootProp = '--pt-setting-height';
+        let firstTime = false;
+
+        // css stuffs
+        configCSSOutput += `
+/* LESS SETTINGS CSS STUFF */
+#ytd-player ${settingsMenuClass} .ytp-panel .ytp-panel-menu {
+    height: var(${cssRootProp}) !important;
+}
+        `;
+
+
+        // js stuffs
         // id menu options by SVG LMAOOO
         const svgPaths = {
             stableVol: 'd="M12 .99C5.92 .99 1 5.92 1 11.99C1 18.07 5.92 22.99 12 22.99C18.07 22.99 23 18.07 23 11.99C23 5.92 18.07 .99 12 .99ZM12 2.99C14.38 2.99 16.67 3.94 18.36 5.63C20.05 7.32 21 9.61 21 11.99C21 14.38 20.05 16.67 18.36 18.36C16.67 20.05 14.38 20.99 12 20.99C9.61 20.99 7.32 20.05 5.63 18.36C3.94 16.67 3 14.38 3 11.99C3 9.61 3.94 7.32 5.63 5.63C7.32 3.94 9.61 2.99 12 2.99ZM14 6.00C13.73 6.00 13.48 6.10 13.29 6.29C13.10 6.48 13 6.73 13 7.00V17.00C13 17.26 13.10 17.52 13.29 17.70C13.48 17.89 13.73 18.00 14 18.00C14.26 18.00 14.51 17.89 14.70 17.70C14.89 17.52 15 17.26 15 17.00V7.00C15 6.73 14.89 6.48 14.70 6.29C14.51 6.10 14.26 6.00 14 6.00ZM10 8.00C9.73 8.00 9.48 8.10 9.29 8.29C9.10 8.48 9 8.73 9 9.00V15.00C9 15.26 9.10 15.52 9.29 15.70C9.48 15.89 9.73 16.00 10 16.00C10.26 16.00 10.51 15.89 10.70 15.70C10.89 15.52 11 15.26 11 15.00V9.00C11 8.73 10.89 8.48 10.70 8.29C10.51 8.10 10.26 8.00 10 8.00ZM18 9.00C17.73 9.00 17.48 9.10 17.29 9.29C17.10 9.48 17 9.73 17 10.00V14.00C17 14.26 17.10 14.52 17.29 14.70C17.48 14.89 17.73 15.00 18 15.00C18.26 15.00 18.51 14.89 18.70 14.70C18.89 14.52 19 14.26 19 14.00V10.00C19 9.73 18.89 9.48 18.70 9.29C18.51 9.10 18.26 9.00 18 9.00ZM6 10.00C5.73 10.00 5.48 10.10 5.29 10.29C5.10 10.48 5 10.73 5 11.00V13.00C5 13.26 5.10 13.52 5.29 13.70C5.48 13.89 5.73 14.00 6 14.00C6.26 14.00 6.51 13.89 6.70 13.70C6.89 13.52 7 13.26 7 13.00V11.00C7 10.73 6.89 10.48 6.70 10.29C6.51 10.10 6.26 10.00 6 10.00Z"',
@@ -586,6 +599,7 @@ function applyUserSettings() {
             settingsMenuObs.disconnect();
 
             const settingsMenuDiv = document.querySelector(settingsMenuClass);
+            let targetPanelDiv;
 
             // manually set display none for each menuitem
             let onMainPage = false;
@@ -599,36 +613,33 @@ function applyUserSettings() {
                 
                 const svgPathDiv = document.querySelector(`[${svgPath}]`);
                 if (svgPathDiv) {
-                    // check if svg is in the animation panel or not
-                    const animatePanel = settingsMenuDiv.querySelector(".ytp-panel-animate-back");
-                    if (
-                        animatePanel
-                        && animatePanel.contains(svgPathDiv)
-                    ) return;
-
                     const optionDiv = svgPathDiv.parentElement.parentElement.parentElement;
                     if (optionDiv) {
                         optionDiv.style.display = 'none';
-                        if (onMainPage === false) onMainPage = true;
+                        if (targetPanelDiv === undefined) targetPanelDiv = optionDiv.parentElement.parentElement;
                     }
                 }
             }
 
             // change page height
-            if (onMainPage === true) {
+            if (targetPanelDiv !== undefined) {
                 let miniPanelHeight = 0;
 
                 // get menu panel height from the amount of items shown
-                const allMenuItems = settingsMenuDiv.querySelectorAll('.ytp-panel .ytp-menuitem');
+                const allMenuItems = targetPanelDiv.querySelectorAll('.ytp-menuitem');
                 allMenuItems.forEach((menuItem) => {
                     if (menuItem.style.display !== 'none') miniPanelHeight += 48;
                 });
 
-                console.log(miniPanelHeight);
-                settingsMenuDiv.style.height = miniPanelHeight;
-                settingsMenuDiv.querySelector(`.ytp-panel`).style.height = miniPanelHeight;
-                settingsMenuDiv.querySelector(`.ytp-panel .ytp-panel-menu`).style.height = miniPanelHeight;
-            }
+                document.documentElement.style.setProperty(cssRootProp, `${miniPanelHeight}px`);
+
+                if (firstTime === false) {
+                    settingsMenuDiv.style.height = `${miniPanelHeight}px`;
+                    settingsMenuDiv.querySelector('.ytp-panel').style.height = `${miniPanelHeight}px`;
+                    firstTime = true;
+                }
+            } else document.documentElement.style.removeProperty(cssRootProp);
+            console.log(document.documentElement.style.getPropertyValue(cssRootProp));
 
             // start observering again
             startSettingsMenuObs();
@@ -641,12 +652,16 @@ function applyUserSettings() {
         };
 
         function startSettingsMenuObs() {
+            console.log('start obs');
             return settingsMenuObs.observe(document.querySelector(settingsMenuClass), settingsMenuObsConf);
         }
         setTimeout(startSettingsMenuObs, 500);
     }
+
+
     // output css
     document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
+
 
     // Import 3rd-party CSS
     var thirdPartyCSS = runtime.getURL(`css/3rd-party-style.css`);

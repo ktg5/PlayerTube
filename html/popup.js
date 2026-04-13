@@ -88,6 +88,7 @@ function getSetting(option, useDef = false) {
 
         if (
             parent === undefined
+            || typeof parent !== "object"
             || last === undefined
         ) throw new Error(`getSetting(): could not get "parent" or "last". data: ${JSON.stringify({
             parent: parent === undefined ? "undefined" : parent,
