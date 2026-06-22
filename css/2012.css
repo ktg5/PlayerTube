@@ -482,6 +482,7 @@
 .ytp-fullscreen .ytp-volume-panel .ytp-volume-slider-handle {
 	border-radius: 0px !important;
 	margin-top: 0 !important;
+	margin-left: 23px;
 	height: 14px !important;
 	width: 5px !important;
 	position: absolute;

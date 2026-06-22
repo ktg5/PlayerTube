@@ -370,8 +370,8 @@
     top: 2px;
 }
 
-.ytp-fullscreen .ytp-volume-slider-handle::before {
-    left: -96px;
+.ytp-fullscreen .ytp-volume-panel .ytp-volume-slider-handle {
+    margin-left: 31px;
 }
 
 /* VOLUME BUTTON */
