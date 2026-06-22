@@ -716,6 +716,10 @@ function applyUserSettings() {
 // Custom buttons
 // Watch later
 function watchLaterButtonAdd() {
+    // Make sure the button doesn't already exist before continuing
+    if (document.querySelector('.ytp-button playertube-watchlater')) return;
+
+
     // Make button
     var subtitlesButton = document.querySelector(`.ytp-subtitles-button.ytp-button`);
     // Need to make a interval because the subtitle button appears whenever
@@ -753,8 +757,6 @@ function watchLaterButtonAdd() {
 
             // Stop interval so that we don't add any extra listeners or something else
             clearInterval(tempInterval);
-        } else {
-
         }
     }, 1000);
 }
