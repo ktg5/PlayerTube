@@ -53,9 +53,15 @@ var checkBar = setInterval(async () => {
         // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
         const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
         var progressBarWidth = 0;
-        allChapterHovers.forEach((elmnt) => progressBarWidth = progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', '')));
+        const offset = await getOffset(userConfig.year);
+        allChapterHovers.forEach(async (elmnt) => {
+            // another debug
+            // console.log(elmnt.clientWidth);
+            // console.log(offset);
+            progressBarWidth = (progressBarWidth + elmnt.clientWidth + Number(elmnt.style.marginRight.replace('px', ''))) - offset;
+        });
         // Actual width
-        const videoWidth = Number(getVideoWidth()) - (await getOffset());
+        const videoWidth = getVideoWidth() - getVidOffset();
 
         // Debug detection
         // console.log('resize debug detection (player):', progressBarWidth, pastWidth);
@@ -124,6 +130,20 @@ function getOffset(year) {
     });
 }
 
+/**
+ * works in the same way as `getOffset()`, but returns different values for detecting whether the video or progress bar is not the correct width
+ * 
+ * right now it only returns `24`--i know--but for future themes i guess lel
+ * @param {string} year 
+ */
+function getVidOffset(year) {
+    switch (year) {
+        default:
+            return 24;
+        break;
+    }
+}
+
 // Get fixed width for user's theme
 async function getFixedWidth() {
     // Get actual current player width
@@ -153,10 +173,10 @@ async function fixBar() {
 
     // Set width that needs to be set
     const width = playerWidth;
-    const height = document.getElementById('movie_player').clientHeight;
+    const height = document.querySelector('.html5-video-player').clientHeight;
 
     // Use YouTube function to change width
-    document.getElementById('movie_player').setInternalSize(width, height);
+    document.querySelector('.html5-video-player').setInternalSize(width, height);
     document.querySelector('.ytp-progress-bar-container').style.width = `${width - 24}px`;
     console.log(`%cPlayerTube resize script: Successfully changed player size!`, styles2, {"width": width, "height": height})
 }

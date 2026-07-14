@@ -451,14 +451,14 @@ function applyUserSettings() {
     } if (userConfig.toggleRoundedCorners !== true) {
         configCSSOutput += `
 /* ROUNDED CORNERS (disabled / not set) */
-#ytd-player .ytd-watch-flexy {
+ytd-player .ytd-watch-flexy {
     border-radius: 0 !important;
 }
         `
     } else if (userConfig.toggleRoundedCorners === true) {
         configCSSOutput += `
 /* ROUNDED CORNERS (enabled) */
-#ytd-player .ytd-watch-flexy {
+ytd-player .ytd-watch-flexy {
     border-radius: 12px !important;
 }
         `
@@ -479,31 +479,37 @@ function applyUserSettings() {
     } if (userConfig.fullyExtendBar === true) {
         configCSSOutput += `
 /* FULLY EXTEND PROGRESS BAR (enabled) */
-#ytd-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
+ytd-player .html5-video-player .ytp-chrome-bottom .ytp-progress-bar-container .ytp-progress-bar {
     height: var(--pt-progress-bar-full-height) !important;
     margin-bottom: 1px !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
+ytd-player .ytp-chrome-bottom .ytp-progress-bar .ytp-progress-list {
     transform: scaleY(1) !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
+ytd-player .ytp-chrome-bottom .ytp-progress-bar .ytp-scrubber-container .ytp-scrubber-button {
     transform: scale(1) !important;
 }
 
-.ytp-chrome-bottom .ytp-progress-bar:after {
+ytd-player .ytp-chrome-bottom .ytp-progress-bar:after {
     transform: scale(1) !important;
 }
 
 /* 3rd-party stuff for same setting */
-.ytp-autohide #previewbar {
+ytd-player .ytp-autohide #previewbar {
     transform: scaleY(0.5);
     top: -8px;
 }
         `
 
-        document.querySelector('#ytd-player').setAttribute('pt-force-extend', true);
+        let ytdPlayer = document.querySelector('ytd-player');
+        const tempInt = setInterval(() => {
+            if (ytdPlayer !== null) {
+                ytdPlayer.setAttribute('pt-force-extend', true);
+                clearInterval(tempInt);
+            } else ytdPlayer = document.querySelector('ytd-player');
+        }, 100);
 
         if (userConfig.year === '2010') {
             configCSSOutput += `
@@ -515,7 +521,7 @@ function applyUserSettings() {
     } if (userConfig.toggleFadeOut === true) {
         configCSSOutput += `
 /* TOGGLE FADE OUT (enabled) */
-#ytd-player #container .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, #ytd-player .ytp-chrome-bottom[aria-hidden=true] {
+ytd-player #container .ytp-autohide:not(.ytp-watch-controls):not(.paused-mode) .ytp-chrome-bottom, ytd-player .ytp-chrome-bottom[aria-hidden=true] {
     opacity: 0 !important;
     bottom: 0 !important;
 }
@@ -531,7 +537,7 @@ function applyUserSettings() {
     } if (userConfig.toggleMoreVids !== true) {
         configCSSOutput += `
 /* TOGGLE MORE VIDEOS FEATURE (disabled) */
-#ytd-player {
+ytd-player {
     --ytp-grid-scroll-percentage: 0 !important;
 }
 
@@ -539,18 +545,18 @@ function applyUserSettings() {
     display: none !important;
 }
 
-#ytd-player .ytp-gradient-bottom {
+ytd-player .ytp-gradient-bottom {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==) !important;
     background-position-y: bottom !important;
 }
 
-#ytd-player .ytp-delhi-modern:not(.ytp-disable-bottom-gradient) .ytp-gradient-bottom,
+ytd-player .ytp-delhi-modern:not(.ytp-disable-bottom-gradient) .ytp-gradient-bottom,
 .ytp-delhi-modern.ytp-fullscreen-grid-active .ytp-gradient-bottom
 {
     height: 64px;
 }
 
-#ytd-player .ytp-delhi-modern.ytp-fullscreen-grid-active:not(#ytd-player .ended-mode):not(.ytp-grid-scrolling) .ytp-chrome-bottom {
+ytd-player .ytp-delhi-modern.ytp-fullscreen-grid-active:not(ytd-player .ended-mode):not(.ytp-grid-scrolling) .ytp-chrome-bottom {
     display: inherit;
     pointer-events: all;
 }
@@ -558,14 +564,14 @@ function applyUserSettings() {
     } if (userConfig.toggleFSButtons !== true) {
         configCSSOutput += `
 /* TOGGLE FULLSCREEN BUTTONS (disabled) */
-#ytd-player .ytp-fullscreen.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
+ytd-player .ytp-fullscreen.ytp-fullscreen-grid-peeking .ytp-fullscreen-quick-actions {
     display: none;
 }
         `
     } if (userConfig.toggleScrubberThumbs !== true) {
         configCSSOutput += `
 /* TOGGLE THUMBNAIL PREVIEWS WHEN SCRUBBING (disabled) */
-#ytd-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
+ytd-player .ytp-tooltip.ytp-preview .ytp-tooltip-bg {
     opacity: 0;
 }
         `
@@ -577,7 +583,7 @@ function applyUserSettings() {
         // css stuffs
         configCSSOutput += `
 /* LESS SETTINGS CSS STUFF */
-#ytd-player ${settingsMenuClass} .ytp-panel .ytp-panel-menu {
+ytd-player ${settingsMenuClass} .ytp-panel .ytp-panel-menu {
     height: var(${cssRootProp}) !important;
 }
         `;

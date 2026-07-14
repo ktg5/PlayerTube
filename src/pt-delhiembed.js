@@ -6,7 +6,7 @@
  * 
  * If you're interesting the entirely bringing back the old UI, look at the
  * `pt-delhiembed-alt.js` script. I've already made a proof of concept that simply
- * pastes a string with the older UI HTML into the already existing '#ytd-player'
+ * pastes a string with the older UI HTML into the already existing 'ytd-player'
  * element--since it's still there in the new embed UI.
  * 
  * If YouTube merges this to the main page, I'm archiving this extension. Deadass.

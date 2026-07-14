@@ -3,7 +3,7 @@
  * is called, "delhi".
  */
 
-#ytd-player .ytp-chrome-bottom {
+ytd-player .ytp-chrome-bottom {
     width: 100% !important;
     height: auto;
     left: 0 !important;
@@ -41,7 +41,7 @@
     border-radius: 0 !important;
 }
 
-#ytd-player .ytp-chrome-bottom .ytp-progress-list {
+ytd-player .ytp-chrome-bottom .ytp-progress-list {
     border-radius: 0 !important;
 }
 
@@ -96,7 +96,7 @@
     margin: auto;
 }
 
-#ytd-player .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls {
+ytd-player .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls {
     padding: 0;
 }
 

@@ -18,7 +18,7 @@
 
 /* BUTTONS BASE */
 
-#ytd-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
+ytd-player .ytp-chrome-bottom .ytp-chrome-controls .ytp-button {
     border: solid 1px lightgray;
     background: var(--pt-button-gradient) !important;
 }
