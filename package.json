@@ -19,12 +19,8 @@
   ],
   "author": "ktg5",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ktg5/PlayerTube/issues"
-  },
-  "homepage": "https://github.com/ktg5/PlayerTube#readme",
   "dependencies": {
-    "adm-zip": "^0.5.10",
+    "adm-zip": "^0.6.0",
     "fs-extra": "^11.1.1"
   },
   "devDependencies": {
