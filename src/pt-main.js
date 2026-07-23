@@ -1,4 +1,8 @@
 // hi this is playertube...
+
+/// <reference path="pt-setup.js" />
+
+
 // Vars
 var currentPath = window.location.href;
 var progressbar = document.getElementsByClassName('ytp-progress-bar')[0];

@@ -1,10 +1,14 @@
 /**
- * YouTube's new embed ui uses a entirely new HTML structure, meaning any of the changes
+ * YouTube's new embed UI uses a entirely new HTML structure, meaning any of the changes
  * PlayerTube makes already can not be used with this new UI, which is why this script
  * exists. What is does is move elements around to try to make the new UI look like the
  * it's older self. It's a bit hacky, but it works for the moment.
  * 
- * If you're interesting the entirely bringing back the old UI, look at the
+ * Also, highly expect that the new UI was fully AI-generated, as there's a lot of DOM
+ * structure, CSS inconsistencies & just general nooby HTML/scripting mistakes all
+ * around the place.
+ * 
+ * If you're interested the entirely bringing back the old UI, look at the
  * `pt-delhiembed-alt.js` script. I've already made a proof of concept that simply
  * pastes a string with the older UI HTML into the already existing 'ytd-player'
  * element--since it's still there in the new embed UI.
@@ -16,6 +20,8 @@
  * 
  * -ktg5 2026
  */
+
+/// <reference path="pt-setup.js" />
 
 
 // Shortcuts
@@ -82,31 +88,39 @@ window.addEventListener('load', () => {
 
 
     // config stuff
-    let configCSSOutput = '/* hi this is the custom settings you set lolz */';
-    if (userConfig.embedOtherVideos !== true) {
-        configCSSOutput += `
+    const configFuncInit = setInterval(() => {
+        if (userConfig) {
+            let configCSSOutput = '/* hi this is the custom settings you set lolz */';
+            if (userConfig.embedOtherVideos !== true) {
+                configCSSOutput += `
 
 .ytmFullscreenRelatedVideosEntryPointViewModelHost {
     display: none !important;
 }
-        `;
-    } if (userConfig.togglePaidContent !== true) {
-        configCSSOutput += `
+                `;
+            } if (userConfig.togglePaidContent !== true) {
+                configCSSOutput += `
 
 ytm-paid-content-overlay-renderer {
     display: none !important;
 }
-        `;
-    } if (userConfig.toggleAlterInfo !== true) {
-        configCSSOutput += `
+                `;
+            } if (userConfig.toggleAlterInfo !== true) {
+                configCSSOutput += `
 
 ytm-embeds-info-panel-renderer {
     display: none !important;
 }
-        `;
-    }
-    /// make css div with config changes
-    document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
+                `;
+            }
+            /// make css div with config changes
+            document.body.insertAdjacentHTML('afterbegin', `<style id="playertube-css" class="playertube-toggles" type="text/css">${configCSSOutput}</style>`);
+
+
+            // end
+            clearInterval(configFuncInit);
+        }
+    }, 100);
 
 
     // custom moving stuffs
@@ -137,4 +151,17 @@ ytm-embeds-info-panel-renderer {
             ctrlsInsert.insertAdjacentElement('afterend', document.querySelector('player-time-display'));
         } else reInitIntReqs();
     }, 500);
+
+
+    /**
+     * Google, FIX YOUR SHIT
+     * 
+     * the fact I got a GitHub issue about fixing YOUR OWN CODE--no hate to the author
+     * of said issue page--genuinely surprises me. if you need a web dev--which you're
+     * probably in the process of kicking out & replacing with AI, my contact email
+     * is on my YouTube page.
+     */
+    // fix "ytmVideoInfoChannelTitle" href in case we're on "youtube-nocookie.com"
+    const infoChannelTitle = document.querySelector('.ytmVideoInfoChannelTitle');
+    infoChannelTitle.href = infoChannelTitle.href.replace('youtube-nocookie.com', 'youtube.com');
 });

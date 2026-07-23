@@ -40,6 +40,8 @@ var runtime = browser.runtime;
 var def_pt_config;
 
 // Start (config stuff)
+/** @type {import('../default-config.json')} */
+var userConfig = {};
 start();
 function start() {
 	storage.get(['PTConfig'], async function(result) {
