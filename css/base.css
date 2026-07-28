@@ -64,16 +64,20 @@ ytd-player .unstarted-mode .video-stream.html5-main-video {
     background: url('chrome-extension://__MSG_@@extension_id__/img/big-pause.png');
     background-size: cover;
     border-radius: 0;
+
+    .ytp-bezel-icon {
+        display: none;
+    }
 }
 
 .ytp-bezel[aria-label="Play"] {
     background: url('chrome-extension://__MSG_@@extension_id__/img/big-play.png');
     background-size: cover;
     border-radius: 0;
-}
 
-.ytp-bezel-icon {
-    display: none;
+    .ytp-bezel-icon {
+        display: none;
+    }
 }
 
 /* button hover shadows */

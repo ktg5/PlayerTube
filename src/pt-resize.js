@@ -49,7 +49,7 @@ var checkBar = setInterval(async () => {
         && ytVideo
         && ytVideo.src.includes('blob')
     ) {
-        // Get current progress bar width -- v2 (10.2025)
+        // Get current progress bar width -- v2.1 (07.2026)
         // We'll now be getting all of the `ytp-chapter-hover-container` divs to check for width changes
         const allChapterHovers = document.querySelectorAll('.ytp-chapter-hover-container');
         var progressBarWidth = 0;
@@ -66,7 +66,6 @@ var checkBar = setInterval(async () => {
         // Debug detection
         // console.log('resize debug detection (player):', progressBarWidth, pastWidth);
         // console.log('resize debug detection (video):', videoWidth, pastVideoWidth);
-        // Detection... v2.1...
         if (
             (
                 progressBarWidth !== pastWidth
@@ -75,6 +74,7 @@ var checkBar = setInterval(async () => {
             || videoWidth !== pastVideoWidth
             || (
                 progressBarWidth !== videoWidth
+                && (progressBarWidth + 1) !== videoWidth
                 && userConfig.year !== '2006'
             )
         ) {
