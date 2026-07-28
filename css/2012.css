@@ -504,7 +504,7 @@ ytd-player .ytp-chrome-bottom .ytp-time-display {
 /* RIGHT BUTTONS */
 
 ytd-player .ytp-chrome-bottom .ytp-right-controls {
-	background: transparent !important;
+	background: none !important;
 	position: relative !important;
 	padding-right: 0;
 	margin: 0 !important;
